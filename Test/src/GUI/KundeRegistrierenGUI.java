@@ -7,8 +7,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Datenbankmodels.IModel;
+import Datenbankmodels.KundeRegistrierenModel;
 import Domaenklassen.Adresse;
 import Steuerung.KundeAnlegenSteuerung;
+import TESTPACKAGE.TestController;
+import TESTPACKAGE.TestanbindungMVCBEISPIEL;
+import TESTPACKAGE.TestframeMVCBeispiel;
 
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
@@ -21,13 +26,15 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import java.awt.Font;
 
-public class KundeRegistrierenGUI extends JFrame {
+public class KundeRegistrierenGUI extends JFrame implements IView {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -43,12 +50,18 @@ public class KundeRegistrierenGUI extends JFrame {
 	private JTextField textField_10;
 	private JTextField textField_11;
 
+	KundeRegistrierenModel model;
+	KundeAnlegenSteuerung controller;
 	
 
 	/**
 	 * Create the frame.
 	 */
-	public KundeRegistrierenGUI() {
+	public KundeRegistrierenGUI(KundeRegistrierenModel smodel, KundeAnlegenSteuerung scontroller) {
+		
+		controller = scontroller;
+		model = smodel;
+		model.anmelden(this);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 50, 800, 700);
@@ -397,29 +410,48 @@ public class KundeRegistrierenGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 			
-				int plz = Integer.parseInt(textField_3.getText());
-				String ort = textField_4.getText();
-				String strasse = textField_5.getText();
-				String hausnummer = textField_6.getText();
-				Adresse heimadresse = new Adresse(strasse, hausnummer, ort, plz, "" );
-				//KundeAnlegenSteuerung.AdresseAnlegen(strasse, hausnummer, ort, plz, "" );
+				String email;
+				String nachname;
+				String vorname;
+				Boolean surfschein;
+				Boolean segelschein;
+				Boolean motorbootschein;
+				try {
+					int plz = Integer.parseInt(textField_3.getText());
+					String ort = textField_4.getText();
+					String strasse = textField_5.getText();
+					String hausnummer = textField_6.getText();
+					Adresse heimadresse = new Adresse(strasse, hausnummer, ort, plz, "" );
+					//KundeAnlegenSteuerung.AdresseAnlegen(strasse, hausnummer, ort, plz, "" );
+					
+					
+					int plz2 = Integer.parseInt(textField_7.getText());
+					String ort2 = textField_8.getText();
+					String strasse2 = textField_9.getText();
+					String hausnummer2 = textField_10.getText();
+					email = textField_10.getText();
+							
+					nachname = textField.getText();
+					vorname = textField_1.getText();
+					int geburtsdatum = Integer.parseInt(textField_2.getText());
+					surfschein = chckbxSurfschein.isSelected();
+					segelschein = chckbxSegelschein.isSelected();;
+					motorbootschein = chckbxMotorbootschein.isSelected();
+					
+					
+					controller.KundeAnlegen(nachname, vorname, email, surfschein, segelschein, motorbootschein);
+					/**
+					 * ACHTUNG HIER IST ES NOCH NICHT FERTIG!!!! ES KÖNNEN BISHER NUR KUNDEN ANGELEGT WERDEN!!!! ES FEHLT
+					 * NOCH DASS DIE FÜHRERSCHEINE GESPEICHERT WERDEN USW. BITTE NACHHER ÄNDERN!
+					 */
+					
+					
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 				
-				int plz2 = Integer.parseInt(textField_7.getText());
-				String ort2 = textField_8.getText();
-				String strasse2 = textField_9.getText();
-				String hausnummer2 = textField_10.getText();
-				String email = textField_10.getText();
-				Adresse urlaubsadresse = new Adresse(strasse2, hausnummer2, ort2, plz2, email);
-				//KundeAnlegenSteuerung.AdresseAnlegen(strasse2, hausnummer2, ort2, plz2, email);
-						
-				String nachname = textField.getText();
-				String vorname = textField_1.getText();
-				int geburtsdatum = Integer.parseInt(textField_2.getText());
-				Boolean surfschein = chckbxSurfschein.isSelected();
-				Boolean segelschein = chckbxSegelschein.isSelected();;
-				Boolean motorbootschein = chckbxMotorbootschein.isSelected();;
-				KundeAnlegenSteuerung.KundeAnlegen(nachname, vorname, heimadresse, urlaubsadresse, surfschein, segelschein, motorbootschein, geburtsdatum);
 				
 				
 				dispose();	
@@ -427,4 +459,16 @@ public class KundeRegistrierenGUI extends JFrame {
 			}
 		});
 	}
+
+
+	@Override
+	public void aktualisieren(IModel model) {
+		// TODO Auto-generated method stub
+		JFrame frame = new JFrame("Kunde angelegt");
+		JOptionPane.showMessageDialog(frame, "Der Kunde wurde angelegt!");
+	}
+
+	
 }
+
+

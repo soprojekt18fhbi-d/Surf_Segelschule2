@@ -1,6 +1,6 @@
 package GUI;
 
-import DataModelKlassen.IModel;
+import Datenbankmodels.IModel;
 
 public interface IView {
 

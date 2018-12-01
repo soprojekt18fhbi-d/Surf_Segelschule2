@@ -16,6 +16,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Datenbankmodels.KundeRegistrierenModel;
+import Steuerung.KundeAnlegenSteuerung;
+import TESTPACKAGE.TestController;
+import TESTPACKAGE.TestanbindungMVCBEISPIEL;
+import TESTPACKAGE.TestframeMVCBeispiel;
+
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
@@ -44,8 +51,10 @@ public class KundenverwaltungGUI extends JPanel {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							KundeRegistrierenGUI frame = new KundeRegistrierenGUI();
-							frame.setVisible(true);
+							KundeRegistrierenModel model = new KundeRegistrierenModel();
+							KundeAnlegenSteuerung controller = new KundeAnlegenSteuerung(model);
+							KundeRegistrierenGUI kundeRegistrieren = new KundeRegistrierenGUI(model, controller);
+							kundeRegistrieren.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
+import GUI.IView;
+
 
 
 public interface IModel {
@@ -40,7 +42,7 @@ public interface IModel {
 	 */
 	public void updateObserver();
 	
-	public DefaultListModel getKunden();
+
 	
 	
 }
