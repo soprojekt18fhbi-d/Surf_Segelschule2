@@ -1,3 +1,5 @@
+// @author Darnel
+
 package GUI;
 
 import java.awt.BorderLayout;
@@ -421,7 +423,7 @@ public class KundeRegistrierenGUI extends JFrame implements IView {
 					String ort = textField_4.getText();
 					String strasse = textField_5.getText();
 					String hausnummer = textField_6.getText();
-					Adresse heimadresse = new Adresse(strasse, hausnummer, ort, plz, "" );
+					Adresse heimadresse = new Adresse(strasse, hausnummer, ort, plz);
 					//KundeAnlegenSteuerung.AdresseAnlegen(strasse, hausnummer, ort, plz, "" );
 					
 					

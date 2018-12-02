@@ -1,3 +1,5 @@
+// @author Darnel
+
 package Domaenklassen;
 
 public class Adresse {
@@ -5,14 +7,13 @@ public class Adresse {
 	private String ort;
 	private int plz;
 	private String hausnummer;
-	private String email;
+	
 
-	public Adresse(String strasse, String hausnummer, String ort, int plz, String email) {
+	public Adresse(String strasse, String hausnummer, String ort, int plz) {
 		this.strasse = strasse;
 		this.hausnummer = hausnummer;
 		this.ort = ort;
 		this.plz = plz;
-		this.email = email;
 	}
 
 	public String getStrasse() {
@@ -47,14 +48,7 @@ public class Adresse {
 		this.hausnummer = hausnummer;
 	}
 	
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
+	
 	public void drucken(){
 		System.out.println(this.strasse + " " + this.hausnummer + " in " + this.plz + " " + this.ort);
 	}

@@ -1,3 +1,5 @@
+// @author Darnel
+
 package GUI;
 
 import javax.swing.JPanel;

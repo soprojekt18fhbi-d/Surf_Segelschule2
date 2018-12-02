@@ -1,5 +1,7 @@
 package Domaenklassen;
 
+//@author Darnel
+
 
 public class Kunde {
 

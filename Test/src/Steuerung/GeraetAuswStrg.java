@@ -2,6 +2,8 @@ package Steuerung;
 
 import java.util.ArrayList;
 
+import Domaenklassen.Geraet;
+
 public class GeraetAuswStrg {
 
 	
