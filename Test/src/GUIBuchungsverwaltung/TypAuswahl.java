@@ -24,13 +24,14 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import GUI.MainFrame;
 import Steuerung.AusleihAnlegenStrg;
 import Steuerung.TypAnzStrg;
+import Steuerung.TypAnzeigeStrg;
 
 import java.awt.Insets;
 
 public class TypAuswahl extends JPanel {
 	private JTextField textField;
 	
-	private AusleihAnlegenStrg controller;
+	private TypAnzeigeStrg controller;
 
 	/**
 	 * Create the panel.
