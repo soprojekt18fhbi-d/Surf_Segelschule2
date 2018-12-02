@@ -22,12 +22,15 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import GUI.MainFrame;
+import Steuerung.AusleihAnlegenStrg;
 import Steuerung.TypAnzStrg;
 
 import java.awt.Insets;
 
 public class TypAuswahl extends JPanel {
 	private JTextField textField;
+	
+	private AusleihAnlegenStrg controller;
 
 	/**
 	 * Create the panel.
@@ -85,21 +88,23 @@ public class TypAuswahl extends JPanel {
 		gbc_scrollPane.gridy = 0;
 		panel_1.add(scrollPane, gbc_scrollPane);
 		
-		DefaultListModel DLM = new DefaultListModel();
-		JList list = new JList(DLM);
+		DefaultListModel dlm = new DefaultListModel();
+		JList list = new JList(dlm);
+		
+		
+		
+		
+		//////////FUNKTIONIERT NOCH NICHT
+		//dlm = controller.typenAnzeigen();
+		
+		
+		
+		
+		
 		list.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		scrollPane.setViewportView(list);
 		
-		
-		//Befüllen der JList mit Daten der Datenbank
-		Connection conn;
-		try {
-			conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
-			DLM.addElement(TypAnzStrg.viewTable(conn));
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-	        
+
 		
 		JLabel lblGertetypen = new JLabel("Ger\u00E4tetypen:");
 		lblGertetypen.setFont(new Font("Tahoma", Font.BOLD, 15));
