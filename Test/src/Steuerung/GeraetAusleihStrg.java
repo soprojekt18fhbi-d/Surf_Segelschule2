@@ -8,61 +8,27 @@ import java.util.ArrayList;
 
 import Domaenklassen.Kunde;
 
-public class GeraetAusleihStrg {
+public class GeraetAusleihStrg implements IController{
 
-	private static GeraetAusleihStrg instance;
-	
-
-	private ArrayList<GeraeteTyp> typListe;
-	private GeraeteTyp suchTyp;
-
-
-
-	private ArrayList<GeraeteModell> modellListe;
-	private GeraeteModell suchModell;
-
-	private ArrayList<Geraet> geraeteListe;
-	private Geraet suchGeraet;
-
-	private Fuehrerschein buchungsFuehrerschein;
-
-	// Strg erstellen
-
-	static GeraetAusleihStrg getGeraetAusleihStrg() {
-		if (instance == null) {
-			instance = new GeraetAusleihStrg();
-		}
-		return instance;
+	public GeraetAusleihStrg() {
+		
 	}
-
-	// Strg schlieﬂen
-
-	static void closeGeraetAusleihStrg() {
-		if (instance != null) {
-			instance = null;
-		}
-	}
-
-
 
 	// Start der Datenbankabfragen mit einer ArrayList als Ergebnis
 
-
 	private ArrayList getTypListeBuchung(Kunde buchungsKunde) {
-		Fuehrerschein buchungsSurfschein=buchungsKunde.isSurfschein();
-		Fuehrerschein buchungsSegelschein=buchungsKunde.isSegelschein();
-		Fuehrerschein buchungsMotorbootschein=buchungsKunde.isMotorbootschein();
-		typListe = TypSucheStrg.sucheTyp(buchungsSurfschein, buchungsSegelschein, buchungsMotorbootschein);
+		Fuehrerschein buchungsSurfschein = buchungsKunde.isSurfschein();
+		Fuehrerschein buchungsSegelschein = buchungsKunde.isSegelschein();
+		Fuehrerschein buchungsMotorbootschein = buchungsKunde.isMotorbootschein();
+		ArrayList <GeraeteTyp> typListe = TypSucheStrg.sucheTyp(buchungsSurfschein, buchungsSegelschein, buchungsMotorbootschein);
 		return typListe;
 	}
-	
-	
+
 	private ArrayList getModellListe(GeraeteTyp suchTyp) {
-		modellListe = ModellSucheStrg.sucheModell();
+		ArrayList<GeraeteModell> modellListe = ModellSucheStrg.sucheModell();
 		return modellListe;
 	}
-	
-	
+
 	private ArrayList getGeraetListe(GeraeteModell suchModell) {
 		geraeteListe = GeraetSucheStrg.sucheGeraet();
 		return geraeteListe;
