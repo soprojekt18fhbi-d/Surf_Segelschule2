@@ -419,6 +419,7 @@ public class KundeRegistrierenGUI extends JFrame implements IView {
 				Boolean segelschein;
 				Boolean motorbootschein;
 				try {
+					/**
 					int plz = Integer.parseInt(textField_3.getText());
 					String ort = textField_4.getText();
 					String strasse = textField_5.getText();
@@ -431,6 +432,7 @@ public class KundeRegistrierenGUI extends JFrame implements IView {
 					String ort2 = textField_8.getText();
 					String strasse2 = textField_9.getText();
 					String hausnummer2 = textField_10.getText();
+					**/
 					email = textField_10.getText();
 							
 					nachname = textField.getText();
