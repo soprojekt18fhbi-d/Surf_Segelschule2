@@ -7,18 +7,20 @@ import java.util.ArrayList;
  */
 public class GeraeteModell extends GeraeteTyp{
 	
-	private int modellID;
+	private String modellID;
 	private double ausleihkosten;
-	private String bezeichnung;
+	private String name;
 	
 	public ArrayList<GeraeteModell>listeModelle = new ArrayList<GeraeteModell>();
 
 
-	public GeraeteModell(String name) {
-		super(name);
+	public GeraeteModell(String name, String id) {
+		super(name, id);
+		this.name = name;
+		this.modellID = id;
 	}
 
-	public int getModellID() {
+	public String getModellID() {
 		return modellID;
 	}
 
@@ -30,12 +32,12 @@ public class GeraeteModell extends GeraeteTyp{
 		this.ausleihkosten = ausleihkosten;
 	}
 
-	public String getBezeichnung() {
-		return bezeichnung;
+	public String getModellName() {
+		return name;
 	}
 
-	public void setBezeichnung(String bezeichnung) {
-		this.bezeichnung = bezeichnung;
+	public void setModellName(String bezeichnung) {
+		this.name = bezeichnung;
 	}
 	
 	

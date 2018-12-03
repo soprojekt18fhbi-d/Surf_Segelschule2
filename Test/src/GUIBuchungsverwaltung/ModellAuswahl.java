@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -17,17 +18,32 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import Datenbankmodels.IModel;
+import Datenbankmodels.IObjektModel;
+import Datenbankmodels.ModellAnzeigeModel;
+import Datenbankmodels.TypAnzeigeModel;
+import GUI.IObjektView;
 import GUI.MainFrame;
+import Steuerung.ModellAnzeigeStrg;
+import Steuerung.TypAnzeigeStrg;
 
 import java.awt.Component;
 
-public class ModellAuswahl extends JPanel {
+public class ModellAuswahl extends JPanel implements IObjektView {
 	private JTextField textField;
+	JList list = new JList();
+	
+	private ModellAnzeigeStrg controller;
+	private ModellAnzeigeModel model;
 
 	/**
 	 * Create the panel.
 	 */
 	public ModellAuswahl() {
+		model = new ModellAnzeigeModel();
+		controller = new ModellAnzeigeStrg(model);
+		model.anmelden(this);
+		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.NORTH);
@@ -78,9 +94,14 @@ public class ModellAuswahl extends JPanel {
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 0;
 		panel_1.add(scrollPane, gbc_scrollPane);
+		list.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		JList list = new JList();
 		scrollPane.setViewportView(list);
+		
+		
+		controller.fetchModelle();
+		aktualisieren(model);
+		
 		
 		JLabel lblModelle = new JLabel("Modelle:");
 		lblModelle.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -134,6 +155,16 @@ public class ModellAuswahl extends JPanel {
 					MainFrame.change(MainFrame.getModellAuswahl(), MainFrame.getGerätAuswahlVerkauf());
 			}
 		});
+	
 
+	}
+
+	@Override
+	public void aktualisieren(IObjektModel model) {
+		DefaultListModel dlm = new DefaultListModel();
+		list.removeAll();
+		dlm = model.getObjekte();
+		list.setModel(dlm);
+		
 	}
 }

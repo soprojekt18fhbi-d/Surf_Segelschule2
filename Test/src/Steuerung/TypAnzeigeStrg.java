@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import Datenbankmodels.TypAnzeigeModel;
-import GUI.IView;
+import GUI.IObjektView;
 
 /**
  * 
  * @author michi
  *
  */
-public class TypAnzeigeStrg {
+public class TypAnzeigeStrg implements IController{
 	
 	private TypAnzeigeModel model;
-	private IView view;
+	private IObjektView view;
 	
 	public TypAnzeigeStrg(TypAnzeigeModel smodel)
 	{
@@ -22,14 +22,12 @@ public class TypAnzeigeStrg {
 		
 	}
 	
-	public DefaultListModel<String> typenAnzeigen(){
-		DefaultListModel<String> dlm = new DefaultListModel<String>();
-		ArrayList<String> typListe;
-		typListe = model.typenHolen();
+
+	
+	public void fetchTypen() {
 		
-		for (String ausgabe: typListe){
-			dlm.addElement(ausgabe);
-		}
-		return dlm;
+		model.holeTypen();
+		
+		
 	}
 }

@@ -9,23 +9,43 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
+import GUI.IObjektView;
 import GUI.MainFrame;
+import Steuerung.GeraetAnzeigeStrg;
+import Steuerung.ModellAnzeigeStrg;
+import Steuerung.TypAnzeigeStrg;
 
 import javax.swing.GroupLayout.Alignment;
 
-public class GerätAuswahlAusleihe extends JPanel {
+import Datenbankmodels.GeraetAnzeigeModel;
+import Datenbankmodels.IModel;
+import Datenbankmodels.IObjektModel;
+import Datenbankmodels.ModellAnzeigeModel;
+import Datenbankmodels.TypAnzeigeModel;
+
+public class GerätAuswahlAusleihe extends JPanel implements IObjektView{
+	private JList list = new JList();
+	
+	private GeraetAnzeigeStrg controller;
+	private GeraetAnzeigeModel model;
 
 	/**
 	 * Create the panel.
 	 */
 	public GerätAuswahlAusleihe() {
+		model = new GeraetAnzeigeModel();
+		controller = new GeraetAnzeigeStrg(model);
+		model.anmelden(this);
+		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.NORTH);
@@ -75,9 +95,17 @@ public class GerätAuswahlAusleihe extends JPanel {
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 1;
 		panel_1.add(scrollPane, gbc_scrollPane);
+		list.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		JList list = new JList();
 		scrollPane.setViewportView(list);
+		
+		
+		
+		
+		controller.fetchModelle();
+		aktualisieren(model);
+		
+		
 		
 		JLabel lblGeräte = new JLabel("Sportgeräte:");
 		lblGeräte.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -100,5 +128,15 @@ public class GerätAuswahlAusleihe extends JPanel {
 		});
 		
 	}
+
+	@Override
+	public void aktualisieren(IObjektModel model) {
+		DefaultListModel dlm = new DefaultListModel();
+		list.removeAll();
+		dlm = model.getObjekte();
+		list.setModel(dlm);
+		
+	}
+
 
 }

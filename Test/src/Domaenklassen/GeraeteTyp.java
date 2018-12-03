@@ -5,21 +5,22 @@ import java.util.ArrayList;
  * @author michi
  */
 public class GeraeteTyp {
-	private int typID;
+	private String typID;
 	private String typName;
 	private String führerschein;
 	
 	public ArrayList<GeraeteTyp>listeTypen = new ArrayList<GeraeteTyp>();
 	
-	public GeraeteTyp(String name){
+	public GeraeteTyp(String name, String id){
 		this.typName = name;
+		this.typID = id;
 	}
 
-	public int getTypID() {
+	public String getTypID() {
 		return typID;
 	}
 
-	public void setTypID(int typID) {
+	public void setTypID(String typID) {
 		this.typID = typID;
 	}
 

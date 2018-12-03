@@ -21,22 +21,32 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import Datenbankmodels.IModel;
+import Datenbankmodels.IObjektModel;
+import Datenbankmodels.TypAnzeigeModel;
+import GUI.IObjektView;
 import GUI.MainFrame;
 import Steuerung.AusleihAnlegenStrg;
-import Steuerung.TypAnzStrg;
+import Steuerung.TypAnzeigeStrg;
 import Steuerung.TypAnzeigeStrg;
 
 import java.awt.Insets;
 
-public class TypAuswahl extends JPanel {
+public class TypAuswahl extends JPanel implements IObjektView{
+	private JList list = new JList();
 	private JTextField textField;
 	
 	private TypAnzeigeStrg controller;
+	private TypAnzeigeModel model;
 
 	/**
 	 * Create the panel.
 	 */
 	public TypAuswahl() {
+		model = new TypAnzeigeModel();
+		controller = new TypAnzeigeStrg(model);
+		model.anmelden(this);
+		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.NORTH);
@@ -89,21 +99,16 @@ public class TypAuswahl extends JPanel {
 		gbc_scrollPane.gridy = 0;
 		panel_1.add(scrollPane, gbc_scrollPane);
 		
-		DefaultListModel dlm = new DefaultListModel();
-		JList list = new JList(dlm);
-		
-		
-		
-		
-		//////////FUNKTIONIERT NOCH NICHT
-		//dlm = controller.typenAnzeigen();
-		
-		
-		
-		
 		
 		list.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		scrollPane.setViewportView(list);
+		
+		
+		
+		
+		controller.fetchTypen();
+		aktualisieren(model);
+		
 		
 
 		
@@ -154,6 +159,15 @@ public class TypAuswahl extends JPanel {
 					MainFrame.change(MainFrame.getTypAuswahl(), MainFrame.getGerätAuswahlVerkauf());
 			}
 		});
+		
+	}
+
+	@Override
+	public void aktualisieren(IObjektModel model) {
+		DefaultListModel dlm = new DefaultListModel();
+		list.removeAll();
+		dlm = model.getObjekte();
+		list.setModel(dlm);
 		
 	}
 }

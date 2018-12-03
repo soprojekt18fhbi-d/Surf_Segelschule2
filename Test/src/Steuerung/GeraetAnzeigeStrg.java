@@ -4,17 +4,18 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import Datenbankmodels.GeraetAnzeigeModel;
-import GUI.IView;
+import GUI.IObjektView;
+
 
 /**
  * 
  * @author michi
  *
  */
-public class GeraetAnzeigeStrg {
-
+public class GeraetAnzeigeStrg implements IController{
+	
 	private GeraetAnzeigeModel model;
-	private IView view;
+	private IObjektView view;
 	
 	public GeraetAnzeigeStrg(GeraetAnzeigeModel smodel)
 	{
@@ -22,15 +23,12 @@ public class GeraetAnzeigeStrg {
 		
 	}
 	
-	public DefaultListModel<String> geraeteAnzeigen(){
-		DefaultListModel<String> dlm = new DefaultListModel<String>();
-		ArrayList<String> geraetListe;
-		geraetListe = model.geraeteHolen();
-		
-		for (String ausgabe: geraetListe){
-			dlm.addElement(ausgabe);
-		}
-		return dlm;
-	}
 
+	
+	public void fetchModelle() {
+		
+		model.holeGeraete();
+		
+		
+	}
 }

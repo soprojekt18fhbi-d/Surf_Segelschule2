@@ -7,22 +7,25 @@ import java.util.ArrayList;
  */
 public class Geraet extends GeraeteModell{
 	
-	private int geräteID;
+	private String bezeichnung;
+	private String geräteID;
 	private String farbe;
 	private double verkaufsPreis;
 	private int status;
 	
 	public ArrayList<Geraet>listeGeraete = new ArrayList<Geraet>();
 
-	public Geraet(String name) {
-		super(name);
+	public Geraet(String name, String id) {
+		super(name, id);
+		this.geräteID = id;
+		this.bezeichnung = name;
 	}
 
-	public int getGeräteID() {
+	public String getGeraeteID() {
 		return geräteID;
 	}
 
-	public void setGeräteID(int geräteID) {
+	public void setGeraeteID(String geräteID) {
 		this.geräteID = geräteID;
 	}
 
@@ -57,6 +60,14 @@ public class Geraet extends GeraeteModell{
 	
 	public void entfernen(Geraet element){
 		listeGeraete.remove(element);
+	}
+
+	public String getGeraeteName() {
+		return bezeichnung;
+	}
+
+	public void setGeraeteName(String bezeichnung) {
+		this.bezeichnung = bezeichnung;
 	}
 
 }
