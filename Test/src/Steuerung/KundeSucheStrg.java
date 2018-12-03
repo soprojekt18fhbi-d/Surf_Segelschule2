@@ -1,20 +1,37 @@
+/**
+ * @author Ben S
+ */
+
 package Steuerung;
 
 import java.util.ArrayList;
 
+import Datenbankmodels.KundeSucheModel;
 import Domaenklassen.Kunde;
+import GUI.KundeAendern;
+import TESTPACKAGE.TestanbindungMVCBEISPIEL;
+import TESTPACKAGE.TestframeMVCBeispiel;
 
-public class KundeSucheStrg {
+public class KundeSucheStrg implements IController {
 
-	//Methode muss abfragen, ob Strings leer oder nicht & darafu basieredn untershciedliche Anfragen starten
-	public static ArrayList<Kunde> sucheKunde(String suchKundennummer, String nname, String vname) {
-		// TODO Auto-generated method stub
-		return null;
+	private KundeSucheModel model;
+	private KundeAendern view;
+
+	public KundeSucheStrg(KundeSucheModel smodel) {
+		model = smodel;
+
 	}
 
-	public static KundeSucheStrg getSuchenStrg() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Der Button wurde gedrückt und es sollen Kunden geholt werden.
+	 * 
+	 */
+	public void fetchKunde(String kdID, String nname, String vname, String plz, String ort,
+			String strasse, String hausnr) {
+
+		model.holeKunden(kdID, nname, vname, plz, ort, strasse, hausnr);
+
 	}
+
 
 }

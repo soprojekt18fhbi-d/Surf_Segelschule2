@@ -92,7 +92,7 @@ public class KundeRegistrierenModel implements IModel{
 			String sqlupdate = "INSERT INTO KUNDE" + "VALUES(default, '" + name + "', '" + vorname + "', '" + email + "', 'N')";
 			
 			
-			statement.execute(sqlupdate);
+			int ergebnis = statement.executeUpdate(sqlupdate);
 			
 			conn.close();
 		} catch (SQLException e) {

@@ -11,6 +11,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -21,15 +22,26 @@ import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class KundeAendern extends JPanel {
+import Datenbankmodels.IModel;
+import Datenbankmodels.KundeSucheModel;
+import Steuerung.KundeSucheStrg;
+import TESTPACKAGE.TestController;
+import TESTPACKAGE.TestanbindungMVCBEISPIEL;
+
+public class KundeAendern extends JPanel implements IView{
 	
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField tfKundennummer;
+	private JTextField tfNachname;
+	private JTextField tfVorname;
+	private JTextField tfPLZ;
+	private JTextField tfOrt;
+	private JTextField tfStrasse;
+	private JTextField tfHausNr;
+	
+	
+	private KundeSucheModel model;
+	private KundeSucheStrg controller;
+	private JList list = new JList();
 
 	/**
 	 * Create the panel.
@@ -84,16 +96,16 @@ public class KundeAendern extends JPanel {
 		gbc_lblKundennummer.gridy = 0;
 		panel2.add(lblKundennummer, gbc_lblKundennummer);
 		
-		textField = new JTextField();
-		textField.setPreferredSize(new Dimension(6, 25));
+		tfKundennummer = new JTextField();
+		tfKundennummer.setPreferredSize(new Dimension(6, 25));
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.gridwidth = 2;
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.gridx = 1;
 		gbc_textField.gridy = 0;
-		panel2.add(textField, gbc_textField);
-		textField.setColumns(10);
+		panel2.add(tfKundennummer, gbc_textField);
+		tfKundennummer.setColumns(10);
 		
 		JLabel lblNachname = new JLabel("Nachname:");
 		lblNachname.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -105,16 +117,16 @@ public class KundeAendern extends JPanel {
 		gbc_lblNachname.gridy = 1;
 		panel2.add(lblNachname, gbc_lblNachname);
 		
-		textField_1 = new JTextField();
-		textField_1.setPreferredSize(new Dimension(6, 25));
+		tfNachname = new JTextField();
+		tfNachname.setPreferredSize(new Dimension(6, 25));
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.gridwidth = 2;
 		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_1.gridx = 1;
 		gbc_textField_1.gridy = 1;
-		panel2.add(textField_1, gbc_textField_1);
-		textField_1.setColumns(10);
+		panel2.add(tfNachname, gbc_textField_1);
+		tfNachname.setColumns(10);
 		
 		JLabel lblVorname = new JLabel("Vorname:");
 		lblVorname.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -126,16 +138,16 @@ public class KundeAendern extends JPanel {
 		gbc_lblVorname.gridy = 2;
 		panel2.add(lblVorname, gbc_lblVorname);
 		
-		textField_2 = new JTextField();
-		textField_2.setPreferredSize(new Dimension(30, 25));
+		tfVorname = new JTextField();
+		tfVorname.setPreferredSize(new Dimension(30, 25));
 		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
 		gbc_textField_2.gridwidth = 2;
 		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_2.gridx = 1;
 		gbc_textField_2.gridy = 2;
-		panel2.add(textField_2, gbc_textField_2);
-		textField_2.setColumns(10);
+		panel2.add(tfVorname, gbc_textField_2);
+		tfVorname.setColumns(10);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -161,16 +173,16 @@ public class KundeAendern extends JPanel {
 		gbc_lblPlz.gridy = 4;
 		panel2.add(lblPlz, gbc_lblPlz);
 		
-		textField_3 = new JTextField();
-		textField_3.setPreferredSize(new Dimension(6, 25));
+		tfPLZ = new JTextField();
+		tfPLZ.setPreferredSize(new Dimension(6, 25));
 		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
 		gbc_textField_3.gridwidth = 2;
 		gbc_textField_3.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_3.gridx = 1;
 		gbc_textField_3.gridy = 4;
-		panel2.add(textField_3, gbc_textField_3);
-		textField_3.setColumns(10);
+		panel2.add(tfPLZ, gbc_textField_3);
+		tfPLZ.setColumns(10);
 		
 		JLabel lblOrt = new JLabel("Ort:");
 		lblOrt.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -182,16 +194,16 @@ public class KundeAendern extends JPanel {
 		gbc_lblOrt.gridy = 5;
 		panel2.add(lblOrt, gbc_lblOrt);
 		
-		textField_4 = new JTextField();
-		textField_4.setPreferredSize(new Dimension(6, 25));
+		tfOrt = new JTextField();
+		tfOrt.setPreferredSize(new Dimension(6, 25));
 		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
 		gbc_textField_4.gridwidth = 2;
 		gbc_textField_4.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_4.gridx = 1;
 		gbc_textField_4.gridy = 5;
-		panel2.add(textField_4, gbc_textField_4);
-		textField_4.setColumns(10);
+		panel2.add(tfOrt, gbc_textField_4);
+		tfOrt.setColumns(10);
 		
 		JLabel lblStrasse = new JLabel("Strasse");
 		lblStrasse.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -203,16 +215,16 @@ public class KundeAendern extends JPanel {
 		gbc_lblStrasse.gridy = 6;
 		panel2.add(lblStrasse, gbc_lblStrasse);
 		
-		textField_5 = new JTextField();
-		textField_5.setPreferredSize(new Dimension(6, 25));
+		tfStrasse = new JTextField();
+		tfStrasse.setPreferredSize(new Dimension(6, 25));
 		GridBagConstraints gbc_textField_5 = new GridBagConstraints();
 		gbc_textField_5.gridwidth = 2;
 		gbc_textField_5.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_5.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_5.gridx = 1;
 		gbc_textField_5.gridy = 6;
-		panel2.add(textField_5, gbc_textField_5);
-		textField_5.setColumns(10);
+		panel2.add(tfStrasse, gbc_textField_5);
+		tfStrasse.setColumns(10);
 		
 		JLabel lblHausnummer = new JLabel("Hausnummer:");
 		lblHausnummer.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -224,16 +236,16 @@ public class KundeAendern extends JPanel {
 		gbc_lblHausnummer.gridy = 7;
 		panel2.add(lblHausnummer, gbc_lblHausnummer);
 		
-		textField_6 = new JTextField();
-		textField_6.setPreferredSize(new Dimension(6, 25));
+		tfHausNr = new JTextField();
+		tfHausNr.setPreferredSize(new Dimension(6, 25));
 		GridBagConstraints gbc_textField_6 = new GridBagConstraints();
 		gbc_textField_6.gridwidth = 2;
 		gbc_textField_6.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_6.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_6.gridx = 1;
 		gbc_textField_6.gridy = 7;
-		panel2.add(textField_6, gbc_textField_6);
-		textField_6.setColumns(10);
+		panel2.add(tfHausNr, gbc_textField_6);
+		tfHausNr.setColumns(10);
 		
 		JButton btnLeeren = new JButton("Leeren");
 		btnLeeren.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -298,7 +310,9 @@ public class KundeAendern extends JPanel {
 		panel3.add(btnAuswaehlen, gbc_btnAuswhlen);
 		
 		
-		
+		/**
+		 * @author Ben S
+		**/
 		
 		//Funktionen der Button
 		btnZurueck.addActionListener(new ActionListener() {
@@ -315,18 +329,20 @@ public class KundeAendern extends JPanel {
 		
 		btnLeeren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText("");
-				textField_1.setText("");
-				textField_2.setText("");
-				textField_3.setText("");
-				textField_4.setText("");
-				textField_5.setText("");
-				textField_6.setText("");
+				tfKundennummer.setText("");
+				tfNachname.setText("");
+				tfVorname.setText("");
+				tfPLZ.setText("");
+				tfOrt.setText("");
+				tfStrasse.setText("");
+				tfHausNr.setText("");
 			}
 		});
 		
 		btnSuchen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				controller.fetchKunde(tfKundennummer.getText(), tfNachname.getText(), tfVorname.getText(), tfPLZ.getText(), tfOrt.getText(), tfStrasse.getText(), tfHausNr.getText());
 			}
 		});
 		
@@ -342,6 +358,19 @@ public class KundeAendern extends JPanel {
 		});
 		
 
+	}
+
+	@Override
+	public void aktualisieren(IModel model) {
+		// TODO Auto-generated method stub
+		/*
+		 * Hier aktualisiert das Fenster sich nach jeder Änderung im Model
+		 */
+		DefaultListModel dlm = new DefaultListModel();
+		list.removeAll();
+		dlm = model.getKunden();
+		list.setModel(dlm);
+		
 	}
 
 }
