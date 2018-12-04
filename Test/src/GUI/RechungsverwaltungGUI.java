@@ -98,14 +98,14 @@ public class RechungsverwaltungGUI extends JPanel implements IObjektView{
 		// Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGerätAuswahlAusleihe(), MainFrame.getModellAuswahl());
+				MainFrame.change(MainFrame.getRechnungsVerwaltung(), MainFrame.getHauptmenue());
 
 			}
 		});
 
 		btnREinsehen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGerätAuswahlAusleihe(), MainFrame.getVerleihFormular());
+				MainFrame.change(MainFrame.getRechnungsVerwaltung(), MainFrame.getRechnungDetail());
 
 			}
 		});

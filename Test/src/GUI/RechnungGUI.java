@@ -60,6 +60,8 @@ public class RechnungGUI extends JPanel{
 		);
 		panel.setLayout(gl_panel);
 		
+		//Panel
+		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
@@ -305,15 +307,13 @@ public class RechnungGUI extends JPanel{
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getVerleihFormular(), MainFrame.getGerätAuswahlAusleihe());
+				MainFrame.change(MainFrame.getRechnungDetail(), MainFrame.getRechnungsVerwaltung());
 			}
 		});
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getVerleihFormular(), MainFrame.getBuchungsverwaltung());
-
-				
+				MainFrame.change(MainFrame.getRechnungDetail(), MainFrame.getBuchungsverwaltung());
 			}
 		});
 		
