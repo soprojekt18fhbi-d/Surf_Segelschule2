@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Datenbankmodels.KundeSucheModel;
 import GUIBuchungsverwaltung.AbgeschlosseneBuchungen;
 import GUIBuchungsverwaltung.AktiveAusleihen;
 import GUIBuchungsverwaltung.BuchungsTypAuswahl;
@@ -20,6 +21,7 @@ import GUIBuchungsverwaltung.StatusSetzen;
 import GUIBuchungsverwaltung.TypAuswahl;
 import GUIBuchungsverwaltung.VerkaufFormular;
 import GUIBuchungsverwaltung.VerleihFormular;
+import Steuerung.KundeSucheStrg;
 
 import java.awt.CardLayout;
 import javax.swing.GroupLayout;
@@ -53,6 +55,14 @@ public class MainFrame extends JFrame {
 	private static Typhinzufuegen typhinzufuegen = new Typhinzufuegen();
 	private static JPanel StandortPanel = new StandortPanel();
 	
+	//Models erzeugen:
+	private static KundeSucheModel ksucheModel = new KundeSucheModel();
+	
+	
+	//Controller erzeugen:
+	private static KundeSucheStrg ksucheController = new KundeSucheStrg(ksucheModel);
+	
+	
 	//Buchungsverwaltung
 	private static Buchungsverwaltung buchungsverwaltung = new Buchungsverwaltung();
 	private static KundeWaehlen kundeWaehlen = new KundeWaehlen();
@@ -70,7 +80,7 @@ public class MainFrame extends JFrame {
 	
 	// Kundenverwaltung
 	private static KundenverwaltungGUI kundenverwaltung = new KundenverwaltungGUI(); 
-	private static KundeAendern kundeAendern = new KundeAendern();
+	private static KundeAendern kundeAendern = new KundeAendern(ksucheModel, ksucheController);
 	
 	// Wirtschaftlichkeitsrechnung
 	private static WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltung = new WirtschaftlichkeitsverwaltungGUI();

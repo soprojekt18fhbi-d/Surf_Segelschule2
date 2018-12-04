@@ -41,7 +41,10 @@ public interface IModel {
 	 *
 	 */
 	public void updateObserver();
+
+	DefaultListModel holeModel();
 	
+
 
 	
 	

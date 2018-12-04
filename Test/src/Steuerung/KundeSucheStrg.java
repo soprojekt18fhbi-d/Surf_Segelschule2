@@ -6,6 +6,7 @@ package Steuerung;
 
 import java.util.ArrayList;
 
+import Datenbankmodels.IModelSuche;
 import Datenbankmodels.KundeSucheModel;
 import Domaenklassen.Kunde;
 import GUI.KundeAendern;
@@ -29,7 +30,7 @@ public class KundeSucheStrg implements IController {
 	public void fetchKunde(String kdID, String nname, String vname, String plz, String ort,
 			String strasse, String hausnr) {
 
-		model.holeKunden(kdID, nname, vname, plz, ort, strasse, hausnr);
+		model.holeDaten(kdID, nname, vname, plz, ort, strasse, hausnr);
 
 	}
 

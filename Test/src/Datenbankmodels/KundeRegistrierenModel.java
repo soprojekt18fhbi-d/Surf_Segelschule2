@@ -121,6 +121,16 @@ public class KundeRegistrierenModel implements IModel{
 
 
 	}
+
+	@Override
+	public DefaultListModel holeModel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
 }
 
 

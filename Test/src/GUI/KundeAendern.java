@@ -23,12 +23,15 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import Datenbankmodels.IModel;
+import Datenbankmodels.IModelSuche;
 import Datenbankmodels.KundeSucheModel;
 import Steuerung.KundeSucheStrg;
 import TESTPACKAGE.TestController;
 import TESTPACKAGE.TestanbindungMVCBEISPIEL;
 
 public class KundeAendern extends JPanel implements IView{
+	
+
 	
 	private JTextField tfKundennummer;
 	private JTextField tfNachname;
@@ -46,7 +49,10 @@ public class KundeAendern extends JPanel implements IView{
 	/**
 	 * Create the panel.
 	 */
-	public KundeAendern() {
+	public KundeAendern(KundeSucheModel smodel, KundeSucheStrg scontroller) {
+		this.model = smodel;
+		this.controller = scontroller;
+		model.anmelden(this);
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.NORTH);
@@ -359,18 +365,36 @@ public class KundeAendern extends JPanel implements IView{
 		
 
 	}
+	
+
+
+
+
+
+	public void aktualisierenSuche(IModelSuche model) {
+		/*
+		 * Hier aktualisiert das Fenster sich nach jeder Änderung im Model
+		 */
+		
+		
+	}
+
+
+
+
+
 
 	@Override
 	public void aktualisieren(IModel model) {
 		// TODO Auto-generated method stub
-		/*
-		 * Hier aktualisiert das Fenster sich nach jeder Änderung im Model
-		 */
-		DefaultListModel dlm = new DefaultListModel();
-		list.removeAll();
-		dlm = model.getKunden();
-		list.setModel(dlm);
+		DefaultListModel<String> dlm = new DefaultListModel<String>();
 		
+		dlm = model.holeModel();
+		list.setModel(dlm);
 	}
+
+
+
+
 
 }

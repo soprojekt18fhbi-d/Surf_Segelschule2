@@ -87,5 +87,8 @@ public class Kunde {
 	public boolean getMotorbootschein() {
 		return motorbootschein;
 	}
+	public void setKundennummer(int nummer) {
+		this.kundennummer = nummer;
+	}
 
 }

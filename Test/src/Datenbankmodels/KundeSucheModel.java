@@ -17,7 +17,7 @@ import Domaenklassen.Kunde;
 import GUI.IView;
 
 
-public class KundeSucheModel implements IModel  {
+public class KundeSucheModel implements IModelSuche  {
 
 	private ArrayList<IView> observers = new ArrayList<IView>();
 
@@ -27,9 +27,15 @@ public class KundeSucheModel implements IModel  {
 
 	
 	
-	public void holeKunden(String kdID, String nname, String vname, String plz, String ort,
+	/* (non-Javadoc)
+	 * @see Datenbankmodels.ModelSuchInterface#holeKunden(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void holeDaten(String kdID, String nname, String vname, String plz, String ort,
 			String strasse, String hausnr) {
 
+		
+		
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
 			// add application code here
@@ -47,16 +53,26 @@ public class KundeSucheModel implements IModel  {
 	
 	
 	
+	/* (non-Javadoc)
+	 * @see Datenbankmodels.ModelSuchInterface#viewTable(java.sql.Connection, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
 	public void viewTable(Connection con, String kdID, String nname, String vname, String plz, String ort,
 			String strasse, String hausnr) throws SQLException {
-
+		
 		Statement stmt = null;
+		stmt = con.createStatement();
 		
-		//Abfrage aufgrund der Parameter
 		
-		String query = "select * from KUNDE";
 		try {
-			stmt = con.createStatement();
+		
+			String query = "select * from kunde";
+			
+			//Abfrage aufgrund der Parameter
+			
+		
+		
+			
 			ResultSet rs = stmt.executeQuery(query);
 			
 			//Ausgabe der Kundendaten
@@ -78,6 +94,7 @@ public class KundeSucheModel implements IModel  {
 				
 				//Wie sollen Führerscheine übergeben werden? Notwendig für Abfrage im Ausleih-Prozess
 				Kunde kundeNr = new Kunde (name, vorname , email, surfschein, segelschein, motorbootschein);
+				kundeNr.setKundennummer(kundennummer);
 				mengeAnKunden.add(kundeNr);
 			}
 
@@ -92,12 +109,16 @@ public class KundeSucheModel implements IModel  {
 	}
 	
 	
-	public DefaultListModel getKunden() {
+	/* (non-Javadoc)
+	 * @see Datenbankmodels.ModelSuchInterface#getKunden()
+	 */
+	@Override
+	public DefaultListModel holeModel() {
 
 		DefaultListModel<String> listmodel = new DefaultListModel<String>();
 
 		for (int i = 0; i < mengeAnKunden.size(); i++) {
-			listmodel.addElement(mengeAnKunden.get(i).getName() + ", " + mengeAnKunden.get(i).getVorname() + ", "
+			listmodel.addElement(mengeAnKunden.get(i).getKundennummer() + ", " + mengeAnKunden.get(i).getName() + ", " + mengeAnKunden.get(i).getVorname() + ", "
 					+ mengeAnKunden.get(i).getEmail());
 		}
 		return listmodel;
@@ -106,6 +127,9 @@ public class KundeSucheModel implements IModel  {
 	
 	
 	
+	/* (non-Javadoc)
+	 * @see Datenbankmodels.ModelSuchInterface#anmelden(GUI.IView)
+	 */
 	@Override
 	public void anmelden(IView view) {
 		try {
@@ -124,6 +148,9 @@ public class KundeSucheModel implements IModel  {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see Datenbankmodels.ModelSuchInterface#abmelden(GUI.IView)
+	 */
 	@Override
 	public void abmelden(IView view) {
 		try {
@@ -135,6 +162,9 @@ public class KundeSucheModel implements IModel  {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see Datenbankmodels.ModelSuchInterface#updateObserver()
+	 */
 	@Override
 	public void updateObserver() {
 		try {
@@ -144,7 +174,19 @@ public class KundeSucheModel implements IModel  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 	

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Datenbankmodels.IModel;
+import Datenbankmodels.IModelSuche;
 import Datenbankmodels.KundeRegistrierenModel;
 import Domaenklassen.Adresse;
 import Steuerung.KundeAnlegenSteuerung;
@@ -470,6 +471,13 @@ public class KundeRegistrierenGUI extends JFrame implements IView {
 		// TODO Auto-generated method stub
 		JFrame frame = new JFrame("Kunde angelegt");
 		JOptionPane.showMessageDialog(frame, "Der Kunde wurde angelegt!");
+	}
+
+
+	@Override
+	public void aktualisieren(IModelSuche model) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

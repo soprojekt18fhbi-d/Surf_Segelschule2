@@ -1,6 +1,7 @@
 package GUI;
 
 import Datenbankmodels.IModel;
+import Datenbankmodels.IModelSuche;
 
 public interface IView {
 
@@ -10,6 +11,8 @@ public interface IView {
 	 * 
 	 */
 	public void aktualisieren(IModel model);
+
+	public void aktualisierenSuche(IModelSuche model);
 	
 	
 }
