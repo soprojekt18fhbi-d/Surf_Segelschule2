@@ -20,8 +20,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import Datenbankmodels.IModel;
 import Datenbankmodels.IObjektModel;
-import Datenbankmodels.ModellAnzeigeModel;
-import Datenbankmodels.TypAnzeigeModel;
+//import Datenbankmodels.ModellAnzeigeModel;
+//import Datenbankmodels.TypAnzeigeModel;
 import GUI.IObjektView;
 import GUI.MainFrame;
 import Steuerung.ModellAnzeigeStrg;
@@ -33,17 +33,17 @@ public class ModellAuswahl extends JPanel implements IObjektView {
 	private JTextField textField;
 	JList list = new JList();
 	
-	private ModellAnzeigeStrg controller;
-	private ModellAnzeigeModel model;
+	//private ModellAnzeigeStrg controller;
+	//private ModellAnzeigeModel model;
 
 	/**
 	 * Create the panel.
 	 */
 	public ModellAuswahl() {
-		model = new ModellAnzeigeModel();
+		/**model = new ModellAnzeigeModel();
 		controller = new ModellAnzeigeStrg(model);
 		model.anmelden(this);
-		
+		**/
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.NORTH);
@@ -99,8 +99,8 @@ public class ModellAuswahl extends JPanel implements IObjektView {
 		scrollPane.setViewportView(list);
 		
 		
-		controller.fetchModelle();
-		aktualisieren(model);
+		//controller.fetchModelle();
+	    //aktualisieren(model);
 		
 		
 		JLabel lblModelle = new JLabel("Modelle:");

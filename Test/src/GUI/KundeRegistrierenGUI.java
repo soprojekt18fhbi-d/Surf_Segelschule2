@@ -49,8 +49,8 @@ public class KundeRegistrierenGUI extends JFrame implements IView {
 	private JTextField textField_7;
 	private JTextField textField_8;
 	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
+	private JTextField hnrTextField;
+	private JTextField emailTextField;
 
 	KundeRegistrierenModel model;
 	KundeAnlegenSteuerung controller;
@@ -128,8 +128,8 @@ public class KundeRegistrierenGUI extends JFrame implements IView {
 				textField_7.setText("");
 				textField_8.setText("");
 				textField_9.setText("");
-				textField_10.setText("");
-				textField_11.setText("");
+				hnrTextField.setText("");
+				emailTextField.setText("");
 			}
 		});
 		
@@ -360,14 +360,14 @@ public class KundeRegistrierenGUI extends JFrame implements IView {
 		gbc_lblHausnummer2.gridy = 16;
 		panel_2.add(lblHausnummer2, gbc_lblHausnummer2);
 		
-		textField_10 = new JTextField();
-		GridBagConstraints gbc_textField_10 = new GridBagConstraints();
-		gbc_textField_10.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_10.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_10.gridx = 3;
-		gbc_textField_10.gridy = 16;
-		panel_2.add(textField_10, gbc_textField_10);
-		textField_10.setColumns(10);
+		hnrTextField = new JTextField();
+		GridBagConstraints gbc_hnrTextField = new GridBagConstraints();
+		gbc_hnrTextField.insets = new Insets(0, 0, 5, 0);
+		gbc_hnrTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_hnrTextField.gridx = 3;
+		gbc_hnrTextField.gridy = 16;
+		panel_2.add(hnrTextField, gbc_hnrTextField);
+		hnrTextField.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("E-Mail");
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
@@ -377,14 +377,14 @@ public class KundeRegistrierenGUI extends JFrame implements IView {
 		gbc_lblEmail.gridy = 17;
 		panel_2.add(lblEmail, gbc_lblEmail);
 		
-		textField_11 = new JTextField();
-		GridBagConstraints gbc_textField_11 = new GridBagConstraints();
-		gbc_textField_11.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_11.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_11.gridx = 3;
-		gbc_textField_11.gridy = 17;
-		panel_2.add(textField_11, gbc_textField_11);
-		textField_11.setColumns(10);
+		emailTextField = new JTextField();
+		GridBagConstraints gbc_emailTextField = new GridBagConstraints();
+		gbc_emailTextField.insets = new Insets(0, 0, 5, 0);
+		gbc_emailTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_emailTextField.gridx = 3;
+		gbc_emailTextField.gridy = 17;
+		panel_2.add(emailTextField, gbc_emailTextField);
+		emailTextField.setColumns(10);
 		
 		JCheckBox chckbxSurfschein = new JCheckBox("Surfschein");
 		GridBagConstraints gbc_chckbxSurfschein = new GridBagConstraints();
@@ -433,11 +433,11 @@ public class KundeRegistrierenGUI extends JFrame implements IView {
 					String strasse2 = textField_9.getText();
 					String hausnummer2 = textField_10.getText();
 					**/
-					email = textField_10.getText();
+					email = emailTextField.getText();
 							
 					nachname = textField.getText();
 					vorname = textField_1.getText();
-					int geburtsdatum = Integer.parseInt(textField_2.getText());
+					//int geburtsdatum = Integer.parseInt(textField_2.getText());
 					surfschein = chckbxSurfschein.isSelected();
 					segelschein = chckbxSegelschein.isSelected();;
 					motorbootschein = chckbxMotorbootschein.isSelected();

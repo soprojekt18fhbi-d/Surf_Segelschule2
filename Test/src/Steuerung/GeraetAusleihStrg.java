@@ -1,6 +1,6 @@
 /**
  *@author Ben S 
- **/
+ **
 
 package Steuerung;
 
@@ -52,3 +52,4 @@ public class GeraetAusleihStrg implements IController{
 	}
 
 }
+*/

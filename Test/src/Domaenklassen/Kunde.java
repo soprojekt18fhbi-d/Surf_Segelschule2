@@ -1,7 +1,5 @@
 package Domaenklassen;
 
-//@author Darnel
-
 
 public class Kunde {
 
@@ -79,6 +77,15 @@ public class Kunde {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public boolean getSurfschein() {
+		return surfschein;
+	}
+	public boolean getSegelschein() {
+		return segelschein;
+	}
+	public boolean getMotorbootschein() {
+		return motorbootschein;
 	}
 
 }

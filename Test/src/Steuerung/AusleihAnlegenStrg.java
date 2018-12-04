@@ -1,5 +1,5 @@
 package Steuerung;
-
+/*
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
@@ -21,3 +21,4 @@ public class AusleihAnlegenStrg extends BuchungAnlegenStrg {
 	}
 
 }
+**/

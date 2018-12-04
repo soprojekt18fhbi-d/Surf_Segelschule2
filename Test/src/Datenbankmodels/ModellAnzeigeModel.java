@@ -1,4 +1,4 @@
-package Datenbankmodels;
+/**package Datenbankmodels;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +17,7 @@ import GUI.IObjektView;
 /**
  * @author michi
  *
- */
+ *
 public class ModellAnzeigeModel implements IObjektModel{
 	
 	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
@@ -121,8 +121,7 @@ public class ModellAnzeigeModel implements IObjektModel{
 		return listmodel;
 
 	}	
-	
-	/* Datenbank
+**/	/* Datenbank
 		create table MODELL(
 		NAME varchar (50) not null,
 		MODELLID int (6) not null,
@@ -144,4 +143,3 @@ public class ModellAnzeigeModel implements IObjektModel{
 	 * 
 	 */
 
-}

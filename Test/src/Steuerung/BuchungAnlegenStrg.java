@@ -1,5 +1,5 @@
 package Steuerung;
-
+/*
 import Domaenklassen.Kunde;
 import Domaenklasse.Geraet;
 
@@ -27,3 +27,4 @@ public class BuchungAnlegenStrg {
 
 	
 }
+*/

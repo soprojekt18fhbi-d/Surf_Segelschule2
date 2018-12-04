@@ -88,8 +88,23 @@ public class KundeRegistrierenModel implements IModel{
 			String name = kunde.getName();
 			String vorname = kunde.getVorname();
 			String email = kunde.getEmail();
+			boolean surfs = kunde.getSurfschein();
+			boolean segels = kunde.getSegelschein();
+			boolean motorboots = kunde.getMotorbootschein();
+			String surfschein = "N";
+			String segelschein = "N";
+			String motorbootschein = "N";
+			if(surfs == true)
+				surfschein = "J";
+			if(segels == true)
+				segelschein = "J";
+			if(motorboots == true)
+				motorbootschein = "J";
 			
-			String sqlupdate = "INSERT INTO KUNDE VALUES(100,'Mustermann','Max','max@web.de,'N'";
+			
+			
+			
+			String sqlupdate = "INSERT INTO KUNDE " + "VALUES (default, " + "'" + vorname + "', '" + name + "', '" + email +"', 'N', '" + segelschein + "', '" + motorbootschein + "', '" + surfschein + "')";
 			
 			
 			int ergebnis = statement.executeUpdate(sqlupdate);

@@ -1,4 +1,4 @@
-package Datenbankmodels;
+/**package Datenbankmodels;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,7 +16,7 @@ import GUI.IView;
 /**
  * @author michi
  *
- */
+ *
 public class TypAnzeigeModel implements IObjektModel{
 	
 	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
@@ -119,7 +119,7 @@ public class TypAnzeigeModel implements IObjektModel{
 
 	}	
 	
-	/*
+	
 	 * 
 	 * Datenbank
 		create table TYP(
@@ -135,7 +135,7 @@ public class TypAnzeigeModel implements IObjektModel{
 		('Kajak', 30, null),
 		('Jetski', 40, 'Bootschein'),
 		('Motorboot', 50, 'Bootschein'),
-	 */
+	 
 	
-}
+}**/
 

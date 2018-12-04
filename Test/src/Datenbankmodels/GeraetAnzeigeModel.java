@@ -1,4 +1,4 @@
-package Datenbankmodels;
+/**package Datenbankmodels;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +17,7 @@ import GUI.IObjektView;
 /**
  * @author michi
  *
- */
+ *
 public class GeraetAnzeigeModel implements IObjektModel{
 	
 	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
@@ -119,7 +119,7 @@ public class GeraetAnzeigeModel implements IObjektModel{
 		return listmodel;
 
 	}
-	
+	**/
 	
 	/*
 	 * 	create table GERAET(
@@ -138,4 +138,5 @@ public class GeraetAnzeigeModel implements IObjektModel{
 		('ZRAY Nassau 13,4" Professional Kajak 2 Personen', 30101101, 30101);
 		
 	 */
-}
+
+

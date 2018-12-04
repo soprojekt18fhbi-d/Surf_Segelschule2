@@ -1,4 +1,4 @@
-package Datenbankmodels;
+/**package Datenbankmodels;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -57,3 +57,4 @@ public class AusleiheAnlegenModel implements IModel{
 	}
 
 }
+**/

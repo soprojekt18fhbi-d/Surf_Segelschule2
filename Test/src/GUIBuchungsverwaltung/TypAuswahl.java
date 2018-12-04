@@ -23,7 +23,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import Datenbankmodels.IModel;
 import Datenbankmodels.IObjektModel;
-import Datenbankmodels.TypAnzeigeModel;
+//import Datenbankmodels.TypAnzeigeModel;
 import GUI.IObjektView;
 import GUI.MainFrame;
 import Steuerung.AusleihAnlegenStrg;
@@ -36,17 +36,17 @@ public class TypAuswahl extends JPanel implements IObjektView{
 	private JList list = new JList();
 	private JTextField textField;
 	
-	private TypAnzeigeStrg controller;
+	/**private TypAnzeigeStrg controller;
 	private TypAnzeigeModel model;
 
 	/**
 	 * Create the panel.
 	 */
 	public TypAuswahl() {
-		model = new TypAnzeigeModel();
+		/**model = new TypAnzeigeModel();
 		controller = new TypAnzeigeStrg(model);
 		model.anmelden(this);
-		
+		**/
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.NORTH);
@@ -106,8 +106,8 @@ public class TypAuswahl extends JPanel implements IObjektView{
 		
 		
 		
-		controller.fetchTypen();
-		aktualisieren(model);
+		//controller.fetchTypen();
+		//aktualisieren(model);
 		
 		
 
