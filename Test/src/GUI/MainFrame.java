@@ -82,6 +82,10 @@ public class MainFrame extends JFrame {
 	private static KundenverwaltungGUI kundenverwaltung = new KundenverwaltungGUI(); 
 	private static KundeAendern kundeAendern = new KundeAendern(ksucheModel, ksucheController);
 	
+	// Rechnungsverwaltung
+	private static RechungsverwaltungGUI rechnungsVerwaltung = new RechungsverwaltungGUI(); 
+	private static RechnungGUI rechnungDetail = new RechnungGUI();
+	
 	// Wirtschaftlichkeitsrechnung
 	private static WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltung = new WirtschaftlichkeitsverwaltungGUI();
 	private static WirtschaftlichkeitEinzelnGUI wirtschaftlichkeitEinzeln = new WirtschaftlichkeitEinzelnGUI();
@@ -144,6 +148,8 @@ public class MainFrame extends JFrame {
 		contentPane.add(statusSetzen);
 		contentPane.add(kundenverwaltung);
 		contentPane.add(kundeAendern);
+		contentPane.add(rechnungsVerwaltung);
+		contentPane.add(rechnungDetail);
 		contentPane.add(wirtschaftlichkeitGesamt);
 		contentPane.add(wirtschaftlichkeitEinzeln);
 		contentPane.add(wirtschaftlichkeitsverwaltung);
@@ -314,7 +320,15 @@ public class MainFrame extends JFrame {
 	public static KundeAendern getKundeAendern() {
 		return kundeAendern;
 	}
-
+	
+	public static JPanel getRechnungsVerwaltung() {
+		return rechnungsVerwaltung;
+	}
+	
+	public static JPanel getRechnungDetail() {
+		return rechnungDetail;
+	}
+	
 
 	public static JPanel getWirtschaftlichkeitsverwaltung() {
 		return wirtschaftlichkeitsverwaltung;

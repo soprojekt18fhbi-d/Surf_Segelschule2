@@ -61,6 +61,12 @@ public class Hauptmenue extends JPanel {
 		
 		JButton button_4 = new JButton("Rechnungsverwaltung");
 		button_4.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.change(MainFrame.getHauptmenue(), MainFrame.getRechnungsVerwaltung());
+			}
+		});
+		
 		
 		JLabel label = new JLabel("Hauptmen\u00FC");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
