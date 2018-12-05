@@ -1,4 +1,4 @@
-/**package Datenbankmodels;
+package Datenbankmodels;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,12 +11,12 @@ import javax.swing.DefaultListModel;
 
 import Domaenklassen.GeraeteTyp;
 import GUI.IObjektView;
-import GUI.IView;
+
 
 /**
  * @author michi
  *
- *
+ */
 public class TypAnzeigeModel implements IObjektModel{
 	
 	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
@@ -92,9 +92,10 @@ public class TypAnzeigeModel implements IObjektModel{
 		        while (rs.next()) {
 		        	
 		        	typNr = typNr++;
-		        	String id = rs.getString("TYPID");
-		        	String name =  rs.getString("NAME");       
-		        	GeraeteTyp typNr  = new GeraeteTyp(name, id);
+		        	int id = Integer.parseInt(rs.getString("TYPID"));
+		        	String name =  rs.getString("NAME");  
+		        	String führerschein = rs.getString("FUEHRERSCHEIN");
+		        	GeraeteTyp typNr  = new GeraeteTyp(id, name, führerschein);
 		        	mengeAnTypen.add(typNr);
 		        }
 
@@ -113,29 +114,32 @@ public class TypAnzeigeModel implements IObjektModel{
 		DefaultListModel<String> listmodel = new DefaultListModel<String>();
 	
 		for(int i = 0; i < mengeAnTypen.size(); i++) {
-			listmodel.addElement(mengeAnTypen.get(i).getTypName() + ", " + mengeAnTypen.get(i).getTypID() );
+			if(mengeAnTypen.get(i).getFührerschein() != null)
+				listmodel.addElement(mengeAnTypen.get(i).getTypID() + ", " + mengeAnTypen.get(i).getName()+ ", erforderlicher Führerschein: "+ mengeAnTypen.get(i).getFührerschein() );
+			else
+				listmodel.addElement(mengeAnTypen.get(i).getTypID() + ", " + mengeAnTypen.get(i).getName());
 		}
 		return listmodel;
 
 	}	
 	
 	
-	 * 
+	 /* 
 	 * Datenbank
 		create table TYP(
-		NAME varchar (20) not null,
 		TYPID int (3) not null,
+		NAME varchar (20) not null,
 		FUEHRERSCHEIN varchar (20),
 		constraint pk_typ primary key (TYPID));
 		
 		
 		insert into TYP
-		values ('Surfboard', 10, null),
-		('Segelboot', 20, 'Segelschein'),
-		('Kajak', 30, null),
-		('Jetski', 40, 'Bootschein'),
-		('Motorboot', 50, 'Bootschein'),
-	 
+		values (10, 'Surfboard', 'Surfschein'),
+		(20, 'Segelboot', 'Segelschein'),
+		(30, 'Kajak', null),
+		(40, 'Jetski', 'Bootschein'),
+		(50, 'Motorboot', null),
+	 */
 	
-}**/
+}
 

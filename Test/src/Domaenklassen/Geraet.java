@@ -1,32 +1,43 @@
 package Domaenklassen;
 
-import java.util.ArrayList;
-
 /**
  * @author michi
  */
 public class Geraet extends GeraeteModell{
 	
-	private String bezeichnung;
-	private String geräteID;
+	private int typID;
+	private String name;
+	private String führerschein;
+	private String modellName;
+	private int modellID;
+	private int kostenID;
 	private String farbe;
-	private double verkaufsPreis;
-	private int status;
+	private int geraeteID;
+	private double verkaufspreis;
+	private int status; 
+
 	
-	public ArrayList<Geraet>listeGeraete = new ArrayList<Geraet>();
 
-	public Geraet(String name, String id) {
-		super(name, id);
-		this.geräteID = id;
-		this.bezeichnung = name;
+	public Geraet(int id, String name, String führerschein, String modellName, int modellID, int kostenID, int geraeteID, String farbe, double verkaufspreis, int status) {
+		super(id, name, führerschein, modellName, modellID, kostenID);
+		this.name = name;
+		this.typID = id;
+		this.führerschein = führerschein;
+		this.modellName = modellName;
+		this.modellID = modellID;
+		this.kostenID = kostenID;
+		this.geraeteID = geraeteID;
+		this.farbe = farbe;
+		this.verkaufspreis = verkaufspreis;
+		this.status = status;
 	}
 
-	public String getGeraeteID() {
-		return geräteID;
+	public int getGeraeteID() {
+		return geraeteID;
 	}
 
-	public void setGeraeteID(String geräteID) {
-		this.geräteID = geräteID;
+	public void setGeraeteID(int geräteID) {
+		this.geraeteID = geräteID;
 	}
 
 	public String getFarbe() {
@@ -38,11 +49,11 @@ public class Geraet extends GeraeteModell{
 	}
 
 	public double getVerkaufsPreis() {
-		return verkaufsPreis;
+		return verkaufspreis;
 	}
 
 	public void setVerkaufsPreis(double verkaufsPreis) {
-		this.verkaufsPreis = verkaufsPreis;
+		this.verkaufspreis = verkaufsPreis;
 	}
 
 	public int getStatus() {
@@ -52,22 +63,54 @@ public class Geraet extends GeraeteModell{
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	
-	
-	public void hinzufuegen(Geraet element){
-		listeGeraete.add(element);
-	}
-	
-	public void entfernen(Geraet element){
-		listeGeraete.remove(element);
+
+
+	public String getModellName() {
+		return modellName;
 	}
 
-	public String getGeraeteName() {
-		return bezeichnung;
+	public void setModellName(String bezeichnung) {
+		this.modellName = bezeichnung;
+	}
+	
+	public int getTypID() {
+		return typID;
 	}
 
-	public void setGeraeteName(String bezeichnung) {
-		this.bezeichnung = bezeichnung;
+	public void setTypID(int id) {
+		this.typID = id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String bezeichnung) {
+		this.name = bezeichnung;
+	}
+	
+	public String getFührerschein() {
+		return führerschein;
+	}
+
+	public void setFührerschein(String schein) {
+		this.führerschein = schein;
+	}
+
+	public int getKosten() {
+		return kostenID;
+	}
+
+	public void setKosten(int kostenID) {
+		this.kostenID = kostenID;
+	}
+	
+	public int getModellID() {
+		return modellID;
+	}
+	
+	public void setModellID(int modellID){
+		this.modellID = modellID;
 	}
 
 }

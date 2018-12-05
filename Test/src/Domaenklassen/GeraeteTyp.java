@@ -1,44 +1,37 @@
 package Domaenklassen;
-import java.util.ArrayList;
+
 
 /**
  * @author michi
  */
 public class GeraeteTyp {
-	private String typID;
+	private int typID;
 	private String typName;
 	private String führerschein;
 	
-	public ArrayList<GeraeteTyp>listeTypen = new ArrayList<GeraeteTyp>();
 	
-	public GeraeteTyp(String name, String id){
+	public GeraeteTyp(int id, String name, String führerschein){
 		this.typName = name;
 		this.typID = id;
+		this.führerschein = führerschein;
 	}
 
-	public String getTypID() {
+	public int getTypID() {
 		return typID;
 	}
 
-	public void setTypID(String typID) {
+	public void setTypID(int typID) {
 		this.typID = typID;
 	}
 
-	public String getTypName() {
+	public String getName() {
 		return typName;
 	}
 
-	public void setTypName(String typName) {
+	public void setName(String typName) {
 		this.typName = typName;
 	}
 	
-	public void hinzufuegen(GeraeteTyp element){
-		listeTypen.add(element);
-	}
-	
-	public void entfernen(GeraeteTyp element){
-		listeTypen.remove(element);
-	}
 
 	public String getFührerschein() {
 		return führerschein;

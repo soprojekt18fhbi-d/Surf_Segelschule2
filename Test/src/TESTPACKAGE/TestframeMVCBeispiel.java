@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import DataModelKlassen.IModel;
+import Datenbankmodels.IModel;
 import GUI.IView;
 
 import javax.swing.JList;
@@ -80,7 +80,7 @@ public class TestframeMVCBeispiel extends JFrame implements IView{
 		 */
 		DefaultListModel dlm = new DefaultListModel();
 		list.removeAll();
-		dlm = model.getKunden();
+		//dlm = model.getObjekt();
 		list.setModel(dlm);
 		
 		

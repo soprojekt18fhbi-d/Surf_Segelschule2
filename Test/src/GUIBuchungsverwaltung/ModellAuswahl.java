@@ -6,6 +6,10 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
@@ -17,15 +21,13 @@ import javax.swing.JScrollPane;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.TableRowSorter;
 
-import Datenbankmodels.IModel;
 import Datenbankmodels.IObjektModel;
-//import Datenbankmodels.ModellAnzeigeModel;
-//import Datenbankmodels.TypAnzeigeModel;
+import Datenbankmodels.ModellAnzeigeModel;
 import GUI.IObjektView;
 import GUI.MainFrame;
 import Steuerung.ModellAnzeigeStrg;
-import Steuerung.TypAnzeigeStrg;
 
 import java.awt.Component;
 
@@ -33,17 +35,17 @@ public class ModellAuswahl extends JPanel implements IObjektView {
 	private JTextField textField;
 	JList list = new JList();
 	
-	//private ModellAnzeigeStrg controller;
-	//private ModellAnzeigeModel model;
+	private ModellAnzeigeStrg controller;
+	private ModellAnzeigeModel model;
 
 	/**
 	 * Create the panel.
 	 */
 	public ModellAuswahl() {
-		/**model = new ModellAnzeigeModel();
+		model = new ModellAnzeigeModel();
 		controller = new ModellAnzeigeStrg(model);
 		model.anmelden(this);
-		**/
+		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.NORTH);
@@ -99,8 +101,8 @@ public class ModellAuswahl extends JPanel implements IObjektView {
 		scrollPane.setViewportView(list);
 		
 		
-		//controller.fetchModelle();
-	    //aktualisieren(model);
+		controller.fetchModelle();
+	    aktualisieren(model);
 		
 		
 		JLabel lblModelle = new JLabel("Modelle:");
@@ -155,9 +157,44 @@ public class ModellAuswahl extends JPanel implements IObjektView {
 					MainFrame.change(MainFrame.getModellAuswahl(), MainFrame.getGerätAuswahlVerkauf());
 			}
 		});
-	
+		
+		/*
+		//Searchbar
+		textField.addFocusListener(new FocusListener(){
+		String text = "Suchen";	
 
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				if(textField.getText().equals(text)){
+					textField.setText("");
+				}
+				
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				if (textField.getText().isEmpty()){
+					textField.setText(text);
+				}
+				
+			}
+		});
+		
+		textField.addKeyListener(new KeyAdapter(){
+			public void keyReleased(KeyEvent event){
+				String query = textField.getText();
+				search(query);
+			}
+		});
+	*/
+		
 	}
+	
+	/*
+	public void search(String query){
+		ListRowSorter<DefaultListModel> rowSorter = new TableRowSorter
+	}
+	*/
 
 	@Override
 	public void aktualisieren(IObjektModel model) {

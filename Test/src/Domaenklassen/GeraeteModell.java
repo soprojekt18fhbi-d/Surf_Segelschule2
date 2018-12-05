@@ -1,52 +1,78 @@
 package Domaenklassen;
 
-import java.util.ArrayList;
 
 /**
  * @author michi
  */
 public class GeraeteModell extends GeraeteTyp{
 	
-	private String modellID;
-	private double ausleihkosten;
+	private int typID;
 	private String name;
+	private String führerschein;
+	private String modellName;
+	private int modellID;
+	private int kostenID;
+
 	
-	public ArrayList<GeraeteModell>listeModelle = new ArrayList<GeraeteModell>();
 
-
-	public GeraeteModell(String name, String id) {
-		super(name, id);
+	public GeraeteModell(int id, String name, String führerschein, String modellName, int modellID, int kostenID) {
+		super(id, name, führerschein);
 		this.name = name;
-		this.modellID = id;
+		this.typID = id;
+		this.führerschein = führerschein;
+		this.modellName = modellName;
+		this.modellID = modellID;
+		this.kostenID = kostenID;
 	}
 
-	public String getModellID() {
+	public int getModellID() {
 		return modellID;
 	}
-
-	public double getAusleihkosten() {
-		return ausleihkosten;
+	
+	public void setModellID(int modellID){
+		this.modellID = modellID;
 	}
 
-	public void setAusleihkosten(double ausleihkosten) {
-		this.ausleihkosten = ausleihkosten;
-	}
 
-	public String getModellName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setModellName(String bezeichnung) {
+	public void setName(String bezeichnung) {
 		this.name = bezeichnung;
 	}
 	
-	
-	public void hinzufuegen(GeraeteModell element){
-		listeModelle.add(element);
+	public int getTypID() {
+		return typID;
+	}
+
+	public void setTypID(int id) {
+		this.typID = id;
 	}
 	
-	public void entfernen(GeraeteModell element){
-		listeModelle.remove(element);
+	public String getFührerschein() {
+		return führerschein;
 	}
+
+	public void setFührerschein(String schein) {
+		this.führerschein = schein;
+	}
+
+	public int getKosten() {
+		return kostenID;
+	}
+
+	public void setKosten(int kostenID) {
+		this.kostenID = kostenID;
+	}
+
+	public String getModellName() {
+		return modellName;
+	}
+
+	public void setModellName(String modellName) {
+		this.modellName = modellName;
+	}
+
 
 }

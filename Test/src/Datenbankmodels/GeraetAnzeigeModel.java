@@ -1,4 +1,4 @@
-/**package Datenbankmodels;
+package Datenbankmodels;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +17,7 @@ import GUI.IObjektView;
 /**
  * @author michi
  *
- *
+ */
 public class GeraetAnzeigeModel implements IObjektModel{
 	
 	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
@@ -86,6 +86,8 @@ public class GeraetAnzeigeModel implements IObjektModel{
 		    throws SQLException {
 
 		    Statement stmt = null;
+		    Statement stmt2 = null;
+		    Statement stmt3 = null;
 		    String query = "select * from GERAET";
 		    try {
 		        stmt = con.createStatement();
@@ -93,10 +95,35 @@ public class GeraetAnzeigeModel implements IObjektModel{
 		        while (rs.next()) {
 		        	
 		        	geraetNr = geraetNr++;
-		        	String id = rs.getString("GERAETEID");
-		        	String name =  rs.getString("NAME");       
-		        	Geraet geraetNr  = new Geraet(name, id);
-		        	mengeAnGeraeten.add(geraetNr);
+		        	int geraeteÍD = Integer.parseInt(rs.getString("GERAETEID"));
+		        	String farbe = rs.getString("FARBE");
+		        	double verkaufspreis = Double.parseDouble(rs.getString("GERAETEID"));
+		        	int status = Integer.parseInt(rs.getString("STATUS"));
+		        	int modellID = Integer.parseInt(rs.getString("MODELLID"));
+		        	
+		        	
+		        	
+		        	String query2 = "select * from MODELL WHERE MODELLID = " +modellID;
+		        	stmt2 = con.createStatement();
+			        ResultSet rs2 = stmt2.executeQuery(query2);
+			        
+			        while (rs2.next()) {
+				        String name =  rs2.getString("MODELLNAME"); 
+			        	int preisID = Integer.parseInt(rs2.getString("VERLEIHPREISID"));
+			        	int typID = Integer.parseInt(rs2.getString("TYPID"));
+			        	
+			        	String query3 = "select * from TYP WHERE typID = " +typID;
+			        	stmt3 = con.createStatement();
+				        ResultSet rs3 = stmt3.executeQuery(query3);
+				        
+				        while (rs3.next()) {
+					        String typ =  rs3.getString("NAME");
+				        	String führerschein = rs3.getString("FUEHRERSCHEIN");      	
+				        			        	
+				        	Geraet geraetNr  = new Geraet(typID, typ, führerschein, name, modellID, preisID, geraeteÍD, farbe, verkaufspreis, status);
+				        	mengeAnGeraeten.add(geraetNr);
+				        }
+			        }
 		        }
 
 		    } catch (SQLException e ) {
@@ -114,29 +141,31 @@ public class GeraetAnzeigeModel implements IObjektModel{
 		DefaultListModel<String> listmodel = new DefaultListModel<String>();
 	
 		for(int i = 0; i < mengeAnGeraeten.size(); i++) {
-			listmodel.addElement(mengeAnGeraeten.get(i).getGeraeteName() + ", " + mengeAnGeraeten.get(i).getGeraeteID() );
+			listmodel.addElement(mengeAnGeraeten.get(i).getGeraeteID() + ", " + mengeAnGeraeten.get(i).getModellName() + ", " + mengeAnGeraeten.get(i).getFarbe() + ", Verkaufspreis: " + mengeAnGeraeten.get(i).getVerkaufsPreis() + "€, Status: " + mengeAnGeraeten.get(i).getStatus());
 		}
 		return listmodel;
 
 	}
-	**/
+	
 	
 	/*
 	 * 	create table GERAET(
-		NAME varchar (50) not null,
 		GERAETEID int (9) not null,
+		FARBE varchar(20) not null,
+		STATUS int(1) not null,
+		VERKAUFSPREIS double (7) not null,
 		MODELLID int(6) not null,
 		constraint pk_geraet primary key (GERAETEID),
 		constraint fk_geraet_modell foreign key (MODELLID)
 		references MODELL(MODELLID));
 		
 		insert into GERAET
-		values ('COSTWAY Surfbrett Surfboard Stand up', 10101101, 10101),
-		('COSTWAY Surfbrett Surfboard Stand up', 10101102, 10101),
-		('Bestway HYDRO-FORCE iSUP Oceana', 10102101, 10102),
-		('Segelboot Leisure 17', 20101101, 20101),
-		('ZRAY Nassau 13,4" Professional Kajak 2 Personen', 30101101, 30101);
+		values (10101101,'blau', 1, 129.99, 10101),
+		(10101102, 'rot', 0, 119.99,  10101),
+		(10102101,'weiss', 1, 99.99,  10102),
+		(20101101,'weiss', 2, 449.99,  20101),
+		(30101101, 'gelb', 0, 1129.99,  30101);
 		
 	 */
 
-
+}

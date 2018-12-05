@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Benkr/Downloads/h2-1.4.197 (1).jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Downloads/h2-1.4.197.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Downloads/stdlib.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Downloads/stdlib-package.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Downloads/mysql-connector-java-5.1.44-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Downloads/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/ext/access-bridge-64.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/ext/cldrdata.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/ext/dnsns.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/ext/jaccess.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/ext/jfxrt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/ext/localedata.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/ext/nashorn.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/ext/sunec.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/ext/sunjce_provider.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/ext/sunmscapi.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/ext/sunpkcs11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/ext/zipfs.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/charsets.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/deploy.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/javaws.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/jce.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/jfr.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/jfxswt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/jsse.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/management-agent.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/plugin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/resources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/michi/Desktop/eclipse MARS 4.52/jre/lib/rt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -26,25 +26,25 @@ import Steuerung.TypAnzeigeStrg;
 
 import javax.swing.GroupLayout.Alignment;
 
-//import Datenbankmodels.GeraetAnzeigeModel;
+import Datenbankmodels.GeraetAnzeigeModel;
 import Datenbankmodels.IModel;
 import Datenbankmodels.IObjektModel;
-//import Datenbankmodels.ModellAnzeigeModel;
-//import Datenbankmodels.TypAnzeigeModel;
+import Datenbankmodels.ModellAnzeigeModel;
+import Datenbankmodels.TypAnzeigeModel;
 
 public class GerätAuswahlAusleihe extends JPanel implements IObjektView{
 	private JList list = new JList();
 	
-	//private GeraetAnzeigeStrg controller;
-	//private GeraetAnzeigeModel model;
+	private GeraetAnzeigeStrg controller;
+	private GeraetAnzeigeModel model;
 
 	/**
 	 * Create the panel.
 	 */
 	public GerätAuswahlAusleihe() {
-		//model = new GeraetAnzeigeModel();
-		//controller = new GeraetAnzeigeStrg(model);
-		//model.anmelden(this);
+		model = new GeraetAnzeigeModel();
+		controller = new GeraetAnzeigeStrg(model);
+		model.anmelden(this);
 		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
@@ -102,8 +102,8 @@ public class GerätAuswahlAusleihe extends JPanel implements IObjektView{
 		
 		
 		
-		//controller.fetchModelle();
-		//aktualisieren(model);
+		controller.fetchModelle();
+		aktualisieren(model);
 		
 		
 		

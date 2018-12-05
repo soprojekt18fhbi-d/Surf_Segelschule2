@@ -7,7 +7,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListModel;
 
-import DataModelKlassen.IModel;
+import Datenbankmodels.IModel;
 import Domaenklassen.Kunde;
 import GUI.IView;
 
@@ -63,7 +63,7 @@ public class TestanbindungMVCBEISPIEL implements IModel{
 	        	String name =  rs.getString("NACHNAME");
 	        	String vorname =  rs.getString("VORNAME");
 	        	String email =  rs.getString("EMAIL");
-	        	Kunde kundeNr  = new Kunde(name, vorname, null, false, false, false, 0, email);
+	        	Kunde kundeNr  = new Kunde(name, vorname, null, false, false, false);
 	        	mengeAnKunden.add(kundeNr);
 	        }
 	        

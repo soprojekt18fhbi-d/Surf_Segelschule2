@@ -474,8 +474,11 @@ public class KundeRegistrierenGUI extends JFrame implements IView {
 	}
 
 
+	
+
+
 	@Override
-	public void aktualisieren(IModelSuche model) {
+	public void aktualisierenSuche(IModelSuche model) {
 		// TODO Auto-generated method stub
 		
 	}

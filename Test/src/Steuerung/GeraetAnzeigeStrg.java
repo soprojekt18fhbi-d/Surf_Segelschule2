@@ -11,7 +11,7 @@ import GUI.IObjektView;
  * 
  * @author michi
  *
- *
+ */
 public class GeraetAnzeigeStrg implements IController{
 	
 	private GeraetAnzeigeModel model;
@@ -32,4 +32,3 @@ public class GeraetAnzeigeStrg implements IController{
 		
 	}
 }
-*/

@@ -1,4 +1,4 @@
-/**package Datenbankmodels;
+package Datenbankmodels;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +17,7 @@ import GUI.IObjektView;
 /**
  * @author michi
  *
- *
+ */
 public class ModellAnzeigeModel implements IObjektModel{
 	
 	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
@@ -86,6 +86,7 @@ public class ModellAnzeigeModel implements IObjektModel{
 		    throws SQLException {
 
 		    Statement stmt = null;
+		    Statement stmt2 = null;
 		    String query = "select * from MODELL";
 		    try {
 		        stmt = con.createStatement();
@@ -93,12 +94,24 @@ public class ModellAnzeigeModel implements IObjektModel{
 		        while (rs.next()) {
 		        	
 		        	modellNr = modellNr++;
-		        	String id = rs.getString("MODELLID");
-		        	String name =  rs.getString("NAME"); 
-		        	//double verleihpreis = rs.getDouble("VERLEIHPREIS"); 
+		        	int modellID = Integer.parseInt(rs.getString("MODELLID"));
+		        	String name =  rs.getString("MODELLNAME"); 
+		        	int preisID = Integer.parseInt(rs.getString("VERLEIHPREISID"));
+		        	int typID = Integer.parseInt(rs.getString("TYPID"));
 		        	
-		        	GeraeteModell modellNr  = new GeraeteModell(name, id);
-		        	mengeAnModellen.add(modellNr);
+		        	 
+		        	String query2 = "select * from TYP WHERE TYPID = " +typID;
+		        	stmt2 = con.createStatement();
+			        ResultSet rs2 = stmt2.executeQuery(query2);
+			        
+			        while (rs2.next()) {
+			        	String typ =  rs2.getString("NAME");
+			        	String führerschein = rs2.getString("FUEHRERSCHEIN");
+				        
+				        
+				        GeraeteModell modellNr  = new GeraeteModell(typID, typ, führerschein, name, modellID, preisID);
+			        	mengeAnModellen.add(modellNr);
+			        }
 		        }
 
 		    } catch (SQLException e ) {
@@ -116,30 +129,28 @@ public class ModellAnzeigeModel implements IObjektModel{
 		DefaultListModel<String> listmodel = new DefaultListModel<String>();
 	
 		for(int i = 0; i < mengeAnModellen.size(); i++) {
-			listmodel.addElement(mengeAnModellen.get(i).getModellName() + ", " + mengeAnModellen.get(i).getModellID() );
+			listmodel.addElement(mengeAnModellen.get(i).getModellID()+ ", "+ mengeAnModellen.get(i).getModellName() + ", Preiskategorie:" + mengeAnModellen.get(i).getKosten() );
 		}
 		return listmodel;
 
 	}	
-**/	/* Datenbank
+	/* Datenbank
 		create table MODELL(
-		NAME varchar (50) not null,
 		MODELLID int (6) not null,
-		VERLEIHPREIS double (7) not null,
+		MODELLNAME varchar (50) not null,
 		TYPID int(2) not null,
+		VERLEIHPREISID int (2) not null,
 		constraint pk_modell primary key (MODELLID),
 		constraint fk_modell_typ foreign key (TYPID)
 		references TYP(TYPID));
 		
 		insert into modell
-		values ('COSTWAY Surfbrett Surfboard Stand up', 10101, 29.99, 10),
-		('Bestway HYDRO-FORCE iSUP Oceana', 10102, 69.99, 10),
-		('Segelboot Leisure 17', 20101, 299.99, 20),
-		('ZRAY Nassau 13,4" Professional Kajak 2 Personen', 30101, 49.99, 30);
-	 * 
-	 * 
-	 * 
+		values (10101, 'COSTWAY Surfbrett Surfboard Stand up', 10, 1),
+		(10102, 'Bestway HYDRO-FORCE iSUP Oceana', 10, 1),
+		(20101, 'Segelboot Leisure 17', 20, 2),
+		(30101, 'ZRAY Nassau 13,4" Professional Kajak 2 Personen', 30, 3);
 	 * 
 	 * 
 	 */
+}
 

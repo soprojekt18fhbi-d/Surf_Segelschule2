@@ -3,6 +3,8 @@ package GUI;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import Datenbankmodels.IModel;
+import Datenbankmodels.IModelSuche;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -202,6 +204,12 @@ public class Geraetaendern extends JPanel implements IView {
 
 	@Override
 	public void aktualisieren(IModel model) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void aktualisierenSuche(IModelSuche model) {
 		// TODO Auto-generated method stub
 		
 	}
