@@ -425,6 +425,7 @@ public class KundeRegistrierenGUI extends JFrame implements IView {
 					String strasse2 = textField_9.getText();
 					String hausnummer2 = textField_10.getText();
 					**/
+
 					email = emailTextField.getText();		
 					nachname = textField.getText();
 					vorname = textField_1.getText();

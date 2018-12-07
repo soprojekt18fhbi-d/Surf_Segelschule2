@@ -58,10 +58,6 @@ public class Adresse {
 		this.art = art;
 	}
 	
-	public void drucken(){
-		System.out.println(this.strasse + " " + this.hausnummer + " in " + this.plz + " " + this.ort);
-	}
-	
 	@Override
 	public String toString(){
 		return this.strasse + ";" + this.hausnummer + ";" + this.plz + ";" + this.ort;

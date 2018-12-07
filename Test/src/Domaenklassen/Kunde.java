@@ -2,10 +2,7 @@ package Domaenklassen;
 
 
 public class Kunde {
-
-	private int lastKundennummer = 10000;
 	
-	private int kundennummer;
 	private String name;
 	private String vorname;
 	private boolean surfschein;

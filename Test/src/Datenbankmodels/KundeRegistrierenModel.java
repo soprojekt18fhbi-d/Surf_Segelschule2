@@ -120,6 +120,7 @@ public class KundeRegistrierenModel implements IModel{
 		}
 	}
 	
+	// DK
 	public void AdresseAnlegen(Adresse adresse) {
 		
 		 
