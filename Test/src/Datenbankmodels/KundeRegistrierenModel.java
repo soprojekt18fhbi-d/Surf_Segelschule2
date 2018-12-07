@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
+import Domaenklassen.Adresse;
 import Domaenklassen.Kunde;
 import GUI.IView;
 
@@ -116,10 +117,37 @@ public class KundeRegistrierenModel implements IModel{
 			
         updateObserver();
         
+		}
 	}
+	
+	public void AdresseAnlegen(Adresse adresse) {
+		
+		 
+        try {
+			Connection conn = DriverManager.
+			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
 
-
-
+			Statement statement = conn.createStatement();
+			
+			
+			String ort = adresse.getOrt();
+			int plz = adresse.getPlz();
+			String hausnummer = adresse.getHausnummer();
+			String strasse = adresse.getStrasse();
+			String art = adresse.getArt();
+			
+			String sqlupdate = "INSERT INTO ADRESSE " + "VALUES (default, " + "'" + plz + "', '" + strasse + "', '" + ort +  "', '" + art + "', '" + hausnummer + "')";
+			
+			int ergebnis = statement.executeUpdate(sqlupdate);
+			
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+        updateObserver();
+        
+		}
 	}
 
 	@Override

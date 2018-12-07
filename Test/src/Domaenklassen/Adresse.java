@@ -7,13 +7,15 @@ public class Adresse {
 	private String ort;
 	private int plz;
 	private String hausnummer;
+	private String art;
 	
 
-	public Adresse(String strasse, String hausnummer, String ort, int plz) {
+	public Adresse(String strasse, String hausnummer, String ort, int plz, String art) {
 		this.strasse = strasse;
 		this.hausnummer = hausnummer;
 		this.ort = ort;
 		this.plz = plz;
+		this.art = art;
 	}
 
 	public String getStrasse() {
@@ -48,6 +50,13 @@ public class Adresse {
 		this.hausnummer = hausnummer;
 	}
 	
+	public String getArt() {
+		return art;
+	}
+
+	public void setArt(String art) {
+		this.art = art;
+	}
 	
 	public void drucken(){
 		System.out.println(this.strasse + " " + this.hausnummer + " in " + this.plz + " " + this.ort);

@@ -199,23 +199,6 @@ public class KundeRegistrierenGUI extends JFrame implements IView {
 		panel_2.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblGeburtsdatum = new JLabel("Geburtsdatum");
-		GridBagConstraints gbc_lblGeburtsdatum = new GridBagConstraints();
-		gbc_lblGeburtsdatum.anchor = GridBagConstraints.WEST;
-		gbc_lblGeburtsdatum.insets = new Insets(0, 0, 5, 5);
-		gbc_lblGeburtsdatum.gridx = 2;
-		gbc_lblGeburtsdatum.gridy = 6;
-		panel_2.add(lblGeburtsdatum, gbc_lblGeburtsdatum);
-		
-		textField_2 = new JTextField();
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_2.gridx = 3;
-		gbc_textField_2.gridy = 6;
-		panel_2.add(textField_2, gbc_textField_2);
-		textField_2.setColumns(10);
-		
 		JLabel lblHeimatadresse = new JLabel("Heimatadresse:");
 		lblHeimatadresse.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblHeimatadresse = new GridBagConstraints();
@@ -412,42 +395,61 @@ public class KundeRegistrierenGUI extends JFrame implements IView {
 		btnHinzufuegen.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent arg0) {
 				
-			
 				String email;
 				String nachname;
 				String vorname;
 				Boolean surfschein;
 				Boolean segelschein;
 				Boolean motorbootschein;
+				
+				int plz;
+				String ort;
+				String strasse;
+				String hausnummer;
+				String art;
+				
+				int plz2;
+				String ort2;
+				String strasse2;
+				String hausnummer2;
+				String art2;
+				
 				try {
-					/**
-					int plz = Integer.parseInt(textField_3.getText());
-					String ort = textField_4.getText();
-					String strasse = textField_5.getText();
-					String hausnummer = textField_6.getText();
-					Adresse heimadresse = new Adresse(strasse, hausnummer, ort, plz);
+					
+					
 					//KundeAnlegenSteuerung.AdresseAnlegen(strasse, hausnummer, ort, plz, "" );
 					
-					
+					/**
 					int plz2 = Integer.parseInt(textField_7.getText());
 					String ort2 = textField_8.getText();
 					String strasse2 = textField_9.getText();
 					String hausnummer2 = textField_10.getText();
 					**/
-					email = emailTextField.getText();
-							
+					email = emailTextField.getText();		
 					nachname = textField.getText();
 					vorname = textField_1.getText();
-					//int geburtsdatum = Integer.parseInt(textField_2.getText());
 					surfschein = chckbxSurfschein.isSelected();
-					segelschein = chckbxSegelschein.isSelected();;
+					segelschein = chckbxSegelschein.isSelected();
 					motorbootschein = chckbxMotorbootschein.isSelected();
-					
-					
 					controller.KundeAnlegen(nachname, vorname, email, surfschein, segelschein, motorbootschein);
+					
+					
+					plz = Integer.parseInt(textField_3.getText());
+					ort = textField_4.getText();
+					strasse = textField_5.getText();
+					hausnummer = textField_6.getText();
+					art = "Heimadresse";
+					controller.AdresseAnlegen(strasse, hausnummer, ort, plz, art);
+					
+					plz2 = Integer.parseInt(textField_3.getText());
+					ort2 = textField_4.getText();
+					strasse2 = textField_5.getText();
+					hausnummer2 = textField_6.getText();
+					art2 = "Urlaubsadresse";
+					controller.AdresseAnlegen(strasse2, hausnummer2, ort2, plz2, art2);
+					
 					/**
-					 * ACHTUNG HIER IST ES NOCH NICHT FERTIG!!!! ES KÖNNEN BISHER NUR KUNDEN ANGELEGT WERDEN!!!! ES FEHLT
-					 * NOCH DASS DIE FÜHRERSCHEINE GESPEICHERT WERDEN USW. BITTE NACHHER ÄNDERN!
+					 * Achtung, hier muss noch besseres exeption handling umgesetzt werden, DK
 					 */
 					
 					
