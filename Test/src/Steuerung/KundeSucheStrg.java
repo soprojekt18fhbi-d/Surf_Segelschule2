@@ -6,6 +6,8 @@ package Steuerung;
 
 import java.util.ArrayList;
 
+import javax.swing.JTextField;
+
 import Datenbankmodels.IModelSuche;
 import Datenbankmodels.KundeSucheModel;
 import Domaenklassen.Kunde;
@@ -25,14 +27,28 @@ public class KundeSucheStrg implements IController {
 
 	/**
 	 * Der Button wurde gedrückt und es sollen Kunden geholt werden.
+	 * @param variableKnr 
+	 * @param selectedMode 
+	 * @param talking 
+	 * @param heimat 
+	 * @param motor 
+	 * @param segel 
+	 * @param surf 
 	 * 
 	 */
-	public void fetchKunde(String kdID, String nname, String vname, String plz, String ort,
-			String strasse, String hausnr) {
+	public void fetchObjekte(String knrplz, String nachnameort, String vornamestrasse, String emailhnr, String selectedMode, String variableKnr, String talking, String surf, String segel, String motor, String heimat) {
 
-		model.holeDaten(kdID, nname, vname, plz, ort, strasse, hausnr);
+		
+		try {
+			model.holeDaten(knrplz, nachnameort, vornamestrasse, emailhnr, selectedMode, variableKnr, talking, surf, segel, motor, heimat);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
+
+
 
 
 }

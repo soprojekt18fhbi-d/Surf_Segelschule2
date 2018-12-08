@@ -12,147 +12,246 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
+import javax.swing.table.TableModel;
 
+import Domaenklassen.Adresse;
+import Domaenklassen.IAdresse;
+import Domaenklassen.IKunde;
 import Domaenklassen.Kunde;
+import GUI.IObjektView;
 import GUI.IView;
+import net.proteanit.sql.DbUtils;
 
 
-public class KundeSucheModel implements IModelSuche  {
+public class KundeSucheModel implements IObjektModel  {
 
-	private ArrayList<IView> observers = new ArrayList<IView>();
+	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
 
-	private ArrayList<Kunde> mengeAnKunden = new ArrayList<Kunde>();
+	private ArrayList<IKunde> mengeAnKunden = new ArrayList<IKunde>();
+	private ArrayList<IAdresse> mengeAnAdressen = new ArrayList<IAdresse>();
+	
+	private TableModel result;
 	
 	private int kundeNr = 0;
+	
+	private String knrplzloc = "";
+	private String nachnameortloc = "";
+	private String vornamestrasseloc = "";
+	private String emailhnrloc = "";
+	private String mode = "";
+	private String knr = "";
+	private String talking = "";
+	private String variableKnr = "";
+	private String surf;
+	private String segel;
+	private String motor;
+	private String heimat;
 
-	
-	
-	/* (non-Javadoc)
-	 * @see Datenbankmodels.ModelSuchInterface#holeKunden(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	/*
+	 * @author BenKr
+	 * 
+	 * 
 	 */
-	@Override
-	public void holeDaten(String kdID, String nname, String vname, String plz, String ort,
-			String strasse, String hausnr) {
-
+	
+	public void holeDaten(String knrplz, String nachnameort, String vornamestrasse, String emailhnr, String selectedMode, String variableKnr, String talking, String surf2, String segel2, String motor2, String heimat2) {
+		
+		knrplzloc = knrplz;
+		nachnameortloc = nachnameort;
+		vornamestrasseloc = vornamestrasse;
+		emailhnrloc = emailhnr;
+		mode = selectedMode;
+		knr = variableKnr;
+		this.talking = talking;
+		this.variableKnr = variableKnr;
+		this.segel = segel2;
+		this.surf = surf2;
+		this.motor = motor2;
+		this.heimat = heimat2;
 		
 		
-		try {
-			Connection conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+		
+		 System.out.println("" + knrplz + nachnameort + vornamestrasse + emailhnr + selectedMode + variableKnr + motor2 + segel2 + surf2 + heimat2);
+        try {
+        	
+			Connection conn = DriverManager.
+			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
 			// add application code here
-			viewTable(conn, kdID, nname, vname, plz, ort, strasse, hausnr);
-
+			viewTable(conn);
+			
 			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		updateObserver();
+        updateObserver();
 	}
-	
 
-	
-	
-	
-	/* (non-Javadoc)
-	 * @see Datenbankmodels.ModelSuchInterface#viewTable(java.sql.Connection, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
-	 */
 	@Override
-	public void viewTable(Connection con, String kdID, String nname, String vname, String plz, String ort,
-			String strasse, String hausnr) throws SQLException {
-		
-		Statement stmt = null;
-		stmt = con.createStatement();
-		
-		
-		try {
-		
-			String query = "select * from kunde";
-			
-			//Abfrage aufgrund der Parameter
-			
-		
-		
-			
-			ResultSet rs = stmt.executeQuery(query);
-			
-			//Ausgabe der Kundendaten
-			
-			while (rs.next()) {
-
-				
-				
-				//Was passiert mit der Kundennummer??? @Ben K
-				
-				kundeNr = kundeNr++;
-				int kundennummer = Integer.parseInt(rs.getString("ID"));
-				String name = rs.getString("NACHNAME");
-				String vorname = rs.getString("VORNAME");
-				boolean surfschein = Boolean.parseBoolean(rs.getString("SURFSCHEIN"));
-				boolean segelschein = Boolean.parseBoolean(rs.getString("SEGELSCHEIN"));
-				boolean motorbootschein = Boolean.parseBoolean(rs.getString("MOTORBOOTSCHEIN"));
-				String email = rs.getString("EMAIL");
-				
-				//Wie sollen Führerscheine übergeben werden? Notwendig für Abfrage im Ausleih-Prozess
-				Kunde kundeNr = new Kunde (name, vorname , email, surfschein, segelschein, motorbootschein);
-				kundeNr.setKundennummer(kundennummer);
-				mengeAnKunden.add(kundeNr);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (stmt != null) {
-				stmt.close();
-			}
-		}
-
-	}
-	
-	
-	/* (non-Javadoc)
-	 * @see Datenbankmodels.ModelSuchInterface#getKunden()
-	 */
-	@Override
-	public DefaultListModel holeModel() {
-
-		DefaultListModel<String> listmodel = new DefaultListModel<String>();
-
-		for (int i = 0; i < mengeAnKunden.size(); i++) {
-			listmodel.addElement(mengeAnKunden.get(i).getKundennummer() + ", " + mengeAnKunden.get(i).getName() + ", " + mengeAnKunden.get(i).getVorname() + ", "
-					+ mengeAnKunden.get(i).getEmail());
-		}
-		return listmodel;
-
-	}
-	
-	
-	
-	/* (non-Javadoc)
-	 * @see Datenbankmodels.ModelSuchInterface#anmelden(GUI.IView)
-	 */
-	@Override
-	public void anmelden(IView view) {
+	public void anmelden(IObjektView view) {
+		// TODO Auto-generated method stub
 		try {
 			observers.add(view);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 		
-		try {
-			if(observers.contains(view));
-				observers.remove(view);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	}
+	
+	public void viewTable(Connection con)
+		    throws SQLException {
+
+			
+		
+		    Statement stmt = con.createStatement();
+		    String query = null;
+		    
+		    if(mode == "Kunde")
+		    {
+		    	if (talking == "knrplz")
+			    	query = "SELECT * FROM KUNDE WHERE (ID = '" + knrplzloc + "');";
+		    	if(talking == "boss")
+		    		query = "SELECT * FROM KUNDE;";
+		    	if(talking == "nachnameort")
+		    		query = "SELECT * FROM KUNDE WHERE (NACHNAME = '" + nachnameortloc + "');";
+		    	if (talking == "vornamestrasse")
+		    		query = "SELECT * FROM KUNDE WHERE (VORNAME = '" + vornamestrasseloc + "');";
+		    	if (talking == "emailhnr")
+		    		query = "SELECT * FROM KUNDE WHERE (EMAIL = '" + emailhnrloc + "');";
+		    }
+		    
+		    
+		    
+		    if(mode == "Adresse")
+		    {
+		    	if (talking == "knrplz")
+			    	query = "SELECT * FROM ADRESSE WHERE (PLZ = '" + knrplzloc + "');";
+		    	if(talking == "boss")
+		    		query = "SELECT * FROM ADRESSE;";
+		    	if(talking == "nachnameort")
+		    		query = "SELECT * FROM ADRESSE WHERE (ORT = '" + nachnameortloc + "');";
+		    	if (talking == "vornamestrasse")
+		    		query = "SELECT * FROM ADRESSE WHERE (STRASSE = '" + vornamestrasseloc + "');";
+		    	if (talking == "emailhnr")
+		    		query = "SELECT * FROM ADRESSE WHERE (HNR = '" + emailhnrloc + "');";
+		    	if (talking == "variableKnr")
+		    		query = "SELECT * FROM ADRESSE WHERE (KUNDEID = '" + variableKnr + "');";
+		    }
+		    
+		    if(talking.equals("deaktivierenkunde"))
+		    {
+		    	query = "Select * from Kunde;";
+		    	
+		    	
+		    	String sql = "UPDATE TABLE KUNDE SET BESTANDSKUNDE = 'N' WHERE ID = '" + knrplzloc + "';";
+		    	
+		    	int ergebnis = stmt.executeUpdate(sql);
+		    	
+		    }
+		    else if (talking.equals("deaktivierenadresse"))
+		    {
+		    	query = "Select * from Adresse;";
+		    	
+		    	String sql = "DELETE FROM ADRESSE WHERE KUNDEID = '" + variableKnr + "' AND PLZ ='" + this.knrplzloc + "' AND STRASSE = '" + this.vornamestrasseloc + "';";
+		    	
+		    	int ergebnis = stmt.executeUpdate(sql);
+		    	
+		    }
+		    else if(talking.equals("kundespeichern"))
+		    {
+		    	query = "Select * from Kunde;";
+		    	
+
+		    		
+		    	changeVorname(stmt);
+
+			    changeNachname(stmt);
+			    	
+			   	changeEmail(stmt);
+			    	
+			   	changeSegel(stmt);
+			    	
+			   	changeMotor(stmt);
+			    	
+			    changeSurf(stmt);
+			    
+		    }
+		    else if(talking.equals("adressespeichern"))
+		    {
+		    	query = "Select * from Adresse;";
+		    	
+		    	String sql = "INSERT INTO ADRESSE VALUES(default, " + this.knrplzloc + ", '" + this.vornamestrasseloc + "', '" + this.nachnameortloc + "', '" + this.heimat + "', " + this.emailhnrloc + ", " + this.variableKnr + ");";
+		    	
+		    	int ergebnis = stmt.executeUpdate(sql);
+		    	
+		    }
+		    
+
+		    try {
+		    	System.out.println(query);
+		        stmt = con.createStatement();
+		        ResultSet rs = stmt.executeQuery(query);
+		        
+		        result = DbUtils.resultSetToTableModel(rs);
+		        
+		    } catch (SQLException e ) {
+		    	e.printStackTrace();
+		    } finally {
+		        if (stmt != null) { stmt.close(); }
+		    }
+		    
+		    
 		}
+
+	private void changeVorname(Statement stmt) throws SQLException {
+		String sql = "UPDATE KUNDE SET VORNAME = '" + this.vornamestrasseloc + "' WHERE ID = " + this.knrplzloc;
+		System.out.println(sql);
+		int ergebnis = stmt.executeUpdate(sql);
 	}
 
-	/* (non-Javadoc)
-	 * @see Datenbankmodels.ModelSuchInterface#abmelden(GUI.IView)
-	 */
+	private void changeNachname(Statement stmt) throws SQLException {
+		String sql;
+		int ergebnis;
+		sql = "UPDATE KUNDE SET NACHNAME = '" + this.nachnameortloc + "' WHERE ID = " + this.knrplzloc;
+		System.out.println(sql);
+		ergebnis = stmt.executeUpdate(sql);
+	}
+
+	private void changeEmail(Statement stmt) throws SQLException {
+		String sql;
+		int ergebnis;
+		sql = "UPDATE KUNDE SET EMAIL = '" + this.emailhnrloc + "' WHERE ID = " + this.knrplzloc;
+		System.out.println(sql);
+		ergebnis = stmt.executeUpdate(sql);
+	}
+
+	private void changeSegel(Statement stmt) throws SQLException {
+		String sql;
+		int ergebnis;
+		sql = "UPDATE KUNDE SET SEGELSCHEIN = '" + this.segel + "' WHERE ID = " + this.knrplzloc;
+		System.out.println(sql);
+		ergebnis = stmt.executeUpdate(sql);
+	}
+
+	private void changeMotor(Statement stmt) throws SQLException {
+		String sql;
+		int ergebnis;
+		sql = "UPDATE KUNDE SET MOTORBOOTSCHEIN = '" + this.motor + "' WHERE ID = " + this.knrplzloc;
+		System.out.println(sql);
+		ergebnis = stmt.executeUpdate(sql);
+	}
+
+	private void changeSurf(Statement stmt) throws SQLException {
+		String sql;
+		int ergebnis;
+		sql = "UPDATE KUNDE SET SURFSCHEIN = '" + this.surf + "' WHERE ID = " + this.knrplzloc;
+		System.out.println(sql);
+		ergebnis = stmt.executeUpdate(sql);
+	}
+
 	@Override
-	public void abmelden(IView view) {
+	public void abmelden(IObjektView view) {
+		// TODO Auto-generated method stub
 		try {
 			if(observers.contains(view));
 				observers.remove(view);
@@ -162,11 +261,9 @@ public class KundeSucheModel implements IModelSuche  {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see Datenbankmodels.ModelSuchInterface#updateObserver()
-	 */
 	@Override
 	public void updateObserver() {
+		// TODO Auto-generated method stub
 		try {
 			for (int i = 0; i < observers.size(); ++i) 
 				observers.get(i).aktualisieren(this);
@@ -174,22 +271,25 @@ public class KundeSucheModel implements IModelSuche  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	}
+
+	@Override
+	public ArrayList<Object> getObjekte() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TableModel getTableModel() {
+		// TODO Auto-generated method stub
+		return result;
 	}
 
 
-
-
-
-
-
-
-
+	
 
 
 	
 	
 	
-	
-
 }
