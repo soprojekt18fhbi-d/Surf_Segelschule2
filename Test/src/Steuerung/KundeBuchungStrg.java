@@ -6,6 +6,7 @@ package Steuerung;
 
 import java.util.ArrayList;
 
+import Domaenklassen.IKunde;
 import Domaenklassen.Kunde;
 
 public class KundeBuchungStrg {
@@ -14,7 +15,7 @@ public class KundeBuchungStrg {
 	private static KundeSucheStrg kundenSuche;
 	private static KundeAuswStrg kundenAuswahl;
 	private ArrayList <Kunde> kundenListe;
-	private Kunde suchKunde;
+	private IKunde suchKunde;
 
 	
 	
@@ -49,7 +50,7 @@ public class KundeBuchungStrg {
 	
 	//Wahl eines Kunden aus der KundenListe
 	
-	private Kunde selectKunde(ArrayList kundenListe) {
+	private IKunde selectKunde(ArrayList kundenListe) {
 		kundenAuswahl = new KundeAuswStrg();
 		suchKunde = KundeAuswStrg.auswKunde(kundenListe);
 		return suchKunde;

@@ -45,6 +45,7 @@ public class MainFrame extends JFrame {
 	private JPanel contentPane;
 	private static Hauptmenue hauptmenue = new Hauptmenue();
 	private static Geraetaendern geraetaendern = new Geraetaendern();
+	private static GeraeteVerwaltung geraeteVerwaltung = new GeraeteVerwaltung();
 	private static GeraeteModellVerwaltung geraeteModellVerwaltung = new GeraeteModellVerwaltung();
 	private static GeraeteTypVerwaltung geraeteTypVerwaltung = new GeraeteTypVerwaltung();
 	private static Geraethinzufuegen geraethinzufuegen = new Geraethinzufuegen();
@@ -124,6 +125,7 @@ public class MainFrame extends JFrame {
 		StandortPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		contentPane.add(hauptmenue);
+		contentPane.add(geraeteVerwaltung);
 		contentPane.add(typhinzufuegen);
 		contentPane.add(typaendern);
 		contentPane.add(sportgeraete);
@@ -219,6 +221,11 @@ public class MainFrame extends JFrame {
 	
 	public static JPanel getHauptmenue(){
 		return hauptmenue;
+	}
+	
+	
+	public static JPanel getGeraeteVerwaltung(){
+		return geraeteVerwaltung;
 	}
 	
 	public static JPanel getGeraeteTypVerwaltung(){

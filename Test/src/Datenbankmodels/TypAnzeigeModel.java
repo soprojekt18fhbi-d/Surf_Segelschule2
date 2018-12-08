@@ -138,7 +138,7 @@ public class TypAnzeigeModel implements IObjektModel{
 		(20, 'Segelboot', 'Segelschein'),
 		(30, 'Kajak', null),
 		(40, 'Jetski', 'Bootschein'),
-		(50, 'Motorboot', null),
+		(50, 'Motorboot', null);
 	 */
 	
 }

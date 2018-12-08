@@ -88,7 +88,7 @@ public class GeraetAnzeigeModel implements IObjektModel{
 		    Statement stmt = null;
 		    Statement stmt2 = null;
 		    Statement stmt3 = null;
-		    String query = "select * from GERAET";
+		    String query = "select * from SPORTGERAET";
 		    try {
 		        stmt = con.createStatement();
 		        ResultSet rs = stmt.executeQuery(query);
@@ -149,7 +149,7 @@ public class GeraetAnzeigeModel implements IObjektModel{
 	
 	
 	/*
-	 * 	create table GERAET(
+	 * 	create table SPORTGERAET(
 		GERAETEID int (9) not null,
 		FARBE varchar(20) not null,
 		STATUS int(1) not null,
@@ -159,7 +159,7 @@ public class GeraetAnzeigeModel implements IObjektModel{
 		constraint fk_geraet_modell foreign key (MODELLID)
 		references MODELL(MODELLID));
 		
-		insert into GERAET
+		insert into SPORTGERAET
 		values (10101101,'blau', 1, 129.99, 10101),
 		(10101102, 'rot', 0, 119.99,  10101),
 		(10102101,'weiss', 1, 99.99,  10102),

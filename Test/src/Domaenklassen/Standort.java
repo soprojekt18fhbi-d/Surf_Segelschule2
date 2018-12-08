@@ -6,9 +6,9 @@ public class Standort {
 	
 	private int id;
 	private int telefonnummer;
-	private Adresse adresse;
+	private IAdresse adresse;
 	
-	public Standort(int id, int telefonnummer, Adresse adresse) {
+	public Standort(int id, int telefonnummer, IAdresse adresse) {
 		super();
 		this.id = id;
 		this.telefonnummer = telefonnummer;
@@ -27,10 +27,10 @@ public class Standort {
 	public void setTelefonnummer(int telefonnummer) {
 		this.telefonnummer = telefonnummer;
 	}
-	public Adresse getAdresse() {
+	public IAdresse getAdresse() {
 		return adresse;
 	}
-	public void setAdresse(Adresse adresse) {
+	public void setAdresse(IAdresse adresse) {
 		this.adresse = adresse;
 	}
 	

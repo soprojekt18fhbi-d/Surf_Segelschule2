@@ -7,7 +7,7 @@ public class Buchung {
 	private int buchungsId;
 	private int ausleihdatum;
 	private int rueckgabedatum;
-	private Kunde kunde;
+	private IKunde kunde;
 	private int verkaufsdatum;
 	private Rechnung rechnung;
 	
@@ -31,10 +31,10 @@ public class Buchung {
 	public void setRueckgabedatum(int rueckgabedatum) {
 		this.rueckgabedatum = rueckgabedatum;
 	}
-	public Kunde getKunde() {
+	public IKunde getKunde() {
 		return kunde;
 	}
-	public void setKunde(Kunde kunde) {
+	public void setKunde(IKunde kunde) {
 		this.kunde = kunde;
 	}
 	public int getVerkaufsdatum() {

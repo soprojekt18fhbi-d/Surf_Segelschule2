@@ -7,10 +7,10 @@ public class Rechnung {
 	private int id;
 	private double bezahlt;
 	private int bezahldatum;
-	private Kunde kunde;
+	private IKunde kunde;
 	private Reparatur reparatur;
 	
-	public Rechnung(int id, double bezahlt, int bezahldatum, Kunde kunde) {
+	public Rechnung(int id, double bezahlt, int bezahldatum, IKunde kunde) {
 		super();
 		this.id = id;
 		this.bezahlt = bezahlt;
@@ -43,11 +43,11 @@ public class Rechnung {
 		this.bezahldatum = bezahldatum;
 	}
 
-	public Kunde getKunde() {
+	public IKunde getKunde() {
 		return kunde;
 	}
 
-	public void setKunde(Kunde kunde) {
+	public void setKunde(IKunde kunde) {
 		this.kunde = kunde;
 	}
 

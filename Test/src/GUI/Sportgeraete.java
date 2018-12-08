@@ -31,7 +31,7 @@ public class Sportgeraete extends JPanel {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MainFrame.change(MainFrame.getSportgeraete(), MainFrame.getGeraeteModellVerwaltung());
+				MainFrame.change(MainFrame.getSportgeraete(), MainFrame.getGeraeteVerwaltung());
 				
 			}
 		});

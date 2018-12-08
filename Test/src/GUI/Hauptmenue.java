@@ -35,7 +35,7 @@ public class Hauptmenue extends JPanel {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MainFrame.change(MainFrame.getHauptmenue(), MainFrame.getGeraeteTypVerwaltung());
+				MainFrame.change(MainFrame.getHauptmenue(), MainFrame.getGeraeteVerwaltung());
 				
 			}
 		});

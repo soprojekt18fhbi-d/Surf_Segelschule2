@@ -2,6 +2,8 @@ package Steuerung;
 
 import Datenbankmodels.KundeRegistrierenModel;
 import Domaenklassen.Adresse;
+import Domaenklassen.IAdresse;
+import Domaenklassen.IKunde;
 import Domaenklassen.Kunde;
 import GUI.IView;
 import TESTPACKAGE.TestanbindungMVCBEISPIEL;
@@ -9,8 +11,8 @@ import TESTPACKAGE.TestframeMVCBeispiel;
 
 public class KundeAnlegenSteuerung {
 	
-	private Kunde kunde;
-	private Adresse adresse;
+	private IKunde kunde;
+	private IAdresse adresse;
 	private KundeRegistrierenModel model;
 	private IView view;
 	

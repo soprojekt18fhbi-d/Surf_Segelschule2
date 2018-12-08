@@ -2,112 +2,154 @@ package GUI;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
 public class GeraeteTypVerwaltung extends JPanel {
 	private JTextField textField;
+	private JTable table;
 
 	/**
 	 * Create the panel.
 	 */
 	public GeraeteTypVerwaltung() {
 		
+		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
-		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		add(panel);
+		add(panel, BorderLayout.NORTH);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		JButton btnZurck = new JButton("Zur\u00FCck");
+		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		JButton button = new JButton("Zur\u00FCck");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getHauptmenue());
-				
-			}
-		});
-		
-		JComboBox comboBox = new JComboBox();
+		JButton btnSuchen = new JButton("Suchen");
+		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		textField = new JTextField();
-		textField.setText("Artikel suchen...");
-		
-		JButton button_1 = new JButton("Ger\u00E4tetyp hinzuf\u00FCgen");
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTyphinzufuegen());
-				
-			}
-		});
-		
-		JButton button_2 = new JButton("Ger\u00E4tetyp \u00E4ndern");
-		button_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTypaendern());
-				
-			}
-		});
-		
-		JButton button_3 = new JButton("Ausw\u00E4hlen");
-		button_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteModellVerwaltung());
-				
-			}
-		});
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField.setColumns(10);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
-				.addGap(0, 974, Short.MAX_VALUE)
+			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 858, Short.MAX_VALUE)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(button)
-							.addPreferredGap(ComponentPlacement.RELATED, 546, Short.MAX_VALUE)
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 407, GroupLayout.PREFERRED_SIZE)
-							.addGap(36)
-							.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 407, GroupLayout.PREFERRED_SIZE)))
-					.addGap(1)
-					.addComponent(button_3)
-					.addContainerGap())
+					.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 551, Short.MAX_VALUE)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(button)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(button_3))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-						.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 402, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(17, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
-
+		
+		JPanel panel_1 = new JPanel();
+		add(panel_1, BorderLayout.CENTER);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[]{0, 0, 0};
+		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0};
+		gbl_panel_1.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 0.0, Double.MIN_VALUE};
+		panel_1.setLayout(gbl_panel_1);
+		
+		JButton btnTypHinzu = new JButton("Typ hinzuf\u00FCgen");
+		btnTypHinzu.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnTypHinzu.setPreferredSize(new Dimension(300, 100));
+		GridBagConstraints gbc_btnTypHinzu = new GridBagConstraints();
+		gbc_btnTypHinzu.insets = new Insets(0, 0, 5, 5);
+		gbc_btnTypHinzu.fill = GridBagConstraints.BOTH;
+		gbc_btnTypHinzu.gridx = 0;
+		gbc_btnTypHinzu.gridy = 0;
+		panel_1.add(btnTypHinzu, gbc_btnTypHinzu);
+				
+		JButton btnTypAendern = new JButton("Typ \u00E4ndern");
+		btnTypAendern.setPreferredSize(new Dimension(300, 23));
+		btnTypAendern.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_btnTypAendern = new GridBagConstraints();
+		gbc_btnTypAendern.fill = GridBagConstraints.BOTH;
+		gbc_btnTypAendern.insets = new Insets(0, 0, 5, 0);
+		gbc_btnTypAendern.gridx = 1;
+		gbc_btnTypAendern.gridy = 0;
+		panel_1.add(btnTypAendern, gbc_btnTypAendern);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridwidth = 2;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 1;
+		panel_1.add(scrollPane, gbc_scrollPane);
+		
+		DefaultTableModel tm = new DefaultTableModel();
+		table = new JTable(tm);
+		tm.addColumn("TypID");
+		tm.addColumn("Name");
+		tm.addColumn("Führerschein");
+		
+		
+		table.setPreferredScrollableViewportSize(new Dimension(450, 500));
+		scrollPane.setViewportView(table);
+		
+		JButton btnAuswhlen = new JButton("Ausw\u00E4hlen");
+		btnAuswhlen.setPreferredSize(new Dimension(130, 35));
+		GridBagConstraints gbc_btnAuswhlen = new GridBagConstraints();
+		gbc_btnAuswhlen.anchor = GridBagConstraints.SOUTHEAST;
+		gbc_btnAuswhlen.gridx = 1;
+		gbc_btnAuswhlen.gridy = 2;
+		panel_1.add(btnAuswhlen, gbc_btnAuswhlen);
+				
+		
+		//Funktionen der Button
+		btnZurck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteVerwaltung());
+				
+			}
+		});
+		
+		btnSuchen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		
+		btnTypHinzu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTyphinzufuegen());
+			}
+		});
+		
+		btnTypAendern.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTypaendern());
+			}
+		});
+		
 	}
-
 }

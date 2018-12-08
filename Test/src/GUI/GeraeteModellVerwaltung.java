@@ -31,7 +31,7 @@ public class GeraeteModellVerwaltung extends JPanel {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getGeraeteTypVerwaltung());
+				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getGeraeteVerwaltung());
 				
 			}
 		});

@@ -2,6 +2,7 @@ package Steuerung;
 
 import java.util.ArrayList;
 
+import Domaenklassen.IKunde;
 import Domaenklassen.Kunde;
 
 public class KundeAusleihStrg {
@@ -22,8 +23,8 @@ public KundeAusleihStrg() {
 
 	// Wahl eines Typs/Modells/Geraets aus der Liste
 
-	private Kunde selectKunde(ArrayList kundeListe) {
-		Kunde suchKunde = KundeAuswStrg.auswKunde(kundeListe);
+	private IKunde selectKunde(ArrayList kundeListe) {
+		IKunde suchKunde = KundeAuswStrg.auswKunde(kundeListe);
 		return suchKunde;
 	}
 

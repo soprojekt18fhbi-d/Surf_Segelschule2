@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
-import Domaenklassen.Adresse;
-import Domaenklassen.Kunde;
+import Domaenklassen.IAdresse;
+import Domaenklassen.IKunde;
 import GUI.IView;
 
 public class KundeRegistrierenModel implements IModel{
@@ -77,7 +77,7 @@ public class KundeRegistrierenModel implements IModel{
 
 	}
 	
-	public void kundeAnlegen(Kunde kunde) {
+	public void kundeAnlegen(IKunde kunde) {
 	
  
         try {
@@ -121,7 +121,7 @@ public class KundeRegistrierenModel implements IModel{
 	}
 	
 	// DK
-	public void AdresseAnlegen(Adresse adresse) {
+	public void AdresseAnlegen(IAdresse adresse) {
 		
 		 
         try {

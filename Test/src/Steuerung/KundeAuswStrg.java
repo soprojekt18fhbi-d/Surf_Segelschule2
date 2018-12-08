@@ -2,12 +2,12 @@ package Steuerung;
 
 import java.util.ArrayList;
 
-import Domaenklassen.Kunde;
+import Domaenklassen.IKunde;
 
 public class KundeAuswStrg {
 
 
-	public static Kunde auswKunde(ArrayList kundenListe) {
+	public static IKunde auswKunde(ArrayList kundenListe) {
 		// TODO Auto-generated method stub
 		return null;
 	}
