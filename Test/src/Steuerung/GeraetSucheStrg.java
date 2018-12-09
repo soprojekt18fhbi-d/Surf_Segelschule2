@@ -2,9 +2,11 @@ package Steuerung;
 
 import java.util.ArrayList;
 
+import Domaenklassen.SportGeraet;
+
 public class GeraetSucheStrg {
 
-	public ArrayList<Geraet> sucheGeraet() {
+	public ArrayList<SportGeraet> sucheGeraet() {
 		// TODO Auto-generated method stub
 		return null;
 	}

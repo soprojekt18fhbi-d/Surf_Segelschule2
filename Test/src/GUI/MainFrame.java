@@ -51,7 +51,7 @@ public class MainFrame extends JFrame {
 	private static Geraethinzufuegen geraethinzufuegen = new Geraethinzufuegen();
 	private static Modellaendern modellaendern = new Modellaendern();
 	private static Modellhinzufuegen modellhinzufuegen = new Modellhinzufuegen();
-	private static Sportgeraete sportgeraete = new Sportgeraete();
+	private static SportgeraeteVerwaltung sportgeraete = new SportgeraeteVerwaltung();
 	private static Typaendern typaendern = new Typaendern();
 	private static Typhinzufuegen typhinzufuegen = new Typhinzufuegen();
 	private static JPanel StandortPanel = new StandortPanel();

@@ -2,12 +2,12 @@ package Steuerung;
 
 import java.util.ArrayList;
 
-import Domaenklassen.Geraet;
+import Domaenklassen.SportGeraet;
 
 public class GeraetAuswStrg {
 
 	
-	public static Geraet auswGeraet(ArrayList geraetListe) {
+	public static SportGeraet auswGeraet(ArrayList geraetListe) {
 		// TODO Auto-generated method stub
 		return null;
 	}

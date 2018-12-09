@@ -2,11 +2,15 @@ package GUI;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JButton;
-import java.awt.Font;
+
+import java.awt.*;
+
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -15,110 +19,161 @@ import java.awt.event.ActionEvent;
 
 public class GeraeteModellVerwaltung extends JPanel {
 	private JTextField textField;
+	private JTable table;
 
 	/**
 	 * Create the panel.
 	 */
 	public GeraeteModellVerwaltung() {
 		
+		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
-		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		add(panel);
+		add(panel, BorderLayout.NORTH);
+		
+		JButton btnZurck = new JButton("Zur\u00FCck");
+		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JButton btnSuchen = new JButton("Suchen");
+		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField.setColumns(10);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(17, Short.MAX_VALUE))
+		);
+		panel.setLayout(gl_panel);
+		
+		JPanel panel_1 = new JPanel();
+		add(panel_1, BorderLayout.CENTER);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[]{0, 0, 0};
+		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_1.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		panel_1.setLayout(gbl_panel_1);
+		
+		JButton btnModellHinzu = new JButton("Modell hinzuf\u00FCgen");
+		btnModellHinzu.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnModellHinzu.setPreferredSize(new Dimension(300, 100));
+		GridBagConstraints gbc_btnModellHinzu = new GridBagConstraints();
+		gbc_btnModellHinzu.insets = new Insets(0, 0, 5, 5);
+		gbc_btnModellHinzu.fill = GridBagConstraints.BOTH;
+		gbc_btnModellHinzu.gridx = 0;
+		gbc_btnModellHinzu.gridy = 0;
+		panel_1.add(btnModellHinzu, gbc_btnModellHinzu);
+				
+		JButton btnModellAendern = new JButton("Modell \u00E4ndern");
+		btnModellAendern.setPreferredSize(new Dimension(300, 23));
+		btnModellAendern.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_btnModellAendern = new GridBagConstraints();
+		gbc_btnModellAendern.fill = GridBagConstraints.BOTH;
+		gbc_btnModellAendern.insets = new Insets(0, 0, 5, 5);
+		gbc_btnModellAendern.gridx = 1;
+		gbc_btnModellAendern.gridy = 0;
+		panel_1.add(btnModellAendern, gbc_btnModellAendern);
+		
+		JButton btnModellDeaktivieren = new JButton("Modell deaktivieren");
+		btnModellDeaktivieren.setPreferredSize(new Dimension(300, 100));
+		btnModellDeaktivieren.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_btnModellDeaktivieren = new GridBagConstraints();
+		gbc_btnModellDeaktivieren.fill = GridBagConstraints.BOTH;
+		gbc_btnModellDeaktivieren.insets = new Insets(0, 0, 5, 0);
+		gbc_btnModellDeaktivieren.gridx = 2;
+		gbc_btnModellDeaktivieren.gridy = 0;
+		panel_1.add(btnModellDeaktivieren, gbc_btnModellDeaktivieren);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setPreferredSize(new Dimension(2, 375));
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridheight = 6;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridwidth = 3;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 1;
+		panel_1.add(scrollPane, gbc_scrollPane);
 		
-		JButton button = new JButton("Zur\u00FCck");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		DefaultTableModel tm = new DefaultTableModel();
+		table = new JTable(tm);
+		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		table.setMinimumSize(new Dimension(0, 500));
+		tm.addColumn("ModellID");
+		tm.addColumn("Name");
+		tm.addColumn("Preiskategorie");
+		
+		
+		table.setPreferredScrollableViewportSize(new Dimension(450, 600));
+		scrollPane.setViewportView(table);
+		
+		JButton btnAuswhlen = new JButton("Ausw\u00E4hlen");
+		btnAuswhlen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnAuswhlen.setMinimumSize(new Dimension(150, 35));
+		btnAuswhlen.setPreferredSize(new Dimension(150, 35));
+		GridBagConstraints gbc_btnAuswhlen = new GridBagConstraints();
+		gbc_btnAuswhlen.anchor = GridBagConstraints.EAST;
+		gbc_btnAuswhlen.fill = GridBagConstraints.VERTICAL;
+		gbc_btnAuswhlen.gridx = 2;
+		gbc_btnAuswhlen.gridy = 7;
+		panel_1.add(btnAuswhlen, gbc_btnAuswhlen);
 				
+		
+		//Funktionen der Button
+		btnZurck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getGeraeteVerwaltung());
 				
 			}
 		});
 		
-		JButton button_1 = new JButton("Modell hinzuf\u00FCgen");
-		button_1.addActionListener(new ActionListener() {
+		btnSuchen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				
+			}
+		});
+		
+		btnModellHinzu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getModellhinzufuegen());
-				
 			}
 		});
-		button_1.setFont(new Font("Dialog", Font.PLAIN, 18));
 		
-		JButton button_2 = new JButton("Modell \u00E4ndern");
-		button_2.addActionListener(new ActionListener() {
+		btnModellAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getModellaendern());
-				
 			}
 		});
-		button_2.setFont(new Font("Dialog", Font.PLAIN, 18));
 		
-		JButton button_3 = new JButton("Modell deaktivieren");
-		button_3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		
-		JComboBox comboBox = new JComboBox();
-		
-		textField = new JTextField();
-		textField.setText("Artikel suchen...");
-		
-		JButton button_4 = new JButton("Ausw\u00E4hlen");
-		button_4.addActionListener(new ActionListener() {
+		btnModellDeaktivieren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getSportgeraete());
-				
 			}
 		});
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
-				.addGap(0, 974, Short.MAX_VALUE)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(button)
-								.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE))
-							.addGap(47)
-							.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(button_3, GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(textField, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE)))))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(button_4, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
-					.addGap(24))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 551, Short.MAX_VALUE)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(button)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(button_4))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-							.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-						.addComponent(button_3, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 402, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
-		panel.setLayout(gl_panel);
-
+		
+		btnAuswhlen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getSportgeraete());
+			}
+		});
+		
 	}
-
 }
+

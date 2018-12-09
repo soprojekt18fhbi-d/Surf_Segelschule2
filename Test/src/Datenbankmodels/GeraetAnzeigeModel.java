@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
-import Domaenklassen.Geraet;
+import Domaenklassen.SportGeraet;
 import Domaenklassen.GeraeteTyp;
 import GUI.IObjektView;
 
@@ -21,7 +21,7 @@ import GUI.IObjektView;
 public class GeraetAnzeigeModel implements IObjektModel{
 	
 	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
-	private ArrayList<Geraet> mengeAnGeraeten = new ArrayList<Geraet>();
+	private ArrayList<SportGeraet> mengeAnGeraeten = new ArrayList<SportGeraet>();
 	private int geraetNr = 0;
 
 	@Override
@@ -97,8 +97,10 @@ public class GeraetAnzeigeModel implements IObjektModel{
 		        	geraetNr = geraetNr++;
 		        	int geraeteÍD = Integer.parseInt(rs.getString("GERAETEID"));
 		        	String farbe = rs.getString("FARBE");
-		        	double verkaufspreis = Double.parseDouble(rs.getString("GERAETEID"));
+		        	double verkaufspreis = Double.parseDouble(rs.getString("VERKAUFSPREIS"));
+		        	double anschaffungspreis = Double.parseDouble(rs.getString("ANSCHAFFUNGSPREIS"));
 		        	int status = Integer.parseInt(rs.getString("STATUS"));
+		        	String makel = rs.getString("MAKEL");
 		        	int modellID = Integer.parseInt(rs.getString("MODELLID"));
 		        	
 		        	
@@ -120,7 +122,7 @@ public class GeraetAnzeigeModel implements IObjektModel{
 					        String typ =  rs3.getString("NAME");
 				        	String führerschein = rs3.getString("FUEHRERSCHEIN");      	
 				        			        	
-				        	Geraet geraetNr  = new Geraet(typID, typ, führerschein, name, modellID, preisID, geraeteÍD, farbe, verkaufspreis, status);
+				        	SportGeraet geraetNr  = new SportGeraet(typID, typ, führerschein, name, modellID, preisID, geraeteÍD, farbe, verkaufspreis, anschaffungspreis, status, makel);
 				        	mengeAnGeraeten.add(geraetNr);
 				        }
 			        }
@@ -153,18 +155,20 @@ public class GeraetAnzeigeModel implements IObjektModel{
 		GERAETEID int (9) not null,
 		FARBE varchar(20) not null,
 		STATUS int(1) not null,
-		VERKAUFSPREIS double (7) not null,
+		VERKAUFSPREIS numeric (8,2) not null,
+		ANSCHAFFUNGSPREIS numeric (8,2) not null,
 		MODELLID int(6) not null,
+		Makel varchar(255),
 		constraint pk_geraet primary key (GERAETEID),
 		constraint fk_geraet_modell foreign key (MODELLID)
 		references MODELL(MODELLID));
 		
 		insert into SPORTGERAET
-		values (10101101,'blau', 1, 129.99, 10101),
-		(10101102, 'rot', 0, 119.99,  10101),
-		(10102101,'weiss', 1, 99.99,  10102),
-		(20101101,'weiss', 2, 449.99,  20101),
-		(30101101, 'gelb', 0, 1129.99,  30101);
+		values (10101101,'blau', 1, 129.99, 109.99, 10101, null),
+		(10101102, 'rot', 0, 119.99, 5.99,  10101, 'Kratzer'),
+		(10102101,'weiss', 1, 99.99, 89.99, 10102, null),
+		(20101101,'weiss', 2, 449.99, 12.99, 20101, null),
+		(30101101, 'gelb', 0, 1129.99, 800.01, 30101, 'Lackierung blättert ab');
 		
 	 */
 

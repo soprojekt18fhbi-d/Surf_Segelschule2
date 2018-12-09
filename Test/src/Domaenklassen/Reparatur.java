@@ -9,10 +9,10 @@ public class Reparatur {
 	private int id;
 	private String Beschreibung;
 	private double Kosten;
-	private Geraet Geraet;
+	private SportGeraet Geraet;
 	
 	
-	public Reparatur(int id, String beschreibung, double kosten, Geraet geraet) {
+	public Reparatur(int id, String beschreibung, double kosten, SportGeraet geraet) {
 		super();
 		this.id = id;
 		Beschreibung = beschreibung;
@@ -37,10 +37,10 @@ public class Reparatur {
 	public void setKosten(double kosten) {
 		Kosten = kosten;
 	}
-	public Geraet getGeraet() {
+	public SportGeraet getGeraet() {
 		return Geraet;
 	}
-	public void setGeraet(Geraet geraet) {
+	public void setGeraet(SportGeraet geraet) {
 		Geraet = geraet;
 	}
 

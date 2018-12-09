@@ -6,31 +6,31 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.ActionListener;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import javax.swing.JTable;
 
-public class GeraeteTypVerwaltung extends JPanel {
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class SportgeraeteVerwaltung extends JPanel {
 	private JTextField textField;
 	private JTable table;
 
 	/**
 	 * Create the panel.
 	 */
-	public GeraeteTypVerwaltung() {
+	public SportgeraeteVerwaltung() {
+		
 		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
@@ -70,31 +70,41 @@ public class GeraeteTypVerwaltung extends JPanel {
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0};
+		gbl_panel_1.columnWidths = new int[]{0, 0, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{1.0, 1.0};
+		gbl_panel_1.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
-		JButton btnTypHinzu = new JButton("Typ hinzuf\u00FCgen");
-		btnTypHinzu.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		btnTypHinzu.setPreferredSize(new Dimension(300, 100));
-		GridBagConstraints gbc_btnTypHinzu = new GridBagConstraints();
-		gbc_btnTypHinzu.insets = new Insets(0, 0, 5, 5);
-		gbc_btnTypHinzu.fill = GridBagConstraints.BOTH;
-		gbc_btnTypHinzu.gridx = 0;
-		gbc_btnTypHinzu.gridy = 0;
-		panel_1.add(btnTypHinzu, gbc_btnTypHinzu);
+		JButton btnGeraetHinzu = new JButton("Ger\u00E4t hinzuf\u00FCgen");
+		btnGeraetHinzu.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnGeraetHinzu.setPreferredSize(new Dimension(300, 100));
+		GridBagConstraints gbc_btnGeraetHinzu = new GridBagConstraints();
+		gbc_btnGeraetHinzu.insets = new Insets(0, 0, 5, 5);
+		gbc_btnGeraetHinzu.fill = GridBagConstraints.BOTH;
+		gbc_btnGeraetHinzu.gridx = 0;
+		gbc_btnGeraetHinzu.gridy = 0;
+		panel_1.add(btnGeraetHinzu, gbc_btnGeraetHinzu);
 				
-		JButton btnTypAendern = new JButton("Typ \u00E4ndern");
-		btnTypAendern.setPreferredSize(new Dimension(300, 23));
-		btnTypAendern.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		GridBagConstraints gbc_btnTypAendern = new GridBagConstraints();
-		gbc_btnTypAendern.fill = GridBagConstraints.BOTH;
-		gbc_btnTypAendern.insets = new Insets(0, 0, 5, 0);
-		gbc_btnTypAendern.gridx = 1;
-		gbc_btnTypAendern.gridy = 0;
-		panel_1.add(btnTypAendern, gbc_btnTypAendern);
+		JButton btnGeraetAendern = new JButton("Ger\u00E4t \u00E4ndern");
+		btnGeraetAendern.setPreferredSize(new Dimension(300, 23));
+		btnGeraetAendern.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_btnGeraetAendern = new GridBagConstraints();
+		gbc_btnGeraetAendern.fill = GridBagConstraints.BOTH;
+		gbc_btnGeraetAendern.insets = new Insets(0, 0, 5, 5);
+		gbc_btnGeraetAendern.gridx = 1;
+		gbc_btnGeraetAendern.gridy = 0;
+		panel_1.add(btnGeraetAendern, gbc_btnGeraetAendern);
+		
+		JButton btnGeraetDeaktivieren = new JButton("Ger\u00E4t deaktivieren");
+		btnGeraetDeaktivieren.setPreferredSize(new Dimension(300, 100));
+		btnGeraetDeaktivieren.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_btnGeraetDeaktivieren = new GridBagConstraints();
+		gbc_btnGeraetDeaktivieren.fill = GridBagConstraints.BOTH;
+		gbc_btnGeraetDeaktivieren.insets = new Insets(0, 0, 5, 0);
+		gbc_btnGeraetDeaktivieren.gridx = 2;
+		gbc_btnGeraetDeaktivieren.gridy = 0;
+		panel_1.add(btnGeraetDeaktivieren, gbc_btnGeraetDeaktivieren);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setPreferredSize(new Dimension(2, 375));
@@ -102,7 +112,7 @@ public class GeraeteTypVerwaltung extends JPanel {
 		gbc_scrollPane.gridheight = 6;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridwidth = 2;
+		gbc_scrollPane.gridwidth = 3;
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 1;
 		panel_1.add(scrollPane, gbc_scrollPane);
@@ -111,30 +121,26 @@ public class GeraeteTypVerwaltung extends JPanel {
 		table = new JTable(tm);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		table.setMinimumSize(new Dimension(0, 500));
-		tm.addColumn("TypID");
+		tm.addColumn("GeräteID");
 		tm.addColumn("Name");
-		tm.addColumn("Führerschein");
+		tm.addColumn("Verkaufspreis");
+		tm.addColumn("Anschaffungspreis");
+		tm.addColumn("Status");
+		tm.addColumn("Makel");
+		tm.addColumn("Farbe");
+		
 		
 		
 		table.setPreferredScrollableViewportSize(new Dimension(450, 600));
 		scrollPane.setViewportView(table);
 		
-		JButton btnAuswhlen = new JButton("Ausw\u00E4hlen");
-		btnAuswhlen.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnAuswhlen.setMinimumSize(new Dimension(150, 35));
-		btnAuswhlen.setPreferredSize(new Dimension(150, 35));
-		GridBagConstraints gbc_btnAuswhlen = new GridBagConstraints();
-		gbc_btnAuswhlen.anchor = GridBagConstraints.EAST;
-		gbc_btnAuswhlen.fill = GridBagConstraints.VERTICAL;
-		gbc_btnAuswhlen.gridx = 1;
-		gbc_btnAuswhlen.gridy = 7;
-		panel_1.add(btnAuswhlen, gbc_btnAuswhlen);
+		
 				
 		
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteVerwaltung());
+				MainFrame.change(MainFrame.getSportgeraete(), MainFrame.getGeraeteVerwaltung());
 				
 			}
 		});
@@ -146,21 +152,21 @@ public class GeraeteTypVerwaltung extends JPanel {
 			}
 		});
 		
-		btnTypHinzu.addActionListener(new ActionListener() {
+		btnGeraetHinzu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTyphinzufuegen());
+				MainFrame.change(MainFrame.getSportgeraete(), MainFrame.getGeraethinzufuegen());
 			}
 		});
 		
-		btnTypAendern.addActionListener(new ActionListener() {
+		btnGeraetAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTypaendern());
+				MainFrame.change(MainFrame.getSportgeraete(), MainFrame.getGeraetaendern());
 			}
 		});
 		
-		btnAuswhlen.addActionListener(new ActionListener() {
+		btnGeraetDeaktivieren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteModellVerwaltung());
+				
 			}
 		});
 		

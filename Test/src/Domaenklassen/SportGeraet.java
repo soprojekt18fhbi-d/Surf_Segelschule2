@@ -3,7 +3,7 @@ package Domaenklassen;
 /**
  * @author michi
  */
-public class Geraet extends GeraeteModell{
+public class SportGeraet extends GeraeteModell{
 	
 	private int typID;
 	private String name;
@@ -14,11 +14,14 @@ public class Geraet extends GeraeteModell{
 	private String farbe;
 	private int geraeteID;
 	private double verkaufspreis;
+	private double anschaffungspreis;
 	private int status; 
+	private String makel;
+	
 
 	
 
-	public Geraet(int id, String name, String führerschein, String modellName, int modellID, int kostenID, int geraeteID, String farbe, double verkaufspreis, int status) {
+	public SportGeraet(int id, String name, String führerschein, String modellName, int modellID, int kostenID, int geraeteID, String farbe, double verkaufspreis, double anschaffungspreis, int status, String makel) {
 		super(id, name, führerschein, modellName, modellID, kostenID);
 		this.name = name;
 		this.typID = id;
@@ -29,7 +32,9 @@ public class Geraet extends GeraeteModell{
 		this.geraeteID = geraeteID;
 		this.farbe = farbe;
 		this.verkaufspreis = verkaufspreis;
+		this.setAnschaffungspreis(anschaffungspreis);
 		this.status = status;
+		this.setMakel(makel);
 	}
 
 	public int getGeraeteID() {
@@ -111,6 +116,22 @@ public class Geraet extends GeraeteModell{
 	
 	public void setModellID(int modellID){
 		this.modellID = modellID;
+	}
+
+	public double getAnschaffungspreis() {
+		return anschaffungspreis;
+	}
+
+	public void setAnschaffungspreis(double anschaffungspreis) {
+		this.anschaffungspreis = anschaffungspreis;
+	}
+
+	public String getMakel() {
+		return makel;
+	}
+
+	public void setMakel(String makel) {
+		this.makel = makel;
 	}
 
 }
