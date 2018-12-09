@@ -4,19 +4,26 @@ package Domaenklassen;
 
 public class Rechnung {
 	
+
 	private int id;
+	private double summe;
+	private double mwSt;
+	private double betrag;
 	private double bezahlt;
 	private int bezahldatum;
 	private IKunde kunde;
 	private Reparatur reparatur;
 	
-	public Rechnung(int id, double bezahlt, int bezahldatum, IKunde kunde) {
+	
+	public Rechnung(int id, double summe, double mwSt, double betrag, double bezahlt, int bezahldatum, IKunde kunde) {
 		super();
 		this.id = id;
+		this.summe=summe;
+		this.mwSt=mwSt;
+		this.betrag=betrag;
 		this.bezahlt = bezahlt;
 		this.bezahldatum = bezahldatum;
 		this.kunde = kunde;
-		
 	}
 
 	public int getId() {
@@ -47,6 +54,18 @@ public class Rechnung {
 		return kunde;
 	}
 
+	public double getSumme() {
+		return summe;
+	}
+
+	public double getMwSt() {
+		return mwSt;
+	}
+
+	public double getBetrag() {
+		return betrag;
+	}
+	
 	public void setKunde(IKunde kunde) {
 		this.kunde = kunde;
 	}
