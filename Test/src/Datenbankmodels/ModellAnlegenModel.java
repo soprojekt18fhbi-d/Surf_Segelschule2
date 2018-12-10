@@ -2,13 +2,16 @@ package Datenbankmodels;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import Domaenklassen.GeraeteTyp;
+import javax.swing.JOptionPane;
+
+import Domaenklassen.GeraeteModell;
 import GUI.IAnlegenView;
 
-public class TypAnlegenModel implements IAnlegenModel{
+public class ModellAnlegenModel implements IAnlegenModel{
 
 	
 	@Override
@@ -57,26 +60,37 @@ public class TypAnlegenModel implements IAnlegenModel{
 
 	}
 	
-	public void typAnlegen(GeraeteTyp typ) {
-	
+	public void modellAnlegen(String[] modell) {
+		Statement statement = null;
+		Statement statement2 = null;
  
         try {
 			Connection conn = DriverManager.
 			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
 
-			Statement statement = conn.createStatement();
+			statement = conn.createStatement();
 			
-			String name = typ.getName();
-			int id = typ.getTypID();
-			String schein = typ.getFührerschein();
+			int id = Integer.parseInt(modell[0]);
+			String name = modell[1];
+			String typ = modell[2];
+			int preis = Integer.parseInt(modell[3]);
 			
-			
-			
-			String sqlupdate = "INSERT INTO TYP VALUES ('" +id+ "','" + name + "','"+ schein+ "')";
-			
-			
-			int ergebnis = statement.executeUpdate(sqlupdate);
-			
+			//
+			// PROGRAMM ERKENNT SPALTE MIT TYPNAMEN NOCH NICHT ?!?!
+			//
+						
+			String query = "select * from TYP WHERE NAME = " +typ;
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()){
+		        int typID =  Integer.parseInt(rs.getString("TYPID"));
+		        
+		        
+		        statement2 = conn.createStatement();
+			    String sqlupdate = "INSERT INTO MODELL VALUES ('" +id+ "','" + name + "','" +typID+ "','" +preis+"')";
+				int ergebnis = statement2.executeUpdate(sqlupdate);
+            }
+	        
+	        
 			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
