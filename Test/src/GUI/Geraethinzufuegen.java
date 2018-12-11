@@ -2,189 +2,315 @@ package GUI;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Datenbankmodels.IAnlegenModel;
+import Datenbankmodels.GeraetAnlegenModel;
+import Steuerung.GeraetAnlegenStrg;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Geraethinzufuegen extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-
+public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
+	private JTextField txtGeraeteID;
+	private JTextField txtAPreis;
+	private JTextField textVPreis;
+	private JTextField textFarbe;
+	private JTextField textBaujahr;
+	private JTextField textMakel;
+	
+	GeraetAnlegenModel model;
+	GeraetAnlegenStrg controller;
+	
+	
 	/**
+	 * 
 	 * Create the panel.
 	 */
 	public Geraethinzufuegen() {
+		model = new GeraetAnlegenModel();
+		controller = new GeraetAnlegenStrg(model);
+		model.anmelden(this);
+		
+		setSize(900,550);
+		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		add(panel);
+		add(panel, BorderLayout.CENTER);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
 		
-		JLabel label = new JLabel("Modell:");
-		label.setHorizontalAlignment(SwingConstants.LEFT);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		JLabel lblGeraetHinzufgen = new JLabel("Ger\u00E4t hinzuf\u00FCgen:");
+		lblGeraetHinzufgen.setFont(new Font("Tahoma", Font.BOLD, 32));
+		GridBagConstraints gbc_lblGeraetHinzufgen = new GridBagConstraints();
+		gbc_lblGeraetHinzufgen.anchor = GridBagConstraints.WEST;
+		gbc_lblGeraetHinzufgen.gridwidth = 2;
+		gbc_lblGeraetHinzufgen.insets = new Insets(0, 0, 5, 5);
+		gbc_lblGeraetHinzufgen.gridx = 2;
+		gbc_lblGeraetHinzufgen.gridy = 2;
+		panel.add(lblGeraetHinzufgen, gbc_lblGeraetHinzufgen);
 		
-		JLabel label_1 = new JLabel("Artikelnummer:");
-		label_1.setHorizontalAlignment(SwingConstants.LEFT);
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		JLabel lblTyp = new JLabel("Typ:");
+		lblTyp.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		GridBagConstraints gbc_lblTyp = new GridBagConstraints();
+		gbc_lblTyp.anchor = GridBagConstraints.WEST;
+		gbc_lblTyp.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTyp.gridx = 2;
+		gbc_lblTyp.gridy = 4;
+		panel.add(lblTyp, gbc_lblTyp);
 		
-		JLabel label_2 = new JLabel("Anschaffungspreis:");
-		label_2.setHorizontalAlignment(SwingConstants.LEFT);
-		label_2.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
-		JLabel label_3 = new JLabel("Verkaufspreis:");
-		label_3.setHorizontalAlignment(SwingConstants.LEFT);
-		label_3.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		JComboBox comboBoxTyp = new JComboBox();	
 		
-		JLabel label_4 = new JLabel("Farbe:");
-		label_4.setHorizontalAlignment(SwingConstants.LEFT);
-		label_4.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
-		JLabel label_5 = new JLabel("Baujahr:");
-		label_5.setHorizontalAlignment(SwingConstants.LEFT);
-		label_5.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		GridBagConstraints gbc_comboBoxTyp = new GridBagConstraints();
+		gbc_comboBoxTyp.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBoxTyp.fill = GridBagConstraints.BOTH;
+		gbc_comboBoxTyp.gridx = 3;
+		gbc_comboBoxTyp.gridy = 4;
+		panel.add(comboBoxTyp, gbc_comboBoxTyp);
 		
-		JLabel label_6 = new JLabel("Makel:");
-		label_6.setHorizontalAlignment(SwingConstants.LEFT);
-		label_6.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		JLabel lblModell = new JLabel("Modell:");
+		lblModell.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		GridBagConstraints gbc_lblModell = new GridBagConstraints();
+		gbc_lblModell.insets = new Insets(0, 0, 5, 5);
+		gbc_lblModell.anchor = GridBagConstraints.WEST;
+		gbc_lblModell.gridx = 2;
+		gbc_lblModell.gridy = 5;
+		panel.add(lblModell, gbc_lblModell);
 		
-		JButton button = new JButton("abbrechen");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JComboBox comboBoxModell = new JComboBox();
+		
+		
+		GridBagConstraints gbc_comboBoxModell = new GridBagConstraints();
+		gbc_comboBoxModell.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBoxModell.fill = GridBagConstraints.BOTH;
+		gbc_comboBoxModell.gridx = 3;
+		gbc_comboBoxModell.gridy = 5;
+		panel.add(comboBoxModell, gbc_comboBoxModell);
+		
+		JLabel lblGeraeteID = new JLabel("Ger\u00E4teID:");
+		lblGeraeteID.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		GridBagConstraints gbc_lblGeraeteID = new GridBagConstraints();
+		gbc_lblGeraeteID.anchor = GridBagConstraints.WEST;
+		gbc_lblGeraeteID.insets = new Insets(0, 0, 5, 5);
+		gbc_lblGeraeteID.gridx = 2;
+		gbc_lblGeraeteID.gridy = 7;
+		panel.add(lblGeraeteID, gbc_lblGeraeteID);
+		
+		txtGeraeteID = new JTextField();
+		txtGeraeteID.setPreferredSize(new Dimension(6, 40));
+		txtGeraeteID.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_txtGeraeteID = new GridBagConstraints();
+		gbc_txtGeraeteID.insets = new Insets(0, 0, 5, 5);
+		gbc_txtGeraeteID.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtGeraeteID.gridx = 3;
+		gbc_txtGeraeteID.gridy = 7;
+		panel.add(txtGeraeteID, gbc_txtGeraeteID);
+		txtGeraeteID.setColumns(10);
+		
+		JLabel lblAnschaffungspreis = new JLabel("Anschaffungspreis:");
+		lblAnschaffungspreis.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		GridBagConstraints gbc_lblAnschaffungspreis = new GridBagConstraints();
+		gbc_lblAnschaffungspreis.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAnschaffungspreis.anchor = GridBagConstraints.WEST;
+		gbc_lblAnschaffungspreis.gridx = 2;
+		gbc_lblAnschaffungspreis.gridy = 8;
+		panel.add(lblAnschaffungspreis, gbc_lblAnschaffungspreis);
+		
+		txtAPreis = new JTextField();
+		txtAPreis.setPreferredSize(new Dimension(6, 40));
+		txtAPreis.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_txtAPreis = new GridBagConstraints();
+		gbc_txtAPreis.insets = new Insets(0, 0, 5, 5);
+		gbc_txtAPreis.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtAPreis.gridx = 3;
+		gbc_txtAPreis.gridy = 8;
+		panel.add(txtAPreis, gbc_txtAPreis);
+		txtAPreis.setColumns(10);
+		
+		JLabel lblVerkaufspreis = new JLabel("Verkaufspreis:");
+		lblVerkaufspreis.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		GridBagConstraints gbc_lblVerkaufspreis = new GridBagConstraints();
+		gbc_lblVerkaufspreis.anchor = GridBagConstraints.WEST;
+		gbc_lblVerkaufspreis.insets = new Insets(0, 0, 5, 5);
+		gbc_lblVerkaufspreis.gridx = 2;
+		gbc_lblVerkaufspreis.gridy = 9;
+		panel.add(lblVerkaufspreis, gbc_lblVerkaufspreis);
+		
+		textVPreis = new JTextField();
+		textVPreis.setPreferredSize(new Dimension(6, 40));
+		textVPreis.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_textVPreis = new GridBagConstraints();
+		gbc_textVPreis.insets = new Insets(0, 0, 5, 5);
+		gbc_textVPreis.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textVPreis.gridx = 3;
+		gbc_textVPreis.gridy = 9;
+		panel.add(textVPreis, gbc_textVPreis);
+		textVPreis.setColumns(10);
+		
+		JLabel lblFarbe = new JLabel("Farbe:");
+		lblFarbe.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		GridBagConstraints gbc_lblFarbe = new GridBagConstraints();
+		gbc_lblFarbe.anchor = GridBagConstraints.WEST;
+		gbc_lblFarbe.insets = new Insets(0, 0, 5, 5);
+		gbc_lblFarbe.gridx = 2;
+		gbc_lblFarbe.gridy = 10;
+		panel.add(lblFarbe, gbc_lblFarbe);
+		
+		textFarbe = new JTextField();
+		textFarbe.setPreferredSize(new Dimension(6, 40));
+		textFarbe.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_textFarbe = new GridBagConstraints();
+		gbc_textFarbe.insets = new Insets(0, 0, 5, 5);
+		gbc_textFarbe.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFarbe.gridx = 3;
+		gbc_textFarbe.gridy = 10;
+		panel.add(textFarbe, gbc_textFarbe);
+		textFarbe.setColumns(10);
+		
+		JLabel lblBaujahr = new JLabel("Baujahr:");
+		lblBaujahr.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		GridBagConstraints gbc_lblBaujahr = new GridBagConstraints();
+		gbc_lblBaujahr.anchor = GridBagConstraints.WEST;
+		gbc_lblBaujahr.insets = new Insets(0, 0, 5, 5);
+		gbc_lblBaujahr.gridx = 2;
+		gbc_lblBaujahr.gridy = 11;
+		panel.add(lblBaujahr, gbc_lblBaujahr);
+		
+		textBaujahr = new JTextField();
+		textBaujahr.setPreferredSize(new Dimension(6, 40));
+		textBaujahr.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_textBaujahr = new GridBagConstraints();
+		gbc_textBaujahr.insets = new Insets(0, 0, 5, 5);
+		gbc_textBaujahr.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textBaujahr.gridx = 3;
+		gbc_textBaujahr.gridy = 11;
+		panel.add(textBaujahr, gbc_textBaujahr);
+		textBaujahr.setColumns(10);
+		
+		JLabel lblMakel = new JLabel("Makel:");
+		lblMakel.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		GridBagConstraints gbc_lblMakel = new GridBagConstraints();
+		gbc_lblMakel.anchor = GridBagConstraints.WEST;
+		gbc_lblMakel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblMakel.gridx = 2;
+		gbc_lblMakel.gridy = 12;
+		panel.add(lblMakel, gbc_lblMakel);
+		
+		textMakel = new JTextField();
+		textMakel.setPreferredSize(new Dimension(6, 40));
+		textMakel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_textMakel = new GridBagConstraints();
+		gbc_textMakel.insets = new Insets(0, 0, 5, 5);
+		gbc_textMakel.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textMakel.gridx = 3;
+		gbc_textMakel.gridy = 12;
+		panel.add(textMakel, gbc_textMakel);
+		textMakel.setColumns(10);
+		
+		JPanel panel_2 = new JPanel();
+		add(panel_2, BorderLayout.SOUTH);
+		
+		JButton btnBestaetigen = new JButton("best\u00E4tigen");
+		btnBestaetigen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JButton btnAbbrechen = new JButton("abbrechen");
+		btnAbbrechen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
+		gl_panel_2.setHorizontalGroup(
+			gl_panel_2.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addContainerGap(573, Short.MAX_VALUE)
+					.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnBestaetigen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addGap(17))
+		);
+		gl_panel_2.setVerticalGroup(
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addGap(0, 0, Short.MAX_VALUE)
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnBestaetigen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		panel_2.setLayout(gl_panel_2);
+		
+		
+
+		
+		
+		btnBestaetigen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String typ;
+				String modell;
 				
-				MainFrame.change(MainFrame.getGeraethinzufuegen(), MainFrame.getSportgeraete());
+				int geraeteID;
+				double anschaffungspreis;
+				double verkaufspreis;
+				String farbe;
+				int baujahr;
+				
+				try {
+					typ = String.valueOf(comboBoxTyp.getSelectedItem());
+					modell = String.valueOf(comboBoxModell.getSelectedItem());
+					
+					geraeteID = Integer.parseInt(txtGeraeteID.getText());
+					anschaffungspreis = Double.parseDouble(txtAPreis.getText());
+					verkaufspreis = Double.parseDouble(textVPreis.getText());
+					farbe = textFarbe.getText();
+					baujahr = Integer.parseInt(textBaujahr.getText());
+					
+					////////////KLAPPT NOCH NICHT 	
+					////////controller.modellUebergeben(modellID, name, typ, preisKateg);
+					////////aktualisieren(model);
+					
+					JOptionPane.showMessageDialog(null, "Das Gerät wurde erfolgreich angelegt!");
+					MainFrame.change(MainFrame.getGeraethinzufuegen(), MainFrame.getGeraeteVerwaltung());
+					
+					
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Modell konnte nicht angelegt werden");
+				}
 				
 			}
+		}); 
+		
+		
+		btnAbbrechen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.change(MainFrame.getGeraethinzufuegen(), MainFrame.getGeraeteVerwaltung());			}
 		});
-		button.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		
-		JLabel label_7 = new JLabel("\u20AC");
-		label_7.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		
-		JLabel label_8 = new JLabel("\u20AC");
-		label_8.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		
-		JButton button_1 = new JButton("best\u00E4tigen");
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		
-		JLabel lblGertHinzufgen = new JLabel("Ger\u00E4t hinzuf\u00FCgen:");
-		lblGertHinzufgen.setFont(new Font("Tahoma", Font.BOLD, 32));
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(180, Short.MAX_VALUE)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(label)
-								.addComponent(label_1)
-								.addComponent(label_2)
-								.addComponent(label_3)
-								.addComponent(label_4)
-								.addComponent(label_5)
-								.addComponent(label_6))
-							.addGap(37))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(button, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblGertHinzufgen, GroupLayout.PREFERRED_SIZE, 358, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
-							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
-							.addGroup(gl_panel.createSequentialGroup()
-								.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(label_7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-							.addGroup(gl_panel.createSequentialGroup()
-								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(label_8))
-							.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
-							.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-							.addGroup(gl_panel.createSequentialGroup()
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
-							.addComponent(textField_6, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(199, Short.MAX_VALUE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(39)
-					.addComponent(lblGertHinzufgen, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label)
-						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label_1)
-						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label_2)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label_8))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label_3)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label_7))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label_4)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label_5)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label_6)
-						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-						.addComponent(button, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(157, Short.MAX_VALUE))
-		);
-		panel.setLayout(gl_panel);
 
 	}
 
+
+	@Override
+	public void aktualisieren(IAnlegenModel model) {
+		
+	}
 }

@@ -28,7 +28,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
-public class Modellhinzufuegen extends JPanel  implements IAnlegenView{
+public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 	private JTextField txtModelID;
 	private JTextField txtModell;
 	
