@@ -46,9 +46,9 @@ setLayout(new BorderLayout(0, 0));
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0};
+		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0};
 		gbl_panel_1.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
 		JButton btnTypen = new JButton("Typen verwalten");
@@ -72,10 +72,24 @@ setLayout(new BorderLayout(0, 0));
 		JButton btnGeraete = new JButton("Sportgeräte verwalten");
 		btnGeraete.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_btnAbgeschlosseneBuchungen = new GridBagConstraints();
+		gbc_btnAbgeschlosseneBuchungen.insets = new Insets(0, 0, 5, 0);
 		gbc_btnAbgeschlosseneBuchungen.fill = GridBagConstraints.BOTH;
 		gbc_btnAbgeschlosseneBuchungen.gridx = 0;
 		gbc_btnAbgeschlosseneBuchungen.gridy = 2;
 		panel_1.add(btnGeraete, gbc_btnAbgeschlosseneBuchungen);
+		
+		JButton btnPreisliste = new JButton("Preisliste verwalten");
+		btnPreisliste.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnPreisliste.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_btnPreisliste = new GridBagConstraints();
+		gbc_btnPreisliste.fill = GridBagConstraints.BOTH;
+		gbc_btnPreisliste.insets = new Insets(0, 0, 5, 0);
+		gbc_btnPreisliste.gridx = 0;
+		gbc_btnPreisliste.gridy = 3;
+		panel_1.add(btnPreisliste, gbc_btnPreisliste);
 
 
 		
