@@ -79,7 +79,7 @@ public class ModellAnlegenModel implements IAnlegenModel{
 			// PROGRAMM ERKENNT SPALTE MIT TYPNAMEN NOCH NICHT ?!?!
 			//
 						
-			String query = "select * from TYP WHERE NAME = " +typ;
+			String query = "select * from TYP WHERE NAME = '" +typ+ "'";
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()){
 		        int typID =  Integer.parseInt(rs.getString("TYPID"));
