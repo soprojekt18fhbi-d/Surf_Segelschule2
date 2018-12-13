@@ -54,9 +54,9 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
@@ -80,7 +80,9 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		panel.add(lblTyp, gbc_lblTyp);
 		
 		
-		JComboBox comboBoxTyp = new JComboBox();	
+		JComboBox comboBoxTyp = new JComboBox();
+		comboBoxTyp.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		comboBoxTyp.addItem("TestTyp");
 		
 		
 		GridBagConstraints gbc_comboBoxTyp = new GridBagConstraints();
@@ -100,6 +102,8 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		panel.add(lblModell, gbc_lblModell);
 		
 		JComboBox comboBoxModell = new JComboBox();
+		comboBoxModell.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		comboBoxModell.addItem("TestModell");
 		
 		
 		GridBagConstraints gbc_comboBoxModell = new GridBagConstraints();
@@ -169,6 +173,15 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		panel.add(textVPreis, gbc_textVPreis);
 		textVPreis.setColumns(10);
 		
+		JLabel label = new JLabel("\u20AC");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.anchor = GridBagConstraints.WEST;
+		gbc_label.insets = new Insets(0, 0, 5, 5);
+		gbc_label.gridx = 4;
+		gbc_label.gridy = 9;
+		panel.add(label, gbc_label);
+		
 		JLabel lblFarbe = new JLabel("Farbe:");
 		lblFarbe.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblFarbe = new GridBagConstraints();
@@ -188,6 +201,15 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		gbc_textFarbe.gridy = 10;
 		panel.add(textFarbe, gbc_textFarbe);
 		textFarbe.setColumns(10);
+		
+		JLabel label_1 = new JLabel("\u20AC");
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		GridBagConstraints gbc_label_1 = new GridBagConstraints();
+		gbc_label_1.anchor = GridBagConstraints.WEST;
+		gbc_label_1.insets = new Insets(0, 0, 5, 5);
+		gbc_label_1.gridx = 4;
+		gbc_label_1.gridy = 10;
+		panel.add(label_1, gbc_label_1);
 		
 		JLabel lblBaujahr = new JLabel("Baujahr:");
 		lblBaujahr.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -272,6 +294,7 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 				double verkaufspreis;
 				String farbe;
 				int baujahr;
+				String makel;
 				
 				try {
 					typ = String.valueOf(comboBoxTyp.getSelectedItem());
@@ -282,10 +305,10 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 					verkaufspreis = Double.parseDouble(textVPreis.getText());
 					farbe = textFarbe.getText();
 					baujahr = Integer.parseInt(textBaujahr.getText());
+					makel = textMakel.getText();
 					
-					////////////KLAPPT NOCH NICHT 	
-					////////controller.modellUebergeben(modellID, name, typ, preisKateg);
-					////////aktualisieren(model);
+					controller.geraetUebergeben(typ, modell, geraeteID, anschaffungspreis, verkaufspreis, farbe, baujahr, makel);
+					aktualisieren(model);
 					
 					JOptionPane.showMessageDialog(null, "Das Gerät wurde erfolgreich angelegt!");
 					MainFrame.change(MainFrame.getGeraethinzufuegen(), MainFrame.getGeraeteVerwaltung());

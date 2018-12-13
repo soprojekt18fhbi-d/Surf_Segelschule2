@@ -1,3 +1,4 @@
+//@author Michi S. Ben Kröncke
 package GUIBuchungsverwaltung;
 
 import java.awt.BorderLayout;
@@ -24,27 +25,37 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.TableRowSorter;
 
 import Datenbankmodels.IObjektModel;
-import Datenbankmodels.ModellAnzeigeModel;
+import Datenbankmodels.BuchungModellAnzeigeModel;
+import Domaenklassen.IKunde;
 import GUI.IObjektView;
 import GUI.MainFrame;
-import Steuerung.ModellAnzeigeStrg;
+import Steuerung.BuchungModellAnzeigeStrg;
 
 import java.awt.Component;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ModellAuswahl extends JPanel implements IObjektView {
-	private JTextField textField;
-	JList list = new JList();
+	private JTextField txtSearchbar;
 	
-	private ModellAnzeigeStrg controller;
-	private ModellAnzeigeModel model;
+	private BuchungModellAnzeigeStrg controller;
+	private IObjektModel model;
+	private int typNr;
+	private int kNr;
+	private IKunde kunde;
+	private JTable table;
+	private JTextField txtModellnummer;
+	private String talking;
+	private String search = "";
 
 	/**
 	 * Create the panel.
 	 */
-	public ModellAuswahl() {
-		model = new ModellAnzeigeModel();
-		controller = new ModellAnzeigeStrg(model);
-		model.anmelden(this);
+	public ModellAuswahl(IObjektModel smodel, BuchungModellAnzeigeStrg scontroller) {
+		model = smodel;
+		controller = scontroller;
 		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
@@ -53,18 +64,43 @@ public class ModellAuswahl extends JPanel implements IObjektView {
 		JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		txtSearchbar = new JTextField();
+		txtSearchbar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				
+				talking = "search";
+				search = txtSearchbar.getText();
+				anfrage();
+				
+			}
+		});
+		txtSearchbar.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtSearchbar.setText("Modellname...");
+		txtSearchbar.setColumns(10);
 		
 		JButton btnSuchen = new JButton("Suchen");
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		txtModellnummer = new JTextField();
+		txtModellnummer.setHorizontalAlignment(SwingConstants.CENTER);
+		txtModellnummer.setFont(new Font("Tahoma", Font.BOLD, 18));
+		txtModellnummer.setEditable(false);
+		txtModellnummer.setColumns(10);
+		
+		JLabel lblAusgewhlteModellnummer = new JLabel("Ausgew\u00E4hlte Modellnummer:");
+		lblAusgewhlteModellnummer.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addGap(18, 18, Short.MAX_VALUE)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblAusgewhlteModellnummer, GroupLayout.PREFERRED_SIZE, 261, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtModellnummer, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(txtSearchbar, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
@@ -75,7 +111,12 @@ public class ModellAuswahl extends JPanel implements IObjektView {
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(txtSearchbar, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+							.addComponent(txtModellnummer, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(6)
+							.addComponent(lblAusgewhlteModellnummer, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
@@ -96,18 +137,24 @@ public class ModellAuswahl extends JPanel implements IObjektView {
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 0;
 		panel_1.add(scrollPane, gbc_scrollPane);
-		list.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		scrollPane.setViewportView(list);
-		
-		
-		controller.fetchModelle();
-	    aktualisieren(model);
-		
-		
-		JLabel lblModelle = new JLabel("Modelle:");
-		lblModelle.setFont(new Font("Tahoma", Font.BOLD, 15));
-		scrollPane.setColumnHeaderView(lblModelle);
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				talking = "table";
+				try {
+					
+					int row = table.getSelectedRow();
+					txtModellnummer.setText(table.getModel().getValueAt(row, 0).toString());
+				} catch(Exception e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		scrollPane.setViewportView(table);
 		
 		JPanel panel_2 = new JPanel();
 		add(panel_2, BorderLayout.SOUTH);
@@ -140,68 +187,76 @@ public class ModellAuswahl extends JPanel implements IObjektView {
 		
 		btnAuswhlen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean bool = BuchungsTypAuswahl.getBool();
-				if(bool == false)
-					MainFrame.change(MainFrame.getModellAuswahl(), MainFrame.getGerätAuswahlAusleihe());
-				else
-					MainFrame.change(MainFrame.getModellAuswahl(), MainFrame.getGerätAuswahlVerkauf());
+				
+					
+				MainFrame.getBuchungGerätAuswahl().setKunde(kunde);
+				MainFrame.getBuchungGerätAuswahl().setModellNr(Integer.parseInt(txtModellnummer.getText()));
+				MainFrame.getBuchungGerätAuswahl().setkNr(kNr);
+				MainFrame.change(MainFrame.getModellAuswahl(), MainFrame.getBuchungGerätAuswahl());
+				System.out.println("Kunde: " + kunde.toString() + "Modellnummer: " + MainFrame.getBuchungGerätAuswahl().getModellNr() + "Kundennummer: " + kNr);
 			}
 		});
 		
 		btnSuchen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean bool = BuchungsTypAuswahl.getBool();
-				if(bool == false)
-					MainFrame.change(MainFrame.getModellAuswahl(), MainFrame.getGerätAuswahlAusleihe());
-				else
-					MainFrame.change(MainFrame.getModellAuswahl(), MainFrame.getGerätAuswahlVerkauf());
-			}
-		});
-		
-		/*
-		//Searchbar
-		textField.addFocusListener(new FocusListener(){
-		String text = "Suchen";	
-
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				if(textField.getText().equals(text)){
-					textField.setText("");
-				}
+				
+				talking = "master";
+				anfrage();
 				
 			}
 
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				if (textField.getText().isEmpty()){
-					textField.setText(text);
-				}
-				
-			}
+			
 		});
-		
-		textField.addKeyListener(new KeyAdapter(){
-			public void keyReleased(KeyEvent event){
-				String query = textField.getText();
-				search(query);
-			}
-		});
-	*/
 		
 	}
 	
-	/*
-	public void search(String query){
-		ListRowSorter<DefaultListModel> rowSorter = new TableRowSorter
-	}
-	*/
+
 
 	@Override
 	public void aktualisieren(IObjektModel model) {
-		DefaultListModel dlm = new DefaultListModel();
-		list.removeAll();
-		dlm = model.getObjekte();
-		list.setModel(dlm);
 		
+		table.setModel(model.getTableModel());
+		
+	}
+
+
+
+	public IKunde getKunde() {
+		return kunde;
+	}
+
+
+
+	public void setKunde(IKunde kunde) {
+		this.kunde = kunde;
+	}
+
+
+
+	public int getTypNr() {
+		return typNr;
+	}
+
+
+
+	public void setTypNr(int typNr) {
+		this.typNr = typNr;
+	}
+
+
+
+	public int getkNr() {
+		return kNr;
+	}
+
+
+
+	public void setkNr(int kNr) {
+		this.kNr = kNr;
+	}
+	private void anfrage() {
+		model.anmelden(MainFrame.getModellAuswahl());
+		controller.fetchModelle(talking, typNr, search);
+		model.abmelden(MainFrame.getModellAuswahl());
 	}
 }

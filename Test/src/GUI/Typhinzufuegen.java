@@ -16,10 +16,8 @@ import Datenbankmodels.IAnlegenModel;
 import Datenbankmodels.IModel;
 import Datenbankmodels.KundeRegistrierenModel;
 import Datenbankmodels.TypAnlegenModel;
-import Datenbankmodels.TypAnzeigeModel;
 import Steuerung.KundeAnlegenSteuerung;
 import Steuerung.TypAnlegenStrg;
-import Steuerung.TypAnzeigeStrg;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

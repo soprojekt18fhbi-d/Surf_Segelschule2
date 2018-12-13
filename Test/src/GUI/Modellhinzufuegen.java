@@ -76,7 +76,8 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 		panel.add(lblTyp, gbc_lblTyp);
 		
 		String[]typen ={"Segelboot", "Surfboard", "Kajak", "Jetski", "Motorboot"};
-		JComboBox <String> comboBoxTyp = new JComboBox<String>(typen);	
+		JComboBox <String> comboBoxTyp = new JComboBox<String>(typen);
+		comboBoxTyp.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		
 		GridBagConstraints gbc_comboBoxTyp = new GridBagConstraints();
@@ -136,6 +137,7 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 		panel.add(lblPreiskateg, gbc_lblPreiskateg);
 		
 		JComboBox comboBoxPreis = new JComboBox();
+		comboBoxPreis.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		comboBoxPreis.addItem("1 (Segelboot)");
 		comboBoxPreis.addItem("2 (Surfboard - A)");
 		comboBoxPreis.addItem("3 (Surfboard - B)");

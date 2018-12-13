@@ -57,7 +57,7 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 
 	}
 	
-	public void geraetAnlegen(String[] modell) {
+	public void geraetAnlegen(String[] geraet) {
 		Statement statement = null;
 		Statement statement2 = null;
  
@@ -67,23 +67,25 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 
 			statement = conn.createStatement();
 			
-			int id = Integer.parseInt(modell[0]);
-			String name = modell[1];
-			String typ = modell[2];
-			int preis = Integer.parseInt(modell[3]);
+			String typ = geraet[0];
+			String modell = geraet[1];
+			int geraeteID = Integer.parseInt(geraet[2]);
+			double anschaffungspreis = Double.parseDouble(geraet[3]);
+			double verkaufspreis = Double.parseDouble(geraet[4]);
+			String farbe = geraet[5];
+			int baujahr = Integer.parseInt(geraet[6]);
+			String makel = geraet[7];
 			
-			//
-			// PROGRAMM ERKENNT SPALTE MIT TYPNAMEN NOCH NICHT ?!?!
-			//
+			
 						
-			String query = "select * from TYP WHERE NAME = " +typ;
+			String query = "select * from MODELL WHERE MODELLNAME = '" +modell+ "'";
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()){
-		        int typID =  Integer.parseInt(rs.getString("TYPID"));
+		        int modellID =  Integer.parseInt(rs.getString("MODELLID"));
 		        
 		        
 		        statement2 = conn.createStatement();
-			    String sqlupdate = "INSERT INTO MODELL VALUES ('" +id+ "','" + name + "','" +typID+ "','" +preis+"')";
+			    String sqlupdate = "INSERT INTO SPORTGERAET VALUES ('" +geraeteID+ "','" + farbe + "','0','" +verkaufspreis+ "','" + anschaffungspreis+ "','" +modellID+ "','" +makel+ "')";
 				int ergebnis = statement2.executeUpdate(sqlupdate);
             }
 	        

@@ -7,13 +7,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Datenbankmodels.BuchungGeraetAnzeigeModel;
+import Datenbankmodels.BuchungKundewaehlenModel;
+import Datenbankmodels.BuchungModellAnzeigeModel;
+import Datenbankmodels.BuchungTypAnzeigeModel;
 import Datenbankmodels.KundeSucheModel;
 import GUIBuchungsverwaltung.AbgeschlosseneBuchungen;
 import GUIBuchungsverwaltung.AktiveAusleihen;
-import GUIBuchungsverwaltung.BuchungsTypAuswahl;
+import GUIBuchungsverwaltung.BuchungGerätAuswahl;
 import GUIBuchungsverwaltung.Buchungsverwaltung;
-import GUIBuchungsverwaltung.GerätAuswahlAusleihe;
-import GUIBuchungsverwaltung.GerätAuswahlVerkauf;
 import GUIBuchungsverwaltung.KundeWaehlen;
 import GUIBuchungsverwaltung.ModellAuswahl;
 import GUIBuchungsverwaltung.Reklamation;
@@ -21,6 +23,10 @@ import GUIBuchungsverwaltung.StatusSetzen;
 import GUIBuchungsverwaltung.TypAuswahl;
 import GUIBuchungsverwaltung.VerkaufFormular;
 import GUIBuchungsverwaltung.VerleihFormular;
+import Steuerung.BuchungGeraetAuswählenStrg;
+import Steuerung.BuchungKundeWählenStrg;
+import Steuerung.BuchungModellAnzeigeStrg;
+import Steuerung.BuchungTypAnzeigeStrg;
 import Steuerung.KundeSucheStrg;
 
 import java.awt.CardLayout;
@@ -58,20 +64,24 @@ public class MainFrame extends JFrame {
 	
 	//Models erzeugen:
 	private static KundeSucheModel ksucheModel = new KundeSucheModel();
-	
-	
+	private static BuchungKundewaehlenModel buchungkwaehlen = new BuchungKundewaehlenModel();
+	private static BuchungTypAnzeigeModel buchungtanzeige = new BuchungTypAnzeigeModel();
+	private static BuchungModellAnzeigeModel buchungmanzeige = new BuchungModellAnzeigeModel();
+	private static BuchungGeraetAnzeigeModel buchungganzeige = new BuchungGeraetAnzeigeModel();
+
 	//Controller erzeugen:
 	private static KundeSucheStrg ksucheController = new KundeSucheStrg(ksucheModel);
-	
+	private static BuchungKundeWählenStrg buchungkwaehlenController = new BuchungKundeWählenStrg(buchungkwaehlen);
+	private static BuchungTypAnzeigeStrg buchungtanzeigeController = new BuchungTypAnzeigeStrg(buchungtanzeige);
+	private static BuchungModellAnzeigeStrg buchungmanzeigeController = new BuchungModellAnzeigeStrg(buchungmanzeige);
+	private static BuchungGeraetAuswählenStrg buchungganzeigeController = new BuchungGeraetAuswählenStrg(buchungganzeige);
 	
 	//Buchungsverwaltung
 	private static Buchungsverwaltung buchungsverwaltung = new Buchungsverwaltung();
-	private static KundeWaehlen kundeWaehlen = new KundeWaehlen();
-	private static BuchungsTypAuswahl buchungsTypAuswahl = new BuchungsTypAuswahl();
-	private static TypAuswahl typAuswahl = new TypAuswahl();
-	private static ModellAuswahl modellAuswahl = new ModellAuswahl();
-	private static GerätAuswahlAusleihe gerätAuswahlAusleihe = new GerätAuswahlAusleihe();
-	private static GerätAuswahlVerkauf gerätAuswahlVerkauf = new GerätAuswahlVerkauf();
+	private static KundeWaehlen kundeWaehlen = new KundeWaehlen(buchungkwaehlen, buchungkwaehlenController);
+	private static TypAuswahl typAuswahl = new TypAuswahl(buchungtanzeige, buchungtanzeigeController);
+	private static ModellAuswahl modellAuswahl = new ModellAuswahl(buchungmanzeige, buchungmanzeigeController);
+	private static BuchungGerätAuswahl buchungGerätAuswahl = new BuchungGerätAuswahl(buchungganzeige, buchungganzeigeController);
 	private static VerleihFormular verleihFormular = new VerleihFormular();
 	private static VerkaufFormular verkaufFormular = new VerkaufFormular();
 	private static AbgeschlosseneBuchungen abgeschlosseneBuchungen = new AbgeschlosseneBuchungen();
@@ -137,11 +147,9 @@ public class MainFrame extends JFrame {
 		contentPane.add(geraetaendern);
 		contentPane.add(buchungsverwaltung);
 		contentPane.add(kundeWaehlen);
-		contentPane.add(buchungsTypAuswahl);
 		contentPane.add(typAuswahl);
 		contentPane.add(modellAuswahl);
-		contentPane.add(gerätAuswahlAusleihe);
-		contentPane.add(gerätAuswahlVerkauf);
+		contentPane.add(buchungGerätAuswahl);
 		contentPane.add(verleihFormular);
 		contentPane.add(verkaufFormular);
 		contentPane.add(abgeschlosseneBuchungen);
@@ -275,25 +283,17 @@ public class MainFrame extends JFrame {
 	public static JPanel getKundeWaehlen(){ 		
 		return kundeWaehlen;
 	}
-	
-	public static JPanel getBuchungsTypAuswahl(){ 		
-		return buchungsTypAuswahl;
-	}
-	
-	public static JPanel getTypAuswahl(){ 		
+		
+	public static TypAuswahl getTypAuswahl(){ 		
 		return typAuswahl;
 	}
 	
-	public static JPanel getModellAuswahl(){ 		
+	public static ModellAuswahl getModellAuswahl(){ 		
 		return modellAuswahl;
 	}
 	
-	public static JPanel getGerätAuswahlAusleihe(){ 		
-		return gerätAuswahlAusleihe;
-	}
-	
-	public static JPanel getGerätAuswahlVerkauf(){ 		
-		return gerätAuswahlVerkauf;
+	public static BuchungGerätAuswahl getBuchungGerätAuswahl(){ 		
+		return buchungGerätAuswahl;
 	}
 	
 	public static JPanel getAbgeschlosseneBuchungen(){ 		

@@ -23,29 +23,40 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import Datenbankmodels.IModel;
 import Datenbankmodels.IObjektModel;
-import Datenbankmodels.TypAnzeigeModel;
+import Datenbankmodels.BuchungTypAnzeigeModel;
+import Domaenklassen.IKunde;
 import GUI.IObjektView;
 import GUI.MainFrame;
 
-import Steuerung.TypAnzeigeStrg;
-import Steuerung.TypAnzeigeStrg;
+import Steuerung.BuchungTypAnzeigeStrg;
+import Steuerung.BuchungTypAnzeigeStrg;
 
 import java.awt.Insets;
+import javax.swing.JTable;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.SwingConstants;
 
 public class TypAuswahl extends JPanel implements IObjektView{
-	private JList list = new JList();
-	private JTextField textField;
+	private JTextField txtSearch;
 	
-	private TypAnzeigeStrg controller;
-	private TypAnzeigeModel model;
+	private BuchungTypAnzeigeStrg controller;
+	private IObjektModel model;
+	private int knr;
+	private JTable table;
+	private String talking = "master";
+	private JTextField txtTypID;
+	private IKunde kunde;
 
 	/**
 	 * Create the panel.
 	 */
-	public TypAuswahl() {
-		model = new TypAnzeigeModel();
-		controller = new TypAnzeigeStrg(model);
-		model.anmelden(this);
+	public TypAuswahl(IObjektModel smodel, BuchungTypAnzeigeStrg scontroller) {
+		model = smodel;
+		controller = scontroller;
+		
 		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
@@ -54,18 +65,39 @@ public class TypAuswahl extends JPanel implements IObjektView{
 		JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		txtSearch = new JTextField();
+		txtSearch.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				
+				talking = "name";
+				anfrage();
+			}
+		});
+		txtSearch.setColumns(10);
 		
 		JButton btnSuchen = new JButton("Suchen");
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		txtTypID = new JTextField();
+		txtTypID.setHorizontalAlignment(SwingConstants.CENTER);
+		txtTypID.setEditable(false);
+		txtTypID.setFont(new Font("Tahoma", Font.BOLD, 18));
+		txtTypID.setColumns(10);
+		
+		JLabel lblAusgewhlteTypennummer = new JLabel("Ausgew\u00E4hlte Typennummer:");
+		lblAusgewhlteTypennummer.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblAusgewhlteTypennummer)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtTypID, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+					.addComponent(txtSearch, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
@@ -76,7 +108,10 @@ public class TypAuswahl extends JPanel implements IObjektView{
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblAusgewhlteTypennummer)
+							.addComponent(txtTypID, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtSearch, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
@@ -87,34 +122,43 @@ public class TypAuswahl extends JPanel implements IObjektView{
 		gbl_panel_1.columnWidths = new int[]{0, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 0, 0};
 		gbl_panel_1.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
+		
+		JLabel infoLabel = new JLabel("Folgende Ger\u00E4tetypen k\u00F6nnen aufgrund vorhandener F\u00FChrerscheine ausgeliehen werden:");
+		infoLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_infoLabel = new GridBagConstraints();
+		gbc_infoLabel.anchor = GridBagConstraints.SOUTH;
+		gbc_infoLabel.insets = new Insets(0, 0, 5, 0);
+		gbc_infoLabel.gridx = 0;
+		gbc_infoLabel.gridy = 0;
+		panel_1.add(infoLabel, gbc_infoLabel);
 		
 	
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
-		gbc_scrollPane.gridy = 0;
+		gbc_scrollPane.gridy = 1;
 		panel_1.add(scrollPane, gbc_scrollPane);
 		
-		
-		list.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		scrollPane.setViewportView(list);
-		
-		
-		
-		
-		controller.fetchTypen();
-		aktualisieren(model);
-		
-		
-
-		
-		JLabel lblGertetypen = new JLabel("Ger\u00E4tetypen:");
-		lblGertetypen.setFont(new Font("Tahoma", Font.BOLD, 15));
-		scrollPane.setColumnHeaderView(lblGertetypen);
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				talking = "table";
+				try {
+					
+					int row = table.getSelectedRow();
+					txtTypID.setText(table.getModel().getValueAt(row, 0).toString());
+				} catch(Exception e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		scrollPane.setViewportView(table);
 		
 		JPanel panel_2 = new JPanel();
 		add(panel_2, BorderLayout.SOUTH);
@@ -137,37 +181,62 @@ public class TypAuswahl extends JPanel implements IObjektView{
 		panel_2.setLayout(gl_panel_2);
 		
 		
-		//Funktionen der Button
+		//Funktionen der Button @author Ben Kröncke
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getTypAuswahl(), MainFrame.getBuchungsTypAuswahl());
+				MainFrame.change(MainFrame.getTypAuswahl(), MainFrame.getKundeWaehlen());
 			}
 		});
 		
 		btnAuswhlen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MainFrame.getModellAuswahl().setKunde(kunde);
+				MainFrame.getModellAuswahl().setTypNr(Integer.parseInt(txtTypID.getText()));
+				MainFrame.getModellAuswahl().setkNr(knr);
+				System.out.println(MainFrame.getModellAuswahl().getTypNr());
+				
 				MainFrame.change(MainFrame.getTypAuswahl(), MainFrame.getModellAuswahl());
 			}
 		});
 		
 		btnSuchen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean bool = BuchungsTypAuswahl.getBool();
-				if(bool == false)
-					MainFrame.change(MainFrame.getTypAuswahl(), MainFrame.getGerätAuswahlAusleihe());
-				else
-					MainFrame.change(MainFrame.getTypAuswahl(), MainFrame.getGerätAuswahlVerkauf());
+				
+				talking = "master";
+				anfrage();
+				
 			}
+
+			
 		});
 		
 	}
 
 	@Override
 	public void aktualisieren(IObjektModel model) {
-		DefaultListModel dlm = new DefaultListModel();
-		list.removeAll();
-		dlm = model.getObjekte();
-		list.setModel(dlm);
+		table.setModel(model.getTableModel());
 		
+	}
+	
+	private void anfrage() {
+		model.anmelden(MainFrame.getTypAuswahl());
+		controller.fetchTypen(knr, talking, txtSearch.getText(), kunde);
+		model.abmelden(MainFrame.getTypAuswahl());
+	}
+
+	public int getKnr() {
+		return knr;
+	}
+
+	public void setKnr(int knr) {
+		this.knr = knr;
+	}
+
+	public IKunde getKunde() {
+		return kunde;
+	}
+
+	public void setKunde(IKunde kunde) {
+		this.kunde = kunde;
 	}
 }

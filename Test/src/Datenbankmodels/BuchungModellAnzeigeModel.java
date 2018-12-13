@@ -8,34 +8,32 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
+import javax.swing.table.TableModel;
 
 import Domaenklassen.GeraeteModell;
 import Domaenklassen.GeraeteTyp;
 import GUI.IObjektView;
+import net.proteanit.sql.DbUtils;
 
 
 /**
  * @author michi
  *
  */
-public class ModellAnzeigeModel implements IObjektModel{
+public class BuchungModellAnzeigeModel implements IObjektModel{
 	
 	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
 	private ArrayList<GeraeteModell> mengeAnModellen = new ArrayList<GeraeteModell>();
+	private TableModel table;
 	private int modellNr = 0;
+	private int typNr;
+	private String talking;
+	private String search;
 
 	@Override
 	public void anmelden(IObjektView view) {
 		try {
 			observers.add(view);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-		
-		try {
-			if(observers.contains(view));
-				observers.remove(view);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,8 +64,12 @@ public class ModellAnzeigeModel implements IObjektModel{
 
 
 	
-	public void holeModelle() {
+	public void holeModelle(String talking2, int typNr2, String search) {
 
+		talking = talking2;
+		typNr = typNr2;
+		this.search = search;
+		
         try {
 			Connection conn = DriverManager.
 			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
@@ -83,57 +85,34 @@ public class ModellAnzeigeModel implements IObjektModel{
 	}
 	
 	public void viewTable(Connection con)
-		    throws SQLException {
+	    throws SQLException {
 
-		    Statement stmt = null;
-		    Statement stmt2 = null;
-		    String query = "select * from MODELL";
-		    try {
-		        stmt = con.createStatement();
-		        ResultSet rs = stmt.executeQuery(query);
-		        while (rs.next()) {
-		        	
-		        	modellNr = modellNr++;
-		        	int modellID = Integer.parseInt(rs.getString("MODELLID"));
-		        	String name =  rs.getString("MODELLNAME"); 
-		        	int preisID = Integer.parseInt(rs.getString("VERLEIHPREISID"));
-		        	int typID = Integer.parseInt(rs.getString("TYPID"));
-		        	
-		        	 
-		        	String query2 = "select * from TYP WHERE TYPID = " +typID;
-		        	stmt2 = con.createStatement();
-			        ResultSet rs2 = stmt2.executeQuery(query2);
-			        
-			        while (rs2.next()) {
-			        	String typ =  rs2.getString("NAME");
-			        	String führerschein = rs2.getString("FUEHRERSCHEIN");
-				        
-				        
-				        GeraeteModell modellNr  = new GeraeteModell(typID, typ, führerschein, name, modellID, preisID);
-			        	mengeAnModellen.add(modellNr);
-			        }
-		        }
+	    Statement stmt = null;
+		String query = "select * from MODELL";
+		   
+	    if(talking.equals("master"))
+	    	query = "select * from MODELL where TYPID = '" + typNr + "'";
+		if(talking.equals("search"))
+		    query = "select * from Modell where TYPID = '" + typNr + "' AND NAME LIKE '" + search + "%'";
+		try {
+			stmt = con.createStatement();
 
-		    } catch (SQLException e ) {
-		    	e.printStackTrace();
-		    } finally {
-		        if (stmt != null) { stmt.close(); }
-		    }
+			System.out.println(query);
+				
+			ResultSet rs = stmt.executeQuery(query);
+			table = DbUtils.resultSetToTableModel(rs);
 
+		} catch (SQLException e ) {
+			e.printStackTrace();
+		} finally {
+			if (stmt != null) { stmt.close(); }
 		}
+
+	}
 	
 
 	
-	public DefaultListModel getObjekte(){
-		
-		DefaultListModel<String> listmodel = new DefaultListModel<String>();
-	
-		for(int i = 0; i < mengeAnModellen.size(); i++) {
-			listmodel.addElement(mengeAnModellen.get(i).getModellID()+ ", "+ mengeAnModellen.get(i).getModellName() + ", Preiskategorie:" + mengeAnModellen.get(i).getKosten() );
-		}
-		return listmodel;
 
-	}	
 	/* Datenbank
 		create table MODELL(
 		MODELLID int (6) not null,
@@ -152,5 +131,16 @@ public class ModellAnzeigeModel implements IObjektModel{
 	 * 
 	 * 
 	 */
+
+	@Override
+	public ArrayList<Object> getObjekte() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public TableModel getTableModel() {
+		// TODO Auto-generated method stub
+		return table;
+	}
 }
 

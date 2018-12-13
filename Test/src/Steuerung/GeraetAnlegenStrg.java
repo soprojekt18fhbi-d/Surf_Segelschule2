@@ -6,8 +6,6 @@ import GUI.IAnlegenView;
 
 public class GeraetAnlegenStrg {
 
-	
-	private SportGeraet geraet;
 	private GeraetAnlegenModel model;
 	private IAnlegenView view;
 	
@@ -18,13 +16,18 @@ public class GeraetAnlegenStrg {
 	}
 
 	
-	public void modellUebergeben(int id, String name, String typ, int preis) {
+	public void geraetUebergeben(String typ, String modell, int id, double apreis, double vpreis, String gfarbe, int gbaujahr, String gmakel) {
 		
-		String modellID = String.valueOf(id);
-		String modellname = name;
 		String typname = typ;
-		String preisID = String.valueOf(preis);
-		String [] values = {modellID, modellname, typname, preisID};
+		String modellname = modell;
+		String geraeteID = String.valueOf(id);
+		String anschaffungspreis = String.valueOf(apreis);
+		String verkaufspreis = String.valueOf(vpreis);
+		String farbe = gfarbe;
+		String baujahr = String.valueOf(gbaujahr);
+		String makel = gmakel;
+		
+		String [] values = {typname, modellname, geraeteID, anschaffungspreis, verkaufspreis, farbe, baujahr, makel};
 		model.geraetAnlegen(values);
 	}
 	

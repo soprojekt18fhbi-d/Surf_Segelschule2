@@ -3,6 +3,7 @@ package Datenbankmodels;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
+import javax.swing.table.TableModel;
 
 import GUI.IObjektView;
 import GUI.IView;
@@ -44,7 +45,9 @@ public interface IObjektModel {
 	public void updateObserver();
 
 
-	public DefaultListModel getObjekte();
+	public ArrayList<Object> getObjekte();
+
+	public TableModel getTableModel();
 
 	
 }
