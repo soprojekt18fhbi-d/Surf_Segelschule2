@@ -17,6 +17,7 @@ public interface IAnlegenModel {
 	
 	
 	
+	
 	/**
 	 * Anmelden einer View.
 	 * 
@@ -40,9 +41,11 @@ public interface IAnlegenModel {
 	public void updateObserver();
 
 	/**
-	 * erzeugen von Objekten
+	 * Werte für Comboboxen bei Geräten
 	 * 
 	 */
+	public ArrayList<String> getObertypen();
+
 
 
 	

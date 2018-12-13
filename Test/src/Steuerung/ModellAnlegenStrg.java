@@ -1,31 +1,30 @@
 package Steuerung;
 
 import Datenbankmodels.ModellAnlegenModel;
+import Datenbankmodels.ModellhinzufuegenModel;
 import Domaenklassen.GeraeteModell;
 import Domaenklassen.GeraeteTyp;
 import GUI.IAnlegenView;
+import GUI.Modellhinzufuegen;
 
 public class ModellAnlegenStrg {
 
 	
 	private GeraeteModell modell;
-	private ModellAnlegenModel model;
-	private IAnlegenView view;
+	private ModellhinzufuegenModel model;
+	private Modellhinzufuegen view;
 	
-	public ModellAnlegenStrg (ModellAnlegenModel smodel)
+	public ModellAnlegenStrg (ModellhinzufuegenModel smodel)
 	{
 		model = smodel;
 		
 	}
 
 	
-	public void modellUebergeben(String name, String typ, int preis) {
+	public void anfrageModellhinzufuegen(String talking, String name, String typ, int preis) {
 		
-		String modellname = name;
-		String typname = typ;
-		String preisID = String.valueOf(preis);
-		String [] values = {modellname, typname, preisID};
-		model.modellAnlegen(values);
+		String [] values = {name, typ, "" + preis};
+		model.anfrage(talking, values);
 	}
 	
 }

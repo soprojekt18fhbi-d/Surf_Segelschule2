@@ -27,23 +27,28 @@ import Steuerung.ModellAnlegenStrg;
 import Steuerung.TypAnlegenStrg;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
 public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 	private JTextField txtModell;
 	
-	ModellAnlegenModel model;
+	IAnlegenModel model;
 	ModellAnlegenStrg controller;
-
+	private String talking = "first";
+	private JComboBox<String> comboBoxTyp;
+	private String typ;
+	private String name;
+	private int preisKateg;
 	/**
 	 * 
 	 * Create the panel.
 	 */
-	public Modellhinzufuegen() {
-		model = new ModellAnlegenModel();
-		controller = new ModellAnlegenStrg(model);
-		model.anmelden(this);
+	public Modellhinzufuegen(IAnlegenModel models, ModellAnlegenStrg controllers) {
+		
+		model = models;
+		controller = controllers;
 		
 		setSize(900,550);
 		setLayout(new BorderLayout(0, 0));
@@ -77,7 +82,9 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 		panel.add(lblTyp, gbc_lblTyp);
 		
 		
-		JComboBox<String> comboBoxTyp = new JComboBox<String>();
+		comboBoxTyp = new JComboBox<String>();
+		
+
 				
 		
 		GridBagConstraints gbc_comboBoxTyp = new GridBagConstraints();
@@ -168,9 +175,7 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 		
 		btnBestaetigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String typ;
-				String name;
-				int preisKateg;
+				talking = "hinzufuegen";
 				
 				try {
 					typ = String.valueOf(comboBoxTyp.getSelectedItem());
@@ -178,7 +183,7 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 					preisKateg = comboBoxPreis.getSelectedIndex() +1;
 					
 
-					controller.modellUebergeben(name, typ, preisKateg);
+					controller.anfrageModellhinzufuegen(talking, name, typ, preisKateg);
 					aktualisieren(model);
 					JOptionPane.showMessageDialog(null, "Das Modell wurde erfolgreich angelegt!");
 					MainFrame.change(MainFrame.getModellhinzufuegen(), MainFrame.getGeraeteModellVerwaltung());
@@ -204,6 +209,23 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
+
+		ArrayList<String> comboboxItems = model.getObertypen();
+		
+		for(int i = 0; i < comboboxItems.size(); i++) {
+			comboBoxTyp.addItem(comboboxItems.get(i));
+		}
+			
+		
 		
 	}
+	
+	public void anfrage() {
+		
+		model.anmelden(this);
+		controller.anfrageModellhinzufuegen(talking, name, typ, preisKateg);
+		model.abmelden(this);
+		
+	}
+	
 }

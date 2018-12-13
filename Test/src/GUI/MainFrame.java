@@ -12,6 +12,7 @@ import Datenbankmodels.BuchungKundewaehlenModel;
 import Datenbankmodels.BuchungModellAnzeigeModel;
 import Datenbankmodels.BuchungTypAnzeigeModel;
 import Datenbankmodels.KundeSucheModel;
+import Datenbankmodels.ModellhinzufuegenModel;
 import GUIBuchungsverwaltung.AbgeschlosseneBuchungen;
 import GUIBuchungsverwaltung.AktiveAusleihen;
 import GUIBuchungsverwaltung.BuchungGerätAuswahl;
@@ -28,6 +29,7 @@ import Steuerung.BuchungKundeWählenStrg;
 import Steuerung.BuchungModellAnzeigeStrg;
 import Steuerung.BuchungTypAnzeigeStrg;
 import Steuerung.KundeSucheStrg;
+import Steuerung.ModellAnlegenStrg;
 
 import java.awt.CardLayout;
 import javax.swing.GroupLayout;
@@ -48,19 +50,9 @@ import java.awt.event.ActionEvent;
 
 public class MainFrame extends JFrame {
 
+	
 	private JPanel contentPane;
 	private static Hauptmenue hauptmenue = new Hauptmenue();
-	private static Geraetaendern geraetaendern = new Geraetaendern();
-	private static GeraeteVerwaltung geraeteVerwaltung = new GeraeteVerwaltung();
-	private static GeraeteModellVerwaltung geraeteModellVerwaltung = new GeraeteModellVerwaltung();
-	private static GeraeteTypVerwaltung geraeteTypVerwaltung = new GeraeteTypVerwaltung();
-	private static Geraethinzufuegen geraethinzufuegen = new Geraethinzufuegen();
-	private static Modellaendern modellaendern = new Modellaendern();
-	private static Modellhinzufuegen modellhinzufuegen = new Modellhinzufuegen();
-	private static SportgeraeteVerwaltung sportgeraete = new SportgeraeteVerwaltung();
-	private static Typaendern typaendern = new Typaendern();
-	private static Typhinzufuegen typhinzufuegen = new Typhinzufuegen();
-	private static JPanel StandortPanel = new StandortPanel();
 	
 	//Models erzeugen:
 	private static KundeSucheModel ksucheModel = new KundeSucheModel();
@@ -68,6 +60,7 @@ public class MainFrame extends JFrame {
 	private static BuchungTypAnzeigeModel buchungtanzeige = new BuchungTypAnzeigeModel();
 	private static BuchungModellAnzeigeModel buchungmanzeige = new BuchungModellAnzeigeModel();
 	private static BuchungGeraetAnzeigeModel buchungganzeige = new BuchungGeraetAnzeigeModel();
+	private static ModellhinzufuegenModel modellHinzufuegen = new ModellhinzufuegenModel();
 
 	//Controller erzeugen:
 	private static KundeSucheStrg ksucheController = new KundeSucheStrg(ksucheModel);
@@ -75,6 +68,26 @@ public class MainFrame extends JFrame {
 	private static BuchungTypAnzeigeStrg buchungtanzeigeController = new BuchungTypAnzeigeStrg(buchungtanzeige);
 	private static BuchungModellAnzeigeStrg buchungmanzeigeController = new BuchungModellAnzeigeStrg(buchungmanzeige);
 	private static BuchungGeraetAuswählenStrg buchungganzeigeController = new BuchungGeraetAuswählenStrg(buchungganzeige);
+	private static ModellAnlegenStrg modellAnlegenStrg = new ModellAnlegenStrg(modellHinzufuegen);
+	
+	
+	
+	
+	
+	
+	//Geräteverwaltung
+	private static GeraeteVerwaltung geraeteVerwaltung = new GeraeteVerwaltung();
+	private static GeraeteModellVerwaltung geraeteModellVerwaltung = new GeraeteModellVerwaltung();
+	private static GeraeteTypVerwaltung geraeteTypVerwaltung = new GeraeteTypVerwaltung();
+	private static Geraethinzufuegen geraethinzufuegen = new Geraethinzufuegen();
+	private static Modellaendern modellaendern = new Modellaendern();
+	private static Modellhinzufuegen modellhinzufuegen = new Modellhinzufuegen(modellHinzufuegen, modellAnlegenStrg);
+	private static SportgeraeteVerwaltung sportgeraete = new SportgeraeteVerwaltung();
+	private static Typaendern typaendern = new Typaendern();
+	private static Typhinzufuegen typhinzufuegen = new Typhinzufuegen();
+	private static JPanel StandortPanel = new StandortPanel();
+	private static Geraetaendern geraetaendern = new Geraetaendern();
+	
 	
 	//Buchungsverwaltung
 	private static Buchungsverwaltung buchungsverwaltung = new Buchungsverwaltung();
@@ -249,7 +262,7 @@ public class MainFrame extends JFrame {
 		return modellaendern;
 	}
 	
-	public static JPanel getModellhinzufuegen(){ 		
+	public static Modellhinzufuegen getModellhinzufuegen(){ 		
 		return modellhinzufuegen;
 	}
 	

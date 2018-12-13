@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -95,6 +96,12 @@ public class ModellAnlegenModel implements IAnlegenModel{
         updateObserver();
 		}
         
+	}
+
+	@Override
+	public ArrayList<String> getObertypen() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 public class GeraeteModellVerwaltung extends JPanel {
 	private JTextField textField;
 	private JTable table;
+	private int counter = 1;
 
 	/**
 	 * Create the panel.
@@ -153,6 +154,12 @@ public class GeraeteModellVerwaltung extends JPanel {
 		btnModellHinzu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getModellhinzufuegen());
+				
+				if(counter == 1)
+				{
+					MainFrame.getModellhinzufuegen().anfrage();
+					counter--;
+				}
 			}
 		});
 		
