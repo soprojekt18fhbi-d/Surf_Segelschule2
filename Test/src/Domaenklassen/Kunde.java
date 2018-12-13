@@ -9,7 +9,7 @@ public class Kunde implements IKunde {
 	private boolean segelschein;
 	private boolean motorbootschein;
 	private String email;
-
+	private int kundenummer;
 
 
 	public Kunde(String name, String vorname, String email, Boolean surfschein, Boolean segelschein, Boolean motorbootschein) {
@@ -116,7 +116,7 @@ public class Kunde implements IKunde {
 	/* (non-Javadoc)
 	 * @see Domaenklassen.IKunde#toString()
 	 */
-	@Override
+
 	@Override
 	public String toString(){
 		return this.kundennummer + ";" + this.name + ";" + this.vorname + ";" + this.segelschein + ";" + this.surfschein + ";" + this.motorbootschein + ";".toString(); 
