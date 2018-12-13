@@ -141,18 +141,18 @@ public class BuchungTypAnzeigeModel implements IObjektModel{
 	 /* 
 	 * Datenbank
 		create table TYP(
-		TYPID int (3) not null,
+		TYPID int (3) not null AUTO_INCREMENT,
 		NAME varchar (20) not null,
 		FUEHRERSCHEIN varchar (20),
 		constraint pk_typ primary key (TYPID));
 		
 		
 		insert into TYP
-		values (10, 'Surfboard', 'Surfschein'),
-		(20, 'Segelboot', 'Segelschein'),
-		(30, 'Kajak', null),
-		(40, 'Jetski', 'Bootschein'),
-		(50, 'Motorboot', null);
+		values (default, 'Surfboard', 'Surfschein'),
+		(default, 'Segelboot', 'Segelschein'),
+		(default, 'Kajak', null),
+		(default, 'Jetski', null),
+		(default, 'Motorboot', 'Bootschein');
 	 */
 	
 	}
