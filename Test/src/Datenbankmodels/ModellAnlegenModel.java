@@ -70,14 +70,10 @@ public class ModellAnlegenModel implements IAnlegenModel{
 
 			statement = conn.createStatement();
 			
-			int id = Integer.parseInt(modell[0]);
-			String name = modell[1];
-			String typ = modell[2];
-			int preis = Integer.parseInt(modell[3]);
+			String name = modell[0];
+			String typ = modell[1];
+			int preis = Integer.parseInt(modell[2]);
 			
-			//
-			// PROGRAMM ERKENNT SPALTE MIT TYPNAMEN NOCH NICHT ?!?!
-			//
 						
 			String query = "select * from TYP WHERE NAME = '" +typ+ "'";
             ResultSet rs = statement.executeQuery(query);
@@ -86,7 +82,7 @@ public class ModellAnlegenModel implements IAnlegenModel{
 		        
 		        
 		        statement2 = conn.createStatement();
-			    String sqlupdate = "INSERT INTO MODELL VALUES ('" +id+ "','" + name + "','" +typID+ "','" +preis+"')";
+			    String sqlupdate = "INSERT INTO MODELL VALUES (default,'" + name + "','" +typID+ "','" +preis+"')";
 				int ergebnis = statement2.executeUpdate(sqlupdate);
             }
 	        

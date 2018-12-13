@@ -148,7 +148,7 @@ public class GeraeteTypVerwaltung extends JPanel {
 		
 		btnTypHinzu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTyphinzufuegen());
+				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTyphinzufuegen());			
 			}
 		});
 		
@@ -165,4 +165,5 @@ public class GeraeteTypVerwaltung extends JPanel {
 		});
 		
 	}
+
 }

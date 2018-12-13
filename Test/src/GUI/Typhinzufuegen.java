@@ -30,7 +30,6 @@ import java.awt.Dimension;
 
 public class Typhinzufuegen extends JPanel  implements IAnlegenView{
 	private JTextField txtTyp;
-	private JTextField txtID;
 	
 	TypAnlegenModel model;
 	TypAnlegenStrg controller;
@@ -52,9 +51,9 @@ public class Typhinzufuegen extends JPanel  implements IAnlegenView{
 		add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		JLabel lblTypHinzufgen = new JLabel("Typ hinzuf\u00FCgen:");
@@ -87,26 +86,6 @@ public class Typhinzufuegen extends JPanel  implements IAnlegenView{
 		panel.add(txtTyp, gbc_txtTyp2);
 		txtTyp.setColumns(10);
 		
-		JLabel lblTypid = new JLabel("TypID:");
-		lblTypid.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		GridBagConstraints gbc_lblTypid = new GridBagConstraints();
-		gbc_lblTypid.anchor = GridBagConstraints.WEST;
-		gbc_lblTypid.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTypid.gridx = 2;
-		gbc_lblTypid.gridy = 5;
-		panel.add(lblTypid, gbc_lblTypid);
-		
-		txtID = new JTextField();
-		txtID.setPreferredSize(new Dimension(6, 40));
-		txtID.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GridBagConstraints gbc_txtID2 = new GridBagConstraints();
-		gbc_txtID2.insets = new Insets(0, 0, 5, 5);
-		gbc_txtID2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtID2.gridx = 3;
-		gbc_txtID2.gridy = 5;
-		panel.add(txtID, gbc_txtID2);
-		txtID.setColumns(10);
-		
 		JLabel lblErforderlicherFhrerschein = new JLabel("erforderlicher F\u00FChrerschein:");
 		lblErforderlicherFhrerschein.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblErforderlicherFhrerschein = new GridBagConstraints();
@@ -114,7 +93,7 @@ public class Typhinzufuegen extends JPanel  implements IAnlegenView{
 		gbc_lblErforderlicherFhrerschein.anchor = GridBagConstraints.WEST;
 		gbc_lblErforderlicherFhrerschein.gridwidth = 2;
 		gbc_lblErforderlicherFhrerschein.gridx = 2;
-		gbc_lblErforderlicherFhrerschein.gridy = 7;
+		gbc_lblErforderlicherFhrerschein.gridy = 6;
 		panel.add(lblErforderlicherFhrerschein, gbc_lblErforderlicherFhrerschein);
 		
 		JCheckBox chckbxSegelschein = new JCheckBox("Segelschein");
@@ -122,7 +101,7 @@ public class Typhinzufuegen extends JPanel  implements IAnlegenView{
 		GridBagConstraints gbc_chckbxSegelschein = new GridBagConstraints();
 		gbc_chckbxSegelschein.insets = new Insets(0, 0, 0, 5);
 		gbc_chckbxSegelschein.gridx = 2;
-		gbc_chckbxSegelschein.gridy = 8;
+		gbc_chckbxSegelschein.gridy = 7;
 		panel.add(chckbxSegelschein, gbc_chckbxSegelschein);
 		
 		JCheckBox chckbxSurfschein = new JCheckBox("Surfschein");
@@ -130,14 +109,14 @@ public class Typhinzufuegen extends JPanel  implements IAnlegenView{
 		GridBagConstraints gbc_chckbxSurfschein = new GridBagConstraints();
 		gbc_chckbxSurfschein.insets = new Insets(0, 0, 0, 5);
 		gbc_chckbxSurfschein.gridx = 3;
-		gbc_chckbxSurfschein.gridy = 8;
+		gbc_chckbxSurfschein.gridy = 7;
 		panel.add(chckbxSurfschein, gbc_chckbxSurfschein);
 		
 		JCheckBox chckbxMotorbootschein = new JCheckBox("Motorbootschein");
 		chckbxMotorbootschein.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_chckbxMotorbootschein = new GridBagConstraints();
 		gbc_chckbxMotorbootschein.gridx = 4;
-		gbc_chckbxMotorbootschein.gridy = 8;
+		gbc_chckbxMotorbootschein.gridy = 7;
 		panel.add(chckbxMotorbootschein, gbc_chckbxMotorbootschein);
 		
 		JPanel panel_2 = new JPanel();
@@ -181,8 +160,7 @@ public class Typhinzufuegen extends JPanel  implements IAnlegenView{
 				
 				try {
 					
-					name = txtTyp.getText();
-					id  = Integer.parseInt(txtID.getText());	
+					name = txtTyp.getText();					
 					
 					if(chckbxSegelschein.isSelected() == true)
 						schein = "Segelschein";
@@ -194,7 +172,7 @@ public class Typhinzufuegen extends JPanel  implements IAnlegenView{
 						schein = null;
 					
 
-					controller.typUebergeben(id, name, schein);
+					controller.typUebergeben(name, schein);
 					aktualisieren(model);
 					MainFrame.change(MainFrame.getTyphinzufuegen(), MainFrame.getGeraeteTypVerwaltung());
 					

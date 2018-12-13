@@ -129,6 +129,7 @@ public class MainFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
+
 		
 		
 		contentPane.add(StandortPanel, "name_285477213159744");

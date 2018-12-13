@@ -57,7 +57,7 @@ public class TypAnlegenModel implements IAnlegenModel{
 
 	}
 	
-	public void typAnlegen(GeraeteTyp typ) {
+	public void typAnlegen(String[] typ) {
 	
  
         try {
@@ -66,13 +66,11 @@ public class TypAnlegenModel implements IAnlegenModel{
 
 			Statement statement = conn.createStatement();
 			
-			String name = typ.getName();
-			int id = typ.getTypID();
-			String schein = typ.getFührerschein();
+			String name = typ[0];
+			String schein = typ[1];
 			
 			
-			
-			String sqlupdate = "INSERT INTO TYP VALUES ('" +id+ "','" + name + "','"+ schein+ "')";
+			String sqlupdate = "INSERT INTO TYP VALUES (default,'" + name + "','"+ schein+ "')";
 			
 			
 			int ergebnis = statement.executeUpdate(sqlupdate);

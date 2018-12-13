@@ -19,13 +19,12 @@ public class ModellAnlegenStrg {
 	}
 
 	
-	public void modellUebergeben(int id, String name, String typ, int preis) {
+	public void modellUebergeben(String name, String typ, int preis) {
 		
-		String modellID = String.valueOf(id);
 		String modellname = name;
 		String typname = typ;
 		String preisID = String.valueOf(preis);
-		String [] values = {modellID, modellname, typname, preisID};
+		String [] values = {modellname, typname, preisID};
 		model.modellAnlegen(values);
 	}
 	

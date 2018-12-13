@@ -1,6 +1,8 @@
 package GUI;
 
 import javax.swing.JPanel;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -29,7 +31,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
 public class Modellhinzufuegen extends JPanel implements IAnlegenView{
-	private JTextField txtModelID;
 	private JTextField txtModell;
 	
 	ModellAnlegenModel model;
@@ -51,9 +52,9 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 		add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		JLabel lblModellHinzufgen = new JLabel("Modell hinzuf\u00FCgen:");
@@ -75,10 +76,9 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 		gbc_lblTyp.gridy = 4;
 		panel.add(lblTyp, gbc_lblTyp);
 		
-		String[]typen ={"Segelboot", "Surfboard", "Kajak", "Jetski", "Motorboot"};
-		JComboBox <String> comboBoxTyp = new JComboBox<String>(typen);
-		comboBoxTyp.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
+		JComboBox<String> comboBoxTyp = new JComboBox<String>();
+				
 		
 		GridBagConstraints gbc_comboBoxTyp = new GridBagConstraints();
 		gbc_comboBoxTyp.insets = new Insets(0, 0, 5, 5);
@@ -107,33 +107,13 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 		panel.add(txtModell, gbc_txtModell);
 		txtModell.setColumns(10);
 		
-		JLabel lblModellID = new JLabel("ModellID:");
-		lblModellID.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		GridBagConstraints gbc_lblModellID = new GridBagConstraints();
-		gbc_lblModellID.anchor = GridBagConstraints.WEST;
-		gbc_lblModellID.insets = new Insets(0, 0, 5, 5);
-		gbc_lblModellID.gridx = 2;
-		gbc_lblModellID.gridy = 7;
-		panel.add(lblModellID, gbc_lblModellID);
-		
-		txtModelID = new JTextField();
-		txtModelID.setPreferredSize(new Dimension(6, 40));
-		txtModelID.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GridBagConstraints gbc_txtModelID = new GridBagConstraints();
-		gbc_txtModelID.insets = new Insets(0, 0, 5, 5);
-		gbc_txtModelID.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtModelID.gridx = 3;
-		gbc_txtModelID.gridy = 7;
-		panel.add(txtModelID, gbc_txtModelID);
-		txtModelID.setColumns(10);
-		
 		JLabel lblPreiskateg = new JLabel("Preiskategorie:");
 		lblPreiskateg.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblPreiskateg = new GridBagConstraints();
 		gbc_lblPreiskateg.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPreiskateg.anchor = GridBagConstraints.EAST;
 		gbc_lblPreiskateg.gridx = 2;
-		gbc_lblPreiskateg.gridy = 8;
+		gbc_lblPreiskateg.gridy = 7;
 		panel.add(lblPreiskateg, gbc_lblPreiskateg);
 		
 		JComboBox comboBoxPreis = new JComboBox();
@@ -150,7 +130,7 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 		gbc_comboBoxPreis.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBoxPreis.fill = GridBagConstraints.BOTH;
 		gbc_comboBoxPreis.gridx = 3;
-		gbc_comboBoxPreis.gridy = 8;
+		gbc_comboBoxPreis.gridy = 7;
 		panel.add(comboBoxPreis, gbc_comboBoxPreis);
 		
 		JPanel panel_2 = new JPanel();
@@ -189,18 +169,16 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 		btnBestaetigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String typ;
-				int modellID;
 				String name;
 				int preisKateg;
 				
 				try {
 					typ = String.valueOf(comboBoxTyp.getSelectedItem());
 					name = txtModell.getText();
-					modellID = Integer.parseInt(txtModelID.getText());
 					preisKateg = comboBoxPreis.getSelectedIndex() +1;
 					
 
-					controller.modellUebergeben(modellID, name, typ, preisKateg);
+					controller.modellUebergeben(name, typ, preisKateg);
 					aktualisieren(model);
 					JOptionPane.showMessageDialog(null, "Das Modell wurde erfolgreich angelegt!");
 					MainFrame.change(MainFrame.getModellhinzufuegen(), MainFrame.getGeraeteModellVerwaltung());

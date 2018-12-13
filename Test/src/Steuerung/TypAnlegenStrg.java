@@ -19,9 +19,11 @@ public class TypAnlegenStrg {
 	}
 
 	
-	public void typUebergeben(int id, String name, String führerschein) {
-		typ = new GeraeteTyp(id, name, führerschein);
-		model.typAnlegen(typ);
+	public void typUebergeben(String name, String führerschein) {
+		String typname = name;
+		String schein = führerschein;
+		String[] values = {typname, schein};
+		model.typAnlegen(values);
 	}
 	
 }
