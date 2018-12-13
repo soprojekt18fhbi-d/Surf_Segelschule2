@@ -9,7 +9,7 @@ public class Kunde implements IKunde {
 	private boolean segelschein;
 	private boolean motorbootschein;
 	private String email;
-	private int kundenummer;
+	private int kundennummer;
 
 
 	public Kunde(String name, String vorname, String email, Boolean surfschein, Boolean segelschein, Boolean motorbootschein) {
