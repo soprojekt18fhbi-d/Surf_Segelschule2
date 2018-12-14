@@ -38,6 +38,7 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 	ModellAnlegenStrg controller;
 	private String talking = "first";
 	private JComboBox<String> comboBoxTyp;
+	private JComboBox comboBoxPreis;
 	private String typ;
 	private String name;
 	private int preisKateg;
@@ -124,7 +125,7 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 		gbc_lblPreiskateg.gridy = 7;
 		panel.add(lblPreiskateg, gbc_lblPreiskateg);
 		
-		JComboBox comboBoxPreis = new JComboBox();
+		comboBoxPreis = new JComboBox();
 		comboBoxPreis.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		comboBoxPreis.addItem("1 (Segelboot)");
 		comboBoxPreis.addItem("2 (Surfboard - A)");
@@ -189,6 +190,9 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 					JOptionPane.showMessageDialog(null, "Das Modell wurde erfolgreich angelegt!");
 					MainFrame.change(MainFrame.getModellhinzufuegen(), MainFrame.getGeraeteModellVerwaltung());
 					
+					txtModell.setText("");
+					comboBoxTyp.setSelectedIndex(0);
+					comboBoxPreis.setSelectedIndex(0);
 					
 					
 				} catch (NumberFormatException e) {

@@ -257,7 +257,7 @@ public class MainFrame extends JFrame {
 		return geraeteTypVerwaltung;
 	}
 	
-	public static JPanel getGeraethinzufuegen(){
+	public static Geraethinzufuegen getGeraethinzufuegen(){
 		return geraethinzufuegen;
 	}
 	

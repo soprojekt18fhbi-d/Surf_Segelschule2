@@ -176,6 +176,10 @@ public class Typhinzufuegen extends JPanel  implements IAnlegenView{
 					aktualisieren(model);
 					MainFrame.change(MainFrame.getTyphinzufuegen(), MainFrame.getGeraeteTypVerwaltung());
 					
+					chckbxSegelschein.setSelected(false);
+					chckbxSurfschein.setSelected(false);
+					chckbxMotorbootschein.setSelected(false);
+					txtTyp.setText("");
 					
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block

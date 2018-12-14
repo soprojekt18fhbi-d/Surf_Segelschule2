@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import Domaenklassen.GeraeteTyp;
 import GUI.IAnlegenView;
@@ -83,6 +84,12 @@ public class TypAnlegenModel implements IAnlegenModel{
         updateObserver();
 		}
         
+	}
+
+	@Override
+	public ArrayList<String> getObertypen() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
