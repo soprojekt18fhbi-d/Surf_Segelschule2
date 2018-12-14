@@ -11,6 +11,7 @@ import Datenbankmodels.BuchungGeraetAnzeigeModel;
 import Datenbankmodels.BuchungKundewaehlenModel;
 import Datenbankmodels.BuchungModellAnzeigeModel;
 import Datenbankmodels.BuchungTypAnzeigeModel;
+import Datenbankmodels.GeraetAnlegenModel;
 import Datenbankmodels.KundeSucheModel;
 import Datenbankmodels.ModellhinzufuegenModel;
 import GUIBuchungsverwaltung.AbgeschlosseneBuchungen;
@@ -28,6 +29,7 @@ import Steuerung.BuchungGeraetAuswählenStrg;
 import Steuerung.BuchungKundeWählenStrg;
 import Steuerung.BuchungModellAnzeigeStrg;
 import Steuerung.BuchungTypAnzeigeStrg;
+import Steuerung.GeraetAnlegenStrg;
 import Steuerung.KundeSucheStrg;
 import Steuerung.ModellAnlegenStrg;
 
@@ -61,6 +63,7 @@ public class MainFrame extends JFrame {
 	private static BuchungModellAnzeigeModel buchungmanzeige = new BuchungModellAnzeigeModel();
 	private static BuchungGeraetAnzeigeModel buchungganzeige = new BuchungGeraetAnzeigeModel();
 	private static ModellhinzufuegenModel modellHinzufuegen = new ModellhinzufuegenModel();
+	private static GeraetAnlegenModel geraetAnlegen = new GeraetAnlegenModel();
 
 	//Controller erzeugen:
 	private static KundeSucheStrg ksucheController = new KundeSucheStrg(ksucheModel);
@@ -69,7 +72,7 @@ public class MainFrame extends JFrame {
 	private static BuchungModellAnzeigeStrg buchungmanzeigeController = new BuchungModellAnzeigeStrg(buchungmanzeige);
 	private static BuchungGeraetAuswählenStrg buchungganzeigeController = new BuchungGeraetAuswählenStrg(buchungganzeige);
 	private static ModellAnlegenStrg modellAnlegenStrg = new ModellAnlegenStrg(modellHinzufuegen);
-	
+	private static GeraetAnlegenStrg geraetAnlegenStrg = new GeraetAnlegenStrg(geraetAnlegen);	
 	
 	
 	
@@ -79,7 +82,7 @@ public class MainFrame extends JFrame {
 	private static GeraeteVerwaltung geraeteVerwaltung = new GeraeteVerwaltung();
 	private static GeraeteModellVerwaltung geraeteModellVerwaltung = new GeraeteModellVerwaltung();
 	private static GeraeteTypVerwaltung geraeteTypVerwaltung = new GeraeteTypVerwaltung();
-	private static Geraethinzufuegen geraethinzufuegen = new Geraethinzufuegen();
+	private static Geraethinzufuegen geraethinzufuegen = new Geraethinzufuegen(geraetAnlegen, geraetAnlegenStrg);
 	private static Modellaendern modellaendern = new Modellaendern();
 	private static Modellhinzufuegen modellhinzufuegen = new Modellhinzufuegen(modellHinzufuegen, modellAnlegenStrg);
 	private static SportgeraeteVerwaltung sportgeraete = new SportgeraeteVerwaltung();

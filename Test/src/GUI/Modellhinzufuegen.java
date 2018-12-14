@@ -83,6 +83,7 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 		
 		
 		comboBoxTyp = new JComboBox<String>();
+		comboBoxTyp.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 
 				
@@ -187,6 +188,7 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 					aktualisieren(model);
 					JOptionPane.showMessageDialog(null, "Das Modell wurde erfolgreich angelegt!");
 					MainFrame.change(MainFrame.getModellhinzufuegen(), MainFrame.getGeraeteModellVerwaltung());
+					
 					
 					
 				} catch (NumberFormatException e) {

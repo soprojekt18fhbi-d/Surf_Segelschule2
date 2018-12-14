@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
 public class SportgeraeteVerwaltung extends JPanel {
 	private JTextField textField;
 	private JTable table;
+	private int counter = 1;
 
 	/**
 	 * Create the panel.
@@ -134,6 +135,18 @@ public class SportgeraeteVerwaltung extends JPanel {
 		table.setPreferredScrollableViewportSize(new Dimension(450, 600));
 		scrollPane.setViewportView(table);
 		
+		JButton btnModelle = new JButton("Modelle");
+		btnModelle.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnModelle.setMinimumSize(new Dimension(150, 35));
+		btnModelle.setPreferredSize(new Dimension(150, 35));
+		GridBagConstraints gbc_btnModelle = new GridBagConstraints();
+		gbc_btnModelle.fill = GridBagConstraints.VERTICAL;
+		gbc_btnModelle.insets = new Insets(0, 0, 0, 5);
+		gbc_btnModelle.anchor = GridBagConstraints.WEST;
+		gbc_btnModelle.gridx = 0;
+		gbc_btnModelle.gridy = 7;
+		panel_1.add(btnModelle, gbc_btnModelle);
+		
 		
 				
 		
@@ -155,6 +168,12 @@ public class SportgeraeteVerwaltung extends JPanel {
 		btnGeraetHinzu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getSportgeraete(), MainFrame.getGeraethinzufuegen());
+				
+				if(counter == 1)
+				{
+					MainFrame.getGeraethinzufuegen().anfrage();
+					counter--;
+				}
 			}
 		});
 		
@@ -167,6 +186,12 @@ public class SportgeraeteVerwaltung extends JPanel {
 		btnGeraetDeaktivieren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+			}
+		});
+		
+		btnModelle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.change(MainFrame.getSportgeraete(), MainFrame.getGeraeteModellVerwaltung());
 			}
 		});
 		

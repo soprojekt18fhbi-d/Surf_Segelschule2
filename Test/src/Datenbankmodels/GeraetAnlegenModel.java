@@ -5,11 +5,158 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import Domaenklassen.GeraeteTyp;
 import GUI.IAnlegenView;
 
 public class GeraetAnlegenModel implements IAnlegenModel{
+	
+	private ArrayList<IAnlegenView> observers = new ArrayList<IAnlegenView>();
+
+	private ArrayList<String> mengeAnTypen = new ArrayList<String>();
+	private String talking = "first";
+	private String[] geraet;
+	
+		
+	public void anfrage (String talking2, String[] geraet) {
+		this.talking = talking2;
+		this.geraet = geraet;
+		
+        try {
+        	
+			Connection conn = DriverManager.
+			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			// add application code here
+			viewTable(conn);
+			
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+	}
+	
+	
+	
+	
+	
+	public void viewTable(Connection con)
+			throws SQLException {
+
+			
+		
+		    Statement stmt = con.createStatement();
+		    Statement stmt2 = con.createStatement();
+		    String query = null;
+		    String query2 = null;
+		    String query3 = null;
+		    
+		    if(talking.equals("first"))
+		    {
+		    	query = "Select * from TYP";
+		    	 try {
+				    	System.out.println(query);
+				        ResultSet rs = stmt.executeQuery(query);
+				        
+				        while (rs.next()){
+				        	
+				        	mengeAnTypen.add(rs.getString("NAME"));
+				        	
+				        }
+				        
+				        
+				    } catch (SQLException e ) {
+				    	e.printStackTrace();
+				    } finally {
+				        if (stmt != null) { stmt.close(); }
+				    }
+		    	 updateObserver();
+		    }
+		    
+		    if(talking.equals("second"))
+		    {
+		    	query3 = "Select * from MODELL";
+		    	 try {
+				    	System.out.println(query3);
+				        ResultSet rs = stmt.executeQuery(query3);
+				        
+				        while (rs.next()){
+				        	
+				        	mengeAnTypen.add(rs.getString("NAME"));
+				        	
+				        }
+				        
+				        
+				    } catch (SQLException e ) {
+				    	e.printStackTrace();
+				    } finally {
+				        if (stmt != null) { stmt.close(); }
+				    }
+		    	 updateObserver();
+		    }
+		   	
+
+			if(talking.equals("hinzufuegen"))
+			{
+				try {
+					
+					String typ = geraet[0];
+					String modell = geraet[1];
+					String makel = geraet[2];
+					double verkaufspreis = Double.parseDouble(geraet[3]);
+					double anschaffungspreis = Double.parseDouble(geraet[4]);
+					String farbe = geraet[5];
+					int baujahr = Integer.parseInt(geraet[6]);
+					String status = "OK";
+					int standortID = 1;
+					
+				
+							
+					query = "select * from TYP WHERE NAME = '" +typ+ "'";
+					System.out.println(query);
+					query2 = "select * from MODELL WHERE NAME = '" +modell+ "*";
+					ResultSet rs = stmt.executeQuery(query);
+					ResultSet rs2 = stmt2.executeQuery(query2);
+					
+					while (rs.next()){	
+						int typID =  Integer.parseInt(rs.getString("ID"));
+						while(rs2.next()){
+							int modellID = Integer.parseInt(rs2.getString("ID"));
+						
+							String sqlupdate = "INSERT INTO SPORTGERAET VALUES (default,'" + makel + "','" +verkaufspreis+ "','" +typID+"','" +modellID+ "','" +status+"','" +standortID+ "','" +farbe+"','" +baujahr+ "','" +anschaffungspreis+"')";
+							System.out.println(sqlupdate);
+							stmt2.executeUpdate(sqlupdate);
+							}
+						}
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} finally {
+						 if (stmt2 != null) { stmt2.close(); }
+						 if (stmt != null) { stmt.close(); }
+					}
+			}	
+		    
+		    
+		    
+		    
+		    try {
+		    	System.out.println(query);
+		        stmt = con.createStatement();
+		        ResultSet rs = stmt.executeQuery(query);
+		        
+		        
+		        
+		    } catch (SQLException e ) {
+		    	e.printStackTrace();
+		    } finally {
+		        if (stmt != null) { stmt.close(); }
+		    }
+		    
+		    
+		}
+	
 	
 	@Override
 	public void anmelden(IAnlegenView view) {
@@ -56,48 +203,17 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 		}
 
 	}
-	
-	public void geraetAnlegen(String[] geraet) {
-		Statement statement = null;
-		Statement statement2 = null;
- 
-        try {
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
 
-			statement = conn.createStatement();
-			
-			String typ = geraet[0];
-			String modell = geraet[1];
-			int geraeteID = Integer.parseInt(geraet[2]);
-			double anschaffungspreis = Double.parseDouble(geraet[3]);
-			double verkaufspreis = Double.parseDouble(geraet[4]);
-			String farbe = geraet[5];
-			int baujahr = Integer.parseInt(geraet[6]);
-			String makel = geraet[7];
-			
-			
-						
-			String query = "select * from MODELL WHERE MODELLNAME = '" +modell+ "'";
-            ResultSet rs = statement.executeQuery(query);
-            while (rs.next()){
-		        int modellID =  Integer.parseInt(rs.getString("MODELLID"));
-		        
-		        
-		        statement2 = conn.createStatement();
-			    String sqlupdate = "INSERT INTO SPORTGERAET VALUES ('" +geraeteID+ "','" + farbe + "','0','" +verkaufspreis+ "','" + anschaffungspreis+ "','" +modellID+ "','" +makel+ "')";
-				int ergebnis = statement2.executeUpdate(sqlupdate);
-            }
-	        
-	        
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-        updateObserver();
-		}
-        
+	
+	@Override
+	public ArrayList<String> getObertypen() {
+		// TODO Auto-generated method stub
+		return mengeAnTypen;
 	}
+	
+	
+	
+
+	
 
 }

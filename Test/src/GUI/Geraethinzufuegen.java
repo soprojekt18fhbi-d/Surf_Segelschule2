@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 import Datenbankmodels.IAnlegenModel;
 import Datenbankmodels.GeraetAnlegenModel;
 import Steuerung.GeraetAnlegenStrg;
+import Steuerung.ModellAnlegenStrg;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -25,17 +26,31 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
-	private JTextField txtGeraeteID;
 	private JTextField txtAPreis;
 	private JTextField textVPreis;
 	private JTextField textFarbe;
 	private JTextField textBaujahr;
 	private JTextField textMakel;
 	
-	GeraetAnlegenModel model;
+	private JComboBox<String> comboBoxTyp;
+	private JComboBox<String> comboBoxModell;
+	
+	private String typ;
+	private String modell;
+	private double anschaffungspreis;
+	private double verkaufspreis;
+	private String farbe;
+	private int baujahr;
+	private String makel;
+	private String talking = "first";
+	
+	IAnlegenModel model;
 	GeraetAnlegenStrg controller;
 	
 	
@@ -43,10 +58,10 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 	 * 
 	 * Create the panel.
 	 */
-	public Geraethinzufuegen() {
-		model = new GeraetAnlegenModel();
-		controller = new GeraetAnlegenStrg(model);
-		model.anmelden(this);
+	public Geraethinzufuegen(IAnlegenModel models, GeraetAnlegenStrg controllers) {
+		model = models;
+		controller = controllers;
+		
 		
 		setSize(900,550);
 		setLayout(new BorderLayout(0, 0));
@@ -54,10 +69,10 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		JLabel lblGeraetHinzufgen = new JLabel("Ger\u00E4t hinzuf\u00FCgen:");
@@ -80,9 +95,8 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		panel.add(lblTyp, gbc_lblTyp);
 		
 		
-		JComboBox comboBoxTyp = new JComboBox();
+		comboBoxTyp = new JComboBox<String>();
 		comboBoxTyp.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		comboBoxTyp.addItem("TestTyp");
 		
 		
 		GridBagConstraints gbc_comboBoxTyp = new GridBagConstraints();
@@ -101,9 +115,9 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		gbc_lblModell.gridy = 5;
 		panel.add(lblModell, gbc_lblModell);
 		
-		JComboBox comboBoxModell = new JComboBox();
+		comboBoxModell = new JComboBox <String>();
 		comboBoxModell.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		comboBoxModell.addItem("TestModell");
+		
 		
 		
 		GridBagConstraints gbc_comboBoxModell = new GridBagConstraints();
@@ -113,33 +127,13 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		gbc_comboBoxModell.gridy = 5;
 		panel.add(comboBoxModell, gbc_comboBoxModell);
 		
-		JLabel lblGeraeteID = new JLabel("Ger\u00E4teID:");
-		lblGeraeteID.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		GridBagConstraints gbc_lblGeraeteID = new GridBagConstraints();
-		gbc_lblGeraeteID.anchor = GridBagConstraints.WEST;
-		gbc_lblGeraeteID.insets = new Insets(0, 0, 5, 5);
-		gbc_lblGeraeteID.gridx = 2;
-		gbc_lblGeraeteID.gridy = 7;
-		panel.add(lblGeraeteID, gbc_lblGeraeteID);
-		
-		txtGeraeteID = new JTextField();
-		txtGeraeteID.setPreferredSize(new Dimension(6, 40));
-		txtGeraeteID.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GridBagConstraints gbc_txtGeraeteID = new GridBagConstraints();
-		gbc_txtGeraeteID.insets = new Insets(0, 0, 5, 5);
-		gbc_txtGeraeteID.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtGeraeteID.gridx = 3;
-		gbc_txtGeraeteID.gridy = 7;
-		panel.add(txtGeraeteID, gbc_txtGeraeteID);
-		txtGeraeteID.setColumns(10);
-		
 		JLabel lblAnschaffungspreis = new JLabel("Anschaffungspreis:");
 		lblAnschaffungspreis.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblAnschaffungspreis = new GridBagConstraints();
 		gbc_lblAnschaffungspreis.insets = new Insets(0, 0, 5, 5);
 		gbc_lblAnschaffungspreis.anchor = GridBagConstraints.WEST;
 		gbc_lblAnschaffungspreis.gridx = 2;
-		gbc_lblAnschaffungspreis.gridy = 8;
+		gbc_lblAnschaffungspreis.gridy = 10;
 		panel.add(lblAnschaffungspreis, gbc_lblAnschaffungspreis);
 		
 		txtAPreis = new JTextField();
@@ -149,58 +143,9 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		gbc_txtAPreis.insets = new Insets(0, 0, 5, 5);
 		gbc_txtAPreis.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtAPreis.gridx = 3;
-		gbc_txtAPreis.gridy = 8;
+		gbc_txtAPreis.gridy = 10;
 		panel.add(txtAPreis, gbc_txtAPreis);
 		txtAPreis.setColumns(10);
-		
-		JLabel lblVerkaufspreis = new JLabel("Verkaufspreis:");
-		lblVerkaufspreis.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		GridBagConstraints gbc_lblVerkaufspreis = new GridBagConstraints();
-		gbc_lblVerkaufspreis.anchor = GridBagConstraints.WEST;
-		gbc_lblVerkaufspreis.insets = new Insets(0, 0, 5, 5);
-		gbc_lblVerkaufspreis.gridx = 2;
-		gbc_lblVerkaufspreis.gridy = 9;
-		panel.add(lblVerkaufspreis, gbc_lblVerkaufspreis);
-		
-		textVPreis = new JTextField();
-		textVPreis.setPreferredSize(new Dimension(6, 40));
-		textVPreis.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GridBagConstraints gbc_textVPreis = new GridBagConstraints();
-		gbc_textVPreis.insets = new Insets(0, 0, 5, 5);
-		gbc_textVPreis.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textVPreis.gridx = 3;
-		gbc_textVPreis.gridy = 9;
-		panel.add(textVPreis, gbc_textVPreis);
-		textVPreis.setColumns(10);
-		
-		JLabel label = new JLabel("\u20AC");
-		label.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.anchor = GridBagConstraints.WEST;
-		gbc_label.insets = new Insets(0, 0, 5, 5);
-		gbc_label.gridx = 4;
-		gbc_label.gridy = 9;
-		panel.add(label, gbc_label);
-		
-		JLabel lblFarbe = new JLabel("Farbe:");
-		lblFarbe.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		GridBagConstraints gbc_lblFarbe = new GridBagConstraints();
-		gbc_lblFarbe.anchor = GridBagConstraints.WEST;
-		gbc_lblFarbe.insets = new Insets(0, 0, 5, 5);
-		gbc_lblFarbe.gridx = 2;
-		gbc_lblFarbe.gridy = 10;
-		panel.add(lblFarbe, gbc_lblFarbe);
-		
-		textFarbe = new JTextField();
-		textFarbe.setPreferredSize(new Dimension(6, 40));
-		textFarbe.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GridBagConstraints gbc_textFarbe = new GridBagConstraints();
-		gbc_textFarbe.insets = new Insets(0, 0, 5, 5);
-		gbc_textFarbe.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textFarbe.gridx = 3;
-		gbc_textFarbe.gridy = 10;
-		panel.add(textFarbe, gbc_textFarbe);
-		textFarbe.setColumns(10);
 		
 		JLabel label_1 = new JLabel("\u20AC");
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -211,13 +156,62 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		gbc_label_1.gridy = 10;
 		panel.add(label_1, gbc_label_1);
 		
+		JLabel lblVerkaufspreis = new JLabel("Verkaufspreis:");
+		lblVerkaufspreis.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		GridBagConstraints gbc_lblVerkaufspreis = new GridBagConstraints();
+		gbc_lblVerkaufspreis.anchor = GridBagConstraints.WEST;
+		gbc_lblVerkaufspreis.insets = new Insets(0, 0, 5, 5);
+		gbc_lblVerkaufspreis.gridx = 2;
+		gbc_lblVerkaufspreis.gridy = 11;
+		panel.add(lblVerkaufspreis, gbc_lblVerkaufspreis);
+		
+		textVPreis = new JTextField();
+		textVPreis.setPreferredSize(new Dimension(6, 40));
+		textVPreis.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_textVPreis = new GridBagConstraints();
+		gbc_textVPreis.insets = new Insets(0, 0, 5, 5);
+		gbc_textVPreis.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textVPreis.gridx = 3;
+		gbc_textVPreis.gridy = 11;
+		panel.add(textVPreis, gbc_textVPreis);
+		textVPreis.setColumns(10);
+		
+		JLabel label = new JLabel("\u20AC");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.anchor = GridBagConstraints.WEST;
+		gbc_label.insets = new Insets(0, 0, 5, 5);
+		gbc_label.gridx = 4;
+		gbc_label.gridy = 11;
+		panel.add(label, gbc_label);
+		
+		JLabel lblFarbe = new JLabel("Farbe:");
+		lblFarbe.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		GridBagConstraints gbc_lblFarbe = new GridBagConstraints();
+		gbc_lblFarbe.anchor = GridBagConstraints.WEST;
+		gbc_lblFarbe.insets = new Insets(0, 0, 5, 5);
+		gbc_lblFarbe.gridx = 2;
+		gbc_lblFarbe.gridy = 7;
+		panel.add(lblFarbe, gbc_lblFarbe);
+		
+		textFarbe = new JTextField();
+		textFarbe.setPreferredSize(new Dimension(6, 40));
+		textFarbe.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_textFarbe = new GridBagConstraints();
+		gbc_textFarbe.insets = new Insets(0, 0, 5, 5);
+		gbc_textFarbe.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFarbe.gridx = 3;
+		gbc_textFarbe.gridy = 7;
+		panel.add(textFarbe, gbc_textFarbe);
+		textFarbe.setColumns(10);
+		
 		JLabel lblBaujahr = new JLabel("Baujahr:");
 		lblBaujahr.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblBaujahr = new GridBagConstraints();
 		gbc_lblBaujahr.anchor = GridBagConstraints.WEST;
 		gbc_lblBaujahr.insets = new Insets(0, 0, 5, 5);
 		gbc_lblBaujahr.gridx = 2;
-		gbc_lblBaujahr.gridy = 11;
+		gbc_lblBaujahr.gridy = 8;
 		panel.add(lblBaujahr, gbc_lblBaujahr);
 		
 		textBaujahr = new JTextField();
@@ -227,7 +221,7 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		gbc_textBaujahr.insets = new Insets(0, 0, 5, 5);
 		gbc_textBaujahr.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textBaujahr.gridx = 3;
-		gbc_textBaujahr.gridy = 11;
+		gbc_textBaujahr.gridy = 8;
 		panel.add(textBaujahr, gbc_textBaujahr);
 		textBaujahr.setColumns(10);
 		
@@ -237,7 +231,7 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		gbc_lblMakel.anchor = GridBagConstraints.WEST;
 		gbc_lblMakel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMakel.gridx = 2;
-		gbc_lblMakel.gridy = 12;
+		gbc_lblMakel.gridy = 9;
 		panel.add(lblMakel, gbc_lblMakel);
 		
 		textMakel = new JTextField();
@@ -247,7 +241,7 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		gbc_textMakel.insets = new Insets(0, 0, 5, 5);
 		gbc_textMakel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textMakel.gridx = 3;
-		gbc_textMakel.gridy = 12;
+		gbc_textMakel.gridy = 9;
 		panel.add(textMakel, gbc_textMakel);
 		textMakel.setColumns(10);
 		
@@ -263,20 +257,19 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_2.createSequentialGroup()
-					.addContainerGap(573, Short.MAX_VALUE)
+					.addContainerGap(580, Short.MAX_VALUE)
 					.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnBestaetigen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addGap(17))
+					.addContainerGap())
 		);
 		gl_panel_2.setVerticalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(0, 0, Short.MAX_VALUE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnBestaetigen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
+						.addComponent(btnBestaetigen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
 		);
 		panel_2.setLayout(gl_panel_2);
 		
@@ -286,28 +279,19 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		
 		btnBestaetigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String typ;
-				String modell;
-				
-				int geraeteID;
-				double anschaffungspreis;
-				double verkaufspreis;
-				String farbe;
-				int baujahr;
-				String makel;
+				talking = "hinzufuegen";
 				
 				try {
 					typ = String.valueOf(comboBoxTyp.getSelectedItem());
 					modell = String.valueOf(comboBoxModell.getSelectedItem());
-					
-					geraeteID = Integer.parseInt(txtGeraeteID.getText());
 					anschaffungspreis = Double.parseDouble(txtAPreis.getText());
 					verkaufspreis = Double.parseDouble(textVPreis.getText());
 					farbe = textFarbe.getText();
 					baujahr = Integer.parseInt(textBaujahr.getText());
 					makel = textMakel.getText();
 					
-					controller.geraetUebergeben(typ, modell, geraeteID, anschaffungspreis, verkaufspreis, farbe, baujahr, makel);
+	
+					controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
 					aktualisieren(model);
 					
 					JOptionPane.showMessageDialog(null, "Das Gerät wurde erfolgreich angelegt!");
@@ -328,12 +312,57 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraethinzufuegen(), MainFrame.getGeraeteVerwaltung());			}
 		});
+		
+		comboBoxTyp.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent arg0) {
+				talking = "second";
+				
+				try {
+					typ = String.valueOf(comboBoxTyp.getSelectedItem());
+					
+					
+					controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
+					aktualisieren(model);
+					
+					
+					
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}			
+			}	
+		});
 
 	}
 
 
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
+
+		ArrayList<String> comboboxItems = model.getObertypen();
+		
+		for(int i = 0; i < comboboxItems.size(); i++) {
+			comboBoxTyp.addItem(comboboxItems.get(i));
+		}
+	}
+	
+	/*
+	public void aktualisierenModelle(IAnlegenModel model) {
+
+		ArrayList<String> comboboxItems = model.getModelle();
+		
+		for(int i = 0; i < comboboxItems.size(); i++) {
+			comboBoxModell.addItem(comboboxItems.get(i));
+		}
+	}
+	*/
+	
+	public void anfrage() {
+		
+		model.anmelden(this);
+		controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
+		model.abmelden(this);
 		
 	}
+	
 }

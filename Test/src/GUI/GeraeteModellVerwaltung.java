@@ -124,16 +124,28 @@ public class GeraeteModellVerwaltung extends JPanel {
 		table.setPreferredScrollableViewportSize(new Dimension(450, 600));
 		scrollPane.setViewportView(table);
 		
-		JButton btnAuswhlen = new JButton("Ausw\u00E4hlen");
-		btnAuswhlen.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnAuswhlen.setMinimumSize(new Dimension(150, 35));
-		btnAuswhlen.setPreferredSize(new Dimension(150, 35));
-		GridBagConstraints gbc_btnAuswhlen = new GridBagConstraints();
-		gbc_btnAuswhlen.anchor = GridBagConstraints.EAST;
-		gbc_btnAuswhlen.fill = GridBagConstraints.VERTICAL;
-		gbc_btnAuswhlen.gridx = 2;
-		gbc_btnAuswhlen.gridy = 7;
-		panel_1.add(btnAuswhlen, gbc_btnAuswhlen);
+		JButton btnTypen = new JButton("Typen");
+		btnTypen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnTypen.setMinimumSize(new Dimension(150, 35));
+		btnTypen.setPreferredSize(new Dimension(150, 35));
+		GridBagConstraints gbc_btnTypen = new GridBagConstraints();
+		gbc_btnTypen.fill = GridBagConstraints.VERTICAL;
+		gbc_btnTypen.anchor = GridBagConstraints.WEST;
+		gbc_btnTypen.insets = new Insets(0, 0, 0, 5);
+		gbc_btnTypen.gridx = 0;
+		gbc_btnTypen.gridy = 7;
+		panel_1.add(btnTypen, gbc_btnTypen);
+		
+		JButton btnGeraete = new JButton("Ger\u00E4te");
+		btnGeraete.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnGeraete.setMinimumSize(new Dimension(150, 35));
+		btnGeraete.setPreferredSize(new Dimension(150, 35));
+		GridBagConstraints gbc_btnGeraete = new GridBagConstraints();
+		gbc_btnGeraete.anchor = GridBagConstraints.EAST;
+		gbc_btnGeraete.fill = GridBagConstraints.VERTICAL;
+		gbc_btnGeraete.gridx = 2;
+		gbc_btnGeraete.gridy = 7;
+		panel_1.add(btnGeraete, gbc_btnGeraete);
 				
 		
 		//Funktionen der Button
@@ -175,7 +187,13 @@ public class GeraeteModellVerwaltung extends JPanel {
 			}
 		});
 		
-		btnAuswhlen.addActionListener(new ActionListener() {
+		btnTypen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getGeraeteTypVerwaltung());
+			}
+		});
+				
+		btnGeraete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getSportgeraete());
 			}

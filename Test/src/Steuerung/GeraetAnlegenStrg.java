@@ -2,33 +2,26 @@ package Steuerung;
 
 import Datenbankmodels.GeraetAnlegenModel;
 import Domaenklassen.SportGeraet;
+import GUI.Geraethinzufuegen;
 import GUI.IAnlegenView;
 
 public class GeraetAnlegenStrg {
 
+	
+	private SportGeraet geraet;
 	private GeraetAnlegenModel model;
-	private IAnlegenView view;
+	private Geraethinzufuegen view;
 	
 	public GeraetAnlegenStrg (GeraetAnlegenModel smodel)
 	{
 		model = smodel;
 		
 	}
-
 	
-	public void geraetUebergeben(String typ, String modell, int id, double apreis, double vpreis, String gfarbe, int gbaujahr, String gmakel) {
+	public void anfrageGeraethinzufuegen(String talking, String typ, String modell, String makel, double verkaufspreis, double anschaffungspreis, String farbe, int baujahr) {
 		
-		String typname = typ;
-		String modellname = modell;
-		String geraeteID = String.valueOf(id);
-		String anschaffungspreis = String.valueOf(apreis);
-		String verkaufspreis = String.valueOf(vpreis);
-		String farbe = gfarbe;
-		String baujahr = String.valueOf(gbaujahr);
-		String makel = gmakel;
-		
-		String [] values = {typname, modellname, geraeteID, anschaffungspreis, verkaufspreis, farbe, baujahr, makel};
-		model.geraetAnlegen(values);
+		String [] values = {typ, modell, makel, ""+verkaufspreis, ""+anschaffungspreis, farbe, ""+baujahr};
+		model.anfrage(talking, values);
 	}
 	
 }

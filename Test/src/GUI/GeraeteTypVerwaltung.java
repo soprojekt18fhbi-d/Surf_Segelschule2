@@ -119,16 +119,16 @@ public class GeraeteTypVerwaltung extends JPanel {
 		table.setPreferredScrollableViewportSize(new Dimension(450, 600));
 		scrollPane.setViewportView(table);
 		
-		JButton btnAuswhlen = new JButton("Ausw\u00E4hlen");
-		btnAuswhlen.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnAuswhlen.setMinimumSize(new Dimension(150, 35));
-		btnAuswhlen.setPreferredSize(new Dimension(150, 35));
-		GridBagConstraints gbc_btnAuswhlen = new GridBagConstraints();
-		gbc_btnAuswhlen.anchor = GridBagConstraints.EAST;
-		gbc_btnAuswhlen.fill = GridBagConstraints.VERTICAL;
-		gbc_btnAuswhlen.gridx = 1;
-		gbc_btnAuswhlen.gridy = 7;
-		panel_1.add(btnAuswhlen, gbc_btnAuswhlen);
+		JButton btnModelle = new JButton("Modelle");
+		btnModelle.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnModelle.setMinimumSize(new Dimension(150, 35));
+		btnModelle.setPreferredSize(new Dimension(150, 35));
+		GridBagConstraints gbc_btnModelle = new GridBagConstraints();
+		gbc_btnModelle.anchor = GridBagConstraints.EAST;
+		gbc_btnModelle.fill = GridBagConstraints.VERTICAL;
+		gbc_btnModelle.gridx = 1;
+		gbc_btnModelle.gridy = 7;
+		panel_1.add(btnModelle, gbc_btnModelle);
 				
 		
 		//Funktionen der Button
@@ -158,7 +158,7 @@ public class GeraeteTypVerwaltung extends JPanel {
 			}
 		});
 		
-		btnAuswhlen.addActionListener(new ActionListener() {
+		btnModelle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteModellVerwaltung());
 			}
