@@ -51,7 +51,7 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 		    Statement stmt2 = con.createStatement();
 		    String query = null;
 		    String query2 = null;
-		    String query3 = null;
+		
 		    
 		    if(talking.equals("first"))
 		    {
@@ -75,12 +75,12 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 		    	 updateObserver();
 		    }
 		    
-		    if(talking.equals("second"))
+		   /* if(talking.equals("second"))
 		    {
-		    	query3 = "Select * from MODELL";
+		    	query = "Select * from MODELL";
 		    	 try {
-				    	System.out.println(query3);
-				        ResultSet rs = stmt.executeQuery(query3);
+				    	System.out.println(query);
+				        ResultSet rs = stmt.executeQuery(query);
 				        
 				        while (rs.next()){
 				        	
@@ -96,7 +96,7 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 				    }
 		    	 updateObserver();
 		    }
-		   	
+		   	*/
 
 			if(talking.equals("hinzufuegen"))
 			{
@@ -118,10 +118,11 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 					System.out.println(query);
 					query2 = "select * from MODELL WHERE NAME = '" +modell+ "*";
 					ResultSet rs = stmt.executeQuery(query);
-					ResultSet rs2 = stmt2.executeQuery(query2);
 					
 					while (rs.next()){	
 						int typID =  Integer.parseInt(rs.getString("ID"));
+						ResultSet rs2 = stmt2.executeQuery(query2);
+						
 						while(rs2.next()){
 							int modellID = Integer.parseInt(rs2.getString("ID"));
 						

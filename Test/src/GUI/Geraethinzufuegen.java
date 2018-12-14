@@ -313,7 +313,7 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 				MainFrame.change(MainFrame.getGeraethinzufuegen(), MainFrame.getGeraeteVerwaltung());			}
 		});
 		
-		comboBoxTyp.addItemListener(new ItemListener(){
+		/*comboBoxTyp.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent arg0) {
 				talking = "second";
 				
@@ -332,6 +332,7 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 				}			
 			}	
 		});
+		*/
 
 	}
 
@@ -361,6 +362,7 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 		
 		model.anmelden(this);
 		controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
+		aktualisieren(model);
 		model.abmelden(this);
 		
 	}
