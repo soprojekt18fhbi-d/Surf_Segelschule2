@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -15,6 +16,7 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.GroupLayout.Alignment;
@@ -189,13 +191,31 @@ public class TypAuswahl extends JPanel implements IObjektView{
 		});
 		
 		btnAuswhlen.addActionListener(new ActionListener() {
+			
+			
+			
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.getModellAuswahl().setKunde(kunde);
-				MainFrame.getModellAuswahl().setTypNr(Integer.parseInt(txtTypID.getText()));
-				MainFrame.getModellAuswahl().setkNr(knr);
-				System.out.println(MainFrame.getModellAuswahl().getTypNr());
 				
-				MainFrame.change(MainFrame.getTypAuswahl(), MainFrame.getModellAuswahl());
+				
+				try {
+					if(txtTypID.getText().equals(""))
+						JOptionPane.showMessageDialog(null, "Keinen Typ gewählt!");
+					else
+					{
+						MainFrame.getModellAuswahl().setKunde(kunde);
+						MainFrame.getModellAuswahl().setTypNr(Integer.parseInt(txtTypID.getText()));
+						MainFrame.getModellAuswahl().setkNr(knr);
+						System.out.println(MainFrame.getModellAuswahl().getTypNr());
+						MainFrame.change(MainFrame.getTypAuswahl(), MainFrame.getModellAuswahl());
+					}
+					
+				} catch (HeadlessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		

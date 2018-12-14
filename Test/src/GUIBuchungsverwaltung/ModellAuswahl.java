@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -17,6 +18,7 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.GroupLayout.Alignment;
@@ -188,12 +190,25 @@ public class ModellAuswahl extends JPanel implements IObjektView {
 		btnAuswhlen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-					
-				MainFrame.getBuchungGerätAuswahl().setKunde(kunde);
-				MainFrame.getBuchungGerätAuswahl().setModellNr(Integer.parseInt(txtModellnummer.getText()));
-				MainFrame.getBuchungGerätAuswahl().setkNr(kNr);
-				MainFrame.change(MainFrame.getModellAuswahl(), MainFrame.getBuchungGerätAuswahl());
-				System.out.println("Kunde: " + kunde.toString() + "Modellnummer: " + MainFrame.getBuchungGerätAuswahl().getModellNr() + "Kundennummer: " + kNr);
+				
+				try {
+					if(txtModellnummer.getText().equals(""))
+						JOptionPane.showMessageDialog(null, "Bitte Modell auswählen!");
+					else 
+					{
+						MainFrame.getBuchungGerätAuswahl().setKunde(kunde);
+						MainFrame.getBuchungGerätAuswahl().setModellNr(Integer.parseInt(txtModellnummer.getText()));
+						MainFrame.getBuchungGerätAuswahl().setkNr(kNr);
+						MainFrame.change(MainFrame.getModellAuswahl(), MainFrame.getBuchungGerätAuswahl());
+						System.out.println("Kunde: " + kunde.toString() + "Modellnummer: " + MainFrame.getBuchungGerätAuswahl().getModellNr() + "Kundennummer: " + kNr);
+					}
+				} catch (HeadlessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		

@@ -59,7 +59,6 @@ public class BuchungGeraetAnzeigeModel implements IObjektModel { //@author Ben K
 				Statement stmt = null;
 				String query = "select ID,MAKEL,VERKAUFSPREIS, FARBE from SPORTGERAET where MODELLID = '" + modellNr + "' AND STATUS = 'OK'";
 				String update = null;
-				String update2 = null;
 				
 				String pattern = "yyyy-MM-dd' 'HH:mm:ss";
 				String date = new SimpleDateFormat(pattern).format(new Date());
@@ -70,41 +69,28 @@ public class BuchungGeraetAnzeigeModel implements IObjektModel { //@author Ben K
 				if(talking.equals("Verleih"))
 				{
 					
-					update = "INSERT INTO BUCHUNG VALUES(default, '" + date + "', null, '" + kNr + "', null, 'Verleih')";
+					update = "INSERT INTO BUCHUNG VALUES(default, '" + date + "', null, '" + kNr + "', null, 'Verleih', " + geraetNrloc +")";
 					int ergebnis = stmt.executeUpdate(update);
-					query = "SELECT ID FROM BUCHUNG WHERE AUSLEIHDATUM = '" + date + "'";
+					update = "UPDATE SPORTGERAET SET STATUS = 'Verliehen' WHERE ID = " + geraetNrloc;
+					stmt.executeUpdate(update);
 					
 					
 				}
 				if(talking.equals("Verkauf"))
 				{
-					update = "INSERT INTO BUCHUNG VALUES(default, null, null, '" + kNr + "', '" + date + "', 'Verkauf')";
+					update = "INSERT INTO BUCHUNG VALUES(default, null, null, '" + kNr + "', '" + date + "', 'Verkauf', " + geraetNrloc + ")";
 					int ergebnis = stmt.executeUpdate(update);
-					query = "SELECT ID FROM BUCHUNG WHERE VERKAUFSDATUM = '" + date + "'";
+					update = "UPDATE SPORTGERAET SET STATUS = 'Verkauft' WHERE ID = " + geraetNrloc;
+					System.out.println(query);
+					stmt.executeUpdate(update);
 					
 				}
 				
-				
-				//Sportgeraet Buchung hat ein SPortgeraet / Ein Sportgeraet hat mehrere Buchung
-				
-				ResultSet rs = stmt.executeQuery(query);
-				while(rs.next())
-				{
-					buchungID = Integer.parseInt(rs.getString("ID"));
-					System.out.println(buchungID);
-				}
-				
-				update2 = "INSERT INTO BUCHUNG_SPORTGERAET VALUES(" + buchungID + ", " + geraetNrloc + ")";
-				
-				if(talking.equals("Verleih"))
-					stmt.executeUpdate(update2);
-				if(talking.equals("Verkauf"))
-					 stmt.executeUpdate(update2);
-				
+				query = "select ID,MAKEL,VERKAUFSPREIS, FARBE from SPORTGERAET where MODELLID = '" + modellNr + "' AND STATUS = 'OK'";
 				
 				System.out.println(query);
 					
-				rs = stmt.executeQuery(query);
+				ResultSet rs = stmt.executeQuery(query);
 				table = DbUtils.resultSetToTableModel(rs);
 
 			} catch (SQLException e ) {
