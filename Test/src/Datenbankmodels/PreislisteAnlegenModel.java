@@ -86,6 +86,12 @@ public class PreislisteAnlegenModel implements IAnlegenModel{
         
 	}
 
+	@Override
+	public ArrayList<String> getObertypen() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }

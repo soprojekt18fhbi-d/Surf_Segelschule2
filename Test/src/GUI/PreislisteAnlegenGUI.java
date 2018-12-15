@@ -27,7 +27,7 @@ import Datenbankmodels.IAnlegenModel;
 import Datenbankmodels.PreislisteAnlegenModel;
 import Steuerung.PreislisteAnlegenStrg;
 
-public class PreislisteAnlegenGUI extends JPanel{
+public class PreislisteAnlegenGUI extends JPanel  implements IAnlegenView{
 
 	private JTextField txtPreisliste;
 	private JTextField txtID;
