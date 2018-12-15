@@ -109,6 +109,11 @@ public class MainFrame extends JFrame {
 	private static KundenverwaltungGUI kundenverwaltung = new KundenverwaltungGUI(); 
 	private static KundeAendern kundeAendern = new KundeAendern(ksucheModel, ksucheController);
 	
+	
+	//Preislistenverwaltung
+	private static PreislisteGUI preislisteGUI = new PreislisteGUI(); 
+	private static PreislisteAnlegenGUI preislisteAnlegenGUI = new PreislisteAnlegenGUI();
+	
 	// Rechnungsverwaltung
 	private static RechungsverwaltungGUI rechnungsVerwaltung = new RechungsverwaltungGUI(); 
 	private static RechnungGUI rechnungDetail = new RechnungGUI();
@@ -172,6 +177,8 @@ public class MainFrame extends JFrame {
 		contentPane.add(abgeschlosseneBuchungen);
 		contentPane.add(aktiveAusleihen);
 		contentPane.add(reklamation);
+		contentPane.add(preislisteGUI);	
+		contentPane.add(preislisteAnlegenGUI);	
 		contentPane.add(statusSetzen);
 		contentPane.add(kundenverwaltung);
 		contentPane.add(kundeAendern);
@@ -335,6 +342,13 @@ public class MainFrame extends JFrame {
 	
 	public static JPanel getVerkaufFormular(){ 		
 		return verkaufFormular;
+	}
+	
+	public static JPanel getPreislisteGUI(){ 		
+		return preislisteGUI;
+	}
+	public static JPanel getPreislisteAnlegenGUI(){ 		
+		return preislisteAnlegenGUI;
 	}
 
 	public static JPanel getKundenverwaltung() {

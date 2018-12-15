@@ -79,10 +79,6 @@ setLayout(new BorderLayout(0, 0));
 		panel_1.add(btnGeraete, gbc_btnAbgeschlosseneBuchungen);
 		
 		JButton btnPreisliste = new JButton("Preisliste verwalten");
-		btnPreisliste.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnPreisliste.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_btnPreisliste = new GridBagConstraints();
 		gbc_btnPreisliste.fill = GridBagConstraints.BOTH;
@@ -118,6 +114,12 @@ setLayout(new BorderLayout(0, 0));
 		btnGeraete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteVerwaltung(), MainFrame.getSportgeraete());
+			}
+		});
+		
+		btnPreisliste.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MainFrame.change(MainFrame.getGeraeteVerwaltung(), MainFrame.getPreislisteGUI());
 			}
 		});
 

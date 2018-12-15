@@ -19,7 +19,7 @@ public class Preisliste {
 	private double sechsSiebenTage;
 	private double achtTage;
 	private double neunTage;
-	private double nehnTage;
+	private double zehnTage;
 	private double elfTage;
 	private double zwoelfVierzehnTage;
 	private double fuenfzehnTage;
@@ -36,7 +36,7 @@ public class Preisliste {
 	
 	public Preisliste(int preislisteID, double eineStd, double zweiStd, double vierStd, double einenTag,
 			double zweiTage, double dreiTage, double vierTage, double fuenfTage, double sechsSiebenTage,
-			double achtTage, double neunTage, double nehnTage, double elfTage, double zwoelfVierzehnTage,
+			double achtTage, double neunTage, double zehnTage, double elfTage, double zwoelfVierzehnTage,
 			double fuenfzehnTage, double sechzehnTage, double siebzehnTage, double achtzehnEinundzwanzigTage,
 			double tagVierWochen, double vierWochen, double achtWochen, double kauf) {
 		super();
@@ -52,7 +52,7 @@ public class Preisliste {
 		this.sechsSiebenTage = sechsSiebenTage;
 		this.achtTage = achtTage;
 		this.neunTage = neunTage;
-		this.nehnTage = nehnTage;
+		this.zehnTage = zehnTage;
 		this.elfTage = elfTage;
 		this.zwoelfVierzehnTage = zwoelfVierzehnTage;
 		this.fuenfzehnTage = fuenfzehnTage;
@@ -60,9 +60,9 @@ public class Preisliste {
 		this.siebzehnTage = siebzehnTage;
 		this.achtzehnEinundzwanzigTage = achtzehnEinundzwanzigTage;
 		this.tagVierWochen = tagVierWochen;
-		VierWochen = vierWochen;
+		this.VierWochen = vierWochen;
 		this.achtWochen = achtWochen;
-		Kauf = kauf;
+		this.Kauf = kauf;
 	}
 
 	
@@ -164,11 +164,11 @@ public class Preisliste {
 	}
 
 	public double getNehnTage() {
-		return nehnTage;
+		return zehnTage;
 	}
 
 	public void setNehnTage(double nehnTage) {
-		this.nehnTage = nehnTage;
+		this.zehnTage = nehnTage;
 	}
 
 	public double getElfTage() {
