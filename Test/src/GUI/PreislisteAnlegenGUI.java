@@ -178,28 +178,28 @@ public class PreislisteAnlegenGUI extends JPanel  implements IAnlegenView{
 				int id;
 				
 				
-				String eineStdStr;
-				String zweiStdStr;
-				String vierStdStr;
-				String einenTagStr;
-				String zweiTageStr;
-				String dreiTageStr;
-				String vierTageStr;
-				String fuenfTageStr;
-				String sechsSiebenTageStr;
-				String achtTageStr;
-				String neunTageStr;
-				String zehnTageStr;
-				String elfTageStr;
-				String zwoelfVierzehnTageStr;
-				String fuenfzehnTageStr;
-				String sechzehnTageStr;
-				String siebzehnTageStr;
-				String achtzehnEinundzwanzigTageStr;
-				String tagVierWochenStr;
-				String vierWochenStr;
-				String achtWochenStr;
-				String kaufStr;
+				String eineStd;
+				String zweiStd;
+				String vierStd;
+				String einenTag;
+				String zweiTage;
+				String dreiTage;
+				String vierTage;
+				String fuenfTage;
+				String sechsSiebenTage;
+				String achtTage;
+				String neunTage;
+				String zehnTage;
+				String elfTage;
+				String zwoelfVierzehnTage;
+				String fuenfzehnTage;
+				String sechzehnTage;
+				String siebzehnTage;
+				String achtzehnEinundzwanzigTage;
+				String tagVierWochen;
+				String vierWochen;
+				String achtWochen;
+				String kauf;
 				
 				
 				String name;
