@@ -36,6 +36,7 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class KundeRegistrierenGUI extends JFrame implements IView {
 
@@ -66,8 +67,8 @@ public class KundeRegistrierenGUI extends JFrame implements IView {
 		model = smodel;
 		model.anmelden(this);
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 50, 800, 700);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 50, 615, 618);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(15, 50, 15, 15));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -114,9 +115,10 @@ public class KundeRegistrierenGUI extends JFrame implements IView {
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);
+		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnLeeren = new JButton("  Leeren  ");
-		panel_1.add(btnLeeren);
+		panel_1.add(btnLeeren, BorderLayout.WEST);
 		btnLeeren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				textField.setText("");
@@ -391,7 +393,7 @@ public class KundeRegistrierenGUI extends JFrame implements IView {
 		panel_2.add(chckbxMotorbootschein, gbc_chckbxMotorbootschein);
 		
 		JButton btnHinzufuegen = new JButton("Hinzuf\u00FCgen");
-		panel_1.add(btnHinzufuegen);
+		panel_1.add(btnHinzufuegen, BorderLayout.EAST);
 		btnHinzufuegen.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent arg0) {
 				
