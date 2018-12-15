@@ -379,6 +379,7 @@ public class MainFrame extends JFrame {
 	public static JPanel getWirtschaftlichkeitGesamt() {
 		return wirtschaftlichkeitGesamt;
 	}
+
 		
 }
 	
