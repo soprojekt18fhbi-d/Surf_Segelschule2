@@ -91,7 +91,7 @@ public class BuchungGeraetAnzeigeModel implements IObjektModel { //@author Ben K
 				System.out.println(query);
 					
 				ResultSet rs = stmt.executeQuery(query);
-				table = DbUtils.resultSetToTableModel(rs);	//abgefragets ResultSet wird umgewandelt in ein TableModel und hier in der Variable table gespeichert
+				table = DbUtils.resultSetToTableModel(rs);	//abgefragets ResultSet wird umgewandelt in ein TableModel und hier in der Variable table gespeichert  
 
 			} catch (SQLException e ) {
 				e.printStackTrace();
