@@ -1,3 +1,7 @@
+/**
+ * @author Ben S
+ */
+
 package Steuerung;
 
 import java.util.ArrayList;

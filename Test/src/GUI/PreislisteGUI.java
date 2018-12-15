@@ -159,7 +159,7 @@ public class PreislisteGUI extends JPanel {
 	
 	btnPreislisteHinzu.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getTyphinzufuegen());
+			MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getPreislisteAnlegenGUI());
 		}
 	});
 	
