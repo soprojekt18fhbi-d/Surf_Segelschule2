@@ -121,6 +121,7 @@ public class BuchungGerätAuswahl extends JPanel implements IObjektView{
 					{
 						anfrage();
 						JOptionPane.showMessageDialog(null, "Die Buchung wurde aufgenommen!");
+						geraetNr = 0;
 					}
 					else if(result != 0)
 						JOptionPane.showMessageDialog(null, "Der Vorgang wurde abgebrochen!");

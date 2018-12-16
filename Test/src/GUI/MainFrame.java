@@ -88,7 +88,6 @@ public class MainFrame extends JFrame {
 	private static SportgeraeteVerwaltung sportgeraete = new SportgeraeteVerwaltung();
 	private static Typaendern typaendern = new Typaendern();
 	private static Typhinzufuegen typhinzufuegen = new Typhinzufuegen();
-	private static JPanel StandortPanel = new StandortPanel();
 	private static Geraetaendern geraetaendern = new Geraetaendern();
 	
 	
@@ -123,21 +122,7 @@ public class MainFrame extends JFrame {
 	private static WirtschaftlichkeitEinzelnGUI wirtschaftlichkeitEinzeln = new WirtschaftlichkeitEinzelnGUI();
 	private static WirtschaftlichkeitGesamtGUI wirtschaftlichkeitGesamt = new WirtschaftlichkeitGesamtGUI();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainFrame frame = new MainFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
@@ -153,8 +138,7 @@ public class MainFrame extends JFrame {
 
 		
 		
-		contentPane.add(StandortPanel, "name_285477213159744");
-		StandortPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+
 		
 		contentPane.add(hauptmenue);
 		contentPane.add(geraeteVerwaltung);
@@ -188,60 +172,14 @@ public class MainFrame extends JFrame {
 		contentPane.add(wirtschaftlichkeitEinzeln);
 		contentPane.add(wirtschaftlichkeitsverwaltung);
 
-		
-		JLabel label = new JLabel("Bitte Standort w\u00E4hlen:");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Tahoma", Font.BOLD, 48));
-		
-		JButton button = new JButton("\u00DCberspringen");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				StandortPanel.setVisible(false);
-				hauptmenue.setVisible(true);
-				
-			}
-		});
-		button.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		
-		JButton button_1 = new JButton("Weiter");
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		
-		JComboBox comboBox = new JComboBox();
+		this.hauptmenue.setVisible(true);
+
+
+
+	
 		
 		
-		GroupLayout gl_StandortPanel = new GroupLayout(StandortPanel);
-		gl_StandortPanel.setHorizontalGroup(
-			gl_StandortPanel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 984, Short.MAX_VALUE)
-				.addGroup(gl_StandortPanel.createSequentialGroup()
-					.addGroup(gl_StandortPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(label, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 964, Short.MAX_VALUE)
-						.addGroup(gl_StandortPanel.createSequentialGroup()
-							.addGap(210)
-							.addGroup(gl_StandortPanel.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(gl_StandortPanel.createSequentialGroup()
-									.addComponent(button, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE))
-								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap())
-		);
-		gl_StandortPanel.setVerticalGroup(
-			gl_StandortPanel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 561, Short.MAX_VALUE)
-				.addGroup(gl_StandortPanel.createSequentialGroup()
-					.addGap(77)
-					.addComponent(label)
-					.addGap(18)
-					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-					.addGap(58)
-					.addGroup(gl_StandortPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(button, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-						.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(221, Short.MAX_VALUE))
-		);
-		StandortPanel.setLayout(gl_StandortPanel);
+
 	}
 	
 	public static void change(JPanel a, JPanel b) { //Ben K.
@@ -278,10 +216,6 @@ public class MainFrame extends JFrame {
 	
 	public static JPanel getSportgeraete(){ 		
 		return sportgeraete;
-	}
-	
-	public static JPanel getStandortPanel(){		
-		return StandortPanel;
 	}
 	
 	public static JPanel getTypaendern(){	
