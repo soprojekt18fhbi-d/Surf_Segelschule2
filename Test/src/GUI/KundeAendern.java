@@ -54,7 +54,7 @@ public class KundeAendern extends JPanel implements IObjektView{
 	private JTextField txtVorname;
 	
 	
-	private IModelSuche model;
+	private IObjektModel model;
 	private KundeSucheStrg controller;
 	private JList list = new JList();
 	private JTextField txtEmail;
@@ -70,7 +70,7 @@ public class KundeAendern extends JPanel implements IObjektView{
 	/**
 	 * Create the panel.
 	 */
-	public KundeAendern(IModelSuche smodel, KundeSucheStrg scontroller) {
+	public KundeAendern(IObjektModel smodel, KundeSucheStrg scontroller) {
 		this.model = smodel;
 		this.controller = scontroller;
 		
