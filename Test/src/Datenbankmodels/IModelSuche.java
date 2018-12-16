@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import javax.swing.DefaultListModel;
 
+import GUI.IObjektView;
 import GUI.IView;
 
 public interface IModelSuche extends IModel {
@@ -17,8 +18,12 @@ public interface IModelSuche extends IModel {
 	DefaultListModel holeModel();
 
 	void anmelden(IView view);
+	
+	void anmelden(IObjektView view);
 
 	void abmelden(IView view);
+	
+	void abmelden(IObjektView view);
 
 	void updateObserver();
 

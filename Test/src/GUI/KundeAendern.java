@@ -28,7 +28,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import Datenbankmodels.IModel;
 import Datenbankmodels.IModelSuche;
 import Datenbankmodels.IObjektModel;
-import Datenbankmodels.KundeSucheModel;
 import Steuerung.KundeSucheStrg;
 import TESTPACKAGE.TestController;
 import TESTPACKAGE.TestanbindungMVCBEISPIEL;
@@ -55,7 +54,7 @@ public class KundeAendern extends JPanel implements IObjektView{
 	private JTextField txtVorname;
 	
 	
-	private KundeSucheModel model;
+	private IModelSuche model;
 	private KundeSucheStrg controller;
 	private JList list = new JList();
 	private JTextField txtEmail;
@@ -71,7 +70,7 @@ public class KundeAendern extends JPanel implements IObjektView{
 	/**
 	 * Create the panel.
 	 */
-	public KundeAendern(KundeSucheModel smodel, KundeSucheStrg scontroller) {
+	public KundeAendern(IModelSuche smodel, KundeSucheStrg scontroller) {
 		this.model = smodel;
 		this.controller = scontroller;
 		
