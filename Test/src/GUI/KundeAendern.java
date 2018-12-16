@@ -74,6 +74,7 @@ public class KundeAendern extends JPanel implements IObjektView{
 		this.model = smodel;
 		this.controller = scontroller;
 		
+		setSize(980,580);
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.NORTH);
@@ -126,7 +127,7 @@ public class KundeAendern extends JPanel implements IObjektView{
 				
 			}
 		});
-		txtKnr.setBounds(124, 13, 425, 20);
+		txtKnr.setBounds(226, 13, 425, 20);
 		txtKnr.setPreferredSize(new Dimension(6, 25));
 		txtKnr.setColumns(10);
 		
@@ -146,7 +147,7 @@ public class KundeAendern extends JPanel implements IObjektView{
 				
 			}
 		});
-		txtNachname.setBounds(124, 45, 425, 20);
+		txtNachname.setBounds(226, 44, 425, 20);
 		txtNachname.setPreferredSize(new Dimension(6, 25));
 		txtNachname.setColumns(10);
 		
@@ -165,7 +166,7 @@ public class KundeAendern extends JPanel implements IObjektView{
 				}
 			}
 		});
-		txtVorname.setBounds(124, 77, 425, 20);
+		txtVorname.setBounds(226, 77, 425, 20);
 		txtVorname.setPreferredSize(new Dimension(30, 25));
 		txtVorname.setColumns(10);
 		
@@ -184,7 +185,7 @@ public class KundeAendern extends JPanel implements IObjektView{
 				}
 			}
 		});
-		txtEmail.setBounds(124, 109, 425, 20);
+		txtEmail.setBounds(226, 108, 425, 20);
 		txtEmail.setColumns(10);
 		
 		JComboBox adresseArtBox = new JComboBox();
@@ -196,7 +197,7 @@ public class KundeAendern extends JPanel implements IObjektView{
 					heimat = "Urlaubsadresse";
 			}
 		});
-		adresseArtBox.setBounds(405, 147, 246, 25);
+		adresseArtBox.setBounds(434, 147, 217, 25);
 		adresseArtBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		adresseArtBox.setMaximumSize(new Dimension(100, 35));
 		adresseArtBox.setPreferredSize(new Dimension(80, 35));
@@ -204,16 +205,16 @@ public class KundeAendern extends JPanel implements IObjektView{
 		adresseArtBox.addItem("Urlaubsadresse");
 		
 		JButton btnLeeren = new JButton("Leeren");
-		btnLeeren.setBounds(335, 192, 153, 35);
+		btnLeeren.setBounds(494, 192, 232, 35);
 		btnLeeren.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JButton btnSuchen = new JButton("Suchen");
-		btnSuchen.setBounds(172, 192, 153, 35);
+		btnSuchen.setBounds(252, 192, 232, 35);
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSuchen.setPreferredSize(new Dimension(120, 35));
 		
 		JButton btnndern = new JButton("Speichern");
-		btnndern.setBounds(498, 192, 160, 35);
+		btnndern.setBounds(736, 192, 232, 35);
 		btnndern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -247,6 +248,7 @@ public class KundeAendern extends JPanel implements IObjektView{
 		btnndern.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JCheckBox chckbxSurfschein = new JCheckBox("Surfschein");
+		chckbxSurfschein.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chckbxSurfschein.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(chckbxSurfschein.isSelected())
@@ -257,9 +259,10 @@ public class KundeAendern extends JPanel implements IObjektView{
 				}
 			}
 		});
-		chckbxSurfschein.setBounds(77, 150, 93, 23);
+		chckbxSurfschein.setBounds(38, 150, 93, 23);
 		
 		JCheckBox chckbxMotorbootschein = new JCheckBox("Motorbootschein");
+		chckbxMotorbootschein.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chckbxMotorbootschein.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					if(chckbxMotorbootschein.isSelected())
@@ -272,9 +275,10 @@ public class KundeAendern extends JPanel implements IObjektView{
 				
 			});
 		
-		chckbxMotorbootschein.setBounds(172, 150, 121, 23);
+		chckbxMotorbootschein.setBounds(145, 150, 133, 23);
 		
 		JCheckBox chckbxSegelschein = new JCheckBox("Segelschein");
+		chckbxSegelschein.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chckbxSegelschein.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(chckbxSegelschein.isSelected())
@@ -289,7 +293,7 @@ public class KundeAendern extends JPanel implements IObjektView{
 		chckbxSegelschein.setBounds(295, 150, 105, 23);
 		
 		JButton btnDeaktivieren = new JButton("Deaktivieren");
-		btnDeaktivieren.setBounds(10, 192, 153, 35);
+		btnDeaktivieren.setBounds(10, 192, 232, 35);
 		btnDeaktivieren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -335,7 +339,7 @@ public class KundeAendern extends JPanel implements IObjektView{
 		
 		JScrollPane scrollPane = new JScrollPane();
 
-		scrollPane.setBounds(10, 237, 648, 291);
+		scrollPane.setBounds(10, 237, 960, 265);
 		panel2.add(scrollPane);
 		
 		table = new JTable();
@@ -457,7 +461,7 @@ public class KundeAendern extends JPanel implements IObjektView{
 		
 	
 		comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		comboBox_1.setBounds(10, 13, 104, 52);
+		comboBox_1.setBounds(10, 13, 206, 52);
 		panel2.add(comboBox_1);
 		
 		variableKnr = new JTextField();
@@ -477,7 +481,7 @@ public class KundeAendern extends JPanel implements IObjektView{
 		});
 		variableKnr.setHorizontalAlignment(SwingConstants.CENTER);
 		variableKnr.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		variableKnr.setBounds(10, 77, 104, 36);
+		variableKnr.setBounds(10, 77, 206, 36);
 		panel2.add(variableKnr);
 		variableKnr.setColumns(10);
 		

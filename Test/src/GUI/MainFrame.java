@@ -35,6 +35,7 @@ import Steuerung.ModellAnlegenStrg;
 
 import java.awt.CardLayout;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -135,7 +136,7 @@ public class MainFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
-
+		setIconImage(new ImageIcon(getClass().getResource("/GUI/surfen.png")).getImage());
 		
 		
 
