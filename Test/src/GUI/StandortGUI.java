@@ -31,7 +31,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import java.awt.CardLayout;
 
-public class StandortGUI extends JFrame implements IStandortView {
+public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 	private Icon logo;
 	private boolean correctData;
 	private JTextField txtUser;
@@ -151,8 +151,7 @@ public class StandortGUI extends JFrame implements IStandortView {
 		regButtonChange.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				anmeldenPanel.setVisible(false);
-				registrierenPanel.setVisible(true);
+				changePanel2();
 				
 			}
 		});
@@ -288,24 +287,34 @@ public class StandortGUI extends JFrame implements IStandortView {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					talking = "register";
 					
-					int abfrage = JOptionPane.showConfirmDialog(null, "Standort wirklich hinzufügen?");
-					
-					if(abfrage == 0)
+					if(idFeld.getText().equals("") || nameFeld.getText().equals("") || pwFeld.getPassword().equals("") || plzFeld.getText().equals("") || strFeld.getText().equals("") || ortFeld.getText().equals("") || hnrFeld.getText().equals("") || telFeld.getText().equals("") )
+						JOptionPane.showMessageDialog(null, "Bitte alle Felder ausfüllen!");
+					else
 					{
-						String strPassword = new String(pwFeld.getPassword());
+						talking = "register";
 					
-						anmelden();
-						controller.registriere(idFeld.getText(), nameFeld.getText(), telFeld.getText(), talking, strPassword , plzFeld.getText(), strFeld.getText(), ortFeld.getText(), hnrFeld.getText());
-						abmelden();
+						int abfrage = JOptionPane.showConfirmDialog(null, "Standort wirklich hinzufügen?");
+					
+						if(abfrage == 0)
+						{
+							String strPassword = new String(pwFeld.getPassword());
+					
+							anmelden();
+							controller.registriere(idFeld.getText(), nameFeld.getText(), telFeld.getText(), talking, strPassword , plzFeld.getText(), strFeld.getText(), ortFeld.getText(), hnrFeld.getText());
+							abmelden();
+							changePanel();
+						}
 					}
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-			});
+					
+			}
+
+			
+		});
 		regButton.setBackground(new Color(255, 140, 0));
 		regButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
@@ -313,8 +322,7 @@ public class StandortGUI extends JFrame implements IStandortView {
 		abbButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				registrierenPanel.setVisible(false);
-				anmeldenPanel.setVisible(true);
+				changePanel();
 				
 			}
 		});
@@ -441,6 +449,14 @@ public class StandortGUI extends JFrame implements IStandortView {
 			e.printStackTrace();
 		}
 		
+	}
+	private void changePanel() {
+		anmeldenPanel.setVisible(true);
+		registrierenPanel.setVisible(false);
+	}
+	private void changePanel2() {
+		anmeldenPanel.setVisible(false);
+		registrierenPanel.setVisible(true);
 	}
 
 }

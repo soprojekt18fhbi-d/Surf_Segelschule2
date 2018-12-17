@@ -15,7 +15,7 @@ import GUI.IObjektView;
 import GUI.IStandortView;
 import net.proteanit.sql.DbUtils;
 
-public class StandortModel implements IStandortModel {
+public class StandortModel implements IStandortModel { //Ben Kröncke
 
 	private ArrayList<IStandortView> observers = new ArrayList<IStandortView>();
 	
@@ -68,45 +68,11 @@ public class StandortModel implements IStandortModel {
 		    try {
 		    	if(talking.equals("register"))
 		    	{
-		    		update = "INSERT INTO ADRESSE VALUES (default, '" + plz + "', '" + strasse + "', '" + ort + "', 'Standortadresse', '" + hnr + "', null)";
-		    		stmt.executeUpdate(update);
-		    		System.out.println(update);
-		    		query = "SELECT ID FROM ADRESSE WHERE PLZ = '" + plz + "' AND STRASSE = '" + strasse + "' AND hnr = '" + hnr + "' AND ORT = '" + ort + "'";
-		    		System.out.println(query);
-		    		ResultSet rs = stmt.executeQuery(query);
-		    	
-		    		while (rs.next())
-		    			addressID = rs.getInt("ID");
-		    		System.out.println(addressID);
-		    	
-		    	
-		    		update = "INSERT INTO STANDORT VALUES('" + standortID + "', '" + telnr + "', '" + addressID + "', '" + standortName + "', '" + password + "')";
-		    		stmt.executeUpdate(update);
-		    		System.out.println(update);
+		    		registerStandort(stmt);
 		    	}
 		    	else if(talking.equals("login"))
 		    	{
-		    		query = "SELECT ID,NAME,PASSWORD FROM STANDORT WHERE NAME = '" + standortName + "' AND PASSWORD = '" + password + "'";
-		    		
-		    	
-		    		String chckName = null;
-		    		String chckPW = null;
-		    		
-		    		ResultSet rs = stmt.executeQuery(query);
-		    		System.out.println(query);
-		    		while (rs.next())
-		    		{
-		    			chckName = rs.getString("NAME");
-		    			chckPW = rs.getString("PASSWORD");
-		    		}
-		    		
-		    		System.out.println(chckName);
-		    		System.out.println(chckPW);
-		    		
-		    		if(standortName.equals(chckName) && password.equals(chckPW))
-		    			success = true;
-		    		else
-		    			success = false;
+		    		loginStandort(stmt);
 		    	}
 
 		    
@@ -124,6 +90,51 @@ public class StandortModel implements IStandortModel {
 		    }
 
 		}
+
+	private void loginStandort(Statement stmt) throws SQLException {
+		String query;
+		query = "SELECT ID,NAME,PASSWORD FROM STANDORT WHERE NAME = '" + standortName + "' AND PASSWORD = '" + password + "'";
+		
+  	
+		String chckName = null;
+		String chckPW = null;
+		
+		ResultSet rs = stmt.executeQuery(query);
+		System.out.println(query);
+		while (rs.next())
+		{
+			chckName = rs.getString("NAME");
+			chckPW = rs.getString("PASSWORD");
+		}
+		
+		System.out.println(chckName);
+		System.out.println(chckPW);
+		
+		if(standortName.equals(chckName) && password.equals(chckPW))
+			success = true;
+		else
+			success = false;
+	}
+
+	private void registerStandort(Statement stmt) throws SQLException {
+		String update;
+		String query;
+		update = "INSERT INTO ADRESSE VALUES (default, '" + plz + "', '" + strasse + "', '" + ort + "', 'Standortadresse', '" + hnr + "', null)";
+		stmt.executeUpdate(update);
+		System.out.println(update);
+		query = "SELECT ID FROM ADRESSE WHERE PLZ = '" + plz + "' AND STRASSE = '" + strasse + "' AND hnr = '" + hnr + "' AND ORT = '" + ort + "'";
+		System.out.println(query);
+		ResultSet rs = stmt.executeQuery(query);
+  	
+		while (rs.next())
+			addressID = rs.getInt("ID");
+		System.out.println(addressID);
+  	
+  	
+		update = "INSERT INTO STANDORT VALUES('" + standortID + "', '" + telnr + "', '" + addressID + "', '" + standortName + "', '" + password + "')";
+		stmt.executeUpdate(update);
+		System.out.println(update);
+	}
 	
 	
 	
