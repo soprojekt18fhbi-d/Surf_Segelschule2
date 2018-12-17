@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Datenbankmodels.BuchungBuchungAnzeigenModel;
 import Datenbankmodels.BuchungGeraetAnzeigeModel;
 import Datenbankmodels.BuchungKundewaehlenModel;
 import Datenbankmodels.BuchungModellAnzeigeModel;
@@ -16,7 +17,7 @@ import Datenbankmodels.KundeRegistrierenModel;
 import Datenbankmodels.KundeSucheModel;
 import Datenbankmodels.ModellhinzufuegenModel;
 import GUIBuchungsverwaltung.AbgeschlosseneBuchungen;
-import GUIBuchungsverwaltung.AktiveAusleihen;
+import GUIBuchungsverwaltung.AktiveBuchungen;
 import GUIBuchungsverwaltung.BuchungGerätAuswahl;
 import GUIBuchungsverwaltung.Buchungsverwaltung;
 import GUIBuchungsverwaltung.KundeWaehlen;
@@ -26,6 +27,7 @@ import GUIBuchungsverwaltung.StatusSetzen;
 import GUIBuchungsverwaltung.TypAuswahl;
 import GUIBuchungsverwaltung.VerkaufFormular;
 import GUIBuchungsverwaltung.VerleihFormular;
+import Steuerung.BuchungBuchungAnzeigenStrg;
 import Steuerung.BuchungGeraetAuswählenStrg;
 import Steuerung.BuchungKundeWählenStrg;
 import Steuerung.BuchungModellAnzeigeStrg;
@@ -68,7 +70,9 @@ public class MainFrame extends JFrame {
 	private static BuchungGeraetAnzeigeModel buchungganzeige = new BuchungGeraetAnzeigeModel();
 	private static ModellhinzufuegenModel modellHinzufuegen = new ModellhinzufuegenModel();
 	private static GeraetAnlegenModel geraetAnlegen = new GeraetAnlegenModel();
-
+	private static BuchungBuchungAnzeigenModel buchungbanzeigeModel = new BuchungBuchungAnzeigenModel();
+	
+	
 	//Controller erzeugen:
 	private static KundeSucheStrg ksucheController = new KundeSucheStrg(ksucheModel);
 	private static KundeAnlegenSteuerung kanlegenController = new KundeAnlegenSteuerung(kregistrierenModel);
@@ -78,7 +82,7 @@ public class MainFrame extends JFrame {
 	private static BuchungGeraetAuswählenStrg buchungganzeigeController = new BuchungGeraetAuswählenStrg(buchungganzeige);
 	private static ModellAnlegenStrg modellAnlegenStrg = new ModellAnlegenStrg(modellHinzufuegen);
 	private static GeraetAnlegenStrg geraetAnlegenStrg = new GeraetAnlegenStrg(geraetAnlegen);	
-	
+	private static BuchungBuchungAnzeigenStrg buchungbanzeigeController = new BuchungBuchungAnzeigenStrg(buchungbanzeigeModel);
 	
 	
 	
@@ -105,7 +109,7 @@ public class MainFrame extends JFrame {
 	private static VerleihFormular verleihFormular = new VerleihFormular();
 	private static VerkaufFormular verkaufFormular = new VerkaufFormular();
 	private static AbgeschlosseneBuchungen abgeschlosseneBuchungen = new AbgeschlosseneBuchungen();
-	private static AktiveAusleihen aktiveAusleihen = new AktiveAusleihen();
+	private static AktiveBuchungen aktiveBuchungen = new AktiveBuchungen(buchungbanzeigeModel, buchungbanzeigeController);
 	private static Reklamation reklamation = new Reklamation();
 	private static StatusSetzen statusSetzen = new StatusSetzen();
 	
@@ -165,7 +169,7 @@ public class MainFrame extends JFrame {
 		contentPane.add(verleihFormular);
 		contentPane.add(verkaufFormular);
 		contentPane.add(abgeschlosseneBuchungen);
-		contentPane.add(aktiveAusleihen);
+		contentPane.add(aktiveBuchungen);
 		contentPane.add(reklamation);
 		contentPane.add(preislisteGUI);	
 		contentPane.add(preislisteAnlegenGUI);	
@@ -265,8 +269,8 @@ public class MainFrame extends JFrame {
 		return abgeschlosseneBuchungen;
 	}
 	
-	public static JPanel getAktiveAusleihen(){ 		
-		return aktiveAusleihen;
+	public static AktiveBuchungen getAktiveAusleihen(){ 		
+		return aktiveBuchungen;
 	}
 	
 	public static JPanel getReklamation(){ 		
