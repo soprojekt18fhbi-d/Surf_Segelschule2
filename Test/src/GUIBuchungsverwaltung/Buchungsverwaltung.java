@@ -94,7 +94,7 @@ public class Buchungsverwaltung extends JPanel {
 		
 		btnAktiveAusleihen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getBuchungsverwaltung(), MainFrame.getAktiveAusleihen());
+				MainFrame.change(MainFrame.getBuchungsverwaltung(), MainFrame.getAktiveBuchung());
 			}
 		});
 
