@@ -12,6 +12,7 @@ import Datenbankmodels.BuchungKundewaehlenModel;
 import Datenbankmodels.BuchungModellAnzeigeModel;
 import Datenbankmodels.BuchungTypAnzeigeModel;
 import Datenbankmodels.GeraetAnlegenModel;
+import Datenbankmodels.KundeRegistrierenModel;
 import Datenbankmodels.KundeSucheModel;
 import Datenbankmodels.ModellhinzufuegenModel;
 import GUIBuchungsverwaltung.AbgeschlosseneBuchungen;
@@ -30,6 +31,7 @@ import Steuerung.BuchungKundeWählenStrg;
 import Steuerung.BuchungModellAnzeigeStrg;
 import Steuerung.BuchungTypAnzeigeStrg;
 import Steuerung.GeraetAnlegenStrg;
+import Steuerung.KundeAnlegenSteuerung;
 import Steuerung.KundeSucheStrg;
 import Steuerung.ModellAnlegenStrg;
 
@@ -59,6 +61,7 @@ public class MainFrame extends JFrame {
 	
 	//Models erzeugen:
 	private static KundeSucheModel ksucheModel = new KundeSucheModel();
+	private static KundeRegistrierenModel kregistrierenModel = new KundeRegistrierenModel();
 	private static BuchungKundewaehlenModel buchungkwaehlen = new BuchungKundewaehlenModel();
 	private static BuchungTypAnzeigeModel buchungtanzeige = new BuchungTypAnzeigeModel();
 	private static BuchungModellAnzeigeModel buchungmanzeige = new BuchungModellAnzeigeModel();
@@ -68,6 +71,7 @@ public class MainFrame extends JFrame {
 
 	//Controller erzeugen:
 	private static KundeSucheStrg ksucheController = new KundeSucheStrg(ksucheModel);
+	private static KundeAnlegenSteuerung kanlegenController = new KundeAnlegenSteuerung(kregistrierenModel);
 	private static BuchungKundeWählenStrg buchungkwaehlenController = new BuchungKundeWählenStrg(buchungkwaehlen);
 	private static BuchungTypAnzeigeStrg buchungtanzeigeController = new BuchungTypAnzeigeStrg(buchungtanzeige);
 	private static BuchungModellAnzeigeStrg buchungmanzeigeController = new BuchungModellAnzeigeStrg(buchungmanzeige);
@@ -107,6 +111,7 @@ public class MainFrame extends JFrame {
 	
 	// Kundenverwaltung
 	private static KundenverwaltungGUI kundenverwaltung = new KundenverwaltungGUI(); 
+	private static KundeRegistrierenGUI kundeRegistrieren = new KundeRegistrierenGUI(kregistrierenModel, kanlegenController);
 	private static KundeAendern kundeAendern = new KundeAendern(ksucheModel, ksucheController);
 	
 	
@@ -166,6 +171,7 @@ public class MainFrame extends JFrame {
 		contentPane.add(preislisteAnlegenGUI);	
 		contentPane.add(statusSetzen);
 		contentPane.add(kundenverwaltung);
+		contentPane.add(kundeRegistrieren);
 		contentPane.add(kundeAendern);
 		contentPane.add(rechnungsVerwaltung);
 		contentPane.add(rechnungDetail);
@@ -288,6 +294,10 @@ public class MainFrame extends JFrame {
 
 	public static JPanel getKundenverwaltung() {
 		return kundenverwaltung;
+	}
+	
+	public static JPanel getKundeRegistrieren() {
+		return kundeRegistrieren;
 	}
 	
 	public static KundeAendern getKundeAendern() {

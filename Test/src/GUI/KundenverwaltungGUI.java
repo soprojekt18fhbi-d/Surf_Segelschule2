@@ -10,10 +10,10 @@ import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,42 +21,83 @@ import javax.swing.border.EmptyBorder;
 
 import Datenbankmodels.KundeRegistrierenModel;
 import Steuerung.KundeAnlegenSteuerung;
-import TESTPACKAGE.TestController;
-import TESTPACKAGE.TestanbindungMVCBEISPIEL;
-import TESTPACKAGE.TestframeMVCBeispiel;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class KundenverwaltungGUI extends JPanel {
 
 	
 
 	public KundenverwaltungGUI() {
-	
-		JButton btnZurueck = new JButton("Zurück");
-		btnZurueck.addActionListener(new ActionListener() {
+		
+		setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		add(panel, BorderLayout.NORTH);
+		
+		JButton btnZurck = new JButton("Zur\u00FCck");
+		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(300, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		panel.setLayout(gl_panel);
+		
+		JPanel panel_1 = new JPanel();
+		add(panel_1, BorderLayout.CENTER);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[]{0, 0};
+		gbl_panel_1.rowHeights = new int[]{0, 0, 0};
+		gbl_panel_1.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		panel_1.setLayout(gbl_panel_1);
+		
+		JButton btnKundeRegistrieren = new JButton("Kunde registrieren");
+		btnKundeRegistrieren.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_btnKundeHinzufgen = new GridBagConstraints();
+		gbc_btnKundeHinzufgen.insets = new Insets(0, 0, 5, 0);
+		gbc_btnKundeHinzufgen.fill = GridBagConstraints.BOTH;
+		gbc_btnKundeHinzufgen.gridx = 0;
+		gbc_btnKundeHinzufgen.gridy = 0;
+		panel_1.add(btnKundeRegistrieren, gbc_btnKundeHinzufgen);
+		
+		JButton btnKundeAendern = new JButton("Kunde \u00E4ndern");
+		btnKundeAendern.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_btnKundendern = new GridBagConstraints();
+		gbc_btnKundendern.fill = GridBagConstraints.BOTH;
+		gbc_btnKundendern.gridx = 0;
+		gbc_btnKundendern.gridy = 1;
+		panel_1.add(btnKundeAendern, gbc_btnKundendern);
+		
+		
+		//Funktionen der Button
+		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getKundenverwaltung(), MainFrame.getHauptmenue());
 			}
 		});
 		
-		
-		JButton btnKundeRegistrieren = new JButton("Kunde registrieren");
 		btnKundeRegistrieren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							KundeRegistrierenModel model = new KundeRegistrierenModel();
-							KundeAnlegenSteuerung controller = new KundeAnlegenSteuerung(model);
-							KundeRegistrierenGUI kundeRegistrieren = new KundeRegistrierenGUI(model, controller);
-							kundeRegistrieren.setVisible(true);
+							MainFrame.change(MainFrame.getKundenverwaltung(), MainFrame.getKundeRegistrieren());
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -65,40 +106,10 @@ public class KundenverwaltungGUI extends JPanel {
 			}
 		});
 		
-		
-		
-		JButton btnKundeAendern = new JButton("Kunde ändern");
 		btnKundeAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getKundenverwaltung(), MainFrame.getKundeAendern());
 			}
 		});
-		
-		GroupLayout gl_contentPane = new GroupLayout(this);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(119)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnKundeRegistrieren, GroupLayout.PREFERRED_SIZE, 665, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnKundeAendern, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addContainerGap(190, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(20)
-					.addComponent(btnZurueck, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(841, Short.MAX_VALUE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnZurueck, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addGap(60)
-					.addComponent(btnKundeRegistrieren, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
-					.addGap(50)
-					.addComponent(btnKundeAendern, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(70, Short.MAX_VALUE))
-		);
-		setLayout(gl_contentPane);
 	}
 }
