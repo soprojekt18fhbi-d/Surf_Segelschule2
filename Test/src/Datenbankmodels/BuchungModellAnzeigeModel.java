@@ -92,6 +92,8 @@ public class BuchungModellAnzeigeModel implements IObjektModel{
 		   
 	    if(talking.equals("master"))
 	    	query = "select * from MODELL where TYPID = '" + typNr + "'";
+	    if(talking.equals("gesamt"))
+	    	query = "select * from MODELL";
 		if(talking.equals("search"))
 		    query = "select * from Modell where TYPID = '" + typNr + "' AND NAME LIKE '" + search + "%'";
 		try {

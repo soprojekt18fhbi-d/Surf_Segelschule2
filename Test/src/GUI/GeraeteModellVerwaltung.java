@@ -3,6 +3,10 @@ package GUI;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import Datenbankmodels.IObjektModel;
+import Steuerung.BuchungModellAnzeigeStrg;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
@@ -17,15 +21,23 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class GeraeteModellVerwaltung extends JPanel {
+public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
+	private BuchungModellAnzeigeStrg controller;
+	private IObjektModel model;
 	private JTextField textField;
 	private JTable table;
 	private int counter = 1;
+	private int typNr;
+	private String talking = "gesamt";
+	private String search;
+	
 
 	/**
 	 * Create the panel.
 	 */
-	public GeraeteModellVerwaltung() {
+	public GeraeteModellVerwaltung(IObjektModel smodel, BuchungModellAnzeigeStrg scontroller) {
+		model = smodel;
+		controller = scontroller;
 		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
@@ -190,15 +202,32 @@ public class GeraeteModellVerwaltung extends JPanel {
 		btnTypen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getGeraeteTypVerwaltung());
+				MainFrame.getGeraeteTypVerwaltung().anfrage();
 			}
 		});
 				
 		btnGeraete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getSportgeraete());
+				MainFrame.getSportgeraete().anfrage();
 			}
 		});
 		
 	}
+	
+	public void aktualisieren(IObjektModel model) {
+		
+		table.setModel(model.getTableModel());
+		
+	}
+	
+	public void anfrage() {
+		model.anmelden(MainFrame.getModellAuswahl());
+		controller.fetchModelle(talking, typNr, search);
+		aktualisieren(model);
+		model.abmelden(MainFrame.getModellAuswahl());
+	}
+
+
 }
 

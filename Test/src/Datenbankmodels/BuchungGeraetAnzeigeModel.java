@@ -90,7 +90,8 @@ public class BuchungGeraetAnzeigeModel implements IObjektModel { //@author Ben K
 	private void erzeugeGeraetTabelle(Statement stmt) throws SQLException {
 		String query;
 		query = "select ID,MAKEL,VERKAUFSPREIS, FARBE from SPORTGERAET where MODELLID = '" + modellNr + "' AND STATUS = 'OK'";
-		
+		if (talking.equals("gesamt"))
+			query = "select * from SPORTGERAET";
 		System.out.println(query);
 			
 		ResultSet rs = stmt.executeQuery(query);

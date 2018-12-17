@@ -205,6 +205,7 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 					aktualisieren(model);
 					JOptionPane.showMessageDialog(null, "Das Modell wurde erfolgreich angelegt!");
 					MainFrame.change(MainFrame.getModellhinzufuegen(), MainFrame.getGeraeteModellVerwaltung());
+					MainFrame.getGeraeteModellVerwaltung().anfrage();
 					
 					txtModell.setText("");
 					comboBoxTyp.setSelectedIndex(0);

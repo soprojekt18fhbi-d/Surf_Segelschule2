@@ -109,12 +109,14 @@ setLayout(new BorderLayout(0, 0));
 		btnModelle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteVerwaltung(), MainFrame.getGeraeteModellVerwaltung());
+				MainFrame.getGeraeteModellVerwaltung().anfrage();
 			}
 		});
 		
 		btnGeraete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteVerwaltung(), MainFrame.getSportgeraete());
+				MainFrame.getSportgeraete().anfrage();
 			}
 		});
 		

@@ -295,7 +295,8 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 					aktualisieren(model);
 					
 					JOptionPane.showMessageDialog(null, "Das Gerät wurde erfolgreich angelegt!");
-					MainFrame.change(MainFrame.getGeraethinzufuegen(), MainFrame.getGeraeteVerwaltung());
+					MainFrame.change(MainFrame.getGeraethinzufuegen(), MainFrame.getSportgeraete());
+					MainFrame.getSportgeraete().anfrage();
 					
 					textFarbe.setText("");
 					textMakel.setText("");

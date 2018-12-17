@@ -3,6 +3,10 @@ package GUI;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import Datenbankmodels.IObjektModel;
+import Steuerung.BuchungGeraetAuswählenStrg;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
@@ -22,15 +26,23 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class SportgeraeteVerwaltung extends JPanel {
+public class SportgeraeteVerwaltung extends JPanel implements IObjektView{
+	private BuchungGeraetAuswählenStrg controller;
+	private IObjektModel model;
 	private JTextField textField;
 	private JTable table;
 	private int counter = 1;
+	private String talking = "gesamt";
+	private int kNr;
+	private int geraetNr;
+	private int modellNr;
 
 	/**
 	 * Create the panel.
 	 */
-	public SportgeraeteVerwaltung() {
+	public SportgeraeteVerwaltung(IObjektModel models, BuchungGeraetAuswählenStrg controllers) {
+		model = models;
+		controller = controllers;
 		
 		
 		setLayout(new BorderLayout(0, 0));
@@ -192,8 +204,20 @@ public class SportgeraeteVerwaltung extends JPanel {
 		btnModelle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getSportgeraete(), MainFrame.getGeraeteModellVerwaltung());
+				MainFrame.getGeraeteModellVerwaltung().anfrage();
 			}
 		});
 		
 	}
+	public void aktualisieren(IObjektModel model) {
+		table.setModel(model.getTableModel());	
+	}
+	
+	public void anfrage() {
+		model.anmelden(MainFrame.getBuchungGerätAuswahl());
+		controller.fetchGeraete(talking, modellNr, kNr, geraetNr);
+		aktualisieren(model);
+		model.abmelden(MainFrame.getBuchungGerätAuswahl());
+	}
 }
+

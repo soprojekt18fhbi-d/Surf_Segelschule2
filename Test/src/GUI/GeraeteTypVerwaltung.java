@@ -175,6 +175,7 @@ public class GeraeteTypVerwaltung extends JPanel implements IObjektView {
 		btnModelle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteModellVerwaltung());
+				MainFrame.getGeraeteModellVerwaltung().anfrage();
 			}
 		});
 		

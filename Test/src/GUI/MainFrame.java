@@ -85,12 +85,12 @@ public class MainFrame extends JFrame {
 	
 	//Geräteverwaltung
 	private static GeraeteVerwaltung geraeteVerwaltung = new GeraeteVerwaltung();
-	private static GeraeteModellVerwaltung geraeteModellVerwaltung = new GeraeteModellVerwaltung();
+	private static GeraeteModellVerwaltung geraeteModellVerwaltung = new GeraeteModellVerwaltung(buchungmanzeige, buchungmanzeigeController);
 	private static GeraeteTypVerwaltung geraeteTypVerwaltung = new GeraeteTypVerwaltung(buchungtanzeige, buchungtanzeigeController);
 	private static Geraethinzufuegen geraethinzufuegen = new Geraethinzufuegen(geraetAnlegen, geraetAnlegenStrg);
 	private static Modellaendern modellaendern = new Modellaendern();
 	private static Modellhinzufuegen modellhinzufuegen = new Modellhinzufuegen(modellHinzufuegen, modellAnlegenStrg);
-	private static SportgeraeteVerwaltung sportgeraete = new SportgeraeteVerwaltung();
+	private static SportgeraeteVerwaltung sportgeraete = new SportgeraeteVerwaltung(buchungganzeige, buchungganzeigeController);
 	private static Typaendern typaendern = new Typaendern();
 	private static Typhinzufuegen typhinzufuegen = new Typhinzufuegen();
 	private static Geraetaendern geraetaendern = new Geraetaendern();
@@ -221,7 +221,7 @@ public class MainFrame extends JFrame {
 		return modellhinzufuegen;
 	}
 	
-	public static JPanel getSportgeraete(){ 		
+	public static SportgeraeteVerwaltung getSportgeraete(){ 		
 		return sportgeraete;
 	}
 	
@@ -233,7 +233,7 @@ public class MainFrame extends JFrame {
 		return typhinzufuegen;
 	}
 	
-	public static JPanel getGeraeteModellVerwaltung(){ 		
+	public static GeraeteModellVerwaltung getGeraeteModellVerwaltung(){ 		
 		return geraeteModellVerwaltung;
 	}
 	
