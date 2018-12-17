@@ -16,9 +16,9 @@ public class PreislisteSucheStrg {
 		
 	}
 	
-	public void fetchPreisliste() {
+	public void fetchObjekte(String preislisteId) {
 		
-		model.holePreisliste();
+		model.holeDaten(preislisteId);
 		
 		
 	}
