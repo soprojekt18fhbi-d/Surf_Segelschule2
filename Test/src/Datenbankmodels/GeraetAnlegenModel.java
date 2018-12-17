@@ -50,6 +50,7 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 		
 		    Statement stmt = con.createStatement();
 		    Statement stmt2 = con.createStatement();
+		    Statement stmt3 = con.createStatement();
 		    String query = null;
 		    String query2 = null;
 		
@@ -132,14 +133,14 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 					
 					while (rs.next()){	
 						int typID =  Integer.parseInt(rs.getString("ID"));
-						ResultSet rs2 = stmt.executeQuery(query2);
+						ResultSet rs2 = stmt2.executeQuery(query2);
 						
 						while(rs2.next()){
 							int modellID = Integer.parseInt(rs2.getString("ID"));
 						
 							String sqlupdate = "INSERT INTO SPORTGERAET VALUES (default,'" + makel + "','" +verkaufspreis+ "','" +typID+"','" +modellID+ "','" +status+"','" +standortID+ "','" +farbe+"','" +baujahr+ "','" +anschaffungspreis+"')";
 							System.out.println(sqlupdate);
-							stmt.executeUpdate(sqlupdate);
+							int ergebnis = stmt3.executeUpdate(sqlupdate);
 							}
 						}
 					} catch (SQLException e1) {
@@ -148,11 +149,12 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 						 if (stmt2 != null) { stmt2.close(); }
 						 if (stmt != null) { stmt.close(); }
 					}
+				updateObserver();
 			}	
 		    
 		    
 		    
-		    
+		    /*
 		    try {
 		    	System.out.println(query);
 		        stmt = con.createStatement();
@@ -165,7 +167,7 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 		    } finally {
 		        if (stmt != null) { stmt.close(); }
 		    }
-		    
+		    */
 		    
 		}
 	

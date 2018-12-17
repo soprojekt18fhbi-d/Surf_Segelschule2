@@ -297,6 +297,13 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 					JOptionPane.showMessageDialog(null, "Das Gerät wurde erfolgreich angelegt!");
 					MainFrame.change(MainFrame.getGeraethinzufuegen(), MainFrame.getGeraeteVerwaltung());
 					
+					textFarbe.setText("");
+					textMakel.setText("");
+					textBaujahr.setText("");
+					txtAPreis.setText("");
+					textVPreis.setText("");
+					comboBoxTyp.setSelectedIndex(0);
+					
 					
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
