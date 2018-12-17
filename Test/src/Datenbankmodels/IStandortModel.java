@@ -1,4 +1,4 @@
-package GUI;
+package Datenbankmodels;
 
 import java.util.ArrayList;
 
