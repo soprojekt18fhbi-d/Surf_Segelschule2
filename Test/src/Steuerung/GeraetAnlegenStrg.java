@@ -24,4 +24,5 @@ public class GeraetAnlegenStrg {
 		model.anfrage(talking, values);
 	}
 	
+	
 }

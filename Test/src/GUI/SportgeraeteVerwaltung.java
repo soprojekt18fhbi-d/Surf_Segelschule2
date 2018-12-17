@@ -172,7 +172,7 @@ public class SportgeraeteVerwaltung extends JPanel {
 				if(counter == 1)
 				{
 					MainFrame.getGeraethinzufuegen().anfrage();
-					counter--;
+					
 				}
 			}
 		});

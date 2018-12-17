@@ -14,6 +14,7 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 	
 	private ArrayList<IAnlegenView> observers = new ArrayList<IAnlegenView>();
 
+	private ArrayList<String> mengeAnModellen = new ArrayList<String>();
 	private ArrayList<String> mengeAnTypen = new ArrayList<String>();
 	private String talking = "first";
 	private String[] geraet;
@@ -75,20 +76,29 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 		    	 updateObserver();
 		    }
 		    
-		   /* if(talking.equals("second"))
-		    {
-		    	query = "Select * from MODELL";
-		    	 try {
-				    	System.out.println(query);
-				        ResultSet rs = stmt.executeQuery(query);
-				        
-				        while (rs.next()){
+		   if(talking.equals("second"))
+		   {
+			   
+			   
+		   try {
+			   String typ = geraet[0];
+			   
+			   query = "Select * from TYP WHERE NAME = '" +typ+ "'";
+			   System.out.println(query);
+			   
+			   ResultSet rs = stmt.executeQuery(query);
+				
+				while (rs.next()){	
+					int typID =  Integer.parseInt(rs.getString("ID"));
+					
+					query2 = "select * from MODELL WHERE TYPID = '" +typID+ "'";
+					ResultSet rs2 = stmt2.executeQuery(query2);
+					while (rs2.next()){
 				        	
-				        	mengeAnTypen.add(rs.getString("NAME"));
-				        	
-				        }
-				        
-				        
+						mengeAnModellen.add(rs2.getString("NAME"));
+					}      	
+				      
+				}      
 				    } catch (SQLException e ) {
 				    	e.printStackTrace();
 				    } finally {
@@ -96,7 +106,8 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 				    }
 		    	 updateObserver();
 		    }
-		   	*/
+		   
+		   	
 
 			if(talking.equals("hinzufuegen"))
 			{
@@ -116,19 +127,19 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 							
 					query = "select * from TYP WHERE NAME = '" +typ+ "'";
 					System.out.println(query);
-					query2 = "select * from MODELL WHERE NAME = '" +modell+ "*";
+					query2 = "select * from MODELL WHERE NAME = '" +modell+ "'";
 					ResultSet rs = stmt.executeQuery(query);
 					
 					while (rs.next()){	
 						int typID =  Integer.parseInt(rs.getString("ID"));
-						ResultSet rs2 = stmt2.executeQuery(query2);
+						ResultSet rs2 = stmt.executeQuery(query2);
 						
 						while(rs2.next()){
 							int modellID = Integer.parseInt(rs2.getString("ID"));
 						
 							String sqlupdate = "INSERT INTO SPORTGERAET VALUES (default,'" + makel + "','" +verkaufspreis+ "','" +typID+"','" +modellID+ "','" +status+"','" +standortID+ "','" +farbe+"','" +baujahr+ "','" +anschaffungspreis+"')";
 							System.out.println(sqlupdate);
-							stmt2.executeUpdate(sqlupdate);
+							stmt.executeUpdate(sqlupdate);
 							}
 						}
 					} catch (SQLException e1) {
@@ -158,6 +169,9 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 		    
 		}
 	
+	public void anfrageTyp(String typ){
+		
+	}
 	
 	@Override
 	public void anmelden(IAnlegenView view) {
@@ -208,8 +222,10 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 	
 	@Override
 	public ArrayList<String> getObertypen() {
-		// TODO Auto-generated method stub
-		return mengeAnTypen;
+		if (talking == "first")
+			return mengeAnTypen;
+		else
+			return mengeAnModellen;
 	}
 	
 	

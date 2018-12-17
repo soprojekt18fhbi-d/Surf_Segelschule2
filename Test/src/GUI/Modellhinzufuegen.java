@@ -25,8 +25,11 @@ import Datenbankmodels.ModellAnlegenModel;
 import Datenbankmodels.TypAnlegenModel;
 import Steuerung.ModellAnlegenStrg;
 import Steuerung.TypAnlegenStrg;
+import javafx.scene.control.ComboBox;
 
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -41,7 +44,10 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 	private JComboBox comboBoxPreis;
 	private String typ;
 	private String name;
-	private int preisKateg;
+	private String preisKateg;
+	private int preisID;
+	
+	
 	/**
 	 * 
 	 * Create the panel.
@@ -86,6 +92,7 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 		comboBoxTyp = new JComboBox<String>();
 		comboBoxTyp.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
+		
 
 				
 		
@@ -127,13 +134,7 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 		
 		comboBoxPreis = new JComboBox();
 		comboBoxPreis.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		comboBoxPreis.addItem("1 (Segelboot)");
-		comboBoxPreis.addItem("2 (Surfboard - A)");
-		comboBoxPreis.addItem("3 (Surfboard - B)");
-		comboBoxPreis.addItem("4 (Surfboard - C)");
-		comboBoxPreis.addItem("5 (Kajakt)");
-		comboBoxPreis.addItem("6 (Jetski)");
-		comboBoxPreis.addItem("7 (Motorboot)");
+
 		
 		GridBagConstraints gbc_comboBoxPreis = new GridBagConstraints();
 		gbc_comboBoxPreis.insets = new Insets(0, 0, 5, 5);
@@ -182,10 +183,25 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 				try {
 					typ = String.valueOf(comboBoxTyp.getSelectedItem());
 					name = txtModell.getText();
-					preisKateg = comboBoxPreis.getSelectedIndex() +1;
+					preisKateg = String.valueOf(comboBoxPreis.getSelectedItem());
+					int preisID;
+					if (preisKateg == "1 (Kayak)")
+						preisID = 1;
+					else if (preisKateg == "2 (Segelboot)")
+						preisID = 2;	
+					else if (preisKateg == "3 (Motorboot)")
+						preisID = 3;
+					else if (preisKateg == "4 (Surfboard - A)")
+						preisID = 4;
+					else if (preisKateg == "5 (Surfboard - B)")
+						preisID = 5;
+					else if (preisKateg == "6 (Surfboard - C)")
+						preisID = 6;
+					else 
+						preisID = 7;
 					
-
-					controller.anfrageModellhinzufuegen(talking, name, typ, preisKateg);
+					
+					controller.anfrageModellhinzufuegen(talking, name, typ, preisID);						
 					aktualisieren(model);
 					JOptionPane.showMessageDialog(null, "Das Modell wurde erfolgreich angelegt!");
 					MainFrame.change(MainFrame.getModellhinzufuegen(), MainFrame.getGeraeteModellVerwaltung());
@@ -209,27 +225,74 @@ public class Modellhinzufuegen extends JPanel implements IAnlegenView{
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getModellhinzufuegen(), MainFrame.getGeraeteModellVerwaltung());			}
 		});
-
+		
+		comboBoxTyp.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent arg0) {
+				String value = String.valueOf(comboBoxTyp.getSelectedItem());
+				comboBoxPreis.removeAllItems();
+				switch(value){
+					case "Kayak": {
+						comboBoxPreis.removeAllItems();
+						comboBoxPreis.addItem("1 (Kayak)");
+						break;
+					}
+					case "Segelboot": {
+						comboBoxPreis.removeAllItems();
+						comboBoxPreis.addItem("2 (Segelboot)");
+						break;
+					}
+					case "Motorboot": {
+						comboBoxPreis.removeAllItems();
+						comboBoxPreis.addItem("3 (Motorboot)");
+						break;
+					}
+					case "Surfboard": {
+						comboBoxPreis.removeAllItems();
+						comboBoxPreis.addItem("4 (Surfboard - A)");
+						comboBoxPreis.addItem("5 (Surfboard - B)");
+						comboBoxPreis.addItem("6 (Surfboard - C)");
+						break;
+					}
+					case "Jetski": {
+						comboBoxPreis.removeAllItems();
+						comboBoxPreis.addItem("7 (Jetski)");
+						break;
+					}
+					default: {
+					    comboBoxPreis.removeAllItems();
+						comboBoxPreis.addItem("1 (Kayak)");
+						comboBoxPreis.addItem("2 (Segelboot)");
+						comboBoxPreis.addItem("3 (Motorboot)");
+						comboBoxPreis.addItem("4 (Surfboard - A)");
+						comboBoxPreis.addItem("5 (Surfboard - B)");
+						comboBoxPreis.addItem("6 (Surfboard - C)");
+						comboBoxPreis.addItem("7 (Jetski)");
+						break;
+					}
+				
+				}
+			}
+			
+		});
+		
 	}
 
 
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
-
+		
 		ArrayList<String> comboboxItems = model.getObertypen();
 		
 		for(int i = 0; i < comboboxItems.size(); i++) {
 			comboBoxTyp.addItem(comboboxItems.get(i));
 		}
-			
-		
-		
+		comboboxItems.clear();
 	}
 	
 	public void anfrage() {
-		
+		comboBoxTyp.removeAllItems();
 		model.anmelden(this);
-		controller.anfrageModellhinzufuegen(talking, name, typ, preisKateg);
+		controller.anfrageModellhinzufuegen(talking, name, typ, preisID);
 		model.abmelden(this);
 		
 	}

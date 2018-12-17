@@ -313,53 +313,50 @@ public class Geraethinzufuegen extends JPanel  implements IAnlegenView{
 				MainFrame.change(MainFrame.getGeraethinzufuegen(), MainFrame.getGeraeteVerwaltung());			}
 		});
 		
-		/*comboBoxTyp.addItemListener(new ItemListener(){
+		comboBoxTyp.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent arg0) {
+				comboBoxModell.removeAllItems();
 				talking = "second";
-				
+							
 				try {
 					typ = String.valueOf(comboBoxTyp.getSelectedItem());
-					
-					
+										
 					controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
 					aktualisieren(model);
-					
-					
-					
+
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}			
 			}	
 		});
-		*/
+		
 
 	}
 
 
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
-
 		ArrayList<String> comboboxItems = model.getObertypen();
-		
-		for(int i = 0; i < comboboxItems.size(); i++) {
-			comboBoxTyp.addItem(comboboxItems.get(i));
-		}
+		if (talking == "first"){
+			for(int i = 0; i < comboboxItems.size(); i++) {
+				comboBoxTyp.addItem(comboboxItems.get(i));
+			}
+			comboboxItems.clear();
+		}	
+		else if(talking == "second"){
+			for(int i = 0; i < comboboxItems.size(); i++) {
+				comboBoxModell.addItem(comboboxItems.get(i));
+			}
+			comboboxItems.clear();
+		}			
+				
 	}
 	
-	/*
-	public void aktualisierenModelle(IAnlegenModel model) {
 
-		ArrayList<String> comboboxItems = model.getModelle();
-		
-		for(int i = 0; i < comboboxItems.size(); i++) {
-			comboBoxModell.addItem(comboboxItems.get(i));
-		}
-	}
-	*/
 	
 	public void anfrage() {
-		
+		comboBoxModell.removeAllItems();
 		model.anmelden(this);
 		controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
 		aktualisieren(model);

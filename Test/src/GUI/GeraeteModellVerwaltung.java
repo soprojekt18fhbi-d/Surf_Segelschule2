@@ -170,7 +170,7 @@ public class GeraeteModellVerwaltung extends JPanel {
 				if(counter == 1)
 				{
 					MainFrame.getModellhinzufuegen().anfrage();
-					counter--;
+					
 				}
 			}
 		});
