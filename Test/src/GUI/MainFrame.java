@@ -269,7 +269,7 @@ public class MainFrame extends JFrame {
 		return abgeschlosseneBuchungen;
 	}
 	
-	public static AktiveBuchungen getAktiveAusleihen(){ 		
+	public static AktiveBuchungen getAktiveBuchung(){ 		
 		return aktiveBuchungen;
 	}
 	
