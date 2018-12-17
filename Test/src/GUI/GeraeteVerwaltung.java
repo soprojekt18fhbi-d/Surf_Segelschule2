@@ -102,6 +102,7 @@ setLayout(new BorderLayout(0, 0));
 		btnTypen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteVerwaltung(), MainFrame.getGeraeteTypVerwaltung());
+				MainFrame.getGeraeteTypVerwaltung().anfrage();
 			}
 		});
 

@@ -175,6 +175,7 @@ public class Typhinzufuegen extends JPanel  implements IAnlegenView{
 					controller.typUebergeben(name, schein);
 					aktualisieren(model);
 					MainFrame.change(MainFrame.getTyphinzufuegen(), MainFrame.getGeraeteTypVerwaltung());
+					MainFrame.getGeraeteTypVerwaltung().anfrage();
 					
 					chckbxSegelschein.setSelected(false);
 					chckbxSurfschein.setSelected(false);

@@ -107,10 +107,14 @@ public class BuchungTypAnzeigeModel implements IObjektModel{
 		    		surf = "";
 		    	query = "select * from typ where Fuehrerschein in('" + motor + "','" + segel + "','" + surf + "','Kein')";
 		    	System.out.println(query);
-		    
-		    	
-		    	
+
 		    }
+		    
+		    else if(talking.equals("gesamt")){
+		    	query = "select * from typ";
+		    }
+		    
+		    
 		    else if(talking.equals("name"))
 		    	query = "select * from TYP where name = '" + name + "' and Fuehrerschein in('" + motor + "','" + segel + "','" + surf + "','Kein')";
 		    System.out.println(query);

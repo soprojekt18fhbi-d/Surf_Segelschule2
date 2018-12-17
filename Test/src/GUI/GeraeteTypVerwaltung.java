@@ -3,6 +3,11 @@ package GUI;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import Datenbankmodels.IObjektModel;
+import Domaenklassen.IKunde;
+import Steuerung.BuchungTypAnzeigeStrg;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
@@ -23,14 +28,22 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 
-public class GeraeteTypVerwaltung extends JPanel {
+public class GeraeteTypVerwaltung extends JPanel implements IObjektView {
+	
+	private BuchungTypAnzeigeStrg controller;
+	private IObjektModel model;
+	private int knr;
+	private String talking = "gesamt";
+	private IKunde kunde;
 	private JTextField textField;
 	private JTable table;
 
 	/**
 	 * Create the panel.
 	 */
-	public GeraeteTypVerwaltung() {
+	public GeraeteTypVerwaltung(IObjektModel smodel, BuchungTypAnzeigeStrg scontroller) {
+		model = smodel;
+		controller = scontroller;
 		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
@@ -119,6 +132,7 @@ public class GeraeteTypVerwaltung extends JPanel {
 		table.setPreferredScrollableViewportSize(new Dimension(450, 600));
 		scrollPane.setViewportView(table);
 		
+		
 		JButton btnModelle = new JButton("Modelle");
 		btnModelle.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnModelle.setMinimumSize(new Dimension(150, 35));
@@ -164,6 +178,18 @@ public class GeraeteTypVerwaltung extends JPanel {
 			}
 		});
 		
+	}
+	
+	public void aktualisieren(IObjektModel model) {
+		table.setModel(model.getTableModel());
+		
+	}
+	
+	public void anfrage() {
+		model.anmelden(MainFrame.getTypAuswahl());
+		controller.fetchTypen(knr, talking, textField.getText(), kunde);
+		aktualisieren(model);
+		model.abmelden(MainFrame.getTypAuswahl());
 	}
 
 }

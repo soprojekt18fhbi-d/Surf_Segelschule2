@@ -86,7 +86,7 @@ public class MainFrame extends JFrame {
 	//Geräteverwaltung
 	private static GeraeteVerwaltung geraeteVerwaltung = new GeraeteVerwaltung();
 	private static GeraeteModellVerwaltung geraeteModellVerwaltung = new GeraeteModellVerwaltung();
-	private static GeraeteTypVerwaltung geraeteTypVerwaltung = new GeraeteTypVerwaltung();
+	private static GeraeteTypVerwaltung geraeteTypVerwaltung = new GeraeteTypVerwaltung(buchungtanzeige, buchungtanzeigeController);
 	private static Geraethinzufuegen geraethinzufuegen = new Geraethinzufuegen(geraetAnlegen, geraetAnlegenStrg);
 	private static Modellaendern modellaendern = new Modellaendern();
 	private static Modellhinzufuegen modellhinzufuegen = new Modellhinzufuegen(modellHinzufuegen, modellAnlegenStrg);
@@ -205,7 +205,7 @@ public class MainFrame extends JFrame {
 		return geraeteVerwaltung;
 	}
 	
-	public static JPanel getGeraeteTypVerwaltung(){
+	public static GeraeteTypVerwaltung getGeraeteTypVerwaltung(){
 		return geraeteTypVerwaltung;
 	}
 	
