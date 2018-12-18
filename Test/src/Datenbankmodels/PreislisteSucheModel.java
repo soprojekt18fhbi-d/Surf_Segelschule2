@@ -60,10 +60,10 @@ public class PreislisteSucheModel implements IObjektModel {
 		}
 	}
 	
-	public void holeDaten(String preislisteId, String talking) {
+	public void holeDaten(String talking, String suchTxt) {
 
 		this.talking=talking;
-		this.preislisteId = preislisteId;
+		this.preislisteId = suchTxt;
 
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");

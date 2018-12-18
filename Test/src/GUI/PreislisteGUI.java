@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
@@ -37,6 +38,7 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 	private IObjektModel model;
 	private int preislisteId;
 	private String talking = "master";
+	private JTextField txtSuchID;
 
 	public PreislisteGUI(IObjektModel model, PreislisteSucheStrg controller) {
 
@@ -65,6 +67,13 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 				anfrage();
 			}
 		});
+		
+		
+		txtSuchID = new JTextField();
+		txtSuchID.setHorizontalAlignment(SwingConstants.CENTER);
+		txtSuchID.setEditable(false);
+		txtSuchID.setFont(new Font("Tahoma", Font.BOLD, 18));
+		txtSuchID.setColumns(10);
 
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
@@ -133,7 +142,7 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 				try {
 
 					int row = table.getSelectedRow();
-					txtTypID.setText(table.getModel().getValueAt(row, 0).toString());
+					txtSuchID.setText(table.getModel().getValueAt(row, 0).toString());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -227,7 +236,7 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 	
 	private void anfrage() {
 		model.anmelden(MainFrame.getTypAuswahl());
-		controller.fetchTypen(preislisteId, talking, tfSuche.getText());
+		controller.fetchObjekte(talking, tfSuche.getText());
 		model.abmelden(MainFrame.getTypAuswahl());
 	}
 
