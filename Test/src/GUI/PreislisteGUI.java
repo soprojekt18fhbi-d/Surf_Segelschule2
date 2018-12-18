@@ -233,7 +233,7 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 		
 	}
 	
-	private void anfrage() {
+	public void anfrage() {
 		model.anmelden(MainFrame.getTypAuswahl());
 		controller.fetchObjekte(talking, tfSuche.getText());
 		model.abmelden(MainFrame.getTypAuswahl());
