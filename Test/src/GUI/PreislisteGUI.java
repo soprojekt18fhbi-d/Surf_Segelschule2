@@ -40,10 +40,9 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 	private String talking = "master";
 	private JTextField txtSuchID;
 
-	public PreislisteGUI(IObjektModel model, PreislisteSucheStrg controller) {
+	public PreislisteGUI() {
 
-		this.model = model;
-		this.controller = controller;
+
 
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
