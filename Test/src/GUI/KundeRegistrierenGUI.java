@@ -416,79 +416,194 @@ public class KundeRegistrierenGUI extends JPanel implements IView{
 				chckbxMotorbootschein.setSelected(false);
 			}
 		});
-
-		
+	
+	
 		btnHinzufgen.addActionListener(new ActionListener() {			
-			public void actionPerformed(ActionEvent arg0) {
-				
-				String email;
-				String nachname;
-				String vorname;
-				Boolean surfschein;
-				Boolean segelschein;
-				Boolean motorbootschein;
-				
-				int plz;
-				String ort;
-				String strasse;
-				String hausnummer;
-				String art;
-				
-				int plz2;
-				String ort2;
-				String strasse2;
-				String hausnummer2;
-				String art2;
-				
-				try {
-					
-					
-					//KundeAnlegenSteuerung.AdresseAnlegen(strasse, hausnummer, ort, plz, "" );
-					
-					/**
-					int plz2 = Integer.parseInt(textField_7.getText());
-					String ort2 = textField_8.getText();
-					String strasse2 = textField_9.getText();
-					String hausnummer2 = textField_10.getText();
-					**/
+		public void actionPerformed(ActionEvent arg0) {
+			try {	
+				if(KundeGefuellt() == true && HeimadresseGefuellt() == true && UrlaubsadresseGefuellt() == true) {
+					KundeErstellen(chckbxSurfschein, chckbxSegelschein, chckbxMotorbootschein);
+					HeimadresseErstellen();
+					UrlaubsadresseErstellen();
+					MainFrame.change(MainFrame.getKundeRegistrieren(), MainFrame.getHauptmenue());	
 
-					email = emailTextField.getText();		
-					nachname = txtNname.getText();
-					vorname = txtVname.getText();
-					surfschein = chckbxSurfschein.isSelected();
-					segelschein = chckbxSegelschein.isSelected();
-					motorbootschein = chckbxMotorbootschein.isSelected();
-					controller.KundeAnlegen(nachname, vorname, email, surfschein, segelschein, motorbootschein);
-					
-					
-					plz = Integer.parseInt(txtPlzH.getText());
-					ort = txtOrtH.getText();
-					strasse = txtStrasseH.getText();
-					hausnummer = txtHnrH.getText();
-					art = "Heimadresse";
-					controller.AdresseAnlegen(strasse, hausnummer, ort, plz, art);
-					
-					plz2 = Integer.parseInt(txtPlzH.getText());
-					ort2 = txtOrtH.getText();
-					strasse2 = txtStrasseH.getText();
-					hausnummer2 = txtHnrH.getText();
-					art2 = "Urlaubsadresse";
-					controller.AdresseAnlegen(strasse2, hausnummer2, ort2, plz2, art2);
-					
-					/**
-					 * Achtung, hier muss noch besseres exeption handling umgesetzt werden, DK
-					 */
-					
-					
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				} 	else if(KundeGefuellt() == true && HeimadresseGefuellt() == true && UrlaubsadresseLeer() == true ) {
+						KundeErstellen(chckbxSurfschein, chckbxSegelschein, chckbxMotorbootschein);
+						HeimadresseErstellen();
+						MainFrame.change(MainFrame.getKundeRegistrieren(), MainFrame.getHauptmenue());	
 						
-				MainFrame.change(MainFrame.getKundeRegistrieren(), MainFrame.getHauptmenue());	
+				} 	else if(KundeGefuellt() == true && UrlaubsadresseGefuellt() == true && HeimadresseLeer() == true ) {
+						KundeErstellen(chckbxSurfschein, chckbxSegelschein, chckbxMotorbootschein);
+						   UrlaubsadresseErstellen();
+						   MainFrame.change(MainFrame.getKundeRegistrieren(), MainFrame.getHauptmenue());	
+				
+				} 	else {
+						JOptionPane.showMessageDialog(null, "Bitte füllen Sie alle Pflichtfelder aus", "Kunde registrieren", JOptionPane.PLAIN_MESSAGE);
 				}
-			});
+				
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, "Bitte geben sie eine Postleitzahl ein", "Postleitzahl", JOptionPane.PLAIN_MESSAGE);
+				e.printStackTrace();
+			}
+			
 		}
+	});
+	}
+
+	
+	private void KundeErstellen(JCheckBox chckbxSurfschein, JCheckBox chckbxSegelschein,
+			JCheckBox chckbxMotorbootschein) {
+		String email = emailTextField.getText();
+		String nachname = txtNname.getText();
+		String vorname = txtVname.getText();
+		Boolean surfschein = chckbxSurfschein.isSelected();
+		Boolean segelschein = chckbxSegelschein.isSelected();
+		Boolean motorbootschein = chckbxMotorbootschein.isSelected();	
+	
+		controller.KundeAnlegen(nachname, vorname, email, surfschein, segelschein, motorbootschein);
+		
+	}
+	
+	private void HeimadresseErstellen() throws NumberFormatException {
+		int plz = Integer.parseInt(txtPlzH.getText());
+		String ort = txtOrtH.getText();
+		String strasse = txtStrasseH.getText();
+		String hausnummer = txtHnrH.getText();
+		String art = "Heimadresse";
+		
+		controller.AdresseAnlegen(strasse, hausnummer, ort, plz, art);
+	}
+
+	private void UrlaubsadresseErstellen() throws NumberFormatException {
+		
+		int plz2 = Integer.parseInt(txtPlzU.getText());
+		String ort2 = txtOrtU.getText();
+		String strasse2 = txtStrasseU.getText();
+		String hausnummer2 = txtHnrU.getText();
+		String art2 = "Urlaubsadresse";
+		
+		controller.AdresseAnlegen(strasse2, hausnummer2, ort2, plz2, art2);
+		
+		
+	}
+
+	private Boolean KundeGefuellt() {
+		if(emailTextField.getText().trim().isEmpty() || txtNname.getText().trim().isEmpty() || txtVname.getText().trim().isEmpty()) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
+	private Boolean HeimadresseGefuellt() {
+		if(txtPlzH.getText().trim().isEmpty() || txtOrtH.getText().trim().isEmpty() || txtStrasseH.getText().trim().isEmpty() || txtHnrH.getText().trim().isEmpty()) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
+	private Boolean HeimadresseLeer() {
+		if(txtPlzH.getText().trim().isEmpty() && txtOrtH.getText().trim().isEmpty() && txtStrasseH.getText().trim().isEmpty() && txtHnrH.getText().trim().isEmpty()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	private Boolean UrlaubsadresseGefuellt() {
+		if(txtPlzU.getText().trim().isEmpty() || txtOrtU.getText().trim().isEmpty() || txtStrasseU.getText().trim().isEmpty() || txtHnrU.getText().trim().isEmpty()) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
+	private Boolean UrlaubsadresseLeer() {
+		if(txtPlzU.getText().trim().isEmpty() && txtOrtU.getText().trim().isEmpty() && txtStrasseU.getText().trim().isEmpty() && txtHnrU.getText().trim().isEmpty()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+		
+//		btnHinzufgen.addActionListener(new ActionListener() {	
+//			
+//			public void actionPerformed(ActionEvent arg0) {
+//				
+//				String email;
+//				String nachname;
+//				String vorname;
+//				Boolean surfschein;
+//				Boolean segelschein;
+//				Boolean motorbootschein;
+//				
+//				int plz;
+//				String ort;
+//				String strasse;
+//				String hausnummer;
+//				String art;
+//				
+//				int plz2;
+//				String ort2;
+//				String strasse2;
+//				String hausnummer2;
+//				String art2;
+//				
+//				try {
+//					
+//					
+//					//KundeAnlegenSteuerung.AdresseAnlegen(strasse, hausnummer, ort, plz, "" );
+//					
+//					/**
+//					int plz2 = Integer.parseInt(textField_7.getText());
+//					String ort2 = textField_8.getText();
+//					String strasse2 = textField_9.getText();
+//					String hausnummer2 = textField_10.getText();
+//					**/
+//
+//					email = emailTextField.getText();		
+//					nachname = txtNname.getText();
+//					vorname = txtVname.getText();
+//					surfschein = chckbxSurfschein.isSelected();
+//					segelschein = chckbxSegelschein.isSelected();
+//					motorbootschein = chckbxMotorbootschein.isSelected();
+//					controller.KundeAnlegen(nachname, vorname, email, surfschein, segelschein, motorbootschein);
+//					
+//					
+//					plz = Integer.parseInt(txtPlzH.getText());
+//					ort = txtOrtH.getText();
+//					strasse = txtStrasseH.getText();
+//					hausnummer = txtHnrH.getText();
+//					art = "Heimadresse";
+//					controller.AdresseAnlegen(strasse, hausnummer, ort, plz, art);
+//					
+//					plz2 = Integer.parseInt(txtPlzH.getText());
+//					ort2 = txtOrtH.getText();
+//					strasse2 = txtStrasseH.getText();
+//					hausnummer2 = txtHnrH.getText();
+//					art2 = "Urlaubsadresse";
+//					controller.AdresseAnlegen(strasse2, hausnummer2, ort2, plz2, art2);
+//					
+//					/**
+//					 * Achtung, hier muss noch besseres exeption handling umgesetzt werden, DK
+//					 */
+//					
+//					
+//				} catch (NumberFormatException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//						
+//				MainFrame.change(MainFrame.getKundeRegistrieren(), MainFrame.getHauptmenue());	
+//				}
+//			});
+		
 
 
 		@Override
