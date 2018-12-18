@@ -15,7 +15,10 @@ import GUI.IView;
 
 public class KundeRegistrierenModel implements IModel{
 
-	
+	private String vorname;
+	private String name;
+	private String email;
+	private int kNr;
 	
 	@Override
 	public void anmelden(IView view) {
@@ -86,9 +89,9 @@ public class KundeRegistrierenModel implements IModel{
 
 			Statement statement = conn.createStatement();
 			
-			String name = kunde.getName();
-			String vorname = kunde.getVorname();
-			String email = kunde.getEmail();
+			name = kunde.getName();
+			vorname = kunde.getVorname();
+			email = kunde.getEmail();
 			boolean surfs = kunde.getSurfschein();
 			boolean segels = kunde.getSegelschein();
 			boolean motorboots = kunde.getMotorbootschein();
@@ -137,7 +140,16 @@ public class KundeRegistrierenModel implements IModel{
 			String strasse = adresse.getStrasse();
 			String art = adresse.getArt();
 			
-			String sqlupdate = "INSERT INTO ADRESSE " + "VALUES (default, " + "'" + plz + "', '" + strasse + "', '" + ort +  "', '" + art + "', '" + hausnummer + "')";
+			String query = "SELECT ID FROM KUNDE WHERE NACHNAME = '" + name + "' AND EMAIL = '" + email + "' AND vorname = '" + vorname + "'";
+			
+			ResultSet rs = statement.executeQuery(query);
+			
+			while (rs.next())
+			{
+			           kNr = rs.getInt("ID");
+			}
+			
+			String sqlupdate = "INSERT INTO ADRESSE " + "VALUES (default, " + "'" + plz + "', '" + strasse + "', '" + ort +  "', '" + art + "', '" + hausnummer + "', " + kNr + ")";
 			
 			int ergebnis = statement.executeUpdate(sqlupdate);
 			
