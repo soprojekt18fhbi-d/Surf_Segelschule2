@@ -41,8 +41,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 
-public class TypAuswahl extends JPanel implements IObjektView{
-	private JTextField txtSearch;
+public class TypAuswahlGUI extends JPanel implements IObjektView{
+	private JTextField tfSuche;
 	
 	private BuchungTypAnzeigeStrg controller;
 	private IObjektModel model;
@@ -55,7 +55,7 @@ public class TypAuswahl extends JPanel implements IObjektView{
 	/**
 	 * Create the panel.
 	 */
-	public TypAuswahl(IObjektModel smodel, BuchungTypAnzeigeStrg scontroller) {
+	public TypAuswahlGUI(IObjektModel smodel, BuchungTypAnzeigeStrg scontroller) {
 		model = smodel;
 		controller = scontroller;
 		
@@ -67,8 +67,8 @@ public class TypAuswahl extends JPanel implements IObjektView{
 		JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		txtSearch = new JTextField();
-		txtSearch.addKeyListener(new KeyAdapter() {
+		tfSuche = new JTextField();
+		tfSuche.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
 				
@@ -76,7 +76,7 @@ public class TypAuswahl extends JPanel implements IObjektView{
 				anfrage();
 			}
 		});
-		txtSearch.setColumns(10);
+		tfSuche.setColumns(10);
 		
 		JButton btnSuchen = new JButton("Suchen");
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -99,7 +99,7 @@ public class TypAuswahl extends JPanel implements IObjektView{
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(txtTypID, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-					.addComponent(txtSearch, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addComponent(tfSuche, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
@@ -113,7 +113,7 @@ public class TypAuswahl extends JPanel implements IObjektView{
 						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 							.addComponent(lblAusgewhlteTypennummer)
 							.addComponent(txtTypID, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-						.addComponent(txtSearch, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+						.addComponent(tfSuche, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
@@ -240,7 +240,7 @@ public class TypAuswahl extends JPanel implements IObjektView{
 	
 	private void anfrage() {
 		model.anmelden(MainFrame.getTypAuswahl());
-		controller.fetchTypen(knr, talking, txtSearch.getText(), kunde);
+		controller.fetchTypen(knr, talking, tfSuche.getText(), kunde);
 		model.abmelden(MainFrame.getTypAuswahl());
 	}
 

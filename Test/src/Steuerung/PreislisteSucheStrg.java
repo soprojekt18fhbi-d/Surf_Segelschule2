@@ -16,9 +16,9 @@ public class PreislisteSucheStrg {
 		
 	}
 	
-	public void fetchObjekte(String preislisteId) {
+	public void fetchObjekte(int preislisteId, String talking, String suchTxt) {
 		
-		model.holeDaten(preislisteId);
+		model.holeDaten(preislisteId, talking, suchTxt);
 		
 		
 	}

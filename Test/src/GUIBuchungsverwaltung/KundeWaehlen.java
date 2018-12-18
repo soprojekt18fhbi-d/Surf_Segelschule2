@@ -147,7 +147,7 @@ public class KundeWaehlen extends JPanel implements IObjektView {
 						JOptionPane.showMessageDialog(null, "Kein Kunde gewählt!");
 					else
 					{
-						TypAuswahl tauswahl = MainFrame.getTypAuswahl();
+						TypAuswahlGUI tauswahl = MainFrame.getTypAuswahl();
 						controller.erstelleKunde(txtKnr.getText());
 						MainFrame.change(MainFrame.getKundeWaehlen(), MainFrame.getTypAuswahl());
 						MainFrame.getTypAuswahl().setKnr(Integer.parseInt(txtKnr.getText()));

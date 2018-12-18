@@ -24,7 +24,7 @@ import GUIBuchungsverwaltung.KundeWaehlen;
 import GUIBuchungsverwaltung.ModellAuswahl;
 import GUIBuchungsverwaltung.Reklamation;
 import GUIBuchungsverwaltung.StatusSetzen;
-import GUIBuchungsverwaltung.TypAuswahl;
+import GUIBuchungsverwaltung.TypAuswahlGUI;
 import GUIBuchungsverwaltung.VerkaufFormular;
 import GUIBuchungsverwaltung.VerleihFormular;
 import Steuerung.BuchungBuchungAnzeigenStrg;
@@ -103,7 +103,7 @@ public class MainFrame extends JFrame {
 	//Buchungsverwaltung
 	private static Buchungsverwaltung buchungsverwaltung = new Buchungsverwaltung();
 	private static KundeWaehlen kundeWaehlen = new KundeWaehlen(buchungkwaehlen, buchungkwaehlenController);
-	private static TypAuswahl typAuswahl = new TypAuswahl(buchungtanzeige, buchungtanzeigeController);
+	private static TypAuswahlGUI typAuswahl = new TypAuswahlGUI(buchungtanzeige, buchungtanzeigeController);
 	private static ModellAuswahl modellAuswahl = new ModellAuswahl(buchungmanzeige, buchungmanzeigeController);
 	private static BuchungGerätAuswahl buchungGerätAuswahl = new BuchungGerätAuswahl(buchungganzeige, buchungganzeigeController);
 	private static VerleihFormular verleihFormular = new VerleihFormular();
@@ -253,7 +253,7 @@ public class MainFrame extends JFrame {
 		return kundeWaehlen;
 	}
 		
-	public static TypAuswahl getTypAuswahl(){ 		
+	public static TypAuswahlGUI getTypAuswahl(){ 		
 		return typAuswahl;
 	}
 	

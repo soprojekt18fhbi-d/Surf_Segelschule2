@@ -8,6 +8,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -25,15 +29,19 @@ import Datenbankmodels.IObjektModel;
 import Datenbankmodels.PreislisteSucheModel;
 import Steuerung.PreislisteSucheStrg;
 
-public class PreislisteGUI extends JPanel implements IObjektView{
+public class PreislisteGUI extends JPanel implements IObjektView {
 	private JTextField tfSuche;
 	private JTable table;
 
-
 	private PreislisteSucheStrg controller;
 	private IObjektModel model;
-	
-	public PreislisteGUI() {
+	private int preislisteId;
+	private String talking = "master";
+
+	public PreislisteGUI(IObjektModel model, PreislisteSucheStrg controller) {
+
+		this.model = model;
+		this.controller = controller;
 
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
@@ -48,6 +56,16 @@ public class PreislisteGUI extends JPanel implements IObjektView{
 		tfSuche = new JTextField();
 		tfSuche.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		tfSuche.setColumns(10);
+
+		tfSuche.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+
+				talking = "name";
+				anfrage();
+			}
+		});
+
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
@@ -57,14 +75,11 @@ public class PreislisteGUI extends JPanel implements IObjektView{
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 35,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(tfSuche, GroupLayout.PREFERRED_SIZE, 35,
-												GroupLayout.PREFERRED_SIZE)))
+				.addGroup(gl_panel.createSequentialGroup().addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+								.addComponent(tfSuche, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
 						.addContainerGap(17, Short.MAX_VALUE)));
 		panel.setLayout(gl_panel);
 
@@ -110,6 +125,22 @@ public class PreislisteGUI extends JPanel implements IObjektView{
 
 		DefaultTableModel tm = new DefaultTableModel();
 		table = new JTable(tm);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				talking = "table";
+				try {
+
+					int row = table.getSelectedRow();
+					txtTypID.setText(table.getModel().getValueAt(row, 0).toString());
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+
+			}
+		});
+
 		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		table.setMinimumSize(new Dimension(0, 500));
 		tm.addColumn("ID");
@@ -150,6 +181,7 @@ public class PreislisteGUI extends JPanel implements IObjektView{
 
 		// Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getGeraeteVerwaltung());
 
@@ -158,14 +190,13 @@ public class PreislisteGUI extends JPanel implements IObjektView{
 
 		btnSuchen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-						anfrage();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
+				
+				talking = "master";
+				anfrage();
+				
 			}
+
+			
 		});
 
 		btnPreislisteHinzu.addActionListener(new ActionListener() {
@@ -174,11 +205,11 @@ public class PreislisteGUI extends JPanel implements IObjektView{
 			}
 		});
 
-		btnPreislisteAendern.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getTypaendern());
-			}
-		});
+//		btnPreislisteAendern.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getTypaendern());
+//			}
+//		});
 
 		btnAuswhlen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -188,17 +219,16 @@ public class PreislisteGUI extends JPanel implements IObjektView{
 
 	}
 
-	private void anfrage() {
-
-		model.anmelden(MainFrame.getPreislisteGUI());
-		controller.fetchObjekte(tfSuche.getText());
-		model.abmelden(MainFrame.getKundeAendern());
-	}
-
 	@Override
 	public void aktualisieren(IObjektModel model) {
-		// TODO Auto-generated method stub
+		table.setModel(model.getTableModel());
 		
+	}
+	
+	private void anfrage() {
+		model.anmelden(MainFrame.getTypAuswahl());
+		controller.fetchTypen(preislisteId, talking, tfSuche.getText());
+		model.abmelden(MainFrame.getTypAuswahl());
 	}
 
 }

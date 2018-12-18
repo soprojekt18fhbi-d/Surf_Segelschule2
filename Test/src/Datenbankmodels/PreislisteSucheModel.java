@@ -1,3 +1,7 @@
+/**
+ * @author Ben S
+ */
+
 package Datenbankmodels;
 
 import java.sql.Connection;
@@ -7,27 +11,58 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.swing.DefaultListModel;
 import javax.swing.table.TableModel;
 
 import Domaenklassen.Preisliste;
 import GUI.IObjektView;
-import GUI.IView;
 
 public class PreislisteSucheModel implements IObjektModel {
 
-	private ArrayList<IView> observers = new ArrayList<IView>();
-
-	private int preislisteNr = 0;
-
+	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
 	private ArrayList<Preisliste> mengeAnPreislisten = new ArrayList<Preisliste>();
-
-	private String knrplzlpreislisteID = "";
-
+	private int preislisteNr = 0;
+	private TableModel tableModel;
+	private String talking = "master";
 	private String preislisteId;
 
-	public void holeDaten(String preislisteId) {
+	@Override
+	public void anmelden(IObjektView view) {
 
+		try {
+			observers.add(view);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void abmelden(IObjektView view) {
+		try {
+			if(observers.contains(view));
+				observers.remove(view);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	@Override
+	public void updateObserver() {
+		try {
+			for (int i = 0; i < observers.size(); ++i) 
+				observers.get(i).aktualisieren(this);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void holeDaten(String preislisteId, String talking) {
+
+		this.talking=talking;
 		this.preislisteId = preislisteId;
 
 		try {
@@ -43,28 +78,36 @@ public class PreislisteSucheModel implements IObjektModel {
 		updateObserver();
 	}
 
-	@Override
-	public void anmelden(IObjektView view) {
-
-		try {
-			observers.add(view);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
+	
 	public void viewTable(Connection con) throws SQLException {
 
-		Statement stmt = con.createStatement();
+		Statement stmt = null;
 		String query = null;
-
 		
-		if (preislisteId == null)
-			query = "SELECT * FROM PREISLISTE WHERE (ID = '" + preislisteId + "');";
-		else
-			query = "SELECT * FROM PREISLISTE;";
+		
+
+		if(talking.equals("master"))
+		{
+			if (preislisteId != null)
+				query = "SELECT * FROM PREISLISTE WHERE (ID = '" + preislisteId + "');";
+			else if (preislisteId == null)
+				query = "SELECT * FROM PREISLISTE;";	
+		}
+		
+		try {
+	        stmt = con.createStatement();
+	        ResultSet rs = stmt.executeQuery(query);
+	        tableModel = DbUtils.resultSetToTableModel(rs);
+	        
+	        
+	        
+
+	    } catch (SQLException e ) {
+	    	e.printStackTrace();
+	    } finally {
+	        if (stmt != null) { stmt.close(); }
+	    }
+
 
 		// String preislisteID= rs.getString("ID");
 		// String eineStd= rs.getString("EineStd");
@@ -88,96 +131,38 @@ public class PreislisteSucheModel implements IObjektModel {
 		// String tagVierWochen= rs.getString("TagVierWochen");
 		// String VierWochen= rs.getString("VierWochen");
 
-		Preisliste preislisteNr = new Preisliste(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-		mengeAnPreislisten.add(preislisteNr);
-
-
-		 try {
-		    	System.out.println(query);
-		        stmt = con.createStatement();
-		        ResultSet rs = stmt.executeQuery(query);
-		        
-		        result = DbUtils.resultSetToTableModel(rs);
-		        
-		    } catch (SQLException e ) {
-		    	e.printStackTrace();
-		    } finally {
-		        if (stmt != null) { stmt.close(); }
-		    }
-		 }
-
-	public void abmelden(IView view) {
-
-		try {
-			if (observers.contains(view))
-				;
-			observers.remove(view);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	public void updateObserver() {
-		/**
-		 * updaten der Views
-		 * 
-		 * @author Benkr
-		 * 
-		 */
-		try {
-			for (int i = 0; i < observers.size(); ++i)
-				observers.get(i).aktualisieren(this);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	public DefaultListModel getPreislisten() {
-
-		DefaultListModel<String> listmodel = new DefaultListModel<String>();
-
-		for (int i = 0; i < mengeAnPreislisten.size(); i++) {
-			listmodel.addElement(mengeAnPreislisten.get(i).getEineStd() + ", " + mengeAnPreislisten.get(i).getZweiStd()
-					+ ", " + mengeAnPreislisten.get(i).getVierStd() + ", " + mengeAnPreislisten.get(i).getEinenTag()
-					+ ", " + mengeAnPreislisten.get(i).getZweiTage() + ", " + mengeAnPreislisten.get(i).getDreiTage()
-					+ ", " + mengeAnPreislisten.get(i).getVierTage() + ", " + mengeAnPreislisten.get(i).getFuenfTage()
-					+ ", " + mengeAnPreislisten.get(i).getSechsSiebenTage() + ", "
-					+ mengeAnPreislisten.get(i).getAchtTage() + ", " + mengeAnPreislisten.get(i).getZehnTage() + ", "
-					+ mengeAnPreislisten.get(i).getElfTage() + ", " + mengeAnPreislisten.get(i).getZwoelfVierzehnTage()
-					+ ", " + mengeAnPreislisten.get(i).getFuenfzehnTage() + ", "
-					+ mengeAnPreislisten.get(i).getSechzehnTage() + ", " + mengeAnPreislisten.get(i).getSiebzehnTage()
-					+ ", " + mengeAnPreislisten.get(i).getAchtzehnEinundzwanzigTage() + ", "
-					+ mengeAnPreislisten.get(i).getTagVierWochen() + ", " + mengeAnPreislisten.get(i).getVierWochen()
-					+ ", " + mengeAnPreislisten.get(i).getAchtWochen() + ", " + mengeAnPreislisten.get(i).getKauf());
-		}
-		return listmodel;
-
 	}
 
 
 
 
 
-	@Override
-	public void abmelden(IObjektView view) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public ArrayList<Object> getObjekte() {
-		// TODO Auto-generated method stub
+
 		return null;
+		
+		 /* 
+		 * Datenbank
+			create table TYP(
+			TYPID int (3) not null AUTO_INCREMENT,
+			NAME varchar (20) not null,
+			FUEHRERSCHEIN varchar (20),
+			constraint pk_typ primary key (TYPID));
+			
+			
+			insert into TYP
+			values (default, 'Surfboard', 'Surfschein'),
+			(default, 'Segelboot', 'Segelschein'),
+			(default, 'Kajak', null),
+			(default, 'Jetski', null),
+			(default, 'Motorboot', 'Bootschein');
+		 */
+
+	}
+	
+	public TableModel getTableModel() {
+		return tableModel;
 	}
 
-	@Override
-	public TableModel getTableModel() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
