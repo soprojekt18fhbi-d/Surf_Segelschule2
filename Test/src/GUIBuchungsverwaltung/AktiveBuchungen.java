@@ -173,6 +173,7 @@ public class AktiveBuchungen extends JPanel implements IObjektView { //Ben Krönc
 					int row = table.getSelectedRow();
 					buchungID = Integer.parseInt(table.getModel().getValueAt(row, 0).toString());
 					kNr = Integer.parseInt(table.getModel().getValueAt(row, 1).toString());
+					geraetNr = Integer.parseInt(table.getModel().getValueAt(row, 2).toString());
 				} catch(Exception e1) {
 					e1.printStackTrace();
 				}
@@ -229,11 +230,12 @@ public class AktiveBuchungen extends JPanel implements IObjektView { //Ben Krönc
 				try {
 					if(buchungID == 0 && kNr == 0)
 						JOptionPane.showMessageDialog(null, "Bitte Buchung zum Verändern auswählen!");
-					else if(buchungID != 0 && kNr == 0)
+					else if(buchungID != 0 && kNr != 0)
 					{
 						System.out.println("" + kNr + " " + talking);
-						anfrage();
-						nachfrage(modusBox);
+						int ergebnis = nachfrage(modusBox);
+						if(ergebnis == 0)
+							anfrage();
 					}
 				} catch (HeadlessException e1) {
 					// TODO Auto-generated catch block
@@ -244,7 +246,7 @@ public class AktiveBuchungen extends JPanel implements IObjektView { //Ben Krönc
 				
 			}
 
-			private void nachfrage(JComboBox modusBox) {
+			private int nachfrage(JComboBox modusBox) {
 				int wert = JOptionPane.showConfirmDialog(null, modusBox.getSelectedItem().toString() + " stornieren?", "Warnung!", JOptionPane.YES_NO_OPTION);
 				if (wert==0){
 					
@@ -253,6 +255,7 @@ public class AktiveBuchungen extends JPanel implements IObjektView { //Ben Krönc
 				else{ 
 					JOptionPane.showMessageDialog(null, modusBox.getSelectedItem().toString() + " wurde nicht storniert", "Warnung!", JOptionPane.PLAIN_MESSAGE);
 				}
+				return wert;
 			}
 		});
 		
@@ -273,6 +276,7 @@ public class AktiveBuchungen extends JPanel implements IObjektView { //Ben Krönc
 	private void zuruecksetzen() {
 		kNr = 0;
 		buchungID = 0;
+		geraetNr = 0;
 		talking = "master";
 		anfrage();
 	}
