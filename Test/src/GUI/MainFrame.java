@@ -16,6 +16,7 @@ import Datenbankmodels.GeraetAnlegenModel;
 import Datenbankmodels.KundeRegistrierenModel;
 import Datenbankmodels.KundeSucheModel;
 import Datenbankmodels.ModellhinzufuegenModel;
+import Datenbankmodels.RechnungAnzeigenModel;
 import GUIBuchungsverwaltung.AbgeschlosseneBuchungen;
 import GUIBuchungsverwaltung.AktiveBuchungen;
 import GUIBuchungsverwaltung.BuchungGerätAuswahl;
@@ -36,6 +37,7 @@ import Steuerung.GeraetAnlegenStrg;
 import Steuerung.KundeAnlegenSteuerung;
 import Steuerung.KundeSucheStrg;
 import Steuerung.ModellAnlegenStrg;
+import Steuerung.RechnungAnzeigeStrg;
 
 import java.awt.CardLayout;
 import javax.swing.GroupLayout;
@@ -71,6 +73,7 @@ public class MainFrame extends JFrame {
 	private static ModellhinzufuegenModel modellHinzufuegen = new ModellhinzufuegenModel();
 	private static GeraetAnlegenModel geraetAnlegen = new GeraetAnlegenModel();
 	private static BuchungBuchungAnzeigenModel buchungbanzeigeModel = new BuchungBuchungAnzeigenModel();
+	private static RechnungAnzeigenModel rechnungAnzeigen = new RechnungAnzeigenModel();
 	
 	
 	//Controller erzeugen:
@@ -83,7 +86,7 @@ public class MainFrame extends JFrame {
 	private static ModellAnlegenStrg modellAnlegenStrg = new ModellAnlegenStrg(modellHinzufuegen);
 	private static GeraetAnlegenStrg geraetAnlegenStrg = new GeraetAnlegenStrg(geraetAnlegen);	
 	private static BuchungBuchungAnzeigenStrg buchungbanzeigeController = new BuchungBuchungAnzeigenStrg(buchungbanzeigeModel);
-	
+	private static RechnungAnzeigeStrg rechnungAnzeigenStrg = new RechnungAnzeigeStrg(rechnungAnzeigen);
 	
 	
 	
@@ -124,7 +127,7 @@ public class MainFrame extends JFrame {
 	private static PreislisteAnlegenGUI preislisteAnlegenGUI = new PreislisteAnlegenGUI();
 	
 	// Rechnungsverwaltung
-	private static RechungsverwaltungGUI rechnungsVerwaltung = new RechungsverwaltungGUI(); 
+	private static RechungsverwaltungGUI rechnungsVerwaltung = new RechungsverwaltungGUI(rechnungAnzeigen, rechnungAnzeigenStrg); 
 	private static RechnungGUI rechnungDetail = new RechnungGUI();
 	
 	// Wirtschaftlichkeitsrechnung
@@ -308,7 +311,7 @@ public class MainFrame extends JFrame {
 		return kundeAendern;
 	}
 	
-	public static JPanel getRechnungsVerwaltung() {
+	public static RechungsverwaltungGUI getRechnungsVerwaltung() {
 		return rechnungsVerwaltung;
 	}
 	

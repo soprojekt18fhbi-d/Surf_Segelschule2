@@ -7,6 +7,9 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
+
+import GUI.MainFrame;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
@@ -15,8 +18,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
-
-import GUI.MainFrame;
 
 import java.awt.Dimension;
 import javax.swing.JTextArea;

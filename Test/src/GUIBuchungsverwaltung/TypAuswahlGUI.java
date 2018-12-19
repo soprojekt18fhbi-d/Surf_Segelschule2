@@ -29,7 +29,6 @@ import Datenbankmodels.BuchungTypAnzeigeModel;
 import Domaenklassen.IKunde;
 import GUI.IObjektView;
 import GUI.MainFrame;
-
 import Steuerung.BuchungTypAnzeigeStrg;
 import Steuerung.BuchungTypAnzeigeStrg;
 

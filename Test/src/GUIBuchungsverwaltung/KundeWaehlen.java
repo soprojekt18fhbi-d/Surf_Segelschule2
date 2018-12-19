@@ -20,8 +20,6 @@ import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import GUI.IObjektView;
-import GUI.MainFrame;
 import Steuerung.BuchungKundeWählenStrg;
 
 import javax.swing.JScrollPane;
@@ -31,6 +29,8 @@ import javax.swing.SwingConstants;
 
 import Datenbankmodels.IObjektModel;
 import Domaenklassen.IKunde;
+import GUI.IObjektView;
+import GUI.MainFrame;
 
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.MouseAdapter;

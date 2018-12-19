@@ -6,10 +6,10 @@ import java.awt.Font;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.GroupLayout.Alignment;
 
 import GUI.MainFrame;
 
-import javax.swing.GroupLayout.Alignment;
 import java.awt.GridBagLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;

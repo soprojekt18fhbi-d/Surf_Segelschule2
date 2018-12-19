@@ -19,16 +19,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import GUI.IObjektView;
-import GUI.MainFrame;
 import Steuerung.BuchungGeraetAuswählenStrg;
 import Steuerung.BuchungModellAnzeigeStrg;
 import Steuerung.BuchungTypAnzeigeStrg;
 
 import javax.swing.GroupLayout.Alignment;
+
 import Datenbankmodels.IModel;
 import Datenbankmodels.IObjektModel;
 import Domaenklassen.IKunde;
+import GUI.IObjektView;
+import GUI.MainFrame;
 import Datenbankmodels.BuchungModellAnzeigeModel;
 import Datenbankmodels.BuchungTypAnzeigeModel;
 import javax.swing.JToggleButton;

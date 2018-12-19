@@ -23,15 +23,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-import GUI.IObjektView;
-import GUI.MainFrame;
-
-
 import javax.swing.GroupLayout.Alignment;
 
 import Datenbankmodels.IModel;
 import Datenbankmodels.IObjektModel;
+import GUI.IObjektView;
+import GUI.MainFrame;
 
 public class RechnungGUI extends JPanel{
 
