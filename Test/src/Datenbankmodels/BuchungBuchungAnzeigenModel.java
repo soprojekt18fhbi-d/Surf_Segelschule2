@@ -15,7 +15,7 @@ import Domaenklassen.IKunde;
 import GUI.IObjektView;
 import net.proteanit.sql.DbUtils;
 
-public class BuchungBuchungAnzeigenModel implements IObjektModel {
+public class BuchungBuchungAnzeigenModel implements IObjektModel { //Ben Kröncke
 
 	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
 	private TableModel table;

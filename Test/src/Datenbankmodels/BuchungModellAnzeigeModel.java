@@ -20,7 +20,7 @@ import net.proteanit.sql.DbUtils;
  * @author michi
  *
  */
-public class BuchungModellAnzeigeModel implements IObjektModel{
+public class BuchungModellAnzeigeModel implements IObjektModel{ //Ben Kröncke
 	
 	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
 	private ArrayList<GeraeteModell> mengeAnModellen = new ArrayList<GeraeteModell>();
