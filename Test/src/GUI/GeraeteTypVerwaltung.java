@@ -19,6 +19,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -35,7 +38,7 @@ public class GeraeteTypVerwaltung extends JPanel implements IObjektView {
 	private int knr;
 	private String talking = "gesamt";
 	private IKunde kunde;
-	private JTextField textField;
+	private JTextField textSuchen;
 	private JTable table;
 
 	/**
@@ -55,16 +58,16 @@ public class GeraeteTypVerwaltung extends JPanel implements IObjektView {
 		JButton btnSuchen = new JButton("Suchen");
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField.setColumns(10);
+		textSuchen = new JTextField();
+		textSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textSuchen.setColumns(10);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
 		);
@@ -75,7 +78,7 @@ public class GeraeteTypVerwaltung extends JPanel implements IObjektView {
 						.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 							.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(17, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
@@ -149,6 +152,7 @@ public class GeraeteTypVerwaltung extends JPanel implements IObjektView {
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteVerwaltung());
+				textSuchen.setText("");
 				
 			}
 		});
@@ -162,13 +166,15 @@ public class GeraeteTypVerwaltung extends JPanel implements IObjektView {
 		
 		btnTypHinzu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTyphinzufuegen());			
+				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTyphinzufuegen());
+				textSuchen.setText("");
 			}
 		});
 		
 		btnTypAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTypaendern());
+				textSuchen.setText("");
 			}
 		});
 		
@@ -176,6 +182,14 @@ public class GeraeteTypVerwaltung extends JPanel implements IObjektView {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteModellVerwaltung());
 				MainFrame.getGeraeteModellVerwaltung().anfrage();
+				textSuchen.setText("");
+			}
+		});
+		
+		textSuchen.addKeyListener(new KeyAdapter(){
+			public void keyPressed(KeyEvent e) {
+				talking = "suchen";
+				anfrage();
 			}
 		});
 		
@@ -188,7 +202,7 @@ public class GeraeteTypVerwaltung extends JPanel implements IObjektView {
 	
 	public void anfrage() {
 		model.anmelden(MainFrame.getTypAuswahl());
-		controller.fetchTypen(knr, talking, textField.getText(), kunde);
+		controller.fetchTypen(knr, talking, textSuchen.getText(), kunde);
 		aktualisieren(model);
 		model.abmelden(MainFrame.getTypAuswahl());
 	}

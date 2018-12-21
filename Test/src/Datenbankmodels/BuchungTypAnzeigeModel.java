@@ -114,6 +114,10 @@ public class BuchungTypAnzeigeModel implements IObjektModel{
 		    	query = "select * from typ";
 		    }
 		    
+		    else if(talking.equals("suchen")){
+		    	query = "select * from typ WHERE NAME LIKE '"+name+"%' OR ID LIKE '"+name+"%' OR FUEHRERSCHEIN LIKE '"+name+"%'";
+		    }
+		    
 		    
 		    else if(talking.equals("name"))
 		    	query = "select * from TYP where name LIKE '%" + name + "%' and Fuehrerschein in('" + motor + "','" + segel + "','" + surf + "','Kein')";

@@ -89,9 +89,14 @@ public class BuchungGeraetAnzeigeModel implements IObjektModel { //@author Ben K
 
 	private void erzeugeGeraetTabelle(Statement stmt) throws SQLException {
 		String query;
-		query = "select ID,MAKEL,VERKAUFSPREIS, FARBE from SPORTGERAET where MODELLID = '" + modellNr + "' AND STATUS = 'OK'";
+		
+		//Die Sucheingabe wurde als "modellNr" übergeben, damit methode nicht mehr verändert werden muss!
+		String textEingabe = String.valueOf(modellNr);
+			query = "select ID,MAKEL,VERKAUFSPREIS, FARBE from SPORTGERAET where MODELLID = '" + modellNr + "' AND STATUS = 'OK'";
 		if (talking.equals("gesamt"))
 			query = "select * from SPORTGERAET";
+		if (talking.equals("suchen"))
+			query = "select * from SPORTGERAET WHERE ID LIKE '"+textEingabe+"%' OR MAKEL LIKE '"+textEingabe+"%' OR TYPID LIKE '"+textEingabe+"%' OR MODELLID LIKE '"+textEingabe+"%' OR STATUS LIKE '"+textEingabe+"%' OR FARBE LIKE '"+textEingabe+"%' OR BAUJAHR LIKE '"+textEingabe+"%' OR ANSCHAFFUNGSPREIS LIKE '"+textEingabe+"%'" ;
 		System.out.println(query);
 			
 		ResultSet rs = stmt.executeQuery(query);

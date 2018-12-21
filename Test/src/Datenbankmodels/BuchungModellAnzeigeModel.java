@@ -96,6 +96,8 @@ public class BuchungModellAnzeigeModel implements IObjektModel{ //Ben Kröncke
 	    	query = "select * from MODELL";
 		if(talking.equals("search"))
 		    query = "select * from Modell where TYPID = '" + typNr + "' AND NAME LIKE '" + search + "%'";
+		if(talking.equals("suchen"))
+			query = "select * from Modell WHERE ID LIKE '"+search+"%' OR NAME LIKE '"+search+"%' OR TYPID LIKE '"+search+"%' OR PREISLISTEID LIKE '"+search+"%'";
 		try {
 			stmt = con.createStatement();
 

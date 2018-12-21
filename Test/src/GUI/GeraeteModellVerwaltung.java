@@ -19,12 +19,14 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
 public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 	private BuchungModellAnzeigeStrg controller;
 	private IObjektModel model;
-	private JTextField textField;
+	private JTextField textSuchen;
 	private JTable table;
 	private int counter = 1;
 	private int typNr;
@@ -49,16 +51,16 @@ public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 		JButton btnSuchen = new JButton("Suchen");
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField.setColumns(10);
+		textSuchen = new JTextField();
+		textSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textSuchen.setColumns(10);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
 		);
@@ -69,7 +71,7 @@ public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 						.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 							.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(17, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
@@ -184,12 +186,14 @@ public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 					MainFrame.getModellhinzufuegen().anfrage();
 					
 				}
+				textSuchen.setText("");
 			}
 		});
 		
 		btnModellAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getModellaendern());
+				textSuchen.setText("");
 			}
 		});
 		
@@ -203,6 +207,7 @@ public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getGeraeteTypVerwaltung());
 				MainFrame.getGeraeteTypVerwaltung().anfrage();
+				textSuchen.setText("");
 			}
 		});
 				
@@ -210,9 +215,17 @@ public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getSportgeraete());
 				MainFrame.getSportgeraete().anfrage();
+				textSuchen.setText("");
 			}
 		});
 		
+		textSuchen.addKeyListener(new KeyAdapter(){
+			public void keyPressed(KeyEvent e) {
+				talking = "suchen";
+				search = textSuchen.getText();
+				anfrage();
+			}
+		});
 	}
 	
 	public void aktualisieren(IObjektModel model) {
