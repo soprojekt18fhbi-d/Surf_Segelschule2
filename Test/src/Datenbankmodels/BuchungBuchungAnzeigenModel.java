@@ -194,8 +194,8 @@ public class BuchungBuchungAnzeigenModel implements IObjektModel { //Ben Kröncke
 		search = search2;
 		mode = mode2;
 		buchungID = buchungID2;
-		if (makel.equals(""))
-			makel = "Keine";
+		if (makel2.equals(""))
+			makel = "Kein";
 		else
 			makel = makel2;
 	}
