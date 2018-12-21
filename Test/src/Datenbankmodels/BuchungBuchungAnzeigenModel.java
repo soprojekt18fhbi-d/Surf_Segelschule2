@@ -25,11 +25,12 @@ public class BuchungBuchungAnzeigenModel implements IObjektModel {
 	private int kNr;
 	private int geraetNrloc;
 	private int buchungID = 0;
+	private String makel = "";
 	
 	
-	public void holeBuchung(String talking2, int buchungID2, int kNr2, int geraetNr, String search2, String mode2) {
+	public void holeBuchung(String talking2, int buchungID2, int kNr2, int geraetNr, String search2, String mode2, String makel2) {
 
-		setVars(talking2, buchungID2, kNr2, geraetNr, search2, mode2);
+		setVars(talking2, buchungID2, kNr2, geraetNr, search2, mode2, makel2);
 		
         try {
 			Connection conn = DriverManager.
@@ -115,7 +116,7 @@ public class BuchungBuchungAnzeigenModel implements IObjektModel {
 		update = "UPDATE BUCHUNG SET RÜCKGABEDATUM = '" + date + "' WHERE ID = " + buchungID;
 		System.out.println(update);
 		stmt.executeUpdate(update);
-		update = "UPDATE SPORTGERAET SET STATUS = 'OK' WHERE ID = " + geraetNrloc;
+		update = "UPDATE SPORTGERAET SET STATUS = 'OK', MAKEL = '" + makel + "' WHERE ID = " + geraetNrloc;
 		System.out.println(update);
 		stmt.executeUpdate(update);
 	}
@@ -168,13 +169,17 @@ public class BuchungBuchungAnzeigenModel implements IObjektModel {
 
 
 
-	private void setVars(String talking2, int buchungID2, int kNr2, int geraetNr, String search2, String mode2) {
+	private void setVars(String talking2, int buchungID2, int kNr2, int geraetNr, String search2, String mode2, String makel2) {
 		talking = talking2;
 		kNr = kNr2;
 		geraetNrloc = geraetNr;
 		search = search2;
 		mode = mode2;
 		buchungID = buchungID2;
+		if (makel.equals(""))
+			makel = "Keine";
+		else
+			makel = makel2;
 	}
 	
 	

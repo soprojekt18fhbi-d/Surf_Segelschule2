@@ -17,9 +17,9 @@ public class BuchungBuchungAnzeigenStrg implements IController {
 	
 
 	
-	public void fetchBuchung(String talking2, int buchungID2, int kNr2, int geraetNr, String search2, String mode2) {
+	public void fetchBuchung(String talking2, int buchungID2, int kNr2, int geraetNr, String search2, String mode2, String makel) {
 		
-		model.holeBuchung(talking2, buchungID2, kNr2, geraetNr, search2, mode2);
+		model.holeBuchung(talking2, buchungID2, kNr2, geraetNr, search2, mode2, makel);
 		
 		
 	}

@@ -42,6 +42,7 @@ public class AktiveBuchungen extends JPanel implements IObjektView { //Ben Krönc
 	private String talking;
 	private String mode = "Verleih";
 	private String search;
+	private String makel = "";
 	private JButton btnRueck;
 	private IObjektModel model;
 	private int kNr;
@@ -207,6 +208,8 @@ public class AktiveBuchungen extends JPanel implements IObjektView { //Ben Krönc
 						JOptionPane.showMessageDialog(null, "Bitte Buchung zum Verändern auswählen!");
 					else if(buchungID != 0 && kNr != 0)
 					{
+						if(mode.equals("Verleih"))
+							makel = JOptionPane.showInputDialog("Gibt es Makel bei der Rückgabe? Bitte eintragen!");
 						System.out.println("" + kNr + " " + talking);
 						anfrage();
 					}
@@ -269,7 +272,7 @@ public class AktiveBuchungen extends JPanel implements IObjektView { //Ben Krönc
 
 	private void anfrage() {
 		model.anmelden(MainFrame.getAktiveBuchung());
-		controller.fetchBuchung(talking, buchungID, kNr, geraetNr, search, mode);
+		controller.fetchBuchung(talking, buchungID, kNr, geraetNr, search, mode, makel);
 		model.abmelden(MainFrame.getAktiveBuchung());
 	}
 	
