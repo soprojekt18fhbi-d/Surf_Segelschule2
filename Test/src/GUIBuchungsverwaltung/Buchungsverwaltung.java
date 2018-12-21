@@ -54,7 +54,7 @@ public class Buchungsverwaltung extends JPanel {
 		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
-		JButton btnAktiveAusleihen = new JButton("Aktive Ausleihen");
+		JButton btnAktiveAusleihen = new JButton("Aktive Buchungen");
 		btnAktiveAusleihen.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_btnAktiveAusleihen = new GridBagConstraints();
 		gbc_btnAktiveAusleihen.fill = GridBagConstraints.BOTH;
