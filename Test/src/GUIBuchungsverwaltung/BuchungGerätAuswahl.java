@@ -116,12 +116,12 @@ public class BuchungGerätAuswahl extends JPanel implements IObjektView{
 					
 					
 					
-					int result = JOptionPane.showConfirmDialog(null, "Verleih wirklich ausführen?");
+					int result = JOptionPane.showConfirmDialog(null, comboVerkauf.getSelectedItem() + " wirklich erfassen?");
 					System.out.println(result);
 					if(result == 0)
 					{
 						anfrage();
-						JOptionPane.showMessageDialog(null, "Die Buchung wurde aufgenommen!");
+						JOptionPane.showMessageDialog(null, "Die Buchung wurde erfasst!");
 						geraetNr = 0;
 					}
 					else if(result != 0)

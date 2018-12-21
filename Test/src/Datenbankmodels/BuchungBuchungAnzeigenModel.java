@@ -92,11 +92,11 @@ public class BuchungBuchungAnzeigenModel implements IObjektModel { //Ben Kröncke
 					}
 					if(talking.equals("rckButton"))
 					{
-						//Hier noch einfügen
+						erstelleRechnungVerkauf(stmt);
 					}
 					if(talking.equals("stornButton"))
 					{
-						//Hier noch einfügen
+						storniereBuchung(stmt);
 					}
 				}
 				
@@ -109,6 +109,24 @@ public class BuchungBuchungAnzeigenModel implements IObjektModel { //Ben Kröncke
 			}
 
 		}
+
+
+	private void erstelleRechnungVerkauf(Statement stmt) throws SQLException {
+		String query;
+		String update;
+		double verkaufspreis = 0;
+		query = "SELECT VERKAUFSPREIS FROM SPORTGERAET WHERE ID = " + geraetNrloc;
+		ResultSet rs = stmt.executeQuery(query);
+		while (rs.next())
+		{
+			verkaufspreis = rs.getDouble("VERKAUFSPREIS");
+		}
+		update = "INSERT INTO RECHNUNG VALUES( default, " + (verkaufspreis/1.19) + ", " + (verkaufspreis/119)*19 + ", " + verkaufspreis + ", " + kNr + ", null, " + buchungID + ")";
+		System.out.println(update);
+		stmt.executeUpdate(update);
+		update = "UPDATE BUCHUNG SET ART = 'Abgewickelter Verkauf' WHERE ID = " + buchungID;
+		stmt.executeUpdate(update);
+	}
 
 
 	private void vollendeAusleihe(Statement stmt, String date) throws SQLException {
@@ -160,7 +178,7 @@ public class BuchungBuchungAnzeigenModel implements IObjektModel { //Ben Kröncke
 
 	private void alleVerleihe(Statement stmt) throws SQLException {
 		String query;
-		query = "SELECT ID,KUNDEID,SPORTGERAETID,AUSLEIHDATUM,RÜCKGABEDATUM FROM BUCHUNG WHERE ART = 'Verleih' ORDER BY AUSLEIHDATUM DESC";
+		query = "SELECT ID,KUNDEID,SPORTGERAETID,AUSLEIHDATUM,RÜCKGABEDATUM FROM BUCHUNG WHERE ART = 'Verleih' AND RÜCKGABEDATUM IS NULL ORDER BY AUSLEIHDATUM DESC";
 		System.out.println(query);
 		ResultSet rs = stmt.executeQuery(query);
 		table = DbUtils.resultSetToTableModel(rs);

@@ -208,6 +208,8 @@ public class AktiveBuchungen extends JPanel implements IObjektView { //Ben Krönc
 						JOptionPane.showMessageDialog(null, "Bitte Buchung zum Verändern auswählen!");
 					else if(buchungID != 0 && kNr != 0)
 					{
+						if(mode.equals("Verkauf"))
+							JOptionPane.showConfirmDialog(null, "Rechnung wirklich erstellen? Sie wird dann nicht mehr als aktive Buchung angezeigt!");
 						if(mode.equals("Verleih"))
 							makel = JOptionPane.showInputDialog("Gibt es Makel bei der Rückgabe? Bitte eintragen!");
 						System.out.println("" + kNr + " " + talking);
