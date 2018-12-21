@@ -61,20 +61,20 @@ public class BuchungKundewaehlenModel implements IObjektModel {
 		    Statement stmt = con.createStatement();
 		    String query = "Select * from kunde";
 		    
-		    if(talking.equals("master"))
+		    if(talking.equals("master") || search.equals(""))
 		    	query = "SELECT * FROM KUNDE;";
 		    else if(talking.equals("Nachname"))
-		    	query = "SELECT * FROM KUNDE WHERE NACHNAME = '" + search + "'";
+		    	query = "SELECT * FROM KUNDE WHERE NACHNAME LIKE '%" + search + "%'";
 		    else if(talking.equals("Vorname"))
-		    	query = "SELECT * FROM KUNDE WHERE VORNAME = '" + search + "'";
+		    	query = "SELECT * FROM KUNDE WHERE VORNAME LIKE '%" + search + "%'";
 		    else if(talking.equals("E-Mail"))
-		    	query = "SELECT * FROM KUNDE WHERE EMAIL = '" + search + "'";
+		    	query = "SELECT * FROM KUNDE WHERE EMAIL LIKE '%" + search + "%'";
 		    else if(talking.equals("PLZ"))
-		    	query = "SELECT KUNDEID, PLZ, ORT, STRASSE, ART FROM ADRESSE WHERE PLZ = '" + search + "'";
+		    	query = "SELECT KUNDEID, PLZ, ORT, STRASSE, ART FROM ADRESSE WHERE PLZ LIKE '%" + search + "%'";
 		    else if(talking.equals("Ort"))
-		    	query = "SELECT KUNDEID, PLZ, ORT, STRASSE, ART FROM ADRESSE WHERE ORT = '" + search + "'";
+		    	query = "SELECT KUNDEID, PLZ, ORT, STRASSE, ART FROM ADRESSE WHERE ORT LIKE '%" + search + "%'";
 		    else if(talking.equals("Strasse"))
-		    	query = "SELECT KUNDEID, PLZ, ORT, STRASSE, ART FROM ADRESSE WHERE STRASSE = '" + search + "'";
+		    	query = "SELECT KUNDEID, PLZ, ORT, STRASSE, ART FROM ADRESSE WHERE STRASSE LIKE '%" + search + "%'";
 		    
 		    System.out.println(query);
 		    

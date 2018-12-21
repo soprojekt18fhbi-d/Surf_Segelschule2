@@ -76,13 +76,15 @@ public class KundeWaehlen extends JPanel implements IObjektView {
 				
 				try {
 					
+					
 					anfrage();
 					
 				
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-			}	
+			}
+	
 		});
 		txtSearchbar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtSearchbar.setHorizontalAlignment(SwingConstants.CENTER);
