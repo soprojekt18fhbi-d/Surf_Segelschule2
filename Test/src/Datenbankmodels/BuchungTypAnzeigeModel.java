@@ -116,7 +116,7 @@ public class BuchungTypAnzeigeModel implements IObjektModel{
 		    
 		    
 		    else if(talking.equals("name"))
-		    	query = "select * from TYP where name = '" + name + "' and Fuehrerschein in('" + motor + "','" + segel + "','" + surf + "','Kein')";
+		    	query = "select * from TYP where name LIKE '%" + name + "%' and Fuehrerschein in('" + motor + "','" + segel + "','" + surf + "','Kein')";
 		    System.out.println(query);
 		    
 		    
@@ -141,23 +141,6 @@ public class BuchungTypAnzeigeModel implements IObjektModel{
 	public ArrayList<Object> getObjekte(){
 	
 		return null;
-				
-	 /* 
-	 * Datenbank
-		create table TYP(
-		TYPID int (3) not null AUTO_INCREMENT,
-		NAME varchar (20) not null,
-		FUEHRERSCHEIN varchar (20),
-		constraint pk_typ primary key (TYPID));
-		
-		
-		insert into TYP
-		values (default, 'Surfboard', 'Surfschein'),
-		(default, 'Segelboot', 'Segelschein'),
-		(default, 'Kajak', null),
-		(default, 'Jetski', null),
-		(default, 'Motorboot', 'Bootschein');
-	 */
 	
 	}
 
