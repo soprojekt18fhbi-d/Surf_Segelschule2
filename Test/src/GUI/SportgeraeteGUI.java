@@ -5,7 +5,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Datenbankmodels.IObjektModel;
-import Steuerung.BuchungModellSucheStrg;
+import Steuerung.BuchungGeraetSucheStrg;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -13,7 +13,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -23,23 +28,24 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
-public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
-	private BuchungModellSucheStrg controller;
+public class SportgeraeteGUI extends JPanel implements IObjektView{
+	private BuchungGeraetSucheStrg controller;
 	private IObjektModel model;
 	private JTextField textSuchen;
 	private JTable table;
 	private int counter = 1;
-	private int typNr;
 	private String talking = "gesamt";
-	private String search;
-	
+	private int kNr;
+	private int geraetNr;
+	private int modellNr;
 
 	/**
 	 * Create the panel.
 	 */
-	public GeraeteModellVerwaltung(IObjektModel smodel, BuchungModellSucheStrg scontroller) {
-		model = smodel;
-		controller = scontroller;
+	public SportgeraeteGUI(IObjektModel models, BuchungGeraetSucheStrg controllers) {
+		model = models;
+		controller = controllers;
+		
 		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
@@ -85,35 +91,35 @@ public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
-		JButton btnModellHinzu = new JButton("Modell hinzuf\u00FCgen");
-		btnModellHinzu.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		btnModellHinzu.setPreferredSize(new Dimension(300, 100));
-		GridBagConstraints gbc_btnModellHinzu = new GridBagConstraints();
-		gbc_btnModellHinzu.insets = new Insets(0, 0, 5, 5);
-		gbc_btnModellHinzu.fill = GridBagConstraints.BOTH;
-		gbc_btnModellHinzu.gridx = 0;
-		gbc_btnModellHinzu.gridy = 0;
-		panel_1.add(btnModellHinzu, gbc_btnModellHinzu);
+		JButton btnGeraetHinzu = new JButton("Ger\u00E4t hinzuf\u00FCgen");
+		btnGeraetHinzu.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnGeraetHinzu.setPreferredSize(new Dimension(300, 100));
+		GridBagConstraints gbc_btnGeraetHinzu = new GridBagConstraints();
+		gbc_btnGeraetHinzu.insets = new Insets(0, 0, 5, 5);
+		gbc_btnGeraetHinzu.fill = GridBagConstraints.BOTH;
+		gbc_btnGeraetHinzu.gridx = 0;
+		gbc_btnGeraetHinzu.gridy = 0;
+		panel_1.add(btnGeraetHinzu, gbc_btnGeraetHinzu);
 				
-		JButton btnModellAendern = new JButton("Modell \u00E4ndern");
-		btnModellAendern.setPreferredSize(new Dimension(300, 23));
-		btnModellAendern.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		GridBagConstraints gbc_btnModellAendern = new GridBagConstraints();
-		gbc_btnModellAendern.fill = GridBagConstraints.BOTH;
-		gbc_btnModellAendern.insets = new Insets(0, 0, 5, 5);
-		gbc_btnModellAendern.gridx = 1;
-		gbc_btnModellAendern.gridy = 0;
-		panel_1.add(btnModellAendern, gbc_btnModellAendern);
+		JButton btnGeraetAendern = new JButton("Ger\u00E4t \u00E4ndern");
+		btnGeraetAendern.setPreferredSize(new Dimension(300, 23));
+		btnGeraetAendern.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_btnGeraetAendern = new GridBagConstraints();
+		gbc_btnGeraetAendern.fill = GridBagConstraints.BOTH;
+		gbc_btnGeraetAendern.insets = new Insets(0, 0, 5, 5);
+		gbc_btnGeraetAendern.gridx = 1;
+		gbc_btnGeraetAendern.gridy = 0;
+		panel_1.add(btnGeraetAendern, gbc_btnGeraetAendern);
 		
-		JButton btnModellDeaktivieren = new JButton("Modell deaktivieren");
-		btnModellDeaktivieren.setPreferredSize(new Dimension(300, 100));
-		btnModellDeaktivieren.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		GridBagConstraints gbc_btnModellDeaktivieren = new GridBagConstraints();
-		gbc_btnModellDeaktivieren.fill = GridBagConstraints.BOTH;
-		gbc_btnModellDeaktivieren.insets = new Insets(0, 0, 5, 0);
-		gbc_btnModellDeaktivieren.gridx = 2;
-		gbc_btnModellDeaktivieren.gridy = 0;
-		panel_1.add(btnModellDeaktivieren, gbc_btnModellDeaktivieren);
+		JButton btnGeraetDeaktivieren = new JButton("Ger\u00E4t deaktivieren");
+		btnGeraetDeaktivieren.setPreferredSize(new Dimension(300, 100));
+		btnGeraetDeaktivieren.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_btnGeraetDeaktivieren = new GridBagConstraints();
+		gbc_btnGeraetDeaktivieren.fill = GridBagConstraints.BOTH;
+		gbc_btnGeraetDeaktivieren.insets = new Insets(0, 0, 5, 0);
+		gbc_btnGeraetDeaktivieren.gridx = 2;
+		gbc_btnGeraetDeaktivieren.gridy = 0;
+		panel_1.add(btnGeraetDeaktivieren, gbc_btnGeraetDeaktivieren);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setPreferredSize(new Dimension(2, 375));
@@ -130,42 +136,39 @@ public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 		table = new JTable(tm);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		table.setMinimumSize(new Dimension(0, 500));
-		tm.addColumn("ModellID");
+		tm.addColumn("GeräteID");
 		tm.addColumn("Name");
-		tm.addColumn("Preiskategorie");
+		tm.addColumn("Verkaufspreis");
+		tm.addColumn("Anschaffungspreis");
+		tm.addColumn("Status");
+		tm.addColumn("Makel");
+		tm.addColumn("Farbe");
+		
 		
 		
 		table.setPreferredScrollableViewportSize(new Dimension(450, 600));
 		scrollPane.setViewportView(table);
 		
-		JButton btnTypen = new JButton("Typen");
-		btnTypen.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnTypen.setMinimumSize(new Dimension(150, 35));
-		btnTypen.setPreferredSize(new Dimension(150, 35));
-		GridBagConstraints gbc_btnTypen = new GridBagConstraints();
-		gbc_btnTypen.fill = GridBagConstraints.VERTICAL;
-		gbc_btnTypen.anchor = GridBagConstraints.WEST;
-		gbc_btnTypen.insets = new Insets(0, 0, 0, 5);
-		gbc_btnTypen.gridx = 0;
-		gbc_btnTypen.gridy = 7;
-		panel_1.add(btnTypen, gbc_btnTypen);
+		JButton btnModelle = new JButton("Modelle");
+		btnModelle.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnModelle.setMinimumSize(new Dimension(150, 35));
+		btnModelle.setPreferredSize(new Dimension(150, 35));
+		GridBagConstraints gbc_btnModelle = new GridBagConstraints();
+		gbc_btnModelle.fill = GridBagConstraints.VERTICAL;
+		gbc_btnModelle.insets = new Insets(0, 0, 0, 5);
+		gbc_btnModelle.anchor = GridBagConstraints.WEST;
+		gbc_btnModelle.gridx = 0;
+		gbc_btnModelle.gridy = 7;
+		panel_1.add(btnModelle, gbc_btnModelle);
 		
-		JButton btnGeraete = new JButton("Ger\u00E4te");
-		btnGeraete.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnGeraete.setMinimumSize(new Dimension(150, 35));
-		btnGeraete.setPreferredSize(new Dimension(150, 35));
-		GridBagConstraints gbc_btnGeraete = new GridBagConstraints();
-		gbc_btnGeraete.anchor = GridBagConstraints.EAST;
-		gbc_btnGeraete.fill = GridBagConstraints.VERTICAL;
-		gbc_btnGeraete.gridx = 2;
-		gbc_btnGeraete.gridy = 7;
-		panel_1.add(btnGeraete, gbc_btnGeraete);
+		
 				
 		
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getGeraeteVerwaltung());
+				MainFrame.change(MainFrame.getSportgeraete(), MainFrame.getGeraeteVerwaltung());
+				textSuchen.setText("");
 				
 			}
 		});
@@ -177,44 +180,36 @@ public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 			}
 		});
 		
-		btnModellHinzu.addActionListener(new ActionListener() {
+		btnGeraetHinzu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getModellhinzufuegen());
+				MainFrame.change(MainFrame.getSportgeraete(), MainFrame.getGeraethinzufuegen());
 				
 				if(counter == 1)
 				{
-					MainFrame.getModellhinzufuegen().anfrage();
+					MainFrame.getGeraethinzufuegen().anfrage();
 					
 				}
 				textSuchen.setText("");
 			}
 		});
 		
-		btnModellAendern.addActionListener(new ActionListener() {
+		btnGeraetAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getModellaendern());
+				MainFrame.change(MainFrame.getSportgeraete(), MainFrame.getGeraetaendern());
 				textSuchen.setText("");
 			}
 		});
 		
-		btnModellDeaktivieren.addActionListener(new ActionListener() {
+		btnGeraetDeaktivieren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 			}
 		});
 		
-		btnTypen.addActionListener(new ActionListener() {
+		btnModelle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getGeraeteTypVerwaltung());
-				MainFrame.getGeraeteTypVerwaltung().anfrage();
-				textSuchen.setText("");
-			}
-		});
-				
-		btnGeraete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getSportgeraete());
-				MainFrame.getSportgeraete().anfrage();
+				MainFrame.change(MainFrame.getSportgeraete(), MainFrame.getGeraeteModellVerwaltung());
+				MainFrame.getGeraeteModellVerwaltung().anfrage();
 				textSuchen.setText("");
 			}
 		});
@@ -222,25 +217,21 @@ public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 		textSuchen.addKeyListener(new KeyAdapter(){
 			public void keyPressed(KeyEvent e) {
 				talking = "suchen";
-				search = textSuchen.getText();
+				modellNr = Integer.parseInt(textSuchen.getText());
 				anfrage();
 			}
 		});
+		
 	}
-	
 	public void aktualisieren(IObjektModel model) {
-		
-		table.setModel(model.getTableModel());
-		
+		table.setModel(model.getTableModel());	
 	}
 	
 	public void anfrage() {
-		model.anmelden(MainFrame.getModellAuswahl());
-		controller.fetchModelle(talking, typNr, search);
+		model.anmelden(MainFrame.getBuchungGerätAuswahl());
+		controller.fetchGeraete(talking, modellNr, kNr, geraetNr);
 		aktualisieren(model);
-		model.abmelden(MainFrame.getModellAuswahl());
+		model.abmelden(MainFrame.getBuchungGerätAuswahl());
 	}
-
-
 }
 

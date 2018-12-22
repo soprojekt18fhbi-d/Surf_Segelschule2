@@ -2,7 +2,7 @@ package Steuerung;
 
 import Datenbankmodels.GeraetAnlegenModel;
 import Domaenklassen.SportGeraet;
-import GUI.Geraethinzufuegen;
+import GUI.GeraetAnlegenGUI;
 import GUI.IAnlegenView;
 
 public class GeraetAnlegenStrg {
@@ -10,7 +10,7 @@ public class GeraetAnlegenStrg {
 	
 	private SportGeraet geraet;
 	private GeraetAnlegenModel model;
-	private Geraethinzufuegen view;
+	private GeraetAnlegenGUI view;
 	
 	public GeraetAnlegenStrg (GeraetAnlegenModel smodel)
 	{

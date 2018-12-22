@@ -11,14 +11,14 @@ import javax.swing.JTextField;
 import Datenbankmodels.IModelSuche;
 import Datenbankmodels.KundeSucheModel;
 import Domaenklassen.Kunde;
-import GUI.KundeAendern;
+import GUI.KundeAendernGUI;
 import TESTPACKAGE.TestanbindungMVCBEISPIEL;
 import TESTPACKAGE.TestframeMVCBeispiel;
 
 public class KundeSucheStrg implements IController {
 
 	private KundeSucheModel model;
-	private KundeAendern view;
+	private KundeAendernGUI view;
 
 	public KundeSucheStrg(KundeSucheModel smodel) {
 		model = smodel;

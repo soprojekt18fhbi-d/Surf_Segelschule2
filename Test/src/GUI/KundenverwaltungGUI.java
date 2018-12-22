@@ -19,8 +19,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Datenbankmodels.KundeRegistrierenModel;
-import Steuerung.KundeAnlegenSteuerung;
+import Datenbankmodels.KundeAnlegenModel;
+import Steuerung.KundeAnlegenStrg;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -108,7 +108,7 @@ public class KundenverwaltungGUI extends JPanel {
 		
 		btnKundeAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getKundenverwaltung(), MainFrame.getKundeAendern());
+				MainFrame.change(MainFrame.getKundenverwaltung(), MainFrame.getKundeAendernGUI());
 			}
 		});
 	}

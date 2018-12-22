@@ -1,20 +1,20 @@
 package Steuerung;
 
 import Datenbankmodels.ModellAnlegenModel;
-import Datenbankmodels.ModellhinzufuegenModel;
+import Datenbankmodels.ModellHinzufuegenModel;
 import Domaenklassen.GeraeteModell;
 import Domaenklassen.GeraeteTyp;
 import GUI.IAnlegenView;
-import GUI.Modellhinzufuegen;
+import GUI.ModellAnlegenGUI;
 
 public class ModellAnlegenStrg {
 
 	
 	private GeraeteModell modell;
-	private ModellhinzufuegenModel model;
-	private Modellhinzufuegen view;
+	private ModellHinzufuegenModel model;
+	private ModellAnlegenGUI view;
 	
-	public ModellAnlegenStrg (ModellhinzufuegenModel smodel)
+	public ModellAnlegenStrg (ModellHinzufuegenModel smodel)
 	{
 		model = smodel;
 		

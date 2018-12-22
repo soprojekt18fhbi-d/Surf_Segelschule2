@@ -1,6 +1,6 @@
 package Steuerung; //author Ben Kröncke
 
-import Datenbankmodels.BuchungTypAnzeigeModel;
+import Datenbankmodels.BuchungTypSucheModel;
 import Datenbankmodels.StandortModel;
 import Domaenklassen.IKunde;
 import GUI.IObjektView;

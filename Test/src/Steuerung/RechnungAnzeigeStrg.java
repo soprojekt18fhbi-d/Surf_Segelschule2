@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
-import Datenbankmodels.BuchungModellAnzeigeModel;
+import Datenbankmodels.BuchungModellSucheModel;
 import Datenbankmodels.RechnungAnzeigenModel;
 import GUI.IObjektView;
 

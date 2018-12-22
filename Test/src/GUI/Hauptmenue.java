@@ -41,7 +41,7 @@ public class Hauptmenue extends JPanel {
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		
-		JButton button_2 = new JButton("Buchungsverwaltung");
+		JButton button_2 = new JButton("BuchungsverwaltungGUI");
 		button_2.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

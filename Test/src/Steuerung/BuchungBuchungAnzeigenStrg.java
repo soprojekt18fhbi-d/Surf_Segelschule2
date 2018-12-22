@@ -1,15 +1,15 @@
 package Steuerung;
 
-import Datenbankmodels.BuchungBuchungAnzeigenModel;
-import Datenbankmodels.BuchungGeraetAnzeigeModel;
+import Datenbankmodels.BuchungAnzeigeModel;
+import Datenbankmodels.BuchungGeraetSucheModel;
 import GUI.IObjektView;
 
 public class BuchungBuchungAnzeigenStrg implements IController {
 	
-	private BuchungBuchungAnzeigenModel model;
+	private BuchungAnzeigeModel model;
 	private IObjektView view;
 	
-	public BuchungBuchungAnzeigenStrg(BuchungBuchungAnzeigenModel smodel)
+	public BuchungBuchungAnzeigenStrg(BuchungAnzeigeModel smodel)
 	{
 		model = smodel;
 		
