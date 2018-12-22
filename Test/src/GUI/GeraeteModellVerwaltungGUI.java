@@ -23,7 +23,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
-public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
+public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 	private BuchungModellSucheStrg controller;
 	private IObjektModel model;
 	private JTextField textSuchen;
@@ -37,7 +37,7 @@ public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 	/**
 	 * Create the panel.
 	 */
-	public GeraeteModellVerwaltung(IObjektModel smodel, BuchungModellSucheStrg scontroller) {
+	public GeraeteModellVerwaltungGUI(IObjektModel smodel, BuchungModellSucheStrg scontroller) {
 		model = smodel;
 		controller = scontroller;
 		
@@ -165,7 +165,7 @@ public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getGeraeteVerwaltung());
+				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getGeraeteVerwaltungGUI());
 				
 			}
 		});
@@ -179,11 +179,11 @@ public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 		
 		btnModellHinzu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getModellhinzufuegen());
+				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getModellAnlegenGUI());
 				
 				if(counter == 1)
 				{
-					MainFrame.getModellhinzufuegen().anfrage();
+					MainFrame.getModellAnlegenGUI().anfrage();
 					
 				}
 				textSuchen.setText("");
@@ -192,7 +192,7 @@ public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 		
 		btnModellAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getModellaendern());
+				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getModellAendernGUI());
 				textSuchen.setText("");
 			}
 		});
@@ -205,7 +205,7 @@ public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 		
 		btnTypen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getGeraeteTypVerwaltung());
+				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getGeraeteTypVerwaltung());
 				MainFrame.getGeraeteTypVerwaltung().anfrage();
 				textSuchen.setText("");
 			}
@@ -213,8 +213,8 @@ public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 				
 		btnGeraete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltung(), MainFrame.getSportgeraete());
-				MainFrame.getSportgeraete().anfrage();
+				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getSportgeraeteGUI());
+				MainFrame.getSportgeraeteGUI().anfrage();
 				textSuchen.setText("");
 			}
 		});
@@ -235,10 +235,10 @@ public class GeraeteModellVerwaltung extends JPanel implements IObjektView{
 	}
 	
 	public void anfrage() {
-		model.anmelden(MainFrame.getModellAuswahl());
+		model.anmelden(MainFrame.getBuchungModellSucheGUI());
 		controller.fetchModelle(talking, typNr, search);
 		aktualisieren(model);
-		model.abmelden(MainFrame.getModellAuswahl());
+		model.abmelden(MainFrame.getBuchungModellSucheGUI());
 	}
 
 

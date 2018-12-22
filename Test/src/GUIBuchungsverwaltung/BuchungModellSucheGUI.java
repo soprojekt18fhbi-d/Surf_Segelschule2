@@ -182,7 +182,7 @@ public class BuchungModellSucheGUI extends JPanel implements IObjektView {
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getModellAuswahl(), MainFrame.getTypAuswahl());
+				MainFrame.change(MainFrame.getBuchungModellSucheGUI(), MainFrame.getBuchungTypSucheGUI());
 				
 			}
 		});
@@ -196,11 +196,11 @@ public class BuchungModellSucheGUI extends JPanel implements IObjektView {
 						JOptionPane.showMessageDialog(null, "Bitte Modell auswählen!");
 					else 
 					{
-						MainFrame.getBuchungGerätAuswahl().setKunde(kunde);
-						MainFrame.getBuchungGerätAuswahl().setModellNr(Integer.parseInt(txtModellnummer.getText()));
-						MainFrame.getBuchungGerätAuswahl().setkNr(kNr);
-						MainFrame.change(MainFrame.getModellAuswahl(), MainFrame.getBuchungGerätAuswahl());
-						System.out.println("Kunde: " + kunde.toString() + "Modellnummer: " + MainFrame.getBuchungGerätAuswahl().getModellNr() + "Kundennummer: " + kNr);
+						MainFrame.getBuchungGeraetSucheGUI().setKunde(kunde);
+						MainFrame.getBuchungGeraetSucheGUI().setModellNr(Integer.parseInt(txtModellnummer.getText()));
+						MainFrame.getBuchungGeraetSucheGUI().setkNr(kNr);
+						MainFrame.change(MainFrame.getBuchungModellSucheGUI(), MainFrame.getBuchungGeraetSucheGUI());
+						System.out.println("Kunde: " + kunde.toString() + "Modellnummer: " + MainFrame.getBuchungGeraetSucheGUI().getModellNr() + "Kundennummer: " + kNr);
 					}
 				} catch (HeadlessException e1) {
 					// TODO Auto-generated catch block
@@ -270,8 +270,8 @@ public class BuchungModellSucheGUI extends JPanel implements IObjektView {
 		this.kNr = kNr;
 	}
 	private void anfrage() {
-		model.anmelden(MainFrame.getModellAuswahl());
+		model.anmelden(MainFrame.getBuchungModellSucheGUI());
 		controller.fetchModelle(talking, typNr, search);
-		model.abmelden(MainFrame.getModellAuswahl());
+		model.abmelden(MainFrame.getBuchungModellSucheGUI());
 	}
 }

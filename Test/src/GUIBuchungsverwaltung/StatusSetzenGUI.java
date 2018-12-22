@@ -106,14 +106,14 @@ public class StatusSetzenGUI extends JPanel {
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getStatusSetzen(), MainFrame.getAktiveAusleihen());				
+				MainFrame.change(MainFrame.getStatusSetzenGUI(), MainFrame.getAktiveAusleihen());				
 			}
 		});
 		
 		btnBestätigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Das Sportgerät wurde erfolgreich reklamiert", "Reklamier-Bestätigung", JOptionPane.PLAIN_MESSAGE);
-				MainFrame.change(MainFrame.getStatusSetzen(), MainFrame.getBuchungsverwaltung());			
+				MainFrame.change(MainFrame.getStatusSetzenGUI(), MainFrame.getBuchungsverwaltungGUI());			
 			}
 		});
 	}

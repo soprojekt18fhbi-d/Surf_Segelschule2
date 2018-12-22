@@ -88,25 +88,25 @@ public class BuchungsverwaltungGUI extends JPanel {
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getBuchungsverwaltung(), MainFrame.getHauptmenue());
+				MainFrame.change(MainFrame.getBuchungsverwaltungGUI(), MainFrame.getHauptmenueGUI());
 			}
 		});
 		
 		btnAktiveAusleihen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getBuchungsverwaltung(), MainFrame.getAktiveBuchung());
+				MainFrame.change(MainFrame.getBuchungsverwaltungGUI(), MainFrame.getAktiveBuchungenGUI());
 			}
 		});
 
 		btnSportgertVerkaufenverleihen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getBuchungsverwaltung(), MainFrame.getKundeWaehlen());
+				MainFrame.change(MainFrame.getBuchungsverwaltungGUI(), MainFrame.getBuchungKundeSucheGUI());
 			}
 		});
 		
 		btnAbgeschlosseneBuchungen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getBuchungsverwaltung(), MainFrame.getAbgeschlosseneBuchungen());
+				MainFrame.change(MainFrame.getBuchungsverwaltungGUI(), MainFrame.getAbgeschlosseneBuchungenGUI());
 			}
 		});
 

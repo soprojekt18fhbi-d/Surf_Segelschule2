@@ -67,7 +67,7 @@ public class BuchungGeraetSucheGUI extends JPanel implements IObjektView{
 		JButton btnZurueck = new JButton("Zur\u00FCck");
 		btnZurueck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getBuchungGerätAuswahl(), MainFrame.getModellAuswahl());
+				MainFrame.change(MainFrame.getBuchungGeraetSucheGUI(), MainFrame.getBuchungModellSucheGUI());
 			}
 		});
 		btnZurueck.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -78,7 +78,7 @@ public class BuchungGeraetSucheGUI extends JPanel implements IObjektView{
 		btnHauptmenue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MainFrame.change(MainFrame.getBuchungGerätAuswahl(), MainFrame.getHauptmenue());
+				MainFrame.change(MainFrame.getBuchungGeraetSucheGUI(), MainFrame.getHauptmenueGUI());
 				
 			}
 		});
@@ -235,9 +235,9 @@ public class BuchungGeraetSucheGUI extends JPanel implements IObjektView{
 	}
 	
 	private void anfrage() {
-		model.anmelden(MainFrame.getBuchungGerätAuswahl());
+		model.anmelden(MainFrame.getBuchungGeraetSucheGUI());
 		controller.fetchGeraete(talking, modellNr, kNr, geraetNr);
-		model.abmelden(MainFrame.getBuchungGerätAuswahl());
+		model.abmelden(MainFrame.getBuchungGeraetSucheGUI());
 	}
 	
 }

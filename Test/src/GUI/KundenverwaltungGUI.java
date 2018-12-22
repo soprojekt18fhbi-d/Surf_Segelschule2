@@ -88,7 +88,7 @@ public class KundenverwaltungGUI extends JPanel {
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getKundenverwaltung(), MainFrame.getHauptmenue());
+				MainFrame.change(MainFrame.getKundenverwaltungGUI(), MainFrame.getHauptmenueGUI());
 			}
 		});
 		
@@ -97,7 +97,7 @@ public class KundenverwaltungGUI extends JPanel {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							MainFrame.change(MainFrame.getKundenverwaltung(), MainFrame.getKundeRegistrieren());
+							MainFrame.change(MainFrame.getKundenverwaltungGUI(), MainFrame.getKundeAnlegenGUI());
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -108,7 +108,7 @@ public class KundenverwaltungGUI extends JPanel {
 		
 		btnKundeAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getKundenverwaltung(), MainFrame.getKundeAendernGUI());
+				MainFrame.change(MainFrame.getKundenverwaltungGUI(), MainFrame.getKundeAendernGUI());
 			}
 		});
 	}

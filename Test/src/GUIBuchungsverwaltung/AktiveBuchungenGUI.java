@@ -186,7 +186,7 @@ public class AktiveBuchungenGUI extends JPanel implements IObjektView { //Ben Kr
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getAktiveBuchung(), MainFrame.getBuchungsverwaltung());
+				MainFrame.change(MainFrame.getAktiveBuchungenGUI(), MainFrame.getBuchungsverwaltungGUI());
 				
 			}
 		});
@@ -273,9 +273,9 @@ public class AktiveBuchungenGUI extends JPanel implements IObjektView { //Ben Kr
 	}
 
 	private void anfrage() {
-		model.anmelden(MainFrame.getAktiveBuchung());
+		model.anmelden(MainFrame.getAktiveBuchungenGUI());
 		controller.fetchBuchung(talking, buchungID, kNr, geraetNr, search, mode, makel);
-		model.abmelden(MainFrame.getAktiveBuchung());
+		model.abmelden(MainFrame.getAktiveBuchungenGUI());
 	}
 	
 	private void zuruecksetzen() {

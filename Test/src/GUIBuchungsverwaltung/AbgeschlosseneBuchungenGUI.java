@@ -124,7 +124,7 @@ public class AbgeschlosseneBuchungenGUI extends JPanel {
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getAbgeschlosseneBuchungen(), MainFrame.getBuchungsverwaltung());
+				MainFrame.change(MainFrame.getAbgeschlosseneBuchungenGUI(), MainFrame.getBuchungsverwaltungGUI());
 			}
 		});
 		

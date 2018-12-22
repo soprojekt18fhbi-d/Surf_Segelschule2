@@ -204,8 +204,8 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 					controller.anfrageModellhinzufuegen(talking, name, typ, preisID);						
 					aktualisieren(model);
 					JOptionPane.showMessageDialog(null, "Das Modell wurde erfolgreich angelegt!");
-					MainFrame.change(MainFrame.getModellhinzufuegen(), MainFrame.getGeraeteModellVerwaltung());
-					MainFrame.getGeraeteModellVerwaltung().anfrage();
+					MainFrame.change(MainFrame.getModellAnlegenGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
+					MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
 					
 					txtModell.setText("");
 					comboBoxTyp.setSelectedIndex(0);
@@ -224,7 +224,7 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getModellhinzufuegen(), MainFrame.getGeraeteModellVerwaltung());			}
+				MainFrame.change(MainFrame.getModellAnlegenGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());			}
 		});
 		
 		comboBoxTyp.addItemListener(new ItemListener(){

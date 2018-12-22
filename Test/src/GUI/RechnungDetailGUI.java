@@ -304,20 +304,20 @@ public class RechnungDetailGUI extends JPanel{
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getRechnungDetail(), MainFrame.getRechnungsVerwaltung());
+				MainFrame.change(MainFrame.getRechnungDetailGUI(), MainFrame.getRechnungSucheGUI());
 			}
 		});
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getRechnungDetail(), MainFrame.getBuchungsverwaltung());
+				MainFrame.change(MainFrame.getRechnungDetailGUI(), MainFrame.getBuchungsverwaltungGUI());
 			}
 		});
 		
 		btnBesttigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Die Ausleihe wurde erfasst", "Verleih-Bestätigung", JOptionPane.PLAIN_MESSAGE);
-				MainFrame.change(MainFrame.getVerleihFormular(), MainFrame.getHauptmenue());
+				MainFrame.change(MainFrame.getVerleihFormularGUI(), MainFrame.getHauptmenueGUI());
 			}
 		});
 		

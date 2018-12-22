@@ -167,7 +167,7 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getSportgeraete(), MainFrame.getGeraeteVerwaltung());
+				MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraeteVerwaltungGUI());
 				textSuchen.setText("");
 				
 			}
@@ -182,11 +182,11 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		
 		btnGeraetHinzu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getSportgeraete(), MainFrame.getGeraethinzufuegen());
+				MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraetAnlegenGUI());
 				
 				if(counter == 1)
 				{
-					MainFrame.getGeraethinzufuegen().anfrage();
+					MainFrame.getGeraetAnlegenGUI().anfrage();
 					
 				}
 				textSuchen.setText("");
@@ -195,7 +195,7 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		
 		btnGeraetAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getSportgeraete(), MainFrame.getGeraetaendern());
+				MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraetAendernGUI());
 				textSuchen.setText("");
 			}
 		});
@@ -208,8 +208,8 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		
 		btnModelle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getSportgeraete(), MainFrame.getGeraeteModellVerwaltung());
-				MainFrame.getGeraeteModellVerwaltung().anfrage();
+				MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
+				MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
 				textSuchen.setText("");
 			}
 		});
@@ -228,10 +228,10 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 	}
 	
 	public void anfrage() {
-		model.anmelden(MainFrame.getBuchungGerätAuswahl());
+		model.anmelden(MainFrame.getBuchungGeraetSucheGUI());
 		controller.fetchGeraete(talking, modellNr, kNr, geraetNr);
 		aktualisieren(model);
-		model.abmelden(MainFrame.getBuchungGerätAuswahl());
+		model.abmelden(MainFrame.getBuchungGeraetSucheGUI());
 	}
 }
 

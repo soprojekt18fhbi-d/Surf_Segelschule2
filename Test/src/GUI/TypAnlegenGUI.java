@@ -174,7 +174,7 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 
 					controller.typUebergeben(name, schein);
 					aktualisieren(model);
-					MainFrame.change(MainFrame.getTyphinzufuegen(), MainFrame.getGeraeteTypVerwaltung());
+					MainFrame.change(MainFrame.getTypAnlegenGUI(), MainFrame.getGeraeteTypVerwaltung());
 					MainFrame.getGeraeteTypVerwaltung().anfrage();
 					
 					chckbxSegelschein.setSelected(false);
@@ -192,7 +192,7 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getTyphinzufuegen(), MainFrame.getGeraeteTypVerwaltung());			}
+				MainFrame.change(MainFrame.getTypAnlegenGUI(), MainFrame.getGeraeteTypVerwaltung());			}
 		});
 
 	}

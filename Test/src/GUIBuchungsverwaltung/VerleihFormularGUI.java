@@ -280,7 +280,7 @@ public class VerleihFormularGUI extends JPanel {
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getVerleihFormular(), MainFrame.getBuchungsverwaltung());
+				MainFrame.change(MainFrame.getVerleihFormularGUI(), MainFrame.getBuchungsverwaltungGUI());
 
 				
 			}
@@ -289,7 +289,7 @@ public class VerleihFormularGUI extends JPanel {
 		btnBesttigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Die Ausleihe wurde erfasst", "Verleih-Bestätigung", JOptionPane.PLAIN_MESSAGE);
-				MainFrame.change(MainFrame.getVerleihFormular(), MainFrame.getHauptmenue());
+				MainFrame.change(MainFrame.getVerleihFormularGUI(), MainFrame.getHauptmenueGUI());
 			}
 		});
 		

@@ -490,13 +490,13 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		//Funktionen der Button
 		btnZurueck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getKundeAendernGUI(), MainFrame.getKundenverwaltung());
+				MainFrame.change(MainFrame.getKundeAendernGUI(), MainFrame.getKundenverwaltungGUI());
 			}
 		});
 
 		btnHauptmen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getKundeAendernGUI(), MainFrame.getHauptmenue());
+				MainFrame.change(MainFrame.getKundeAendernGUI(), MainFrame.getHauptmenueGUI());
 			}
 		});
 		

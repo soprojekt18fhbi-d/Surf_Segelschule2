@@ -33,7 +33,7 @@ public class TypAendernGUI extends JPanel {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MainFrame.change(MainFrame.getTypaendern(), MainFrame.getGeraeteTypVerwaltung());
+				MainFrame.change(MainFrame.getTypAendernGUI(), MainFrame.getGeraeteTypVerwaltung());
 				
 			}
 		});

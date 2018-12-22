@@ -225,12 +225,12 @@ public class ReklamationGUI extends JPanel {
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getReklamation(), MainFrame.getAktiveAusleihen());				
+				MainFrame.change(MainFrame.getReklamationGUI(), MainFrame.getAktiveAusleihen());				
 			}
 		});
 		btnReklamieren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getReklamation(), MainFrame.getStatusSetzen());				
+				MainFrame.change(MainFrame.getReklamationGUI(), MainFrame.getStatusSetzenGUI());				
 			}
 		});
 	}

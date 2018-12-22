@@ -41,7 +41,7 @@ public class ModellAnedernGUI extends JPanel {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MainFrame.change(MainFrame.getModellaendern(), MainFrame.getGeraeteModellVerwaltung());
+				MainFrame.change(MainFrame.getModellAendernGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
 				
 			}
 		});

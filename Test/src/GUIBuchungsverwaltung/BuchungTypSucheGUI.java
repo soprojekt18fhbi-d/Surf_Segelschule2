@@ -185,7 +185,7 @@ public class BuchungTypSucheGUI extends JPanel implements IObjektView{
 		//Funktionen der Button @author Ben Kröncke
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getTypAuswahl(), MainFrame.getKundeWaehlen());
+				MainFrame.change(MainFrame.getBuchungTypSucheGUI(), MainFrame.getBuchungKundeSucheGUI());
 			}
 		});
 		
@@ -201,11 +201,11 @@ public class BuchungTypSucheGUI extends JPanel implements IObjektView{
 						JOptionPane.showMessageDialog(null, "Keinen Typ gewählt!");
 					else
 					{
-						MainFrame.getModellAuswahl().setKunde(kunde);
-						MainFrame.getModellAuswahl().setTypNr(Integer.parseInt(txtTypID.getText()));
-						MainFrame.getModellAuswahl().setkNr(knr);
-						System.out.println(MainFrame.getModellAuswahl().getTypNr());
-						MainFrame.change(MainFrame.getTypAuswahl(), MainFrame.getModellAuswahl());
+						MainFrame.getBuchungModellSucheGUI().setKunde(kunde);
+						MainFrame.getBuchungModellSucheGUI().setTypNr(Integer.parseInt(txtTypID.getText()));
+						MainFrame.getBuchungModellSucheGUI().setkNr(knr);
+						System.out.println(MainFrame.getBuchungModellSucheGUI().getTypNr());
+						MainFrame.change(MainFrame.getBuchungTypSucheGUI(), MainFrame.getBuchungModellSucheGUI());
 					}
 					
 				} catch (HeadlessException e1) {
@@ -238,9 +238,9 @@ public class BuchungTypSucheGUI extends JPanel implements IObjektView{
 	}
 	
 	private void anfrage() {
-		model.anmelden(MainFrame.getTypAuswahl());
+		model.anmelden(MainFrame.getBuchungTypSucheGUI());
 		controller.fetchTypen(knr, talking, tfSuche.getText(), kunde);
-		model.abmelden(MainFrame.getTypAuswahl());
+		model.abmelden(MainFrame.getBuchungTypSucheGUI());
 	}
 
 	public int getKnr() {

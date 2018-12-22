@@ -295,8 +295,8 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 					aktualisieren(model);
 					
 					JOptionPane.showMessageDialog(null, "Das Gerät wurde erfolgreich angelegt!");
-					MainFrame.change(MainFrame.getGeraethinzufuegen(), MainFrame.getSportgeraete());
-					MainFrame.getSportgeraete().anfrage();
+					MainFrame.change(MainFrame.getGeraetAnlegenGUI(), MainFrame.getSportgeraeteGUI());
+					MainFrame.getSportgeraeteGUI().anfrage();
 					
 					textFarbe.setText("");
 					textMakel.setText("");
@@ -318,7 +318,7 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraethinzufuegen(), MainFrame.getGeraeteVerwaltung());			}
+				MainFrame.change(MainFrame.getGeraetAnlegenGUI(), MainFrame.getGeraeteVerwaltungGUI());			}
 		});
 		
 		comboBoxTyp.addItemListener(new ItemListener(){

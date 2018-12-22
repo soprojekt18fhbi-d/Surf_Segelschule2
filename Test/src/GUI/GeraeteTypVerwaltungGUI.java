@@ -151,7 +151,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteVerwaltung());
+				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteVerwaltungGUI());
 				textSuchen.setText("");
 				
 			}
@@ -166,22 +166,22 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		
 		btnTypHinzu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTyphinzufuegen());
+				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTypAnlegenGUI());
 				textSuchen.setText("");
 			}
 		});
 		
 		btnTypAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTypaendern());
+				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTypAendernGUI());
 				textSuchen.setText("");
 			}
 		});
 		
 		btnModelle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteModellVerwaltung());
-				MainFrame.getGeraeteModellVerwaltung().anfrage();
+				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
+				MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
 				textSuchen.setText("");
 			}
 		});
@@ -201,10 +201,10 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 	}
 	
 	public void anfrage() {
-		model.anmelden(MainFrame.getTypAuswahl());
+		model.anmelden(MainFrame.getBuchungTypSucheGUI());
 		controller.fetchTypen(knr, talking, textSuchen.getText(), kunde);
 		aktualisieren(model);
-		model.abmelden(MainFrame.getTypAuswahl());
+		model.abmelden(MainFrame.getBuchungTypSucheGUI());
 	}
 
 }

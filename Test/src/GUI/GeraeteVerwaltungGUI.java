@@ -95,34 +95,34 @@ setLayout(new BorderLayout(0, 0));
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteVerwaltung(), MainFrame.getHauptmenue());
+				MainFrame.change(MainFrame.getGeraeteVerwaltungGUI(), MainFrame.getHauptmenueGUI());
 			}
 		});
 		
 		btnTypen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteVerwaltung(), MainFrame.getGeraeteTypVerwaltung());
+				MainFrame.change(MainFrame.getGeraeteVerwaltungGUI(), MainFrame.getGeraeteTypVerwaltung());
 				MainFrame.getGeraeteTypVerwaltung().anfrage();
 			}
 		});
 
 		btnModelle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteVerwaltung(), MainFrame.getGeraeteModellVerwaltung());
-				MainFrame.getGeraeteModellVerwaltung().anfrage();
+				MainFrame.change(MainFrame.getGeraeteVerwaltungGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
+				MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
 			}
 		});
 		
 		btnGeraete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteVerwaltung(), MainFrame.getSportgeraete());
-				MainFrame.getSportgeraete().anfrage();
+				MainFrame.change(MainFrame.getGeraeteVerwaltungGUI(), MainFrame.getSportgeraeteGUI());
+				MainFrame.getSportgeraeteGUI().anfrage();
 			}
 		});
 		
 		btnPreisliste.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MainFrame.change(MainFrame.getGeraeteVerwaltung(), MainFrame.getPreislisteGUI());
+				MainFrame.change(MainFrame.getGeraeteVerwaltungGUI(), MainFrame.getPreislisteGUI());
 			}
 		});
 

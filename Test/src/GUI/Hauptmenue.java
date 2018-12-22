@@ -27,7 +27,7 @@ public class Hauptmenue extends JPanel {
 		button.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getHauptmenue(), MainFrame.getKundenverwaltung());
+				MainFrame.change(MainFrame.getHauptmenueGUI(), MainFrame.getKundenverwaltungGUI());
 			}
 		});
 		
@@ -35,7 +35,7 @@ public class Hauptmenue extends JPanel {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MainFrame.change(MainFrame.getHauptmenue(), MainFrame.getGeraeteVerwaltung());
+				MainFrame.change(MainFrame.getHauptmenueGUI(), MainFrame.getGeraeteVerwaltungGUI());
 				
 			}
 		});
@@ -46,7 +46,7 @@ public class Hauptmenue extends JPanel {
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MainFrame.change(MainFrame.getHauptmenue(), MainFrame.getBuchungsverwaltung());
+				MainFrame.change(MainFrame.getHauptmenueGUI(), MainFrame.getBuchungsverwaltungGUI());
 				
 			}
 		});
@@ -55,7 +55,7 @@ public class Hauptmenue extends JPanel {
 		button_3.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getHauptmenue(), MainFrame.getWirtschaftlichkeitsverwaltung());
+				MainFrame.change(MainFrame.getHauptmenueGUI(), MainFrame.getWirtschaftlichkeitsverwaltungGUI());
 			}
 		});
 		
@@ -63,7 +63,7 @@ public class Hauptmenue extends JPanel {
 		button_4.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getHauptmenue(), MainFrame.getRechnungsVerwaltung());
+				MainFrame.change(MainFrame.getHauptmenueGUI(), MainFrame.getRechnungSucheGUI());
 			}
 		});
 		

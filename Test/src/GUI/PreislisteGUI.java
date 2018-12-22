@@ -191,7 +191,7 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 		btnZurck.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getGeraeteVerwaltung());
+				MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getGeraeteVerwaltungGUI());
 
 			}
 		});
@@ -221,7 +221,7 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 
 		btnAuswhlen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getGeraeteModellVerwaltung());
+				MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
 			}
 		});
 
@@ -234,9 +234,9 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 	}
 	
 	public void anfrage() {
-		model.anmelden(MainFrame.getTypAuswahl());
+		model.anmelden(MainFrame.getBuchungTypSucheGUI());
 		controller.fetchObjekte(talking, tfSuche.getText());
-		model.abmelden(MainFrame.getTypAuswahl());
+		model.abmelden(MainFrame.getBuchungTypSucheGUI());
 	}
 
 }

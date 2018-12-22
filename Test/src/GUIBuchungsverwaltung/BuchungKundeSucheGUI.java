@@ -149,13 +149,13 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 						JOptionPane.showMessageDialog(null, "Kein Kunde gewählt!");
 					else
 					{
-						BuchungTypSucheGUI tauswahl = MainFrame.getTypAuswahl();
+						BuchungTypSucheGUI tauswahl = MainFrame.getBuchungTypSucheGUI();
 						controller.erstelleKunde(txtKnr.getText());
-						MainFrame.change(MainFrame.getKundeWaehlen(), MainFrame.getTypAuswahl());
-						MainFrame.getTypAuswahl().setKnr(Integer.parseInt(txtKnr.getText()));
-						MainFrame.getTypAuswahl().setKunde((IKunde) model.getObjekte().get(0));
+						MainFrame.change(MainFrame.getBuchungKundeSucheGUI(), MainFrame.getBuchungTypSucheGUI());
+						MainFrame.getBuchungTypSucheGUI().setKnr(Integer.parseInt(txtKnr.getText()));
+						MainFrame.getBuchungTypSucheGUI().setKunde((IKunde) model.getObjekte().get(0));
 						
-						System.out.println(MainFrame.getTypAuswahl().getKnr());
+						System.out.println(MainFrame.getBuchungTypSucheGUI().getKnr());
 					}
 					
 				} catch (Exception e1) {
@@ -212,7 +212,7 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 		JButton button = new JButton("Zur\u00FCck");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getKundeWaehlen(), MainFrame.getBuchungsverwaltung());
+				MainFrame.change(MainFrame.getBuchungKundeSucheGUI(), MainFrame.getBuchungsverwaltungGUI());
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -222,7 +222,7 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 		JButton button_1 = new JButton("Hauptmen\u00FC");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getKundeWaehlen(), MainFrame.getHauptmenue());
+				MainFrame.change(MainFrame.getBuchungKundeSucheGUI(), MainFrame.getHauptmenueGUI());
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 18));

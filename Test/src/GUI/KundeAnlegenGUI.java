@@ -386,13 +386,13 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MainFrame.change(MainFrame.getKundeRegistrieren(), MainFrame.getKundenverwaltung());
+				MainFrame.change(MainFrame.getKundeAnlegenGUI(), MainFrame.getKundenverwaltungGUI());
 			}
 		});
 		
 		btnHauptmen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getKundeRegistrieren(), MainFrame.getHauptmenue());
+				MainFrame.change(MainFrame.getKundeAnlegenGUI(), MainFrame.getHauptmenueGUI());
 			}
 		});	
 		
@@ -425,17 +425,17 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 					KundeErstellen(chckbxSurfschein, chckbxSegelschein, chckbxMotorbootschein);
 					HeimadresseErstellen();
 					UrlaubsadresseErstellen();
-					MainFrame.change(MainFrame.getKundeRegistrieren(), MainFrame.getHauptmenue());	
+					MainFrame.change(MainFrame.getKundeAnlegenGUI(), MainFrame.getHauptmenueGUI());	
 
 				} 	else if(KundeGefuellt() == true && HeimadresseGefuellt() == true && UrlaubsadresseLeer() == true ) {
 						KundeErstellen(chckbxSurfschein, chckbxSegelschein, chckbxMotorbootschein);
 						HeimadresseErstellen();
-						MainFrame.change(MainFrame.getKundeRegistrieren(), MainFrame.getHauptmenue());	
+						MainFrame.change(MainFrame.getKundeAnlegenGUI(), MainFrame.getHauptmenueGUI());	
 						
 				} 	else if(KundeGefuellt() == true && UrlaubsadresseGefuellt() == true && HeimadresseLeer() == true ) {
 						KundeErstellen(chckbxSurfschein, chckbxSegelschein, chckbxMotorbootschein);
 						   UrlaubsadresseErstellen();
-						   MainFrame.change(MainFrame.getKundeRegistrieren(), MainFrame.getHauptmenue());	
+						   MainFrame.change(MainFrame.getKundeAnlegenGUI(), MainFrame.getHauptmenueGUI());	
 				
 				} 	else {
 						JOptionPane.showMessageDialog(null, "Bitte füllen Sie alle Pflichtfelder aus", "Kunde registrieren", JOptionPane.PLAIN_MESSAGE);

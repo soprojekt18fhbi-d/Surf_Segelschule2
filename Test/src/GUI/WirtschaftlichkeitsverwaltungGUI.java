@@ -22,21 +22,21 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel {
 		JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getWirtschaftlichkeitsverwaltung(), MainFrame.getHauptmenue());
+				MainFrame.change(MainFrame.getWirtschaftlichkeitsverwaltungGUI(), MainFrame.getHauptmenueGUI());
 			}
 		});
 		
 		JButton btnZusammenfassend = new JButton("Zusammenfassend");
 		btnZusammenfassend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getWirtschaftlichkeitsverwaltung(), MainFrame.getWirtschaftlichkeitGesamt());
+				MainFrame.change(MainFrame.getWirtschaftlichkeitsverwaltungGUI(), MainFrame.getWirtschaftlichkeitGesamtGUI());
 			}
 		});
 		
 		JButton btnEinzelnBerechnen = new JButton("Einzeln Berechnen");
 		btnEinzelnBerechnen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getWirtschaftlichkeitsverwaltung(), MainFrame.getWirtschaftlichkeitEinzeln());
+				MainFrame.change(MainFrame.getWirtschaftlichkeitsverwaltungGUI(), MainFrame.getWirtschaftlichkeitEinzelnGUI());
 			}
 		});
 		

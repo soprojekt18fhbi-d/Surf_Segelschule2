@@ -217,14 +217,14 @@ public class VerkaufFormularGUI extends JPanel {
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getVerkaufFormular(), MainFrame.getBuchungsverwaltung());
+				MainFrame.change(MainFrame.getVerkaufFormularGUI(), MainFrame.getBuchungsverwaltungGUI());
 			}
 		});
 		
 		btnBesttigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Der Verkauf wurde erfasst", "Verkauf-Bestätigung", JOptionPane.PLAIN_MESSAGE);
-				MainFrame.change(MainFrame.getVerkaufFormular(), MainFrame.getHauptmenue());
+				MainFrame.change(MainFrame.getVerkaufFormularGUI(), MainFrame.getHauptmenueGUI());
 			}
 		});
 

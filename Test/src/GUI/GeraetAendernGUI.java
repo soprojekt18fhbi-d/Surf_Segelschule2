@@ -71,7 +71,7 @@ public class GeraetAendernGUI extends JPanel implements IView {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MainFrame.change(MainFrame.getGeraetaendern(), MainFrame.getSportgeraete());
+				MainFrame.change(MainFrame.getGeraetAendernGUI(), MainFrame.getSportgeraeteGUI());
 				
 			}
 		});

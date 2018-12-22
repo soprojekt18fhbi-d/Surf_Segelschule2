@@ -143,7 +143,7 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getRechnungsVerwaltung(), MainFrame.getHauptmenue());
+				MainFrame.change(MainFrame.getRechnungSucheGUI(), MainFrame.getHauptmenueGUI());
 				
 			}
 		});
@@ -151,22 +151,22 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 		btnSuchen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				model.anmelden(MainFrame.getRechnungsVerwaltung());
+				model.anmelden(MainFrame.getRechnungSucheGUI());
 				controller.fetchRechnungen(talking, rechnungsNr, search);
-				model.abmelden(MainFrame.getRechnungsVerwaltung());
+				model.abmelden(MainFrame.getRechnungSucheGUI());
 				
 			}
 		});
 		
 		btnREVerschicken.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getRechnungsVerwaltung(), MainFrame.getRechnungDetail());			
+				MainFrame.change(MainFrame.getRechnungSucheGUI(), MainFrame.getRechnungDetailGUI());			
 			}
 		});
 		
 		btnREbezahlen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getRechnungsVerwaltung(), MainFrame.getRechnungDetail());
+				MainFrame.change(MainFrame.getRechnungSucheGUI(), MainFrame.getRechnungDetailGUI());
 			}
 		});
 		
