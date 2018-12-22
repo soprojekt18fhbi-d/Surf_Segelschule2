@@ -8,21 +8,18 @@ public class Rechnung {
 	private int id;
 	private double summe;
 	private double mwSt;
-	private double betrag;
-	private double bezahlt;
-	private int bezahldatum;
+	private double summe_mit_mwst;
 	private IKunde kunde;
 	private Reparatur reparatur;
+	private Buchung buchung;
 	
 	
-	public Rechnung(int id, double summe, double mwSt, double betrag, double bezahlt, int bezahldatum, IKunde kunde) {
+	public Rechnung(int id, double summe, double mwSt, double summe_mit_mwst, IKunde kunde, Buchung buchung ) {
 		super();
 		this.id = id;
 		this.summe=summe;
 		this.mwSt=mwSt;
-		this.betrag=betrag;
-		this.bezahlt = bezahlt;
-		this.bezahldatum = bezahldatum;
+		this.summe_mit_mwst=summe_mit_mwst;
 		this.kunde = kunde;
 	}
 
@@ -34,20 +31,29 @@ public class Rechnung {
 		this.id = id;
 	}
 
-	public double getBezahlt() {
-		return bezahlt;
+	
+	public double getSumme_mit_mwst() {
+		return summe_mit_mwst;
 	}
 
-	public void setBezahlt(double bezahlt) {
-		this.bezahlt = bezahlt;
+	public void setSumme_mit_mwst(double summe_mit_mwst) {
+		this.summe_mit_mwst = summe_mit_mwst;
 	}
 
-	public int getBezahldatum() {
-		return bezahldatum;
+	public Buchung getBuchung() {
+		return buchung;
 	}
 
-	public void setBezahldatum(int bezahldatum) {
-		this.bezahldatum = bezahldatum;
+	public void setBuchung(Buchung buchung) {
+		this.buchung = buchung;
+	}
+
+	public void setSumme(double summe) {
+		this.summe = summe;
+	}
+
+	public void setMwSt(double mwSt) {
+		this.mwSt = mwSt;
 	}
 
 	public IKunde getKunde() {
@@ -63,7 +69,7 @@ public class Rechnung {
 	}
 
 	public double getBetrag() {
-		return betrag;
+		return summe_mit_mwst;
 	}
 	
 	public void setKunde(IKunde kunde) {
