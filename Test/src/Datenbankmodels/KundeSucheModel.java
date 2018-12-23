@@ -127,7 +127,7 @@ public class KundeSucheModel implements IObjektModel  {
 		    	if (talking == "knrplz")
 			    	query = "SELECT * FROM ADRESSE WHERE (PLZ = '" + knrplzloc + "');";
 		    	if(talking == "boss")
-		    		query = "SELECT * FROM ADRESSE;";
+		    		query = "SELECT * FROM ADRESSE WHERE ART NOT IN('Standortadresse');";
 		    	if(talking == "nachnameort")
 		    		query = "SELECT * FROM ADRESSE WHERE (ORT = '" + nachnameortloc + "');";
 		    	if (talking == "vornamestrasse")
@@ -150,7 +150,7 @@ public class KundeSucheModel implements IObjektModel  {
 		    }
 		    else if (talking.equals("deaktivierenadresse"))
 		    {
-		    	query = "Select * from Adresse;";
+		    	query = "Select * from Adresse WHERE ART NOT IN('STANDORTADRESSE');";
 		    	
 		    	String sql = "DELETE FROM ADRESSE WHERE KUNDEID = '" + variableKnr + "' AND PLZ ='" + this.knrplzloc + "' AND STRASSE = '" + this.vornamestrasseloc + "';";
 		    	
@@ -178,7 +178,7 @@ public class KundeSucheModel implements IObjektModel  {
 		    }
 		    else if(talking.equals("adressespeichern"))
 		    {
-		    	query = "Select * from Adresse;";
+		    	query = "Select * from Adresse WHERE ART NOT IN('STANDORTADRESSE');";
 		    	
 		    	String sql = "INSERT INTO ADRESSE VALUES(default, " + this.knrplzloc + ", '" + this.vornamestrasseloc + "', '" + this.nachnameortloc + "', '" + this.heimat + "', " + this.emailhnrloc + ", " + this.variableKnr + ");";
 		    	
