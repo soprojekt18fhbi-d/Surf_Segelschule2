@@ -56,6 +56,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class MainFrame extends JFrame {
 
@@ -132,8 +133,7 @@ public class MainFrame extends JFrame {
 	
 	// Wirtschaftlichkeitsrechnung
 	private static WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltungGUI = new WirtschaftlichkeitsverwaltungGUI();
-	private static WirtschaftlichkeitEinzelnGUI wirtschaftlichkeitEinzelnGUI = new WirtschaftlichkeitEinzelnGUI();
-	private static WirtschaftlichkeitGesamtGUI wirtschaftlichkeitGesamtGUI = new WirtschaftlichkeitGesamtGUI();
+
 
 
 
@@ -141,10 +141,12 @@ public class MainFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public MainFrame() {
+		setBackground(Color.DARK_GRAY);
 		setTitle("Boots- & Segelverleih");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 600);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
@@ -182,8 +184,6 @@ public class MainFrame extends JFrame {
 		contentPane.add(kundeAendernGUI);
 		contentPane.add(rechnungSucheGUI);
 		contentPane.add(rechnungDetailGUI);
-		contentPane.add(wirtschaftlichkeitGesamtGUI);
-		contentPane.add(wirtschaftlichkeitEinzelnGUI);
 		contentPane.add(wirtschaftlichkeitsverwaltungGUI);
 
 		this.hauptmenueGUI.setVisible(true);
@@ -324,14 +324,6 @@ public class MainFrame extends JFrame {
 		return wirtschaftlichkeitsverwaltungGUI;
 	}
 	
-	public static JPanel getWirtschaftlichkeitEinzelnGUI() {
-		return wirtschaftlichkeitEinzelnGUI;
-	}
-	
-	public static JPanel getWirtschaftlichkeitGesamtGUI() {
-		return wirtschaftlichkeitGesamtGUI;
-	}
-
 		
 }
 	

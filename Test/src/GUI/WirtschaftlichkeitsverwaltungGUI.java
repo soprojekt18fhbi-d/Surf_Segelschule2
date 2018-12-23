@@ -1,4 +1,4 @@
-// @author Darnel
+// @author Darnel / Ben Kröncke
 
 package GUI;
 
@@ -11,63 +11,158 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.BorderLayout;
+import javax.swing.SwingConstants;
+import java.awt.GridBagLayout;
+import javax.swing.JComboBox;
+import javax.swing.JRadioButton;
+import java.awt.Font;
+import javax.swing.JLabel;
+import java.awt.Component;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextField;
+import java.awt.Color;
 
 public class WirtschaftlichkeitsverwaltungGUI extends JPanel {
-
-	/**
-	 * Create the panel.
-	 */
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
 	public WirtschaftlichkeitsverwaltungGUI() {
+		setLayout(new BorderLayout(0, 0));
 		
-		JButton btnZurck = new JButton("Zur\u00FCck");
-		btnZurck.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getWirtschaftlichkeitsverwaltungGUI(), MainFrame.getHauptmenueGUI());
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		add(panel, BorderLayout.NORTH);
+		panel.setLayout(new BorderLayout(0, 0));
+		
+		JButton zrckButton = new JButton("Zur\u00FCck");
+		zrckButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					MainFrame.change(MainFrame.getWirtschaftlichkeitsverwaltungGUI(), MainFrame.getHauptmenueGUI());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
 		});
+		zrckButton.setBackground(new Color(255, 140, 0));
+		zrckButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel.add(zrckButton, BorderLayout.WEST);
 		
-		JButton btnZusammenfassend = new JButton("Zusammenfassend");
-		btnZusammenfassend.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getWirtschaftlichkeitsverwaltungGUI(), MainFrame.getWirtschaftlichkeitGesamtGUI());
-			}
-		});
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.DARK_GRAY);
+		add(panel_1, BorderLayout.CENTER);
 		
-		JButton btnEinzelnBerechnen = new JButton("Einzeln Berechnen");
-		btnEinzelnBerechnen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getWirtschaftlichkeitsverwaltungGUI(), MainFrame.getWirtschaftlichkeitEinzelnGUI());
-			}
-		});
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Unternehmen", "Standort", "Typ", "Modell", "Sportger\u00E4t"}));
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(23)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(btnZusammenfassend, GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
-								.addComponent(btnEinzelnBerechnen, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnZurck)))
-					.addContainerGap(30, Short.MAX_VALUE))
+		JLabel lblNewLabel = new JLabel("Kategorie w\u00E4hlen:");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 32));
+		
+		JLabel lblSpezifizieren = new JLabel("Spezifizieren:");
+		lblSpezifizieren.setForeground(new Color(255, 255, 255));
+		lblSpezifizieren.setFont(new Font("Tahoma", Font.BOLD, 32));
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		
+		JButton btnNewButton = new JButton("Berechne");
+		btnNewButton.setBackground(new Color(255, 140, 0));
+		btnNewButton.setForeground(new Color(0, 0, 0));
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		
+		JLabel lblEinnahmen = new JLabel("Einnahmen:");
+		lblEinnahmen.setForeground(new Color(255, 255, 255));
+		lblEinnahmen.setFont(new Font("Tahoma", Font.BOLD, 32));
+		
+		textField = new JTextField();
+		textField.setEditable(false);
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		textField.setColumns(10);
+		
+		JLabel lblAusgaben = new JLabel("Ausgaben:");
+		lblAusgaben.setForeground(new Color(255, 255, 255));
+		lblAusgaben.setFont(new Font("Tahoma", Font.BOLD, 32));
+		
+		JLabel lblGewinn = new JLabel("Gewinn:");
+		lblGewinn.setForeground(new Color(255, 255, 255));
+		lblGewinn.setFont(new Font("Tahoma", Font.BOLD, 32));
+		
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		textField_1.setEditable(false);
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		textField_2.setEditable(false);
+		textField_2.setColumns(10);
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+					.addGap(172)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED, 455, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_panel_1.createSequentialGroup()
+								.addComponent(lblSpezifizieren, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+								.addGap(4)
+								.addComponent(comboBox_1, 0, 326, Short.MAX_VALUE))
+							.addGroup(gl_panel_1.createSequentialGroup()
+								.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(comboBox, 0, 326, Short.MAX_VALUE))
+							.addGroup(gl_panel_1.createSequentialGroup()
+								.addComponent(lblEinnahmen, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(textField, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
+							.addGroup(gl_panel_1.createSequentialGroup()
+								.addComponent(lblAusgaben, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
+							.addGroup(gl_panel_1.createSequentialGroup()
+								.addComponent(lblGewinn, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))))
+					.addGap(172))
 		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(19)
-					.addComponent(btnZurck)
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(59)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblNewLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+						.addComponent(comboBox, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+					.addGap(5)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblSpezifizieren, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(btnZusammenfassend, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-					.addGap(26)
-					.addComponent(btnEinzelnBerechnen, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(28, Short.MAX_VALUE))
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(textField)
+						.addComponent(lblEinnahmen, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblAusgaben, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblGewinn, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+					.addGap(60))
 		);
-		setLayout(groupLayout);
-
+		gl_panel_1.linkSize(SwingConstants.VERTICAL, new Component[] {lblEinnahmen, textField, lblAusgaben, lblGewinn, textField_1, textField_2});
+		gl_panel_1.linkSize(SwingConstants.VERTICAL, new Component[] {comboBox, lblNewLabel, lblSpezifizieren, comboBox_1});
+		panel_1.setLayout(gl_panel_1);
 	}
-
 }
