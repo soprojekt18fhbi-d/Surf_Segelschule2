@@ -9,11 +9,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import java.awt.Font;
@@ -102,10 +106,12 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel {
 		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		textField_2.setEditable(false);
 		textField_2.setColumns(10);
+		Image photo = new ImageIcon(this.getClass().getResource("Scanner.png")).getImage();
+		
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
 					.addGap(172)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panel_1.createSequentialGroup()
@@ -135,7 +141,7 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel {
 					.addGap(172))
 		);
 		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
+			gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addGap(59)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
@@ -149,7 +155,7 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel {
 					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(textField)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblEinnahmen, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
