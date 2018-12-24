@@ -26,6 +26,7 @@ public class RechnungAnzeigenModel implements IObjektModel{
 	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
 	private ArrayList<Rechnung> mengeAnRechnungen = new ArrayList<Rechnung>();
 	private TableModel table;
+	private TableModel result;
 	private int rechnungID = 0;
 	private int rechnungsNr;
 	private String talking;
@@ -64,18 +65,16 @@ public class RechnungAnzeigenModel implements IObjektModel{
 	}
 
 
-	
-	public void holeRechnungen(String talking2, int rechnungsNr2, String search) {
+	// Wird ausgeführt, wenn die Rechnungsübersicht aufgerufen wird.
+	public void holeRechnungen(String search) {
 
-		talking = talking2;
-		rechnungsNr = rechnungsNr2;
 		this.search = search;
 		
         try {
 			Connection conn = DriverManager.
 			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
 			// add application code here
-			viewTable(conn);
+			rechnungSuche(conn);
 			
 			conn.close();
 		} catch (SQLException e) {
@@ -86,31 +85,101 @@ public class RechnungAnzeigenModel implements IObjektModel{
         updateObserver();
 	}
 	
-	public void viewTable(Connection con)
-	    throws SQLException {
-
-	    Statement stmt = null;
-		String query = "select * from RECHNUNG";
-		   
-	   // if(talking.equals("master"))
-	   // 	query = "select * from RECHNUNG where TYPID = '" + rechnungsNr + "'";
-		//if(talking.equals("search"))
-		//    query = "select * from Modell where TYPID = '" + rechnungsNr + "' AND NAME LIKE '" + search + "%'";
-		try {
-			stmt = con.createStatement();
-
-			System.out.println(query);
-				
-			ResultSet rs = stmt.executeQuery(query);
-			table = DbUtils.resultSetToTableModel(rs);
-
-		} catch (SQLException e ) {
+	// Wird ausgeführt, wenn ein Kunde nach Rechnungen sucht. 
+	public void holeDaten(String searchtxt) {
+		
+		this. search = searchtxt;
+		
+		
+		 System.out.println();
+        try {
+        	
+			Connection conn = DriverManager.
+			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			// add application code here
+			viewTable(conn);
+			
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			if (stmt != null) { stmt.close(); }
 		}
-
+        updateObserver();
 	}
+	
+//	public void viewTable(Connection con)
+//	    throws SQLException {
+//
+//	    Statement stmt = null;
+//		String query = "select * from RECHNUNG";
+//		   
+//		try {
+//			stmt = con.createStatement();
+//
+//			System.out.println(query);
+//				
+//			ResultSet rs = stmt.executeQuery(query);
+//			table = DbUtils.resultSetToTableModel(rs);
+//
+//		} catch (SQLException e ) {
+//			e.printStackTrace();
+//		} finally {
+//			if (stmt != null) { stmt.close(); }
+//		}
+//
+//	}
+	
+	public void viewTable(Connection con)
+    throws SQLException {
+
+    Statement stmt = null;
+	String query = "select * from RECHNUNG";
+	   
+	try {
+		stmt = con.createStatement();
+
+		System.out.println(query);
+			
+		ResultSet rs = stmt.executeQuery(query);
+		table = DbUtils.resultSetToTableModel(rs);
+
+	} catch (SQLException e ) {
+		e.printStackTrace();
+	} finally {
+		if (stmt != null) { stmt.close(); }
+	}
+
+}
+	
+	public void rechnungSuche(Connection con)
+		    throws SQLException {
+
+		 Statement stmt = con.createStatement();
+		    String query = null;
+		    
+		    if(search.equals(""))
+		    	query = "SELECT * FROM RECHUNG;";
+		    else 
+		    	query = "SELECT * FROM RECHUNG WHERE KUNDEID LIKE '%" + search + "%'";
+		   
+		    
+		    System.out.println(query);
+		    
+		    
+		    try {
+		    	System.out.println(query);
+		        stmt = con.createStatement();
+		        ResultSet rs = stmt.executeQuery(query);
+		        
+		        result = DbUtils.resultSetToTableModel(rs);
+		        
+		    } catch (SQLException e ) {
+		    	e.printStackTrace();
+		    } finally {
+		        if (stmt != null) { stmt.close(); }
+		    }
+
+		}
 	
 
 	

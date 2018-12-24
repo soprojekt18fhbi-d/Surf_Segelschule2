@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
-import Datenbankmodels.BuchungModellSucheModel;
 import Datenbankmodels.RechnungAnzeigenModel;
 import GUI.IObjektView;
 
@@ -29,9 +28,15 @@ public class RechnungAnzeigeStrg implements IController{
 	
 
 	
-	public void fetchRechnungen(String talking, int rechnungsNr, String search) {
+	public void fetchRechnungen(String search) {
 		
-		model.holeRechnungen(talking, rechnungsNr, search);
+		model.holeRechnungen(search);
+		
+	}
+	
+	public void getRechnungen(String search) {
+		
+		model.holeDaten(search);
 		
 		
 	}

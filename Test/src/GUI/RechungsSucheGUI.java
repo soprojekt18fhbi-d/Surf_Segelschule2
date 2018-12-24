@@ -12,6 +12,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
@@ -22,8 +24,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
-import Steuerung.BuchungGeraetSucheStrg;
 import Steuerung.RechnungAnzeigeStrg;
 
 import javax.swing.GroupLayout.Alignment;
@@ -34,16 +36,16 @@ import Datenbankmodels.IModel;
 import Datenbankmodels.IObjektModel;
 import GUI.IObjektView;
 import GUI.MainFrame;
+import java.awt.FlowLayout;
 
 public class RechungsSucheGUI extends JPanel implements IObjektView{
 
-	private JTextField textField;
 	private JTable table;
 	private RechnungAnzeigeStrg controller;
 	private IObjektModel model;
-	private int rechnungsNr;
-	private String talking ="master";
 	private String search;
+	private JTextField textField_1;
+	private JTextField txtSearchbar;
 
 
 	/**
@@ -63,31 +65,40 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 		
 		JButton btnSuchen = new JButton("Suchen");
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField.setColumns(10);
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(17, Short.MAX_VALUE))
-		);
-		panel.setLayout(gl_panel);
+
+		txtSearchbar = new JTextField();
+//		txtSearchbar.addKeyListener(new KeyAdapter() {
+//			@Override
+//			public void keyReleased(KeyEvent arg0) {
+//				
+//				try {
+//					
+//					
+//					anfrage();
+//					
+//				
+//				} catch (Exception e1) {
+//					e1.printStackTrace();
+//				}
+//			}
+//	
+//		});
+		txtSearchbar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtSearchbar.setHorizontalAlignment(SwingConstants.CENTER);
+		txtSearchbar.setText("Kundennummer...");
+		txtSearchbar.setColumns(15);
+		
+		textField_1 = new JTextField();
+		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_1.setColumns(15);
+
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel.add(btnZurck);
+		panel.add(txtSearchbar);
+		panel.add(btnSuchen);
+		panel.add(textField_1);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.CENTER);
@@ -152,7 +163,7 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 			public void actionPerformed(ActionEvent e) {
 				
 				model.anmelden(MainFrame.getRechnungSucheGUI());
-				controller.fetchRechnungen(talking, rechnungsNr, search);
+				controller.getRechnungen(search);
 				model.abmelden(MainFrame.getRechnungSucheGUI());
 				
 			}
@@ -175,5 +186,12 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 	@Override
 public void aktualisieren(IObjektModel model) {
 		table.setModel(model.getTableModel());
+	}
+	
+	private void anfrage() {
+		model.anmelden(MainFrame.getRechnungSucheGUI());
+		controller.fetchRechnungen(txtSearchbar.getText() );
+		table.setModel(model.getTableModel());
+		model.abmelden(MainFrame.getRechnungSucheGUI());
 	}
 }
