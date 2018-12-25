@@ -66,7 +66,7 @@ public class RechnungAnzeigenModel implements IObjektModel{
 
 
 	// Wird ausgeführt, wenn die Rechnungsübersicht aufgerufen wird.
-	public void holeRechnungen(String search) {
+	public void holeDatenSuche(String search) {
 
 		this.search = search;
 		
@@ -86,10 +86,7 @@ public class RechnungAnzeigenModel implements IObjektModel{
 	}
 	
 	// Wird ausgeführt, wenn ein Kunde nach Rechnungen sucht. 
-	public void holeDaten(String searchtxt) {
-		
-		this. search = searchtxt;
-		
+	public void holeDaten() {
 		
 		 System.out.println();
         try {
@@ -133,7 +130,7 @@ public class RechnungAnzeigenModel implements IObjektModel{
     throws SQLException {
 
     Statement stmt = null;
-	String query = "select * from RECHNUNG";
+	String query = "select * from RECHNUNG ORDER BY ID DESC";
 	   
 	try {
 		stmt = con.createStatement();
@@ -158,20 +155,20 @@ public class RechnungAnzeigenModel implements IObjektModel{
 		    String query = null;
 		    
 		    if(search.equals(""))
-		    	query = "SELECT * FROM RECHUNG;";
+		    	query = "SELECT * FROM RECHNUNG ORDER BY ID DESC;";
 		    else 
-		    	query = "SELECT * FROM RECHUNG WHERE KUNDEID LIKE '%" + search + "%'";
+		    	query = "SELECT * FROM RECHNUNG WHERE KUNDEID LIKE '%" +search+ "%' ORDER BY ID DESC";
 		   
 		    
 		    System.out.println(query);
+		    System.out.println(search);
 		    
 		    
 		    try {
-		    	System.out.println(query);
 		        stmt = con.createStatement();
 		        ResultSet rs = stmt.executeQuery(query);
 		        
-		        result = DbUtils.resultSetToTableModel(rs);
+		        table = DbUtils.resultSetToTableModel(rs);
 		        
 		    } catch (SQLException e ) {
 		    	e.printStackTrace();

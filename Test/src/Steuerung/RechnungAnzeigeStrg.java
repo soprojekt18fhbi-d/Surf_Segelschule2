@@ -17,6 +17,7 @@ public class RechnungAnzeigeStrg implements IController{
 	
 	private RechnungAnzeigenModel model;
 	private IObjektView view;
+	private String search;
 	
 
 	
@@ -28,15 +29,15 @@ public class RechnungAnzeigeStrg implements IController{
 	
 
 	
-	public void fetchRechnungen(String search) {
+	public void getRechnungenSuche(String search) {
 		
-		model.holeRechnungen(search);
+		model.holeDatenSuche(search);
 		
 	}
 	
-	public void getRechnungen(String search) {
+	public void getRechnungen() {
 		
-		model.holeDaten(search);
+		model.holeDaten();
 		
 		
 	}
