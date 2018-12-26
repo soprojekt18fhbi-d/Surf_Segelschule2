@@ -27,10 +27,14 @@ public class RechnungAnzeigenModel implements IObjektModel{
 	private ArrayList<Rechnung> mengeAnRechnungen = new ArrayList<Rechnung>();
 	private TableModel table;
 	private TableModel result;
-	private int rechnungID = 0;
-	private int rechnungsNr;
-	private String talking;
 	private String search;
+	private int rechnungsID;
+	private double summe;
+	private double summeMitMwst;
+	private double mwst;
+	private int kundeID;
+	private int buchungsID;
+
 
 	@Override
 	public void anmelden(IObjektView view) {
@@ -104,27 +108,25 @@ public class RechnungAnzeigenModel implements IObjektModel{
         updateObserver();
 	}
 	
-//	public void viewTable(Connection con)
-//	    throws SQLException {
-//
-//	    Statement stmt = null;
-//		String query = "select * from RECHNUNG";
-//		   
-//		try {
-//			stmt = con.createStatement();
-//
-//			System.out.println(query);
-//				
-//			ResultSet rs = stmt.executeQuery(query);
-//			table = DbUtils.resultSetToTableModel(rs);
-//
-//		} catch (SQLException e ) {
-//			e.printStackTrace();
-//		} finally {
-//			if (stmt != null) { stmt.close(); }
-//		}
-//
-//	}
+	public void holeDatenDrucken(int rechnungsID) {
+
+		this.rechnungsID = rechnungsID;
+		
+        try {
+			Connection conn = DriverManager.
+			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			// add application code here
+			rechnungDrucken(conn);
+			
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+        updateObserver();
+	}
+	
 	
 	public void viewTable(Connection con)
     throws SQLException {
@@ -175,12 +177,36 @@ public class RechnungAnzeigenModel implements IObjektModel{
 		    } finally {
 		        if (stmt != null) { stmt.close(); }
 		    }
+		    
+		}
+	
+	public void rechnungDrucken(Connection con)
+		    throws SQLException {
+
+		 Statement stmt = con.createStatement();
+		    String query = "SELECT * FROM RECHNUNG WHERE ID = 1";
+		    System.out.println(query);
+		    
+		    try {
+		        stmt = con.createStatement();
+		        ResultSet rs = stmt.executeQuery(query);
+		        System.out.println(rs);
+		        while(rs.next()) {
+		        summe = rs.getDouble(2);
+		        mwst = rs.getDouble(3);
+		        summeMitMwst = rs.getDouble(4);
+		        kundeID = rs.getInt(5);
+		        buchungsID = rs.getInt(6);
+		        System.out.println(summe + mwst + summeMitMwst + kundeID+  buchungsID);
+		        }
+		    } catch (SQLException e ) {
+		    	e.printStackTrace();
+		    } finally {
+		        if (stmt != null) { stmt.close(); }
+		    }
 
 		}
 	
-
-	
-
 	
 
 	@Override
@@ -193,5 +219,30 @@ public class RechnungAnzeigenModel implements IObjektModel{
 		// TODO Auto-generated method stub
 		return table;
 	}
+
+	public int getRechnungsID() {
+		return rechnungsID;
+	}
+
+	public double getSummeMitMwst() {
+		return summeMitMwst;
+	}
+
+	public double getMwst() {
+		return mwst;
+	}
+
+	public int getKundeID() {
+		return kundeID;
+	}
+
+	public int getBuchungsID() {
+		return buchungsID;
+	}
+
+	public double getSumme() {
+		return summe;
+	}
+
 }
 

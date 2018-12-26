@@ -48,6 +48,7 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 	private String search;
 	private JTextField txtRechnungGewaehlt;
 	private JTextField txtSearchbar;
+	private int rechnungsID;
 
 
 	/**
@@ -193,7 +194,10 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 		
 		btnREVerschicken.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getRechnungSucheGUI(), MainFrame.getRechnungDetailGUI());			
+				model.anmelden(MainFrame.getRechnungSucheGUI());
+				rechnungsID = Integer.parseInt(txtRechnungGewaehlt.getText());
+				controller.getRechungDruck(1);	
+				model.abmelden(MainFrame.getRechnungSucheGUI());
 			}
 		});
 		
