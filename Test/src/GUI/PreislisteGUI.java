@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -37,12 +38,15 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 	private PreislisteSucheStrg controller;
 	private IObjektModel model;
 	private int preislisteId;
-	private String talking = "master";
-	private JTextField txtSuchID;
+	private String talking;
+	private JTextField tfSuchID;
 
-	public PreislisteGUI() {
+	public PreislisteGUI(IObjektModel smodel, PreislisteSucheStrg scontroller) {
 
+		setBackground(Color.DARK_GRAY);
 
+		this.model = smodel;
+		this.controller = scontroller;
 
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
@@ -62,17 +66,21 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
 
-				talking = "name";
-				anfrage();
+				try {
+
+					anfrage();
+
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
-		
-		
-		txtSuchID = new JTextField();
-		txtSuchID.setHorizontalAlignment(SwingConstants.CENTER);
-		txtSuchID.setEditable(false);
-		txtSuchID.setFont(new Font("Tahoma", Font.BOLD, 18));
-		txtSuchID.setColumns(10);
+
+		tfSuchID = new JTextField();
+		tfSuchID.setHorizontalAlignment(SwingConstants.CENTER);
+		tfSuchID.setEditable(false);
+		tfSuchID.setFont(new Font("Tahoma", Font.BOLD, 18));
+		tfSuchID.setColumns(10);
 
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
@@ -131,17 +139,17 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 		gbc_scrollPane.gridy = 1;
 		panel_1.add(scrollPane, gbc_scrollPane);
 
-		DefaultTableModel tm = new DefaultTableModel();
-		table = new JTable(tm);
+		DefaultTableModel tableModel = new DefaultTableModel();
+		table = new JTable(tableModel);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				talking = "table";
+				talking = "master";
 				try {
 
 					int row = table.getSelectedRow();
-					txtSuchID.setText(table.getModel().getValueAt(row, 0).toString());
+					tfSuchID.setText(table.getModel().getValueAt(row, 0).toString());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -151,41 +159,41 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 
 		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		table.setMinimumSize(new Dimension(0, 500));
-		tm.addColumn("ID");
-		tm.addColumn("EineStd");
-		tm.addColumn("ZweiStd");
-		tm.addColumn("VierStd");
-		tm.addColumn("EinenTag");
-		tm.addColumn("ZweiTage");
-		tm.addColumn("DreiTage");
-		tm.addColumn("VierTage");
-		tm.addColumn("FuenfTage");
-		tm.addColumn("SechsSiebenTage");
-		tm.addColumn("AchtTage");
-		tm.addColumn("NeunTage");
-		tm.addColumn("ZehnTage");
-		tm.addColumn("ElfTage");
-		tm.addColumn("ZwoelfVierzehnTage");
-		tm.addColumn("FuenfzehnTage");
-		tm.addColumn("SechzehnTage");
-		tm.addColumn("SiebzehnTage");
-		tm.addColumn("AchtzehnEinundzwanzigTage");
-		tm.addColumn("TagVierWochen");
-		tm.addColumn("VierWochen");
+		tableModel.addColumn("ID");
+		tableModel.addColumn("EineStd");
+		tableModel.addColumn("ZweiStd");
+		tableModel.addColumn("VierStd");
+		tableModel.addColumn("EinenTag");
+		tableModel.addColumn("ZweiTage");
+		tableModel.addColumn("DreiTage");
+		tableModel.addColumn("VierTage");
+		tableModel.addColumn("FuenfTage");
+		tableModel.addColumn("SechsSiebenTage");
+		tableModel.addColumn("AchtTage");
+		tableModel.addColumn("NeunTage");
+		tableModel.addColumn("ZehnTage");
+		tableModel.addColumn("ElfTage");
+		tableModel.addColumn("ZwoelfVierzehnTage");
+		tableModel.addColumn("FuenfzehnTage");
+		tableModel.addColumn("SechzehnTage");
+		tableModel.addColumn("SiebzehnTage");
+		tableModel.addColumn("AchtzehnEinundzwanzigTage");
+		tableModel.addColumn("TagVierWochen");
+		tableModel.addColumn("VierWochen");
 
 		table.setPreferredScrollableViewportSize(new Dimension(450, 600));
 		scrollPane.setViewportView(table);
 
-		JButton btnAuswhlen = new JButton("Ausw\u00E4hlen");
-		btnAuswhlen.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnAuswhlen.setMinimumSize(new Dimension(150, 35));
-		btnAuswhlen.setPreferredSize(new Dimension(150, 35));
+		JButton btnLoeschen = new JButton("Löschen");
+		btnLoeschen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnLoeschen.setMinimumSize(new Dimension(150, 35));
+		btnLoeschen.setPreferredSize(new Dimension(150, 35));
 		GridBagConstraints gbc_btnAuswhlen = new GridBagConstraints();
 		gbc_btnAuswhlen.anchor = GridBagConstraints.EAST;
 		gbc_btnAuswhlen.fill = GridBagConstraints.VERTICAL;
 		gbc_btnAuswhlen.gridx = 1;
 		gbc_btnAuswhlen.gridy = 7;
-		panel_1.add(btnAuswhlen, gbc_btnAuswhlen);
+		panel_1.add(btnLoeschen, gbc_btnAuswhlen);
 
 		// Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
@@ -198,13 +206,12 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 
 		btnSuchen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				talking = "master";
 				anfrage();
-				
+
 			}
 
-			
 		});
 
 		btnPreislisteHinzu.addActionListener(new ActionListener() {
@@ -213,13 +220,13 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 			}
 		});
 
-//		btnPreislisteAendern.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getTypaendern());
-//			}
-//		});
+		 btnPreislisteAendern.addActionListener(new ActionListener() {
+		 public void actionPerformed(ActionEvent e) {
+		 MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getPreislisteGUI());
+		 }
+		 });
 
-		btnAuswhlen.addActionListener(new ActionListener() {
+		btnLoeschen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
 			}
@@ -230,12 +237,13 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 	@Override
 	public void aktualisieren(IObjektModel model) {
 		table.setModel(model.getTableModel());
-		
+
 	}
-	
+
 	public void anfrage() {
 		model.anmelden(MainFrame.getBuchungTypSucheGUI());
 		controller.fetchObjekte(talking, tfSuche.getText());
+		table.setModel(model.getTableModel());
 		model.abmelden(MainFrame.getBuchungTypSucheGUI());
 	}
 

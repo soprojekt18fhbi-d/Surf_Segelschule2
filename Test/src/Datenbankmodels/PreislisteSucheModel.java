@@ -15,15 +15,16 @@ import javax.swing.table.TableModel;
 
 import Domaenklassen.Preisliste;
 import GUI.IObjektView;
+import net.proteanit.sql.DbUtils;
 
 public class PreislisteSucheModel implements IObjektModel {
 
 	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
-	private ArrayList<Preisliste> mengeAnPreislisten = new ArrayList<Preisliste>();
+	private ArrayList<Object> mengeAnPreislisten = new ArrayList<Object>();
 	private int preislisteNr = 0;
 	private TableModel tableModel;
 	private String talking = "master";
-	private String preislisteId;
+	private String suchTxt;
 
 	@Override
 	public void anmelden(IObjektView view) {
@@ -40,30 +41,32 @@ public class PreislisteSucheModel implements IObjektModel {
 	@Override
 	public void abmelden(IObjektView view) {
 		try {
-			if(observers.contains(view));
-				observers.remove(view);
+			if (observers.contains(view))
+				;
+			observers.remove(view);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	@Override
 	public void updateObserver() {
 		try {
-			for (int i = 0; i < observers.size(); ++i) 
+			for (int i = 0; i < observers.size(); ++i)
 				observers.get(i).aktualisieren(this);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void holeDaten(String talking, String suchTxt) {
 
-		this.talking=talking;
-		this.preislisteId = suchTxt;
+		this.talking = talking;
+		this.suchTxt = suchTxt;
+		System.out.println(suchTxt);
+		System.out.println(talking);
 
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
@@ -78,36 +81,34 @@ public class PreislisteSucheModel implements IObjektModel {
 		updateObserver();
 	}
 
-	
-	public void viewTable(Connection con) throws SQLException {
+	public void viewTable(Connection conn) throws SQLException {
 
-		Statement stmt = null;
-		String query = null;
-		
-		
+		Statement stmt = conn.createStatement();
+		String query = "TestQuery";
+		System.out.println(query);
 
-		if(talking.equals("master"))
-		{
-			if (preislisteId != null)
-				query = "SELECT * FROM PREISLISTE WHERE (ID = '" + preislisteId + "');";
-			else if (preislisteId == null)
-				query = "SELECT * FROM PREISLISTE;";	
-		}
-		
+//		if (talking.equals("master")) {
+			if (suchTxt.equals(""))
+				query = "SELECT * FROM PREISLISTE";
+			else  
+				query = "SELECT * FROM PREISLISTE WHERE ID LIKE '%" + suchTxt + "%'";
+//		}
+
 		try {
-	        stmt = con.createStatement();
-	        ResultSet rs = stmt.executeQuery(query);
-	        tableModel = DbUtils.resultSetToTableModel(rs);
-	        
-	        
-	        
+			stmt = conn.createStatement();
+			
+			System.out.println(query);
+			
+			ResultSet rs = stmt.executeQuery(query);
+			tableModel = DbUtils.resultSetToTableModel(rs);
 
-	    } catch (SQLException e ) {
-	    	e.printStackTrace();
-	    } finally {
-	        if (stmt != null) { stmt.close(); }
-	    }
-
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+		}
 
 		// String preislisteID= rs.getString("ID");
 		// String eineStd= rs.getString("EineStd");
@@ -133,36 +134,15 @@ public class PreislisteSucheModel implements IObjektModel {
 
 	}
 
-
-
-
-
 	public ArrayList<Object> getObjekte() {
 
-		return null;
-		
-		 /* 
-		 * Datenbank
-			create table TYP(
-			TYPID int (3) not null AUTO_INCREMENT,
-			NAME varchar (20) not null,
-			FUEHRERSCHEIN varchar (20),
-			constraint pk_typ primary key (TYPID));
-			
-			
-			insert into TYP
-			values (default, 'Surfboard', 'Surfschein'),
-			(default, 'Segelboot', 'Segelschein'),
-			(default, 'Kajak', null),
-			(default, 'Jetski', null),
-			(default, 'Motorboot', 'Bootschein');
-		 */
+		return mengeAnPreislisten;
+
 
 	}
-	
+
 	public TableModel getTableModel() {
 		return tableModel;
 	}
-
 
 }
