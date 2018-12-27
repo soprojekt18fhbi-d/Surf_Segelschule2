@@ -33,19 +33,17 @@ public class Hauptmenue extends JPanel {
 		add(panel, BorderLayout.NORTH);
 		
 		JLabel lblHauptmen = new JLabel("Hauptmen\u00FC");
-		lblHauptmen.setFont(new Font("Tahoma", Font.BOLD, 48));
+		lblHauptmen.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHauptmen.setFont(new Font("Tahoma", Font.BOLD, 72));
 		lblHauptmen.setForeground(Color.WHITE);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
-					.addGap(348)
-					.addComponent(lblHauptmen)
-					.addContainerGap(348, Short.MAX_VALUE))
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addComponent(lblHauptmen, GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
 		);
 		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblHauptmen, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
 					.addContainerGap())
@@ -56,14 +54,14 @@ public class Hauptmenue extends JPanel {
 		panel_1.setBackground(Color.DARK_GRAY);
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{1, 1};
+		gbl_panel_1.columnWidths = new int[]{494, 487};
 		gbl_panel_1.rowHeights = new int[]{0, 0, 0};
 		gbl_panel_1.columnWeights = new double[]{1.0, 1.0};
 		gbl_panel_1.rowWeights = new double[]{1.0, 1.0};
 		panel_1.setLayout(gbl_panel_1);
 		
 		JButton btnKundenverwaltung = new JButton("Kundenverwaltung");
-		btnKundenverwaltung.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		btnKundenverwaltung.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		btnKundenverwaltung.setBackground(new Color(255, 140, 0));
 		GridBagConstraints gbc_btnKundenverwaltung = new GridBagConstraints();
 		gbc_btnKundenverwaltung.fill = GridBagConstraints.BOTH;
@@ -73,7 +71,7 @@ public class Hauptmenue extends JPanel {
 		panel_1.add(btnKundenverwaltung, gbc_btnKundenverwaltung);
 		
 		JButton btnGerteverwaltung = new JButton("Ger\u00E4teverwaltung");
-		btnGerteverwaltung.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		btnGerteverwaltung.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		btnGerteverwaltung.setBackground(new Color(255, 140, 0));
 		GridBagConstraints gbc_btnGerteverwaltung = new GridBagConstraints();
 		gbc_btnGerteverwaltung.fill = GridBagConstraints.BOTH;
@@ -83,7 +81,7 @@ public class Hauptmenue extends JPanel {
 		panel_1.add(btnGerteverwaltung, gbc_btnGerteverwaltung);
 		
 		JButton btnBuchungsverwaltung = new JButton("Buchungsverwaltung");
-		btnBuchungsverwaltung.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		btnBuchungsverwaltung.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		btnBuchungsverwaltung.setBackground(new Color(255, 140, 0));
 		GridBagConstraints gbc_btnBuchungsverwaltung = new GridBagConstraints();
 		gbc_btnBuchungsverwaltung.fill = GridBagConstraints.BOTH;
@@ -93,7 +91,7 @@ public class Hauptmenue extends JPanel {
 		panel_1.add(btnBuchungsverwaltung, gbc_btnBuchungsverwaltung);
 		
 		JButton btnWirtschaftlichkeit = new JButton("Wirtschaftlichkeit");
-		btnWirtschaftlichkeit.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		btnWirtschaftlichkeit.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		btnWirtschaftlichkeit.setBackground(new Color(255, 140, 0));
 		GridBagConstraints gbc_btnWirtschaftlichkeit = new GridBagConstraints();
 		gbc_btnWirtschaftlichkeit.fill = GridBagConstraints.BOTH;
