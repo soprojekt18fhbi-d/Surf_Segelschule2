@@ -27,6 +27,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Dimension;
+import java.awt.Color;
 
 public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 	private JTextField txtTyp;
@@ -48,6 +49,7 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
@@ -57,6 +59,7 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		panel.setLayout(gbl_panel);
 		
 		JLabel lblTypHinzufgen = new JLabel("Typ hinzuf\u00FCgen:");
+		lblTypHinzufgen.setForeground(Color.WHITE);
 		lblTypHinzufgen.setFont(new Font("Tahoma", Font.BOLD, 32));
 		GridBagConstraints gbc_lblTypHinzufgen = new GridBagConstraints();
 		gbc_lblTypHinzufgen.anchor = GridBagConstraints.WEST;
@@ -67,6 +70,7 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		panel.add(lblTypHinzufgen, gbc_lblTypHinzufgen);
 		
 		JLabel lblTyp = new JLabel("Typ:");
+		lblTyp.setForeground(Color.WHITE);
 		lblTyp.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblTyp = new GridBagConstraints();
 		gbc_lblTyp.anchor = GridBagConstraints.WEST;
@@ -87,6 +91,7 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		txtTyp.setColumns(10);
 		
 		JLabel lblErforderlicherFhrerschein = new JLabel("erforderlicher F\u00FChrerschein:");
+		lblErforderlicherFhrerschein.setForeground(Color.WHITE);
 		lblErforderlicherFhrerschein.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblErforderlicherFhrerschein = new GridBagConstraints();
 		gbc_lblErforderlicherFhrerschein.insets = new Insets(0, 0, 5, 5);
@@ -97,6 +102,8 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		panel.add(lblErforderlicherFhrerschein, gbc_lblErforderlicherFhrerschein);
 		
 		JCheckBox chckbxSegelschein = new JCheckBox("Segelschein");
+		chckbxSegelschein.setBackground(Color.DARK_GRAY);
+		chckbxSegelschein.setForeground(Color.WHITE);
 		chckbxSegelschein.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_chckbxSegelschein = new GridBagConstraints();
 		gbc_chckbxSegelschein.insets = new Insets(0, 0, 0, 5);
@@ -105,6 +112,8 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		panel.add(chckbxSegelschein, gbc_chckbxSegelschein);
 		
 		JCheckBox chckbxSurfschein = new JCheckBox("Surfschein");
+		chckbxSurfschein.setForeground(Color.WHITE);
+		chckbxSurfschein.setBackground(Color.DARK_GRAY);
 		chckbxSurfschein.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_chckbxSurfschein = new GridBagConstraints();
 		gbc_chckbxSurfschein.insets = new Insets(0, 0, 0, 5);
@@ -113,6 +122,8 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		panel.add(chckbxSurfschein, gbc_chckbxSurfschein);
 		
 		JCheckBox chckbxMotorbootschein = new JCheckBox("Motorbootschein");
+		chckbxMotorbootschein.setBackground(Color.DARK_GRAY);
+		chckbxMotorbootschein.setForeground(Color.WHITE);
 		chckbxMotorbootschein.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_chckbxMotorbootschein = new GridBagConstraints();
 		gbc_chckbxMotorbootschein.gridx = 4;
@@ -120,12 +131,15 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		panel.add(chckbxMotorbootschein, gbc_chckbxMotorbootschein);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.DARK_GRAY);
 		add(panel_2, BorderLayout.SOUTH);
 		
 		JButton btnBestaetigen = new JButton("best\u00E4tigen");
+		btnBestaetigen.setBackground(new Color(255, 140, 0));
 		btnBestaetigen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JButton btnAbbrechen = new JButton("abbrechen");
+		btnAbbrechen.setBackground(new Color(255, 140, 0));
 		btnAbbrechen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(

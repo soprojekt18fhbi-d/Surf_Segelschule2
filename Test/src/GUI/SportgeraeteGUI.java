@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -49,13 +50,16 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.NORTH);
 		
 		JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnZurck.setBackground(new Color(255, 140, 0));
 		
 		JButton btnSuchen = new JButton("Suchen");
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnSuchen.setBackground(new Color(255, 140, 0));
 		
 		textSuchen = new JTextField();
 		textSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -83,6 +87,7 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		panel.setLayout(gl_panel);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.DARK_GRAY);
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0};
@@ -93,6 +98,7 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		
 		JButton btnGeraetHinzu = new JButton("Ger\u00E4t hinzuf\u00FCgen");
 		btnGeraetHinzu.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnGeraetHinzu.setBackground(new Color(255, 140, 0));
 		btnGeraetHinzu.setPreferredSize(new Dimension(300, 100));
 		GridBagConstraints gbc_btnGeraetHinzu = new GridBagConstraints();
 		gbc_btnGeraetHinzu.insets = new Insets(0, 0, 5, 5);
@@ -104,6 +110,7 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		JButton btnGeraetAendern = new JButton("Ger\u00E4t \u00E4ndern");
 		btnGeraetAendern.setPreferredSize(new Dimension(300, 23));
 		btnGeraetAendern.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnGeraetAendern.setBackground(new Color(255, 140, 0));
 		GridBagConstraints gbc_btnGeraetAendern = new GridBagConstraints();
 		gbc_btnGeraetAendern.fill = GridBagConstraints.BOTH;
 		gbc_btnGeraetAendern.insets = new Insets(0, 0, 5, 5);
@@ -114,6 +121,7 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		JButton btnGeraetDeaktivieren = new JButton("Ger\u00E4t deaktivieren");
 		btnGeraetDeaktivieren.setPreferredSize(new Dimension(300, 100));
 		btnGeraetDeaktivieren.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnGeraetDeaktivieren.setBackground(new Color(255, 140, 0));
 		GridBagConstraints gbc_btnGeraetDeaktivieren = new GridBagConstraints();
 		gbc_btnGeraetDeaktivieren.fill = GridBagConstraints.BOTH;
 		gbc_btnGeraetDeaktivieren.insets = new Insets(0, 0, 5, 0);
@@ -151,6 +159,7 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		
 		JButton btnModelle = new JButton("Modelle");
 		btnModelle.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnModelle.setBackground(new Color(255, 140, 0));
 		btnModelle.setMinimumSize(new Dimension(150, 35));
 		btnModelle.setPreferredSize(new Dimension(150, 35));
 		GridBagConstraints gbc_btnModelle = new GridBagConstraints();

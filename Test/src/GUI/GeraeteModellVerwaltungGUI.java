@@ -43,13 +43,16 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.NORTH);
 		
 		JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnZurck.setBackground(new Color(255, 140, 0));
 		
 		JButton btnSuchen = new JButton("Suchen");
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnSuchen.setBackground(new Color(255, 140, 0));
 		
 		textSuchen = new JTextField();
 		textSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -77,6 +80,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		panel.setLayout(gl_panel);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.DARK_GRAY);
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0};
@@ -87,6 +91,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		
 		JButton btnModellHinzu = new JButton("Modell hinzuf\u00FCgen");
 		btnModellHinzu.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnModellHinzu.setBackground(new Color(255, 140, 0));
 		btnModellHinzu.setPreferredSize(new Dimension(300, 100));
 		GridBagConstraints gbc_btnModellHinzu = new GridBagConstraints();
 		gbc_btnModellHinzu.insets = new Insets(0, 0, 5, 5);
@@ -97,6 +102,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 				
 		JButton btnModellAendern = new JButton("Modell \u00E4ndern");
 		btnModellAendern.setPreferredSize(new Dimension(300, 23));
+		btnModellAendern.setBackground(new Color(255, 140, 0));
 		btnModellAendern.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_btnModellAendern = new GridBagConstraints();
 		gbc_btnModellAendern.fill = GridBagConstraints.BOTH;
@@ -107,6 +113,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		
 		JButton btnModellDeaktivieren = new JButton("Modell deaktivieren");
 		btnModellDeaktivieren.setPreferredSize(new Dimension(300, 100));
+		btnModellDeaktivieren.setBackground(new Color(255, 140, 0));
 		btnModellDeaktivieren.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_btnModellDeaktivieren = new GridBagConstraints();
 		gbc_btnModellDeaktivieren.fill = GridBagConstraints.BOTH;
@@ -140,6 +147,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		
 		JButton btnTypen = new JButton("Typen");
 		btnTypen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnTypen.setBackground(new Color(255, 140, 0));
 		btnTypen.setMinimumSize(new Dimension(150, 35));
 		btnTypen.setPreferredSize(new Dimension(150, 35));
 		GridBagConstraints gbc_btnTypen = new GridBagConstraints();
@@ -152,6 +160,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		
 		JButton btnGeraete = new JButton("Ger\u00E4te");
 		btnGeraete.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnGeraete.setBackground(new Color(255, 140, 0));
 		btnGeraete.setMinimumSize(new Dimension(150, 35));
 		btnGeraete.setPreferredSize(new Dimension(150, 35));
 		GridBagConstraints gbc_btnGeraete = new GridBagConstraints();

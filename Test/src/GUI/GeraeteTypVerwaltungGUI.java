@@ -23,6 +23,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -50,13 +51,16 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.NORTH);
 		
 		JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnZurck.setBackground(new Color(255, 140, 0));
 		
 		JButton btnSuchen = new JButton("Suchen");
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnSuchen.setBackground(new Color(255, 140, 0));
 		
 		textSuchen = new JTextField();
 		textSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -84,6 +88,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		panel.setLayout(gl_panel);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.DARK_GRAY);
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0};
@@ -94,6 +99,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		
 		JButton btnTypHinzu = new JButton("Typ hinzuf\u00FCgen");
 		btnTypHinzu.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnTypHinzu.setBackground(new Color(255, 140, 0));
 		btnTypHinzu.setPreferredSize(new Dimension(300, 100));
 		GridBagConstraints gbc_btnTypHinzu = new GridBagConstraints();
 		gbc_btnTypHinzu.insets = new Insets(0, 0, 5, 5);
@@ -103,6 +109,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		panel_1.add(btnTypHinzu, gbc_btnTypHinzu);
 				
 		JButton btnTypAendern = new JButton("Typ \u00E4ndern");
+		btnTypAendern.setBackground(new Color(255, 140, 0));
 		btnTypAendern.setPreferredSize(new Dimension(300, 23));
 		btnTypAendern.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_btnTypAendern = new GridBagConstraints();
@@ -113,6 +120,8 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		panel_1.add(btnTypAendern, gbc_btnTypAendern);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setForeground(Color.WHITE);
+		scrollPane.setBackground(Color.DARK_GRAY);
 		scrollPane.setPreferredSize(new Dimension(2, 375));
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridheight = 6;
@@ -125,6 +134,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		
 		DefaultTableModel tm = new DefaultTableModel();
 		table = new JTable(tm);
+		table.setGridColor(Color.DARK_GRAY);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		table.setMinimumSize(new Dimension(0, 500));
 		tm.addColumn("TypID");
@@ -138,6 +148,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		
 		JButton btnModelle = new JButton("Modelle");
 		btnModelle.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnModelle.setBackground(new Color(255, 140, 0));
 		btnModelle.setMinimumSize(new Dimension(150, 35));
 		btnModelle.setPreferredSize(new Dimension(150, 35));
 		GridBagConstraints gbc_btnModelle = new GridBagConstraints();
