@@ -28,6 +28,8 @@ import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Component;
 
 import javax.swing.ComboBoxModel;
@@ -91,11 +93,23 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 		cboxKateg.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				
-				talking = "category";
-				mode = cboxKateg.getSelectedItem().toString();
-				model.anmelden(MainFrame.getWirtschaftlichkeitsverwaltungGUI());
-				controller.holeDaten(talking, mode, id);
-				model.abmelden(MainFrame.getWirtschaftlichkeitsverwaltungGUI());
+				try {
+					talking = "category";
+					mode = cboxKateg.getSelectedItem().toString();
+					model.anmelden(MainFrame.getWirtschaftlichkeitsverwaltungGUI());
+					controller.holeDaten(talking, mode, id);
+					model.abmelden(MainFrame.getWirtschaftlichkeitsverwaltungGUI());
+					if(cboxKateg.getSelectedItem().equals("Sportgeraet"))
+						try {
+							Integer.parseInt(JOptionPane.showInputDialog("Bitte Artikelnummer (ID) eingeben zur genauen Bestimmung!"));
+						} catch (NumberFormatException e) {
+							// TODO Auto-generated catch block
+							JOptionPane.showMessageDialog(null, "Das ist keine gültige Nummer!");
+						}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}
 		});
@@ -114,6 +128,22 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 		cboxSpec.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		
 		JButton buttonCalc = new JButton("Berechne");
+		buttonCalc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					talking = "calc";
+					model.anmelden(MainFrame.getWirtschaftlichkeitsverwaltungGUI());
+					controller.holeDaten(talking, mode, id);
+					model.abmelden(MainFrame.getWirtschaftlichkeitsverwaltungGUI());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+			}
+		});
 		buttonCalc.setBackground(new Color(255, 140, 0));
 		buttonCalc.setForeground(new Color(0, 0, 0));
 		buttonCalc.setFont(new Font("Tahoma", Font.PLAIN, 32));
@@ -232,11 +262,12 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 		}
 			
 		
-		else if(talking.equals("calculate"))
+		else if(talking.equals("calc"))
 			{
 				txtIncome.setText("" + model.getIncome());
 				txtExpenses.setText("" + model.getExpenses());
-				txtProfit.setText("" + (Integer.parseInt(txtIncome.getText())-(Integer.parseInt(txtExpenses.getText()))));
+				txtProfit.setText("" + (Double.parseDouble(txtIncome.getText())-(Double.parseDouble(txtExpenses.getText()))));
+				
 			}
 	}
 }

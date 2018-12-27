@@ -20,8 +20,8 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 	private ArrayList<String> cboxStrings = new ArrayList<String>();
 	private String mode = "";
 	private String talking = "";
-	private int income = 0;
-	private int expenses = 0;
+	private double income = 0;
+	private double expenses = 0;
 	private int specialID = 0;
 	
 	
@@ -58,6 +58,8 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 		    String queryExpensesRepair = "SELECT SUMME FROM RECHNUNG WHERE REPARATURID IS NOT NULL";
 		    String query = "";
 		    cboxStrings.clear();
+		    income = 0;
+		    expenses = 0;
 		    
 		    try {
 		    	
@@ -77,6 +79,30 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 				        }
 		    		}
 		    	}
+		    	
+		    	if (talking.equals("calc"))
+		    	{
+		    		if(mode.equals("Unternehmen"))
+		    		{
+		    			calcExpInc(stmt, queryIncome, queryExpensesDevices, queryExpensesRepair);
+		    		}
+		    		if(mode.equals("STANDORT"))
+		    		{
+		    			
+		    		}
+		    		if(mode.equals("TYP"))
+		    		{
+		    			
+		    		}
+		    		if(mode.equals("MODELL"))
+		    		{
+		    			
+		    		}
+		    		if(mode.equals("Sportgeraet"))
+		    		{
+		    			
+		    		}
+		    	}
 
 		        
         
@@ -88,6 +114,31 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 		    
 		    
 		}
+
+
+	private void calcExpInc(Statement stmt, String queryIncome, String queryExpensesDevices, String queryExpensesRepair)
+			throws SQLException {
+		ResultSet rs = stmt.executeQuery(queryIncome);
+		while (rs.next())
+		{
+			income += rs.getDouble("SUMME");
+			System.out.println(income);
+		}
+		
+		rs = stmt.executeQuery(queryExpensesDevices);
+		while (rs.next())
+		{
+			expenses += rs.getDouble("ANSCHAFFUNGSPREIS");
+			System.out.println(expenses);
+		}
+		
+		rs = stmt.executeQuery(queryExpensesRepair);
+		while (rs.next())
+		{
+			expenses += rs.getDouble("SUMME");
+			System.out.println(expenses);
+		}
+	}
 	
 	
 	@Override
@@ -126,13 +177,13 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 	}
 
 	@Override
-	public int getIncome() {
+	public double getIncome() {
 		// TODO Auto-generated method stub
 		return income;
 	}
 
 	@Override
-	public int getExpenses() {
+	public double getExpenses() {
 		// TODO Auto-generated method stub
 		return expenses;
 	}

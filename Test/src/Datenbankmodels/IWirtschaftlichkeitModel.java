@@ -39,9 +39,9 @@ public interface IWirtschaftlichkeitModel { //Ben Kröncke
 		 */
 		public void updateObserver();
 
-		public int getIncome();
+		public double getIncome();
 
-		public int getExpenses();
+		public double getExpenses();
 		
 		public ArrayList<String> getStrings();
 		
