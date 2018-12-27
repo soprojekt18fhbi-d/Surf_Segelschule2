@@ -155,7 +155,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		gbc_btnTypen.anchor = GridBagConstraints.WEST;
 		gbc_btnTypen.insets = new Insets(0, 0, 0, 5);
 		gbc_btnTypen.gridx = 0;
-		gbc_btnTypen.gridy = 7;
+		gbc_btnTypen.gridy = 7; 
 		panel_1.add(btnTypen, gbc_btnTypen);
 		
 		JButton btnGeraete = new JButton("Ger\u00E4te");

@@ -153,7 +153,7 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		tm.addColumn("Farbe");
 		
 		
-		
+	
 		table.setPreferredScrollableViewportSize(new Dimension(450, 600));
 		scrollPane.setViewportView(table);
 		
@@ -170,8 +170,7 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		gbc_btnModelle.gridy = 7;
 		panel_1.add(btnModelle, gbc_btnModelle);
 		
-		
-				
+
 		
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
