@@ -198,7 +198,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		});
 		
 		textSuchen.addKeyListener(new KeyAdapter(){
-			public void keyPressed(KeyEvent e) {
+			public void keyReleased(KeyEvent e) {
 				talking = "suchen";
 				anfrage();
 			}

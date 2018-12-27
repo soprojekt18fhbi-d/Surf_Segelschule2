@@ -11,6 +11,11 @@ import javax.swing.SwingConstants;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class Hauptmenue extends JPanel {
 
@@ -18,84 +23,106 @@ public class Hauptmenue extends JPanel {
 	 * Create the panel.
 	 */
 	public Hauptmenue() {
-		
+		setSize(980,580);	
+		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
-		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		add(panel);
+		panel.setBackground(Color.DARK_GRAY);
+		add(panel, BorderLayout.NORTH);
 		
-		JButton button = new JButton("Kundenverwaltung");
-		button.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		button.addActionListener(new ActionListener() {
+		JLabel lblHauptmen = new JLabel("Hauptmen\u00FC");
+		lblHauptmen.setFont(new Font("Tahoma", Font.BOLD, 48));
+		lblHauptmen.setForeground(Color.WHITE);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+					.addContainerGap(374, Short.MAX_VALUE)
+					.addComponent(lblHauptmen)
+					.addGap(322))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(lblHauptmen))
+		);
+		panel.setLayout(gl_panel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.DARK_GRAY);
+		add(panel_1, BorderLayout.CENTER);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[]{1, 1};
+		gbl_panel_1.rowHeights = new int[]{0, 0, 0};
+		gbl_panel_1.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{1.0, 1.0};
+		panel_1.setLayout(gbl_panel_1);
+		
+		JButton btnKundenverwaltung = new JButton("Kundenverwaltung");
+		btnKundenverwaltung.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		btnKundenverwaltung.setBackground(new Color(255, 140, 0));
+		GridBagConstraints gbc_btnKundenverwaltung = new GridBagConstraints();
+		gbc_btnKundenverwaltung.fill = GridBagConstraints.BOTH;
+		gbc_btnKundenverwaltung.insets = new Insets(0, 0, 5, 5);
+		gbc_btnKundenverwaltung.gridx = 0;
+		gbc_btnKundenverwaltung.gridy = 0;
+		panel_1.add(btnKundenverwaltung, gbc_btnKundenverwaltung);
+		
+		JButton btnGerteverwaltung = new JButton("Ger\u00E4teverwaltung");
+		btnGerteverwaltung.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		btnGerteverwaltung.setBackground(new Color(255, 140, 0));
+		GridBagConstraints gbc_btnGerteverwaltung = new GridBagConstraints();
+		gbc_btnGerteverwaltung.fill = GridBagConstraints.BOTH;
+		gbc_btnGerteverwaltung.insets = new Insets(0, 0, 5, 0);
+		gbc_btnGerteverwaltung.gridx = 1;
+		gbc_btnGerteverwaltung.gridy = 0;
+		panel_1.add(btnGerteverwaltung, gbc_btnGerteverwaltung);
+		
+		JButton btnBuchungsverwaltung = new JButton("Buchungsverwaltung");
+		btnBuchungsverwaltung.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		btnBuchungsverwaltung.setBackground(new Color(255, 140, 0));
+		GridBagConstraints gbc_btnBuchungsverwaltung = new GridBagConstraints();
+		gbc_btnBuchungsverwaltung.fill = GridBagConstraints.BOTH;
+		gbc_btnBuchungsverwaltung.insets = new Insets(0, 0, 0, 5);
+		gbc_btnBuchungsverwaltung.gridx = 0;
+		gbc_btnBuchungsverwaltung.gridy = 1;
+		panel_1.add(btnBuchungsverwaltung, gbc_btnBuchungsverwaltung);
+		
+		JButton btnWirtschaftlichkeit = new JButton("Wirtschaftlichkeit");
+		btnWirtschaftlichkeit.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		btnWirtschaftlichkeit.setBackground(new Color(255, 140, 0));
+		GridBagConstraints gbc_btnWirtschaftlichkeit = new GridBagConstraints();
+		gbc_btnWirtschaftlichkeit.fill = GridBagConstraints.BOTH;
+		gbc_btnWirtschaftlichkeit.gridx = 1;
+		gbc_btnWirtschaftlichkeit.gridy = 1;
+		panel_1.add(btnWirtschaftlichkeit, gbc_btnWirtschaftlichkeit);
+		
+		//Funktionen der Button
+		btnKundenverwaltung.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getHauptmenueGUI(), MainFrame.getKundenverwaltungGUI());
 			}
 		});
 		
-		JButton button_1 = new JButton("Ger\u00E4teverwaltung");
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+		btnGerteverwaltung.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
 				MainFrame.change(MainFrame.getHauptmenueGUI(), MainFrame.getGeraeteVerwaltungGUI());
 				
 			}
 		});
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		
-		JButton button_2 = new JButton("BuchungsverwaltungGUI");
-		button_2.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		button_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+		btnBuchungsverwaltung.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
 				MainFrame.change(MainFrame.getHauptmenueGUI(), MainFrame.getBuchungsverwaltungGUI());
-				
 			}
 		});
 		
-		JButton button_3 = new JButton("W-Verwaltung");
-		button_3.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		button_3.addActionListener(new ActionListener() {
+		btnWirtschaftlichkeit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getHauptmenueGUI(), MainFrame.getWirtschaftlichkeitsverwaltungGUI());
 			}
 		});
 		
 		
-		JLabel label = new JLabel("Hauptmen\u00FC");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Tahoma", Font.BOLD, 48));
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addComponent(label, GroupLayout.DEFAULT_SIZE, 981, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(14)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(button_2, GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
-						.addComponent(button, GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(button_3, GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
-						.addComponent(button_1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE))
-					.addGap(4))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addComponent(label, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(button_1, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-						.addComponent(button, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(button_3, GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-						.addComponent(button_2, GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))
-					.addGap(8))
-		);
-		panel.setLayout(gl_panel);
-
 	}
-
 }

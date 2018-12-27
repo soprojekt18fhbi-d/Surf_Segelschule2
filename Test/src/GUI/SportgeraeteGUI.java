@@ -224,7 +224,7 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		});
 		
 		textSuchen.addKeyListener(new KeyAdapter(){
-			public void keyPressed(KeyEvent e) {
+			public void keyReleased(KeyEvent e) {
 				talking = "suchen";
 				modellNr = Integer.parseInt(textSuchen.getText());
 				anfrage();
