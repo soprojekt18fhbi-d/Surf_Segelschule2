@@ -15,6 +15,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
 
 import GUI.MainFrame;
+import java.awt.Color;
 
 public class BuchungsverwaltungGUI extends JPanel {
 
@@ -22,13 +23,18 @@ public class BuchungsverwaltungGUI extends JPanel {
 	 * Create the panel.
 	 */
 	public BuchungsverwaltungGUI() {
+		setBackground(Color.DARK_GRAY);
+		setForeground(Color.DARK_GRAY);
 		
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		panel.setForeground(Color.DARK_GRAY);
 		add(panel, BorderLayout.NORTH);
 		
 		JButton btnZurck = new JButton("Zur\u00FCck");
+		btnZurck.setForeground(new Color(255, 140, 0));
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -46,6 +52,8 @@ public class BuchungsverwaltungGUI extends JPanel {
 		panel.setLayout(gl_panel);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.DARK_GRAY);
+		panel_1.setForeground(Color.DARK_GRAY);
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0};
@@ -55,6 +63,8 @@ public class BuchungsverwaltungGUI extends JPanel {
 		panel_1.setLayout(gbl_panel_1);
 		
 		JButton btnAktiveAusleihen = new JButton("Aktive Buchungen");
+		btnAktiveAusleihen.setBackground(new Color(255, 140, 0));
+		btnAktiveAusleihen.setForeground(new Color(0, 0, 0));
 		btnAktiveAusleihen.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_btnAktiveAusleihen = new GridBagConstraints();
 		gbc_btnAktiveAusleihen.fill = GridBagConstraints.BOTH;
@@ -64,6 +74,8 @@ public class BuchungsverwaltungGUI extends JPanel {
 		panel_1.add(btnAktiveAusleihen, gbc_btnAktiveAusleihen);
 		
 		JButton btnSportgertVerkaufenverleihen = new JButton("Sportger\u00E4t verkaufen/verleihen");
+		btnSportgertVerkaufenverleihen.setBackground(new Color(255, 140, 0));
+		btnSportgertVerkaufenverleihen.setForeground(new Color(0, 0, 0));
 		btnSportgertVerkaufenverleihen.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_btnSportgertVerkaufenverleihen = new GridBagConstraints();
 		gbc_btnSportgertVerkaufenverleihen.fill = GridBagConstraints.BOTH;
@@ -72,7 +84,9 @@ public class BuchungsverwaltungGUI extends JPanel {
 		gbc_btnSportgertVerkaufenverleihen.gridy = 1;
 		panel_1.add(btnSportgertVerkaufenverleihen, gbc_btnSportgertVerkaufenverleihen);
 		
-		JButton btnAbgeschlosseneBuchungen = new JButton("Abgeschlossene Buchungen");
+		JButton btnAbgeschlosseneBuchungen = new JButton("Rechnungsverwaltung");
+		btnAbgeschlosseneBuchungen.setBackground(new Color(255, 140, 0));
+		btnAbgeschlosseneBuchungen.setForeground(new Color(0, 0, 0));
 		btnAbgeschlosseneBuchungen.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_btnAbgeschlosseneBuchungen = new GridBagConstraints();
 		gbc_btnAbgeschlosseneBuchungen.fill = GridBagConstraints.BOTH;
@@ -106,7 +120,7 @@ public class BuchungsverwaltungGUI extends JPanel {
 		
 		btnAbgeschlosseneBuchungen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getBuchungsverwaltungGUI(), MainFrame.getAbgeschlosseneBuchungenGUI());
+				MainFrame.change(MainFrame.getBuchungsverwaltungGUI(), MainFrame.getRechnungSucheGUI());
 			}
 		});
 

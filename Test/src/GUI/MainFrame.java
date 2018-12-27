@@ -18,17 +18,12 @@ import Datenbankmodels.KundeSucheModel;
 import Datenbankmodels.ModellHinzufuegenModel;
 import Datenbankmodels.RechnungAnzeigenModel;
 import Datenbankmodels.WirtschaftlichkeitModel;
-import GUIBuchungsverwaltung.AbgeschlosseneBuchungenGUI;
 import GUIBuchungsverwaltung.AktiveBuchungenGUI;
 import GUIBuchungsverwaltung.BuchungGeraetSucheGUI;
 import GUIBuchungsverwaltung.BuchungsverwaltungGUI;
 import GUIBuchungsverwaltung.BuchungKundeSucheGUI;
 import GUIBuchungsverwaltung.BuchungModellSucheGUI;
-import GUIBuchungsverwaltung.ReklamationGUI;
-import GUIBuchungsverwaltung.StatusSetzenGUI;
 import GUIBuchungsverwaltung.BuchungTypSucheGUI;
-import GUIBuchungsverwaltung.VerkaufFormularGUI;
-import GUIBuchungsverwaltung.VerleihFormularGUI;
 import Steuerung.BuchungBuchungAnzeigenStrg;
 import Steuerung.BuchungGeraetSucheStrg;
 import Steuerung.BuchungKundeSucheStrg;
@@ -113,12 +108,8 @@ public class MainFrame extends JFrame {
 	private static BuchungTypSucheGUI buchungTypSucheGUI = new BuchungTypSucheGUI(buchungTypSucheModel, buchungTypSucheStrg);
 	private static BuchungModellSucheGUI buchungModellSucheGUI = new BuchungModellSucheGUI(buchungModellSucheModel, buchungModellSucheStrg);
 	private static BuchungGeraetSucheGUI buchungGeraetSucheGUI = new BuchungGeraetSucheGUI(buchungGeraetSucheModel, buchungGeraetSucheStrg);
-	private static VerleihFormularGUI verleihFormularGUI = new VerleihFormularGUI();
-	private static VerkaufFormularGUI verkaufFormularGUI = new VerkaufFormularGUI();
-	private static AbgeschlosseneBuchungenGUI abgeschlosseneBuchungenGUI = new AbgeschlosseneBuchungenGUI();
 	private static AktiveBuchungenGUI aktiveBuchungenGUI = new AktiveBuchungenGUI(buchungAnzeigeModel, buchungBuchungAnzeigenStrg);
-	private static ReklamationGUI reklamationGUI = new ReklamationGUI();
-	private static StatusSetzenGUI statusSetzenGUI = new StatusSetzenGUI();
+	
 	
 	// Kundenverwaltung
 	private static KundenverwaltungGUI kundenverwaltungGUI = new KundenverwaltungGUI(); 
@@ -132,7 +123,6 @@ public class MainFrame extends JFrame {
 	
 	// Rechnungsverwaltung
 	private static RechungsSucheGUI rechnungSucheGUI = new RechungsSucheGUI(rechnungAnzeigeModel, rechnungAnzeigenStrg); 
-	private static RechnungDetailGUI rechnungDetailGUI = new RechnungDetailGUI();
 	
 	// Wirtschaftlichkeitsrechnung
 	private static WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltungGUI = new WirtschaftlichkeitsverwaltungGUI(wModel, wStrg);
@@ -174,19 +164,13 @@ public class MainFrame extends JFrame {
 		contentPane.add(buchungTypSucheGUI);
 		contentPane.add(buchungModellSucheGUI);
 		contentPane.add(buchungGeraetSucheGUI);
-		contentPane.add(verleihFormularGUI);
-		contentPane.add(verkaufFormularGUI);
-		contentPane.add(abgeschlosseneBuchungenGUI);
 		contentPane.add(aktiveBuchungenGUI);
-		contentPane.add(reklamationGUI);
 		contentPane.add(preislisteGUI);	
 		contentPane.add(preislisteAnlegenGUI);	
-		contentPane.add(statusSetzenGUI);
 		contentPane.add(kundenverwaltungGUI);
 		contentPane.add(kundeAnlegenGUI);
 		contentPane.add(kundeAendernGUI);
-		contentPane.add(rechnungSucheGUI);
-		contentPane.add(rechnungDetailGUI);
+		contentPane.add(rechnungSucheGUI);;
 		contentPane.add(wirtschaftlichkeitsverwaltungGUI);
 
 		this.hauptmenueGUI.setVisible(true);
@@ -271,28 +255,8 @@ public class MainFrame extends JFrame {
 		return buchungGeraetSucheGUI;
 	}
 	
-	public static AbgeschlosseneBuchungenGUI getAbgeschlosseneBuchungenGUI(){ 		
-		return abgeschlosseneBuchungenGUI;
-	}
-	
 	public static AktiveBuchungenGUI getAktiveBuchungenGUI(){ 		
 		return aktiveBuchungenGUI;
-	}
-	
-	public static JPanel getReklamationGUI(){ 		
-		return reklamationGUI;
-	}
-	
-	public static JPanel getStatusSetzenGUI(){ 		
-		return statusSetzenGUI;
-	}
-		
-	public static JPanel getVerleihFormularGUI(){ 		
-		return verleihFormularGUI;
-	}
-	
-	public static JPanel getVerkaufFormularGUI(){ 		
-		return verkaufFormularGUI;
 	}
 	
 	public static JPanel getPreislisteGUI(){ 		
@@ -316,10 +280,6 @@ public class MainFrame extends JFrame {
 	
 	public static RechungsSucheGUI getRechnungSucheGUI() {
 		return rechnungSucheGUI;
-	}
-	
-	public static JPanel getRechnungDetailGUI() {
-		return rechnungDetailGUI;
 	}
 	
 

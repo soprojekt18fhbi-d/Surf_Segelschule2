@@ -39,6 +39,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.Color;
 
 public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 	private JTextField txtSearchbar;
@@ -56,6 +57,7 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 	 * @author M. Schmidt / Methoden: B. Kröncke
 	 */
 	public BuchungKundeSucheGUI(IObjektModel smodel, BuchungKundeSucheStrg scontroller) {
+		setBackground(Color.DARK_GRAY);
 		
 		this.model = smodel;
 		this.controller = scontroller;
@@ -65,6 +67,7 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 		
 		setLayout(null);
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.DARK_GRAY);
 		panel_1.setLayout(null);
 		panel_1.setBounds(0, 0, 668, 539);
 		add(panel_1);
@@ -94,6 +97,8 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 		panel_1.add(txtSearchbar);
 		
 		JButton alleButton = new JButton("Suchen");
+		alleButton.setBackground(new Color(255, 140, 0));
+		alleButton.setForeground(new Color(0, 0, 0));
 		alleButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -108,6 +113,8 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 		panel_1.add(alleButton);
 		
 		JButton leerButton = new JButton("Leeren");
+		leerButton.setBackground(new Color(255, 140, 0));
+		leerButton.setForeground(new Color(0, 0, 0));
 		leerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtSearchbar.setText("");
@@ -141,6 +148,8 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 		panel_1.add(comboBox);
 		
 		JButton waehleButton = new JButton("Ausw\u00E4hlen");
+		waehleButton.setBackground(new Color(255, 140, 0));
+		waehleButton.setForeground(new Color(0, 0, 0));
 		waehleButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -198,18 +207,22 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 		panel_1.add(txtKnr);
 		
 		JLabel lblSucheKundeNach = new JLabel("Suche Kunde nach:");
+		lblSucheKundeNach.setForeground(Color.WHITE);
 		lblSucheKundeNach.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblSucheKundeNach.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblSucheKundeNach.setBounds(24, 75, 184, 35);
 		panel_1.add(lblSucheKundeNach);
 		
 		JLabel lblKundennummer = new JLabel("Kundennummer:");
+		lblKundennummer.setForeground(Color.WHITE);
 		lblKundennummer.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblKundennummer.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblKundennummer.setBounds(24, 120, 184, 35);
 		panel_1.add(lblKundennummer);
 		
 		JButton button = new JButton("Zur\u00FCck");
+		button.setBackground(new Color(255, 140, 0));
+		button.setForeground(new Color(0, 0, 0));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getBuchungKundeSucheGUI(), MainFrame.getBuchungsverwaltungGUI());
@@ -220,6 +233,8 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 		panel_1.add(button);
 		
 		JButton button_1 = new JButton("Hauptmen\u00FC");
+		button_1.setBackground(new Color(255, 140, 0));
+		button_1.setForeground(new Color(0, 0, 0));
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getBuchungKundeSucheGUI(), MainFrame.getHauptmenueGUI());

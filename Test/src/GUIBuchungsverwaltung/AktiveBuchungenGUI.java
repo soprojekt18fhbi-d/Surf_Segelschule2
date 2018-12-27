@@ -35,6 +35,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 public class AktiveBuchungenGUI extends JPanel implements IObjektView { //Ben Kröncke
 	private JTextField searchField;
@@ -55,6 +56,7 @@ public class AktiveBuchungenGUI extends JPanel implements IObjektView { //Ben Kr
 	 * Create the panel.
 	 */
 	public AktiveBuchungenGUI(IObjektModel models, BuchungBuchungAnzeigenStrg controllers) {
+		setBackground(Color.DARK_GRAY);
 		
 		model = models;
 		controller = controllers;
@@ -62,12 +64,15 @@ public class AktiveBuchungenGUI extends JPanel implements IObjektView { //Ben Kr
 		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.NORTH);
 		
 		JButton btnZurck = new JButton("Zur\u00FCck");
+		btnZurck.setBackground(new Color(255, 140, 0));
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JButton btnSuchen = new JButton("Suchen");
+		btnSuchen.setBackground(new Color(255, 140, 0));
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		searchField = new JTextField();
@@ -127,6 +132,7 @@ public class AktiveBuchungenGUI extends JPanel implements IObjektView { //Ben Kr
 		panel.setLayout(gl_panel);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.DARK_GRAY);
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0};
@@ -136,6 +142,7 @@ public class AktiveBuchungenGUI extends JPanel implements IObjektView { //Ben Kr
 		panel_1.setLayout(gbl_panel_1);
 		
 		btnRueck = new JButton("R\u00FCckgabe");
+		btnRueck.setBackground(new Color(255, 140, 0));
 		btnRueck.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnRueck.setPreferredSize(new Dimension(300, 100));
 		GridBagConstraints gbc_btnRueck = new GridBagConstraints();
@@ -146,6 +153,7 @@ public class AktiveBuchungenGUI extends JPanel implements IObjektView { //Ben Kr
 		panel_1.add(btnRueck, gbc_btnRueck);
 				
 		JButton btnStorn = new JButton("Stornieren");
+		btnStorn.setBackground(new Color(255, 140, 0));
 		btnStorn.setPreferredSize(new Dimension(300, 23));
 		btnStorn.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_btnStorn = new GridBagConstraints();

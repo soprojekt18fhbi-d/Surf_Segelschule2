@@ -38,6 +38,8 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
+import javax.swing.UIManager;
 
 public class BuchungModellSucheGUI extends JPanel implements IObjektView {
 	private JTextField txtSearchbar;
@@ -61,9 +63,12 @@ public class BuchungModellSucheGUI extends JPanel implements IObjektView {
 		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.NORTH);
 		
 		JButton btnZurck = new JButton("Zur\u00FCck");
+		btnZurck.setBackground(new Color(255, 140, 0));
+		btnZurck.setForeground(new Color(0, 0, 0));
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		txtSearchbar = new JTextField();
@@ -82,15 +87,20 @@ public class BuchungModellSucheGUI extends JPanel implements IObjektView {
 		txtSearchbar.setColumns(10);
 		
 		JButton btnSuchen = new JButton("Suchen");
+		btnSuchen.setBackground(new Color(255, 140, 0));
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		txtModellnummer = new JTextField();
+		txtModellnummer.setBackground(new Color(255, 255, 255));
+		txtModellnummer.setForeground(new Color(0, 0, 0));
 		txtModellnummer.setHorizontalAlignment(SwingConstants.CENTER);
 		txtModellnummer.setFont(new Font("Tahoma", Font.BOLD, 18));
 		txtModellnummer.setEditable(false);
 		txtModellnummer.setColumns(10);
 		
 		JLabel lblAusgewhlteModellnummer = new JLabel("Ausgew\u00E4hlte Modellnummer:");
+		lblAusgewhlteModellnummer.setForeground(Color.WHITE);
+		lblAusgewhlteModellnummer.setBackground(Color.DARK_GRAY);
 		lblAusgewhlteModellnummer.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -159,9 +169,11 @@ public class BuchungModellSucheGUI extends JPanel implements IObjektView {
 		scrollPane.setViewportView(table);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.DARK_GRAY);
 		add(panel_2, BorderLayout.SOUTH);
 		
 		JButton btnAuswhlen = new JButton("Ausw\u00E4hlen");
+		btnAuswhlen.setBackground(new Color(255, 140, 0));
 		btnAuswhlen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(

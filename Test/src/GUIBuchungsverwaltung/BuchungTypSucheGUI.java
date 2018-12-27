@@ -39,6 +39,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class BuchungTypSucheGUI extends JPanel implements IObjektView{
 	private JTextField tfSuche;
@@ -61,9 +62,11 @@ public class BuchungTypSucheGUI extends JPanel implements IObjektView{
 		
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.NORTH);
 		
 		JButton btnZurck = new JButton("Zur\u00FCck");
+		btnZurck.setBackground(new Color(255, 140, 0));
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		tfSuche = new JTextField();
@@ -78,6 +81,7 @@ public class BuchungTypSucheGUI extends JPanel implements IObjektView{
 		tfSuche.setColumns(10);
 		
 		JButton btnSuchen = new JButton("Suchen");
+		btnSuchen.setBackground(new Color(255, 140, 0));
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		txtTypID = new JTextField();
@@ -87,6 +91,8 @@ public class BuchungTypSucheGUI extends JPanel implements IObjektView{
 		txtTypID.setColumns(10);
 		
 		JLabel lblAusgewhlteTypennummer = new JLabel("Ausgew\u00E4hlte Typennummer:");
+		lblAusgewhlteTypennummer.setForeground(Color.WHITE);
+		lblAusgewhlteTypennummer.setBackground(Color.WHITE);
 		lblAusgewhlteTypennummer.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -118,6 +124,7 @@ public class BuchungTypSucheGUI extends JPanel implements IObjektView{
 		panel.setLayout(gl_panel);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.DARK_GRAY);
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0};
@@ -127,6 +134,7 @@ public class BuchungTypSucheGUI extends JPanel implements IObjektView{
 		panel_1.setLayout(gbl_panel_1);
 		
 		JLabel infoLabel = new JLabel("Folgende Ger\u00E4tetypen k\u00F6nnen aufgrund vorhandener F\u00FChrerscheine ausgeliehen werden:");
+		infoLabel.setForeground(Color.WHITE);
 		infoLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_infoLabel = new GridBagConstraints();
 		gbc_infoLabel.anchor = GridBagConstraints.SOUTH;
@@ -144,6 +152,7 @@ public class BuchungTypSucheGUI extends JPanel implements IObjektView{
 		panel_1.add(scrollPane, gbc_scrollPane);
 		
 		table = new JTable();
+		table.setBackground(new Color(255, 255, 255));
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -162,9 +171,11 @@ public class BuchungTypSucheGUI extends JPanel implements IObjektView{
 		scrollPane.setViewportView(table);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.DARK_GRAY);
 		add(panel_2, BorderLayout.SOUTH);
 		
 		JButton btnAuswhlen = new JButton("Ausw\u00E4hlen");
+		btnAuswhlen.setBackground(new Color(255, 140, 0));
 		btnAuswhlen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(

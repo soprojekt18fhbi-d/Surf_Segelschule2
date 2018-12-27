@@ -40,6 +40,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 public class BuchungGeraetSucheGUI extends JPanel implements IObjektView{
 	
@@ -57,6 +58,7 @@ public class BuchungGeraetSucheGUI extends JPanel implements IObjektView{
 	 * Create the panel.
 	 */
 	public BuchungGeraetSucheGUI(IObjektModel models, BuchungGeraetSucheStrg controllers) {
+		setBackground(Color.DARK_GRAY);
 		
 		model = models;
 		controller = controllers;
@@ -65,6 +67,7 @@ public class BuchungGeraetSucheGUI extends JPanel implements IObjektView{
 		setLayout(null);
 		
 		JButton btnZurueck = new JButton("Zur\u00FCck");
+		btnZurueck.setBackground(new Color(255, 140, 0));
 		btnZurueck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getBuchungGeraetSucheGUI(), MainFrame.getBuchungModellSucheGUI());
@@ -75,6 +78,7 @@ public class BuchungGeraetSucheGUI extends JPanel implements IObjektView{
 		add(btnZurueck);
 		
 		JButton btnHauptmenue = new JButton("Hauptmen\u00FC");
+		btnHauptmenue.setBackground(new Color(255, 140, 0));
 		btnHauptmenue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -101,6 +105,7 @@ public class BuchungGeraetSucheGUI extends JPanel implements IObjektView{
 		comboVerkauf.addItem("Verkauf");
 		
 		JButton btnBestaetigen = new JButton("Best\u00E4tigen");
+		btnBestaetigen.setBackground(new Color(255, 140, 0));
 		btnBestaetigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -139,11 +144,13 @@ public class BuchungGeraetSucheGUI extends JPanel implements IObjektView{
 		add(btnBestaetigen);
 		
 		JLabel lblFrDieseAktion = new JLabel("Zur Verf\u00FCgung stehende Sportger\u00E4te:");
+		lblFrDieseAktion.setForeground(new Color(255, 255, 255));
 		lblFrDieseAktion.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblFrDieseAktion.setBounds(155, 148, 485, 53);
 		add(lblFrDieseAktion);
 		
 		JButton btnAktualisieren = new JButton("Aktualisieren");
+		btnAktualisieren.setBackground(new Color(255, 140, 0));
 		btnAktualisieren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
