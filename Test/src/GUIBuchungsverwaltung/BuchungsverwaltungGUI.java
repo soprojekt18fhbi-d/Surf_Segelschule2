@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import GUI.MainFrame;
 import java.awt.Color;
+import javax.swing.UIManager;
 
 public class BuchungsverwaltungGUI extends JPanel {
 
@@ -34,7 +35,8 @@ public class BuchungsverwaltungGUI extends JPanel {
 		add(panel, BorderLayout.NORTH);
 		
 		JButton btnZurck = new JButton("Zur\u00FCck");
-		btnZurck.setForeground(new Color(255, 140, 0));
+		btnZurck.setBackground(new Color(255, 140, 0));
+		btnZurck.setForeground(new Color(0, 0, 0));
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
