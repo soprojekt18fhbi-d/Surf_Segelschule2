@@ -9,7 +9,7 @@ import GUI.IView;
 import TESTPACKAGE.TestanbindungMVCBEISPIEL;
 import TESTPACKAGE.TestframeMVCBeispiel;
 
-public class KundeAnlegenStrg {
+public class KundeAnlegenStrg implements IController {
 	
 	private IKunde kunde;
 	private IAdresse adresse;
@@ -31,6 +31,13 @@ public class KundeAnlegenStrg {
 	public void AdresseAnlegen(String strasse, String hausnummer, String ort, int plz, String art) {
 		adresse = new Adresse(strasse, hausnummer, ort, plz, art);
 		model.AdresseAnlegen(adresse);
+	}
+
+
+	@Override
+	public void anfrage() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

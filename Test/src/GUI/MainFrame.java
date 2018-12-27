@@ -17,6 +17,7 @@ import Datenbankmodels.KundeAnlegenModel;
 import Datenbankmodels.KundeSucheModel;
 import Datenbankmodels.ModellHinzufuegenModel;
 import Datenbankmodels.RechnungAnzeigenModel;
+import Datenbankmodels.WirtschaftlichkeitModel;
 import GUIBuchungsverwaltung.AbgeschlosseneBuchungenGUI;
 import GUIBuchungsverwaltung.AktiveBuchungenGUI;
 import GUIBuchungsverwaltung.BuchungGeraetSucheGUI;
@@ -38,6 +39,7 @@ import Steuerung.KundeAnlegenStrg;
 import Steuerung.KundeSucheStrg;
 import Steuerung.ModellAnlegenStrg;
 import Steuerung.RechnungAnzeigeStrg;
+import Steuerung.WirtschaftlichkeitStrg;
 
 import java.awt.CardLayout;
 import javax.swing.GroupLayout;
@@ -75,6 +77,7 @@ public class MainFrame extends JFrame {
 	private static GeraetAnlegenModel geraetAnlegenModel = new GeraetAnlegenModel();
 	private static BuchungAnzeigeModel buchungAnzeigeModel = new BuchungAnzeigeModel();
 	private static RechnungAnzeigenModel rechnungAnzeigeModel = new RechnungAnzeigenModel();
+	private static WirtschaftlichkeitModel wModel = new WirtschaftlichkeitModel();
 	
 	
 	//Controller erzeugen:
@@ -88,7 +91,7 @@ public class MainFrame extends JFrame {
 	private static GeraetAnlegenStrg geraetAnlegenStrg = new GeraetAnlegenStrg(geraetAnlegenModel);	
 	private static BuchungBuchungAnzeigenStrg buchungBuchungAnzeigenStrg = new BuchungBuchungAnzeigenStrg(buchungAnzeigeModel);
 	private static RechnungAnzeigeStrg rechnungAnzeigenStrg = new RechnungAnzeigeStrg(rechnungAnzeigeModel);
-	
+	private static WirtschaftlichkeitStrg wStrg = new WirtschaftlichkeitStrg(wModel);
 	
 	
 	//Geräteverwaltung
@@ -132,7 +135,7 @@ public class MainFrame extends JFrame {
 	private static RechnungDetailGUI rechnungDetailGUI = new RechnungDetailGUI();
 	
 	// Wirtschaftlichkeitsrechnung
-	private static WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltungGUI = new WirtschaftlichkeitsverwaltungGUI();
+	private static WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltungGUI = new WirtschaftlichkeitsverwaltungGUI(wModel, wStrg);
 
 
 
@@ -320,7 +323,7 @@ public class MainFrame extends JFrame {
 	}
 	
 
-	public static JPanel getWirtschaftlichkeitsverwaltungGUI() {
+	public static WirtschaftlichkeitsverwaltungGUI getWirtschaftlichkeitsverwaltungGUI() {
 		return wirtschaftlichkeitsverwaltungGUI;
 	}
 	

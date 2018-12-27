@@ -5,7 +5,7 @@ import Domaenklassen.SportGeraet;
 import GUI.GeraetAnlegenGUI;
 import GUI.IAnlegenView;
 
-public class GeraetAnlegenStrg {
+public class GeraetAnlegenStrg implements IController {
 
 	
 	private SportGeraet geraet;
@@ -22,6 +22,12 @@ public class GeraetAnlegenStrg {
 		
 		String [] values = {typ, modell, makel, ""+verkaufspreis, ""+anschaffungspreis, farbe, ""+baujahr};
 		model.anfrage(talking, values);
+	}
+
+	@Override
+	public void anfrage() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

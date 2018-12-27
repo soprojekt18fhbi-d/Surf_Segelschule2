@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import Domaenklassen.IKunde;
 import Domaenklassen.Kunde;
 
-public class KundeBuchungStrg {
+public class KundeBuchungStrg implements IController {
 
 	private static KundeBuchungStrg instance;
 	private static KundeSucheStrg kundenSuche;
@@ -54,6 +54,12 @@ public class KundeBuchungStrg {
 		kundenAuswahl = new KundeAuswStrg();
 		suchKunde = KundeAuswStrg.auswKunde(kundenListe);
 		return suchKunde;
+	}
+
+	@Override
+	public void anfrage() {
+		// TODO Auto-generated method stub
+		
 	}
 	 
 	 

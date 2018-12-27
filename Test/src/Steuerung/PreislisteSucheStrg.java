@@ -4,7 +4,7 @@ import Datenbankmodels.PreislisteSucheModel;
 import GUI.PreislisteGUI;
 
 
-public class PreislisteSucheStrg {
+public class PreislisteSucheStrg implements IController {
 
 	
 	private PreislisteSucheModel model;
@@ -20,6 +20,12 @@ public class PreislisteSucheStrg {
 		
 		model.holeDaten(talking, suchTxt);
 		
+		
+	}
+
+	@Override
+	public void anfrage() {
+		// TODO Auto-generated method stub
 		
 	}
 

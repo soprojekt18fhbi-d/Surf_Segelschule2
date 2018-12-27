@@ -10,7 +10,7 @@ import Datenbankmodels.PreislisteAnlegenModel;
 import Domaenklassen.Preisliste;
 import GUI.IAnlegenView;
 
-public class PreislisteAnlegenStrg {
+public class PreislisteAnlegenStrg implements IController {
 
 	private Preisliste preisliste;
 	private PreislisteAnlegenModel model;
@@ -37,6 +37,13 @@ public class PreislisteAnlegenStrg {
 				 tagVierWochen,  vierWochen,  achtWochen,  kauf};
 		
 		model.PreislisteAnlegen(values);
+	}
+
+
+	@Override
+	public void anfrage() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

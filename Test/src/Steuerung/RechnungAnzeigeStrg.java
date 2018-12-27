@@ -58,5 +58,11 @@ public class RechnungAnzeigeStrg implements IController{
 		model.holeDaten();
 		
 	}
+
+	@Override
+	public void anfrage() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

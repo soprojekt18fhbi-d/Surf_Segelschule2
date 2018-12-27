@@ -15,6 +15,12 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
+
+import Datenbankmodels.IObjektModel;
+import Datenbankmodels.IWirtschaftlichkeitModel;
+import Steuerung.IController;
+import Steuerung.WirtschaftlichkeitStrg;
+
 import java.awt.GridBagLayout;
 import java.awt.Image;
 
@@ -23,15 +29,36 @@ import javax.swing.JRadioButton;
 import java.awt.Font;
 import javax.swing.JLabel;
 import java.awt.Component;
+
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
-public class WirtschaftlichkeitsverwaltungGUI extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	public WirtschaftlichkeitsverwaltungGUI() {
+public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtschaftlichkeitView { //Ben Kröncke
+	
+	
+	private String talking = "category";
+	private String mode = "Unternehmen";
+	private int id;
+	private JTextField txtIncome;
+	private JTextField txtExpenses;
+	private JTextField txtProfit;
+	private JComboBox<String> cboxSpec;
+	private IWirtschaftlichkeitModel model;
+	private WirtschaftlichkeitStrg controller;
+	
+	
+	
+	public WirtschaftlichkeitsverwaltungGUI(IWirtschaftlichkeitModel models, WirtschaftlichkeitStrg controllers) {
+		
+		model = models;
+		controller = controllers;
+		
+		
+		
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -60,9 +87,20 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel {
 		panel_1.setBackground(Color.DARK_GRAY);
 		add(panel_1, BorderLayout.CENTER);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Unternehmen", "Standort", "Typ", "Modell", "Sportger\u00E4t"}));
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		JComboBox cboxKateg = new JComboBox();
+		cboxKateg.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				
+				talking = "category";
+				mode = cboxKateg.getSelectedItem().toString();
+				model.anmelden(MainFrame.getWirtschaftlichkeitsverwaltungGUI());
+				controller.holeDaten(talking, mode, id);
+				model.abmelden(MainFrame.getWirtschaftlichkeitsverwaltungGUI());
+				
+			}
+		});
+		cboxKateg.setModel(new DefaultComboBoxModel(new String[] {"Unternehmen", "Standort", "Typ", "Modell", "Sportgeraet"}));
+		cboxKateg.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		
 		JLabel lblNewLabel = new JLabel("Kategorie w\u00E4hlen:");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
@@ -72,22 +110,22 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel {
 		lblSpezifizieren.setForeground(new Color(255, 255, 255));
 		lblSpezifizieren.setFont(new Font("Tahoma", Font.BOLD, 32));
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		cboxSpec = new JComboBox();
+		cboxSpec.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		
-		JButton btnNewButton = new JButton("Berechne");
-		btnNewButton.setBackground(new Color(255, 140, 0));
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		JButton buttonCalc = new JButton("Berechne");
+		buttonCalc.setBackground(new Color(255, 140, 0));
+		buttonCalc.setForeground(new Color(0, 0, 0));
+		buttonCalc.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		
 		JLabel lblEinnahmen = new JLabel("Einnahmen:");
 		lblEinnahmen.setForeground(Color.GREEN);
 		lblEinnahmen.setFont(new Font("Tahoma", Font.BOLD, 32));
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 32));
-		textField.setColumns(10);
+		txtIncome = new JTextField();
+		txtIncome.setEditable(false);
+		txtIncome.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		txtIncome.setColumns(10);
 		
 		JLabel lblAusgaben = new JLabel("Ausgaben:");
 		lblAusgaben.setForeground(Color.RED);
@@ -97,15 +135,15 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel {
 		lblGewinn.setForeground(Color.BLACK);
 		lblGewinn.setFont(new Font("Tahoma", Font.BOLD, 32));
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 32));
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
+		txtExpenses = new JTextField();
+		txtExpenses.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		txtExpenses.setEditable(false);
+		txtExpenses.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 32));
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
+		txtProfit = new JTextField();
+		txtProfit.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		txtProfit.setEditable(false);
+		txtProfit.setColumns(10);
 		Image photo = new ImageIcon(this.getClass().getResource("Scanner.png")).getImage();
 		
 		JLabel labelHead = new JLabel("Wirtschaftlichkeit");
@@ -121,28 +159,28 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel {
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED, 455, GroupLayout.PREFERRED_SIZE)
-							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE))
+							.addComponent(buttonCalc, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 							.addGroup(gl_panel_1.createSequentialGroup()
 								.addComponent(lblSpezifizieren, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
 								.addGap(4)
-								.addComponent(comboBox_1, 0, 326, Short.MAX_VALUE))
+								.addComponent(cboxSpec, 0, 326, Short.MAX_VALUE))
 							.addGroup(gl_panel_1.createSequentialGroup()
 								.addComponent(lblEinnahmen, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
 								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(textField, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
+								.addComponent(txtIncome, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
 							.addGroup(gl_panel_1.createSequentialGroup()
 								.addComponent(lblAusgaben, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
 								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
+								.addComponent(txtExpenses, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
 							.addGroup(gl_panel_1.createSequentialGroup()
 								.addComponent(lblGewinn, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
 								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
+								.addComponent(txtProfit, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
 							.addGroup(gl_panel_1.createSequentialGroup()
 								.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
 								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(comboBox, 0, 326, Short.MAX_VALUE))
+								.addComponent(cboxKateg, 0, 326, Short.MAX_VALUE))
 							.addComponent(labelHead, GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)))
 					.addGap(172))
 		);
@@ -153,29 +191,52 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblNewLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-						.addComponent(comboBox, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+						.addComponent(cboxKateg, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
 					.addGap(5)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblSpezifizieren, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+						.addComponent(cboxSpec, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+					.addComponent(buttonCalc, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtIncome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblEinnahmen, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblAusgaben, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtExpenses, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtProfit, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblGewinn, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
 					.addGap(60))
 		);
-		gl_panel_1.linkSize(SwingConstants.VERTICAL, new Component[] {lblEinnahmen, textField, lblAusgaben, lblGewinn, textField_1, textField_2});
-		gl_panel_1.linkSize(SwingConstants.VERTICAL, new Component[] {comboBox, lblNewLabel, lblSpezifizieren, comboBox_1});
+		gl_panel_1.linkSize(SwingConstants.VERTICAL, new Component[] {lblEinnahmen, txtIncome, lblAusgaben, lblGewinn, txtExpenses, txtProfit});
+		gl_panel_1.linkSize(SwingConstants.VERTICAL, new Component[] {cboxKateg, lblNewLabel, lblSpezifizieren, cboxSpec});
 		panel_1.setLayout(gl_panel_1);
+	}
+
+
+	@Override
+	public void aktualisieren(IWirtschaftlichkeitModel model) {
+		// TODO Auto-generated method stub
+		if(talking.equals("category"))
+		{
+			cboxSpec.removeAllItems();
+			
+			for(int i = 0; i < model.getStrings().size(); i++)
+			{
+				cboxSpec.addItem(model.getStrings().get(i));
+			}
+		}
+			
+		
+		else if(talking.equals("calculate"))
+			{
+				txtIncome.setText("" + model.getIncome());
+				txtExpenses.setText("" + model.getExpenses());
+				txtProfit.setText("" + (Integer.parseInt(txtIncome.getText())-(Integer.parseInt(txtExpenses.getText()))));
+			}
 	}
 }

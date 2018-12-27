@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import Domaenklassen.IKunde;
 import Domaenklassen.Kunde;
 
-public class KundeAusleihStrg {
+public class KundeAusleihStrg implements IController {
 
 	
 public KundeAusleihStrg() {
@@ -26,6 +26,12 @@ public KundeAusleihStrg() {
 	private IKunde selectKunde(ArrayList kundeListe) {
 		IKunde suchKunde = KundeAuswStrg.auswKunde(kundeListe);
 		return suchKunde;
+	}
+
+	@Override
+	public void anfrage() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

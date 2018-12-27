@@ -3,7 +3,7 @@ package Steuerung;
 import java.sql.*;
 
 
-public class Testanbindung{
+public class Testanbindung implements IController{
 	
 	public static void main(String[] a)
 	
@@ -42,4 +42,12 @@ public static void viewTable(Connection con)
 	        if (stmt != null) { stmt.close(); }
 	    }
 	}
+
+
+
+@Override
+public void anfrage() {
+	// TODO Auto-generated method stub
+	
+}
 }

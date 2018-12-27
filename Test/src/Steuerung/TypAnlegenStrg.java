@@ -5,7 +5,7 @@ import Domaenklassen.GeraeteTyp;
 import GUI.IAnlegenView;
 
 
-public class TypAnlegenStrg {
+public class TypAnlegenStrg implements IController{
 
 	
 	private GeraeteTyp typ;
@@ -24,6 +24,13 @@ public class TypAnlegenStrg {
 		String schein = führerschein;
 		String[] values = {typname, schein};
 		model.typAnlegen(values);
+	}
+
+
+	@Override
+	public void anfrage() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

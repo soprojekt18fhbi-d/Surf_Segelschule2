@@ -48,6 +48,12 @@ public class KundeSucheStrg implements IController {
 
 	}
 
+	@Override
+	public void anfrage() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 

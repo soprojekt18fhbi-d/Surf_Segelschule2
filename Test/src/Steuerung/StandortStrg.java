@@ -31,6 +31,16 @@ public class StandortStrg implements IController{
 
 
 
+
+		@Override
+		public void anfrage() {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+
+
 	
 	
 	

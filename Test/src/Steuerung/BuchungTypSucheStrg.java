@@ -32,4 +32,12 @@ public class BuchungTypSucheStrg implements IController{
 		
 		
 	}
+
+
+
+	@Override
+	public void anfrage() {
+		// TODO Auto-generated method stub
+		
+	}
 }

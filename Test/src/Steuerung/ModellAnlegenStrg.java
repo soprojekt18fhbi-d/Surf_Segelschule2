@@ -7,7 +7,7 @@ import Domaenklassen.GeraeteTyp;
 import GUI.IAnlegenView;
 import GUI.ModellAnlegenGUI;
 
-public class ModellAnlegenStrg {
+public class ModellAnlegenStrg implements IController {
 
 	
 	private GeraeteModell modell;
@@ -25,6 +25,13 @@ public class ModellAnlegenStrg {
 		
 		String [] values = {name, typ, "" + preis};
 		model.anfrage(talking, values);
+	}
+
+
+	@Override
+	public void anfrage() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
