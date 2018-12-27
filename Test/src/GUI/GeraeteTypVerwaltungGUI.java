@@ -146,7 +146,6 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		scrollPane.setViewportView(table);
 		
 		
-		
 		JButton btnModelle = new JButton("Modelle");
 		btnModelle.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnModelle.setBackground(new Color(255, 140, 0));

@@ -153,7 +153,6 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		tm.addColumn("Farbe");
 		
 		
-	
 		table.setPreferredScrollableViewportSize(new Dimension(450, 600));
 		scrollPane.setViewportView(table);
 		

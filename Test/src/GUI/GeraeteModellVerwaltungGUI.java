@@ -33,7 +33,6 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 	private String talking = "gesamt";
 	private String search;
 	
-
 	/**
 	 * Create the panel.
 	 */

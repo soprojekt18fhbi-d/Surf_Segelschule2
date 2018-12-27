@@ -24,6 +24,7 @@ public class Hauptmenue extends JPanel {
 	 */
 	
 	public Hauptmenue() {
+		
 		setSize(980,580);	
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
