@@ -81,7 +81,7 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		
 		JLabel lblEinnahmen = new JLabel("Einnahmen:");
-		lblEinnahmen.setForeground(new Color(255, 255, 255));
+		lblEinnahmen.setForeground(Color.GREEN);
 		lblEinnahmen.setFont(new Font("Tahoma", Font.BOLD, 32));
 		
 		textField = new JTextField();
@@ -90,11 +90,11 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel {
 		textField.setColumns(10);
 		
 		JLabel lblAusgaben = new JLabel("Ausgaben:");
-		lblAusgaben.setForeground(new Color(255, 255, 255));
+		lblAusgaben.setForeground(Color.RED);
 		lblAusgaben.setFont(new Font("Tahoma", Font.BOLD, 32));
 		
-		JLabel lblGewinn = new JLabel("Gewinn:");
-		lblGewinn.setForeground(new Color(255, 255, 255));
+		JLabel lblGewinn = new JLabel("Rohgewinn:");
+		lblGewinn.setForeground(Color.BLACK);
 		lblGewinn.setFont(new Font("Tahoma", Font.BOLD, 32));
 		
 		textField_1 = new JTextField();
@@ -107,6 +107,11 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel {
 		textField_2.setEditable(false);
 		textField_2.setColumns(10);
 		Image photo = new ImageIcon(this.getClass().getResource("Scanner.png")).getImage();
+		
+		JLabel labelHead = new JLabel("Wirtschaftlichkeit");
+		labelHead.setHorizontalAlignment(SwingConstants.CENTER);
+		labelHead.setForeground(new Color(255, 140, 0));
+		labelHead.setFont(new Font("Tahoma", Font.BOLD, 52));
 		
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
@@ -123,10 +128,6 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel {
 								.addGap(4)
 								.addComponent(comboBox_1, 0, 326, Short.MAX_VALUE))
 							.addGroup(gl_panel_1.createSequentialGroup()
-								.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(comboBox, 0, 326, Short.MAX_VALUE))
-							.addGroup(gl_panel_1.createSequentialGroup()
 								.addComponent(lblEinnahmen, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(textField, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
@@ -137,13 +138,19 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel {
 							.addGroup(gl_panel_1.createSequentialGroup()
 								.addComponent(lblGewinn, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
 								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))))
+								.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
+							.addGroup(gl_panel_1.createSequentialGroup()
+								.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(comboBox, 0, 326, Short.MAX_VALUE))
+							.addComponent(labelHead, GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)))
 					.addGap(172))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(59)
+					.addComponent(labelHead, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblNewLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
 						.addComponent(comboBox, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
