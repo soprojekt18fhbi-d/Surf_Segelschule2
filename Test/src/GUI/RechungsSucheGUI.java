@@ -196,7 +196,7 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 			public void actionPerformed(ActionEvent e) {
 				model.anmelden(MainFrame.getRechnungSucheGUI());
 				rechnungsID = Integer.parseInt(txtRechnungGewaehlt.getText());
-				controller.getRechungDruck(1);	
+				controller.getRechungDruck(rechnungsID);	
 				model.abmelden(MainFrame.getRechnungSucheGUI());
 			}
 		});
