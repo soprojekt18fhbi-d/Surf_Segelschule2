@@ -577,8 +577,8 @@ public class PreislisteAnlegenGUI extends JPanel  implements IAnlegenView{
 		JPanel panel_2 = new JPanel();
 		add(panel_2, BorderLayout.SOUTH);
 		
-		JButton btnBestaetigen = new JButton("best\u00E4tigen");
-		btnBestaetigen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		JButton btnAnlegen = new JButton("Anlegen");
+		btnAnlegen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JButton btnAbbrechen = new JButton("abbrechen");
 		btnAbbrechen.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -589,7 +589,7 @@ public class PreislisteAnlegenGUI extends JPanel  implements IAnlegenView{
 					.addContainerGap(573, Short.MAX_VALUE)
 					.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnBestaetigen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnAnlegen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 					.addGap(17))
 		);
 		gl_panel_2.setVerticalGroup(
@@ -598,7 +598,7 @@ public class PreislisteAnlegenGUI extends JPanel  implements IAnlegenView{
 					.addGap(0, 0, Short.MAX_VALUE)
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnBestaetigen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnAnlegen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		panel_2.setLayout(gl_panel_2);
@@ -607,80 +607,59 @@ public class PreislisteAnlegenGUI extends JPanel  implements IAnlegenView{
 
 		
 		
-		btnBestaetigen.addActionListener(new ActionListener() {
+		btnAnlegen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int id;
 				
 				
-				String preisEineStd;
-				String preisZweiStd;
-				String preisVierStd;
-				String preisEinenTag;
-				String preisZweiTage;
-				String preisDreiTage;
-				String preisVierTage;
-				String preisFuenfTage;
-				String preisSechsSiebenTage;
-				String preisAchtTage;
-				String preisNeunTage;
-				String preisZehnTage;
-				String preisElfTage;
-				String preisZwoelfVierzehnTage;
-				String preisFuenfzehnTage;
-				String preisSechzehnTage;
-				String preisSiebzehnTage;
-				String preisAchtzehnEinundzwanzigTage;
-				String preisTagVierWochen;
-				String presVierWochen;
-				String preisAchtWochen;
-				String preisKauf;
-				
-				
-				String name;
-				String schein;
+
 				
 				try {
 					
-					preisEineStd = tfEineStd.getText();
-					preisZweiStd =tfZweiStd.getText();
-					preisVierStd = tfVierStd.getText();
-					preisEinenTag=tfEinTag.getText();
-					preisZweiTage = tfZweiTage.getText();
-					preisDreiTage = tfDreiTage.getText();
-					preisVierTage = tfVierTage.getText();
-					preisFuenfTage = tfFuenfTage.getText();
-					preisSechsSiebenTage = tfAchtTage.getText();
-					preisAchtTage = tfSechsSiebenTage.getText();
-					preisNeunTage= tfNeunTage.getText();
-					preisZehnTage = tfZehnTage.getText();
-					preisElfTage = tfElfTage.getText();
-					preisZwoelfVierzehnTage = tfZwoelfVierzehnTage.getText();
-					preisFuenfzehnTage = tfFuenfzehnTage.getText();
-					preisSechzehnTage = tfSechzehnTage.getText();
-					preisSiebzehnTage = tfSiebzehnTage.getText();
-					preisAchtzehnEinundzwanzigTage = tfAchtzehnEinundZwTage.getText();
-					preisTagVierWochen = tfProTagVierW.getText();
-					presVierWochen = tfVierWochen.getText();
-					preisAchtWochen = tfAchtWochen.getText();
-					preisKauf = tfKauf.getText();
-
-
+					PreislisteAnlegen();
 					
-
-					controller.preislisteUebergeben(preisEineStd,  preisZweiStd,  preisVierStd,  preisEinenTag,
-							 preisZweiTage,  preisDreiTage,  preisVierTage,  preisFuenfTage,  preisSechsSiebenTage,
-							 preisAchtTage,  preisNeunTage,  preisZehnTage,  preisElfTage,  preisZwoelfVierzehnTage,
-							 preisFuenfzehnTage,  preisSechzehnTage,  preisSiebzehnTage,  preisAchtzehnEinundzwanzigTage,
-							 preisTagVierWochen,  presVierWochen,  preisAchtWochen,  preisKauf);
 					aktualisieren(model);
 					MainFrame.change(MainFrame.getPreislisteAnlegenGUI(), MainFrame.getPreislisteGUI());
-					MainFrame.getPreislisteGUI().anfrage();
+
 					
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
+			}
+
+			private void PreislisteAnlegen() {
+				double  preisEineStd = Double.parseDouble(tfEineStd.getText());
+				double	preisZweiStd =Double.parseDouble(tfZweiStd.getText());
+				double	preisVierStd = Double.parseDouble(tfVierStd.getText());
+				double	preisEinenTag=Double.parseDouble(tfEinTag.getText());
+				double	preisZweiTage = Double.parseDouble(tfZweiTage.getText());
+				double	preisDreiTage = Double.parseDouble(tfDreiTage.getText());
+				double	preisVierTage = Double.parseDouble(tfVierTage.getText());
+				double	preisFuenfTage = Double.parseDouble(tfFuenfTage.getText());
+				double	preisSechsSiebenTage = Double.parseDouble(tfAchtTage.getText());
+				double	preisAchtTage = Double.parseDouble(tfSechsSiebenTage.getText());
+				double	preisNeunTage= Double.parseDouble(tfNeunTage.getText());
+				double	preisZehnTage = Double.parseDouble(tfZehnTage.getText());
+				double	preisElfTage = Double.parseDouble(tfElfTage.getText());
+				double	preisZwoelfVierzehnTage = Double.parseDouble(tfZwoelfVierzehnTage.getText());
+				double	preisFuenfzehnTage = Double.parseDouble(tfFuenfzehnTage.getText());
+				double	preisSechzehnTage = Double.parseDouble(tfSechzehnTage.getText());
+				double	preisSiebzehnTage = Double.parseDouble(tfSiebzehnTage.getText());
+				double	preisAchtzehnEinundzwanzigTage = Double.parseDouble(tfAchtzehnEinundZwTage.getText());
+				double	preisTagVierWochen = Double.parseDouble(tfProTagVierW.getText());
+				double	presVierWochen = Double.parseDouble(tfVierWochen.getText());
+				double	preisAchtWochen = Double.parseDouble(tfAchtWochen.getText());
+				double	preisKauf = Double.parseDouble(tfKauf.getText());
+
+
+				
+
+				controller.preislisteUebergeben(preisEineStd,  preisZweiStd,  preisVierStd,  preisEinenTag,
+						 preisZweiTage,  preisDreiTage,  preisVierTage,  preisFuenfTage,  preisSechsSiebenTage,
+						 preisAchtTage,  preisNeunTage,  preisZehnTage,  preisElfTage,  preisZwoelfVierzehnTage,
+						 preisFuenfzehnTage,  preisSechzehnTage,  preisSiebzehnTage,  preisAchtzehnEinundzwanzigTage,
+						 preisTagVierWochen,  presVierWochen,  preisAchtWochen,  preisKauf);
 			}
 		});	
 		
@@ -694,7 +673,7 @@ public class PreislisteAnlegenGUI extends JPanel  implements IAnlegenView{
 
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
-		JOptionPane.showMessageDialog(null, "Der Preisliste wurde angelegt!");
+		JOptionPane.showMessageDialog(null, "Die Preisliste wurde angelegt!");
 	}
 	
 }

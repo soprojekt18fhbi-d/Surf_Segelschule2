@@ -110,27 +110,7 @@ public class PreislisteSucheModel implements IObjektModel {
 			}
 		}
 
-		// String preislisteID= rs.getString("ID");
-		// String eineStd= rs.getString("EineStd");
-		// String zweiStd= rs.getString("ZweiStd");
-		// String vierStd= rs.getString("VierStd");
-		// String einenTag= rs.getString("EinenTag");
-		// String zweiTage= rs.getString("ZweiTage");
-		// String dreiTage= rs.getString("DreiTage");
-		// String vierTage= rs.getString("VierTage");
-		// String fuenfTage= rs.getString("FuenfTage");
-		// String sechsSiebenTage= rs.getString("SechsSiebenTage");
-		// String achtTage= rs.getString("AchtTage");
-		// String neunTage= rs.getString("NeunTage");
-		// String zehnTage= rs.getString("ZehnTage");
-		// String elfTage= rs.getString("ElfTage");
-		// String zwoelfVierzehnTage= rs.getString("ZwoelfVierzehnTage");
-		// String fuenfzehnTage= rs.getString("FuenfzehnTage");
-		// String sechzehnTage= rs.getString("SechzehnTage");
-		// String siebzehnTage= rs.getString("SiebzehnTage");
-		// String achtzehnEinundzwanzigTage= rs.getString("AchtzehnEinundzwanzigTage");
-		// String tagVierWochen= rs.getString("TagVierWochen");
-		// String VierWochen= rs.getString("VierWochen");
+
 
 	}
 

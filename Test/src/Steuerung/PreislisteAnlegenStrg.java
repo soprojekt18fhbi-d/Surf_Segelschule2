@@ -23,20 +23,19 @@ public class PreislisteAnlegenStrg implements IController {
 	}
 
 	
-	public void preislisteUebergeben(String eineStd, String zweiStd, String vierStd, String einenTag,
-			String zweiTage, String dreiTage, String vierTage, String fuenfTage, String sechsSiebenTage,
-			String achtTage, String neunTage, String zehnTage, String elfTage, String zwoelfVierzehnTage,
-			String fuenfzehnTage, String sechzehnTage, String siebzehnTage, String achtzehnEinundzwanzigTage,
-			String tagVierWochen, String vierWochen, String achtWochen, String kauf) {
+	public void preislisteUebergeben(double eineStd, double zweiStd, double vierStd, double einenTag,
+			double zweiTage, double dreiTage, double vierTage, double fuenfTage, double sechsSiebenTage,
+			double achtTage, double neunTage, double zehnTage, double elfTage, double zwoelfVierzehnTage,
+			double fuenfzehnTage, double sechzehnTage, double siebzehnTage, double achtzehnEinundzwanzigTage,
+			double tagVierWochen, double vierWochen, double achtWochen, double kauf) {
 		
-		//Strings in 
-		String[] values = { eineStd,  zweiStd,  vierStd,  einenTag,
-				 zweiTage,  dreiTage,  vierTage,  fuenfTage,  sechsSiebenTage,
-				 achtTage,  neunTage,  zehnTage,  elfTage,  zwoelfVierzehnTage,
-				 fuenfzehnTage,  sechzehnTage,  siebzehnTage,  achtzehnEinundzwanzigTage,
-				 tagVierWochen,  vierWochen,  achtWochen,  kauf};
-		
-		model.PreislisteAnlegen(values);
+
+		preisliste=new Preisliste( eineStd,  zweiStd,  vierStd,  einenTag,
+			 zweiTage,  dreiTage,  vierTage,  fuenfTage,  sechsSiebenTage,
+			 achtTage,  neunTage,  zehnTage,  elfTage,  zwoelfVierzehnTage,
+			 fuenfzehnTage,  sechzehnTage,  siebzehnTage,  achtzehnEinundzwanzigTage,
+			 tagVierWochen,  vierWochen,  achtWochen,  kauf);
+		model.PreislisteAnlegen(preisliste);
 	}
 
 

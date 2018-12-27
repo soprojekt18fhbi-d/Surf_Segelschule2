@@ -34,7 +34,7 @@ public class Preisliste {
 	
 	
 	
-	public Preisliste(int preislisteID, double eineStd, double zweiStd, double vierStd, double einenTag,
+	public Preisliste(double eineStd, double zweiStd, double vierStd, double einenTag,
 			double zweiTage, double dreiTage, double vierTage, double fuenfTage, double sechsSiebenTage,
 			double achtTage, double neunTage, double zehnTage, double elfTage, double zwoelfVierzehnTage,
 			double fuenfzehnTage, double sechzehnTage, double siebzehnTage, double achtzehnEinundzwanzigTage,
@@ -163,7 +163,7 @@ public class Preisliste {
 		this.neunTage = neunTage;
 	}
 
-	public double getNehnTage() {
+	public double getZehnTage() {
 		return zehnTage;
 	}
 
