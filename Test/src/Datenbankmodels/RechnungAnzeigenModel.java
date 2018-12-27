@@ -34,6 +34,23 @@ public class RechnungAnzeigenModel implements IObjektModel{
 	private double mwst;
 	private int kundeID;
 	private int buchungsID;
+	private int reparaturID;
+//	private String ausleihdatum;
+//	private String rückgabedatum;
+//  private String verkaufsdaum;
+	private String art;
+	private int sportgeraetID;
+	private int modellID;
+	private String farbe;
+	private String modellname;
+	private String vorname;
+	private String nachname;
+	private String eMail;
+	private int plz;
+	private String strasse;
+	private String ort;
+	private String hnr;
+	
 
 
 	@Override
@@ -116,7 +133,14 @@ public class RechnungAnzeigenModel implements IObjektModel{
 			Connection conn = DriverManager.
 			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
 			// add application code here
-			rechnungDrucken(conn);
+			rechnungDruckenRechnung(conn, rechnungsID);
+			rechnungDruckenBuchung(conn, buchungsID);
+			rechnungDruckenSportgeraet(conn, sportgeraetID);
+			rechnungDruckenModell(conn, modellID);
+			rechnungDruckenKunde(conn, kundeID);
+			rechnungDruckenAdresse(conn, kundeID);
+
+			
 			
 			conn.close();
 		} catch (SQLException e) {
@@ -180,11 +204,11 @@ public class RechnungAnzeigenModel implements IObjektModel{
 		    
 		}
 	
-	public void rechnungDrucken(Connection con)
+	public void rechnungDruckenRechnung(Connection con, int rechnungsID)
 		    throws SQLException {
 
 		 Statement stmt = con.createStatement();
-		    String query = "SELECT * FROM RECHNUNG WHERE ID = 1";
+		    String query = "SELECT * FROM RECHNUNG WHERE ID = "+rechnungsID;
 		    System.out.println(query);
 		    
 		    try {
@@ -196,8 +220,9 @@ public class RechnungAnzeigenModel implements IObjektModel{
 		        mwst = rs.getDouble(3);
 		        summeMitMwst = rs.getDouble(4);
 		        kundeID = rs.getInt(5);
-		        buchungsID = rs.getInt(6);
-		        System.out.println(summe + mwst + summeMitMwst + kundeID+  buchungsID);
+		        reparaturID = rs.getInt(6);
+		        buchungsID = rs.getInt(7);
+		        System.out.println("Model:" +summe+" "+ mwst +" "+ summeMitMwst +" "+ kundeID+" "+reparaturID+" "+  buchungsID);
 		        }
 		    } catch (SQLException e ) {
 		    	e.printStackTrace();
@@ -206,6 +231,130 @@ public class RechnungAnzeigenModel implements IObjektModel{
 		    }
 
 		}
+	
+	public void rechnungDruckenBuchung(Connection con, int buchungsID)
+		    throws SQLException {
+
+		 Statement stmt = con.createStatement();
+		    String query = "SELECT * FROM BUCHUNG WHERE ID = "+buchungsID;
+		    System.out.println(query);
+		   
+		    
+		    try {
+		        stmt = con.createStatement();
+		        ResultSet rs = stmt.executeQuery(query);
+		        while(rs.next()) {
+		        art = rs.getString(6);
+		        sportgeraetID  = rs.getInt(7);
+		        System.out.println("Buchung:" + art +" "+ sportgeraetID);
+		        }
+		    } catch (SQLException e ) {
+		    	e.printStackTrace();
+		    } finally {
+		        if (stmt != null) { stmt.close(); }
+		    }
+
+		}
+	
+	public void rechnungDruckenSportgeraet(Connection con, int sportgeraetID)
+		    throws SQLException {
+
+		 Statement stmt = con.createStatement();
+		    String query = "SELECT * FROM SPORTGERAET WHERE ID = "+sportgeraetID;
+		    System.out.println(query);
+		   
+		    
+		    try {
+		        stmt = con.createStatement();
+		        ResultSet rs = stmt.executeQuery(query);
+		        while(rs.next()) {
+		        modellID = rs.getInt(5);
+		        farbe  = rs.getString(8);
+		        System.out.println("Sportgeraet:" + modellID +" "+ farbe);
+		        }
+		    } catch (SQLException e ) {
+		    	e.printStackTrace();
+		    } finally {
+		        if (stmt != null) { stmt.close(); }
+		    }
+
+		}
+	
+	public void rechnungDruckenModell(Connection con, int modellID)
+		    throws SQLException {
+
+		 Statement stmt = con.createStatement();
+		    String query = "SELECT * FROM MODELL WHERE ID = "+modellID;
+		    System.out.println(query);
+		   
+		    
+		    try {
+		        stmt = con.createStatement();
+		        ResultSet rs = stmt.executeQuery(query);
+		        while(rs.next()) {
+		        modellname  = rs.getString(2);
+		        System.out.println("Modell:" + modellname);
+		        }
+		    } catch (SQLException e ) {
+		    	e.printStackTrace();
+		    } finally {
+		        if (stmt != null) { stmt.close(); }
+		    }
+
+		}
+	
+	public void rechnungDruckenKunde(Connection con, int kundenID)
+		    throws SQLException {
+
+		 Statement stmt = con.createStatement();
+		    String query = "SELECT * FROM KUNDE WHERE ID = "+kundenID;
+		    System.out.println(query);
+		    
+		    try {
+		        stmt = con.createStatement();
+		        ResultSet rs = stmt.executeQuery(query);
+		        System.out.println(rs);
+		        while(rs.next()) {
+		        vorname = rs.getString(2);
+		        nachname = rs.getString(3);
+		        eMail = rs.getString(4);
+		        System.out.println("Kunde:" +vorname+" "+ nachname +" "+ eMail);
+		        }
+		    } catch (SQLException e ) {
+		    	e.printStackTrace();
+		    } finally {
+		        if (stmt != null) { stmt.close(); }
+		    }
+
+		}
+	
+	public void rechnungDruckenAdresse(Connection con, int kundenID)
+		    throws SQLException {
+
+		 Statement stmt = con.createStatement();
+		    String query = "SELECT * FROM ADRESSE WHERE KUNDEID = "+kundenID+"ORDER BY ART DESC";
+		    System.out.println(query);
+		    
+		    try {
+		        stmt = con.createStatement();
+		        ResultSet rs = stmt.executeQuery(query);
+		        System.out.println(rs);
+		        while(rs.next()) {
+		        plz = rs.getInt(2);
+		        strasse = rs.getString(3);
+		        ort = rs.getString(4);
+		        hnr = rs.getString(6);
+		        System.out.println("Kunde:" +plz+" "+ strasse +" "+ ort+ "" + hnr);
+		        }
+		    } catch (SQLException e ) {
+		    	e.printStackTrace();
+		    } finally {
+		        if (stmt != null) { stmt.close(); }
+		    }
+
+		}
+	
+	
 	
 	
 
@@ -242,6 +391,62 @@ public class RechnungAnzeigenModel implements IObjektModel{
 
 	public double getSumme() {
 		return summe;
+	}
+
+	public ArrayList<IObjektView> getObservers() {
+		return observers;
+	}
+
+	public int getReparaturID() {
+		return reparaturID;
+	}
+
+	public String getArt() {
+		return art;
+	}
+
+	public int getSportgeraetID() {
+		return sportgeraetID;
+	}
+
+	public int getModellID() {
+		return modellID;
+	}
+
+	public String getFarbe() {
+		return farbe;
+	}
+
+	public String getModellname() {
+		return modellname;
+	}
+
+	public String getVorname() {
+		return vorname;
+	}
+
+	public int getPlz() {
+		return plz;
+	}
+
+	public String getStrasse() {
+		return strasse;
+	}
+
+	public String getOrt() {
+		return ort;
+	}
+
+	public String getHnr() {
+		return hnr;
+	}
+
+	public String getNachname() {
+		return nachname;
+	}
+
+	public String geteMail() {
+		return eMail;
 	}
 
 }
