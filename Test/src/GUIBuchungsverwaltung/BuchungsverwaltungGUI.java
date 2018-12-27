@@ -36,7 +36,7 @@ public class BuchungsverwaltungGUI extends JPanel {
 		
 		JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.setBackground(new Color(255, 140, 0));
-		btnZurck.setForeground(UIManager.getColor("Button.background"));
+		btnZurck.setForeground(new Color(0, 0, 0));
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
