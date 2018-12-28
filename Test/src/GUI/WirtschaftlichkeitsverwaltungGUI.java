@@ -37,6 +37,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.event.ItemListener;
+import java.text.DecimalFormat;
 import java.awt.event.ItemEvent;
 
 public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtschaftlichkeitView { //Ben Kröncke
@@ -153,8 +154,10 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 		lblEinnahmen.setFont(new Font("Tahoma", Font.BOLD, 32));
 		
 		txtIncome = new JTextField();
+		txtIncome.setHorizontalAlignment(SwingConstants.CENTER);
+		txtIncome.setForeground(new Color(0, 128, 0));
 		txtIncome.setEditable(false);
-		txtIncome.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		txtIncome.setFont(new Font("Tahoma", Font.BOLD, 36));
 		txtIncome.setColumns(10);
 		
 		JLabel lblAusgaben = new JLabel("Ausgaben:");
@@ -166,12 +169,15 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 		lblGewinn.setFont(new Font("Tahoma", Font.BOLD, 32));
 		
 		txtExpenses = new JTextField();
-		txtExpenses.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		txtExpenses.setHorizontalAlignment(SwingConstants.CENTER);
+		txtExpenses.setForeground(new Color(128, 0, 0));
+		txtExpenses.setFont(new Font("Tahoma", Font.BOLD, 36));
 		txtExpenses.setEditable(false);
 		txtExpenses.setColumns(10);
 		
 		txtProfit = new JTextField();
-		txtProfit.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		txtProfit.setHorizontalAlignment(SwingConstants.CENTER);
+		txtProfit.setFont(new Font("Tahoma", Font.BOLD, 36));
 		txtProfit.setEditable(false);
 		txtProfit.setColumns(10);
 		Image photo = new ImageIcon(this.getClass().getResource("Scanner.png")).getImage();
@@ -181,38 +187,56 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 		labelHead.setForeground(new Color(255, 140, 0));
 		labelHead.setFont(new Font("Tahoma", Font.BOLD, 52));
 		
+		JLabel lblNewLabel_1 = new JLabel("\u20AC");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 36));
+		
+		JLabel label = new JLabel("\u20AC");
+		label.setForeground(new Color(255, 255, 255));
+		label.setFont(new Font("Tahoma", Font.BOLD, 36));
+		
+		JLabel label_1 = new JLabel("\u20AC");
+		label_1.setForeground(new Color(255, 255, 255));
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 36));
+		
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
+			gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(172)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, 455, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap()
 							.addComponent(buttonCalc, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-							.addGroup(gl_panel_1.createSequentialGroup()
-								.addComponent(lblSpezifizieren, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-								.addGap(4)
-								.addComponent(cboxSpec, 0, 326, Short.MAX_VALUE))
-							.addGroup(gl_panel_1.createSequentialGroup()
-								.addComponent(lblEinnahmen, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(txtIncome, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
-							.addGroup(gl_panel_1.createSequentialGroup()
-								.addComponent(lblAusgaben, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(txtExpenses, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
-							.addGroup(gl_panel_1.createSequentialGroup()
-								.addComponent(lblGewinn, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(txtProfit, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
-							.addGroup(gl_panel_1.createSequentialGroup()
-								.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(cboxKateg, 0, 326, Short.MAX_VALUE))
-							.addComponent(labelHead, GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)))
-					.addGap(172))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(172)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addComponent(lblSpezifizieren, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+									.addGap(4)
+									.addComponent(cboxSpec, 0, 326, Short.MAX_VALUE))
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addComponent(lblEinnahmen, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(txtIncome, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addComponent(lblAusgaben, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(txtExpenses, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addComponent(lblGewinn, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(txtProfit, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(cboxKateg, 0, 326, Short.MAX_VALUE))
+								.addComponent(labelHead, GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE))))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(label, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_1))
+					.addGap(122))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
@@ -226,24 +250,32 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblSpezifizieren, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 						.addComponent(cboxSpec, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(buttonCalc, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING, false)
+						.addGroup(Alignment.LEADING, gl_panel_1.createParallelGroup(Alignment.BASELINE)
+							.addComponent(txtIncome)
+							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblEinnahmen, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(buttonCalc, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(txtIncome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblEinnahmen, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblAusgaben, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtExpenses, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtProfit, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblGewinn, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
-					.addGap(60))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblAusgaben, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtExpenses, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtProfit, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblGewinn, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(label, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(label_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+					.addGap(43))
 		);
-		gl_panel_1.linkSize(SwingConstants.VERTICAL, new Component[] {lblEinnahmen, txtIncome, lblAusgaben, lblGewinn, txtExpenses, txtProfit});
 		gl_panel_1.linkSize(SwingConstants.VERTICAL, new Component[] {cboxKateg, lblNewLabel, lblSpezifizieren, cboxSpec});
+		gl_panel_1.linkSize(SwingConstants.VERTICAL, new Component[] {lblEinnahmen, txtIncome, lblAusgaben, lblGewinn, txtExpenses, txtProfit});
 		panel_1.setLayout(gl_panel_1);
 	}
 
@@ -264,10 +296,17 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 		
 		else if(talking.equals("calc"))
 			{
-				txtIncome.setText("" + model.getIncome());
-				txtExpenses.setText("" + model.getExpenses());
-				txtProfit.setText("" + (Double.parseDouble(txtIncome.getText())-(Double.parseDouble(txtExpenses.getText()))));
+				txtIncome.setText("" + roundDouble(model.getIncome()));
+				txtExpenses.setText("" + roundDouble(model.getExpenses()));
+				txtProfit.setText("" + roundDouble((Double.parseDouble(txtIncome.getText())-(Double.parseDouble(txtExpenses.getText())))));
 				
 			}
 	}
+	
+	public double roundDouble(double value) {
+		
+        int r = (int) Math.round(value*100);
+        double f = r / 100.0;
+        return f;
+     }
 }
