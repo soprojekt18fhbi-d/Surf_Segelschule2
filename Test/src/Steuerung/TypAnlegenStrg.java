@@ -19,10 +19,11 @@ public class TypAnlegenStrg implements IController{
 	}
 
 	
-	public void typUebergeben(String name, String führerschein) {
-		String typname = name;
-		String schein = führerschein;
-		String[] values = {typname, schein};
+	public void typUebergeben(String talking, int id, String name, String führerschein) {
+		String idS = String.valueOf(id);
+		//String typname = name;
+		//String schein = führerschein;
+		String[] values = {talking, idS, name, führerschein};
 		model.typAnlegen(values);
 	}
 

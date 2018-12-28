@@ -223,7 +223,7 @@ public class MainFrame extends JFrame {
 		return sportgeraeteGUI;
 	}
 	
-	public static JPanel getTypAendernGUI(){	
+	public static TypAendernGUI getTypAendernGUI(){	
 		return typAendernGUI;
 	}
 	

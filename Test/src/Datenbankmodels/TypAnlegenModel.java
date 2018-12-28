@@ -67,11 +67,16 @@ public class TypAnlegenModel implements IAnlegenModel{
 
 			Statement statement = conn.createStatement();
 			
-			String name = typ[0];
-			String schein = typ[1];
+			String talking = typ[0];
+			int id = Integer.parseInt(typ[1]);
+			String name = typ[2];
+			String schein = typ[3];
+			String sqlupdate;
 			
-			
-			String sqlupdate = "INSERT INTO TYP VALUES (default,'" + name + "','"+ schein+ "')";
+			if (talking.equals("anlegen"))
+				sqlupdate = "INSERT INTO TYP VALUES (default,'" + name + "','"+ schein+ "')";
+			else 
+				sqlupdate = "UPDATE TYP SET NAME = '"+name+"', FUEHRERSCHEIN = '"+schein+"' WHERE ID = "+id+"";
 			
 			
 			int ergebnis = statement.executeUpdate(sqlupdate);

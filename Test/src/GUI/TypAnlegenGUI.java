@@ -31,6 +31,7 @@ import java.awt.Color;
 
 public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 	private JTextField txtTyp;
+	private String talking = "anlegen";
 	
 	TypAnlegenModel model;
 	TypAnlegenStrg controller;
@@ -168,7 +169,6 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		
 		btnBestaetigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int id;
 				String name;
 				String schein;
 				
@@ -186,7 +186,7 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 						schein = null;
 					
 
-					controller.typUebergeben(name, schein);
+					controller.typUebergeben(talking, 0, name, schein);
 					aktualisieren(model);
 					MainFrame.change(MainFrame.getTypAnlegenGUI(), MainFrame.getGeraeteTypVerwaltung());
 					MainFrame.getGeraeteTypVerwaltung().anfrage();

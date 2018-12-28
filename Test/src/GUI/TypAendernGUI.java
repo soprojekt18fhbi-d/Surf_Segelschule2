@@ -20,6 +20,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import Datenbankmodels.IAnlegenModel;
 import Datenbankmodels.TypAnlegenModel;
+import Domaenklassen.GeraeteTyp;
+import Domaenklassen.IKunde;
 import Steuerung.TypAnlegenStrg;
 
 import java.awt.event.ActionListener;
@@ -28,6 +30,12 @@ import java.awt.Color;
 
 public class TypAendernGUI extends JPanel  implements IAnlegenView{
 	private JTextField txtTyp;
+	private JLabel label;
+	private GeraeteTyp typ = null;
+	JCheckBox chckbxSegelschein;
+	JCheckBox chckbxSurfschein;
+	JCheckBox chckbxMotorbootschein;
+	private String talking = "aendern";
 	
 	TypAnlegenModel model;
 	TypAnlegenStrg controller;
@@ -76,16 +84,18 @@ public class TypAendernGUI extends JPanel  implements IAnlegenView{
 		gbc_lblTyp_1.gridy = 4;
 		panel.add(lblTyp_1, gbc_lblTyp_1);
 		
-		JLabel label = new JLabel("");
+		label = new JLabel(""); 
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.gridwidth = 1;
+		gbc_label.anchor = GridBagConstraints.WEST;
 		gbc_label.insets = new Insets(0, 0, 5, 5);
 		gbc_label.gridx = 3;
 		gbc_label.gridy = 4;
 		panel.add(label, gbc_label);
 		
-		JLabel lblNeuerTyp = new JLabel("neuer Typname:");
+		JLabel lblNeuerTyp = new JLabel("neuer Typname:        ");
 		lblNeuerTyp.setForeground(Color.WHITE);
 		lblNeuerTyp.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblNeuerTyp = new GridBagConstraints();
@@ -117,7 +127,7 @@ public class TypAendernGUI extends JPanel  implements IAnlegenView{
 		gbc_lblErforderlicherFhrerschein.gridy = 7;
 		panel.add(lblErforderlicherFhrerschein, gbc_lblErforderlicherFhrerschein);
 		
-		JCheckBox chckbxSegelschein = new JCheckBox("Segelschein");
+		chckbxSegelschein = new JCheckBox("Segelschein");
 		chckbxSegelschein.setBackground(Color.DARK_GRAY);
 		chckbxSegelschein.setForeground(Color.WHITE);
 		chckbxSegelschein.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -127,7 +137,7 @@ public class TypAendernGUI extends JPanel  implements IAnlegenView{
 		gbc_chckbxSegelschein.gridy = 8;
 		panel.add(chckbxSegelschein, gbc_chckbxSegelschein);
 		
-		JCheckBox chckbxSurfschein = new JCheckBox("Surfschein");
+		chckbxSurfschein = new JCheckBox("Surfschein       ");
 		chckbxSurfschein.setForeground(Color.WHITE);
 		chckbxSurfschein.setBackground(Color.DARK_GRAY);
 		chckbxSurfschein.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -137,7 +147,7 @@ public class TypAendernGUI extends JPanel  implements IAnlegenView{
 		gbc_chckbxSurfschein.gridy = 8;
 		panel.add(chckbxSurfschein, gbc_chckbxSurfschein);
 		
-		JCheckBox chckbxMotorbootschein = new JCheckBox("Motorbootschein");
+		chckbxMotorbootschein = new JCheckBox("Motorbootschein");
 		chckbxMotorbootschein.setBackground(Color.DARK_GRAY);
 		chckbxMotorbootschein.setForeground(Color.WHITE);
 		chckbxMotorbootschein.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -185,11 +195,42 @@ public class TypAendernGUI extends JPanel  implements IAnlegenView{
 		
 		btnBestaetigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String name;
+				String schein;
+				int id = typ.getTypID();
+				name = txtTyp.getText();
+				
+				if(name.equals(""))
+					name = label.getText();
+				
+				if (chckbxSegelschein.isSelected() == true)
+					schein = "Segelschein";
+				else if(chckbxSurfschein.isSelected() == true)
+					schein = "Surfschein";
+				else if(chckbxSurfschein.isSelected() == true)
+					schein = "Surfschein";
+				else
+					schein = "Kein";
+					
+					
+				controller.typUebergeben(talking, id, name, schein);
+				aktualisieren(model);
+				MainFrame.change(MainFrame.getTypAendernGUI(), MainFrame.getGeraeteTypVerwaltung());
+				MainFrame.getGeraeteTypVerwaltung().anfrage();
+				chckbxSegelschein.setSelected(false);
+				chckbxMotorbootschein.setSelected(false);
+				chckbxSurfschein.setSelected(false);
+				txtTyp.setText("");
 			}
 		});	
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				chckbxSegelschein.setSelected(false);
+				chckbxMotorbootschein.setSelected(false);
+				chckbxSurfschein.setSelected(false);
+				txtTyp.setText("");
+				
 				MainFrame.change(MainFrame.getTypAendernGUI(), MainFrame.getGeraeteTypVerwaltung());			}
 		});
 
@@ -199,5 +240,22 @@ public class TypAendernGUI extends JPanel  implements IAnlegenView{
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
 		JOptionPane.showMessageDialog(null, "Der Gerätetyp wurde geändert!");
+	}
+	
+	public void setTyp(GeraeteTyp typ) {
+		this.typ = typ;
+	}
+	
+	public void setText(String text){
+		label.setText(text);
+	}
+	
+	public void setFuehrerschein(String schein){
+		if (schein.equals("Segelschein"))
+			chckbxSegelschein.setSelected(true);
+		else if(schein.equals("Motorbootschein"))
+			chckbxMotorbootschein.setSelected(true);
+		else if(schein.equals("Surfschein"))
+			chckbxSurfschein.setSelected(true);
 	}
 }

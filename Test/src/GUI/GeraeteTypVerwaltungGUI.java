@@ -5,6 +5,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Datenbankmodels.IObjektModel;
+import Domaenklassen.GeraeteTyp;
 import Domaenklassen.IKunde;
 import Steuerung.BuchungTypSucheStrg;
 
@@ -44,6 +45,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 	private JTextField textSuchen;
 	private JTable table;
 	private Icon lupe;
+	private GeraeteTyp typ;
 
 	/**
 	 * Create the panel.
@@ -178,8 +180,23 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		
 		btnTypAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTypAendernGUI());
-				textSuchen.setText("");
+				int zeile = table.getSelectedRow();
+				
+				if (zeile < 0)
+					JOptionPane.showMessageDialog(null, "Typen auswählen!");
+				else{
+					String idS = String.valueOf(table.getValueAt(zeile, 0));
+					int id = Integer.parseInt(idS);
+					String name = String.valueOf(table.getValueAt(zeile, 1));
+					String fuehrerschein = String.valueOf(table.getValueAt(zeile, 2));
+					typ = new GeraeteTyp(id, name, fuehrerschein);
+					MainFrame.getTypAendernGUI().setTyp(typ);
+					MainFrame.getTypAendernGUI().setText(name);
+					MainFrame.getTypAendernGUI().setFuehrerschein(fuehrerschein);
+					MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTypAendernGUI());
+					textSuchen.setText("");
+					System.out.println(fuehrerschein);
+				}	
 			}
 		});
 		
