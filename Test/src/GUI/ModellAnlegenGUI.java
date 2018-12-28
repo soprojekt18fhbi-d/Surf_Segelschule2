@@ -33,6 +33,7 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import java.awt.Color;
 
 public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 	private JTextField txtModell;
@@ -61,6 +62,7 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
@@ -70,6 +72,7 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 		panel.setLayout(gbl_panel);
 		
 		JLabel lblModellHinzufgen = new JLabel("Modell hinzuf\u00FCgen:");
+		lblModellHinzufgen.setForeground(Color.WHITE);
 		lblModellHinzufgen.setFont(new Font("Tahoma", Font.BOLD, 32));
 		GridBagConstraints gbc_lblModellHinzufgen = new GridBagConstraints();
 		gbc_lblModellHinzufgen.anchor = GridBagConstraints.WEST;
@@ -80,6 +83,7 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 		panel.add(lblModellHinzufgen, gbc_lblModellHinzufgen);
 		
 		JLabel lblTyp = new JLabel("Typ:");
+		lblTyp.setForeground(Color.WHITE);
 		lblTyp.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblTyp = new GridBagConstraints();
 		gbc_lblTyp.anchor = GridBagConstraints.WEST;
@@ -104,6 +108,7 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 		panel.add(comboBoxTyp, gbc_comboBoxTyp);
 		
 		JLabel lblModellname = new JLabel("Modellname:");
+		lblModellname.setForeground(Color.WHITE);
 		lblModellname.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblModellname = new GridBagConstraints();
 		gbc_lblModellname.insets = new Insets(0, 0, 5, 5);
@@ -124,6 +129,7 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 		txtModell.setColumns(10);
 		
 		JLabel lblPreiskateg = new JLabel("Preiskategorie:");
+		lblPreiskateg.setForeground(Color.WHITE);
 		lblPreiskateg.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblPreiskateg = new GridBagConstraints();
 		gbc_lblPreiskateg.insets = new Insets(0, 0, 5, 5);
@@ -144,13 +150,16 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 		panel.add(comboBoxPreis, gbc_comboBoxPreis);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.DARK_GRAY);
 		add(panel_2, BorderLayout.SOUTH);
 		
 		JButton btnBestaetigen = new JButton("best\u00E4tigen");
 		btnBestaetigen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnBestaetigen.setBackground(new Color(255, 140, 0));
 		
 		JButton btnAbbrechen = new JButton("abbrechen");
 		btnAbbrechen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnAbbrechen.setBackground(new Color(255, 140, 0));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.TRAILING)

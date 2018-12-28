@@ -8,6 +8,8 @@ import Datenbankmodels.IObjektModel;
 import Steuerung.BuchungGeraetSucheStrg;
 
 import javax.swing.GroupLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -28,8 +30,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
-public class SportgeraeteGUI extends JPanel implements IObjektView{
+public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 	private BuchungGeraetSucheStrg controller;
 	private IObjektModel model;
 	private JTextField textSuchen;
@@ -39,11 +42,12 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 	private int kNr;
 	private int geraetNr;
 	private int modellNr;
+	private Icon lupe;
 
 	/**
 	 * Create the panel.
 	 */
-	public SportgeraeteGUI(IObjektModel models, BuchungGeraetSucheStrg controllers) {
+	public SportgeraeteVerwaltungGUI(IObjektModel models, BuchungGeraetSucheStrg controllers) {
 		model = models;
 		controller = controllers;
 		
@@ -57,31 +61,29 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnZurck.setBackground(new Color(255, 140, 0));
 		
-		JButton btnSuchen = new JButton("Suchen");
-		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnSuchen.setBackground(new Color(255, 140, 0));
-		
 		textSuchen = new JTextField();
 		textSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textSuchen.setColumns(10);
+		
+		lupe = new ImageIcon(getClass().getResource("/GUI/suchenLogo.png"));
+		JLabel label = new JLabel(lupe);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-					.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+					.addComponent(label)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
+					.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-							.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addComponent(label))
 					.addContainerGap(17, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
@@ -108,7 +110,7 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		panel_1.add(btnGeraetHinzu, gbc_btnGeraetHinzu);
 				
 		JButton btnGeraetAendern = new JButton("Ger\u00E4t \u00E4ndern");
-		btnGeraetAendern.setPreferredSize(new Dimension(300, 23));
+		btnGeraetAendern.setPreferredSize(new Dimension(300, 100));
 		btnGeraetAendern.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnGeraetAendern.setBackground(new Color(255, 140, 0));
 		GridBagConstraints gbc_btnGeraetAendern = new GridBagConstraints();
@@ -124,7 +126,7 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 		btnGeraetDeaktivieren.setBackground(new Color(255, 140, 0));
 		GridBagConstraints gbc_btnGeraetDeaktivieren = new GridBagConstraints();
 		gbc_btnGeraetDeaktivieren.fill = GridBagConstraints.BOTH;
-		gbc_btnGeraetDeaktivieren.insets = new Insets(0, 0, 5, 0);
+		gbc_btnGeraetDeaktivieren.insets = new Insets(0, 0, 5, 5);
 		gbc_btnGeraetDeaktivieren.gridx = 2;
 		gbc_btnGeraetDeaktivieren.gridy = 0;
 		panel_1.add(btnGeraetDeaktivieren, gbc_btnGeraetDeaktivieren);
@@ -176,13 +178,6 @@ public class SportgeraeteGUI extends JPanel implements IObjektView{
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraeteVerwaltungGUI());
 				textSuchen.setText("");
-				
-			}
-		});
-		
-		btnSuchen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
 				
 			}
 		});

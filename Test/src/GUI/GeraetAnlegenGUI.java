@@ -30,6 +30,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 	private JTextField txtAPreis;
@@ -67,6 +68,7 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -76,6 +78,7 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 		panel.setLayout(gbl_panel);
 		
 		JLabel lblGeraetHinzufgen = new JLabel("Ger\u00E4t hinzuf\u00FCgen:");
+		lblGeraetHinzufgen.setForeground(Color.WHITE);
 		lblGeraetHinzufgen.setFont(new Font("Tahoma", Font.BOLD, 32));
 		GridBagConstraints gbc_lblGeraetHinzufgen = new GridBagConstraints();
 		gbc_lblGeraetHinzufgen.anchor = GridBagConstraints.WEST;
@@ -86,6 +89,7 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 		panel.add(lblGeraetHinzufgen, gbc_lblGeraetHinzufgen);
 		
 		JLabel lblTyp = new JLabel("Typ:");
+		lblTyp.setForeground(Color.WHITE);
 		lblTyp.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblTyp = new GridBagConstraints();
 		gbc_lblTyp.anchor = GridBagConstraints.WEST;
@@ -107,6 +111,7 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 		panel.add(comboBoxTyp, gbc_comboBoxTyp);
 		
 		JLabel lblModell = new JLabel("Modell:");
+		lblModell.setForeground(Color.WHITE);
 		lblModell.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblModell = new GridBagConstraints();
 		gbc_lblModell.insets = new Insets(0, 0, 5, 5);
@@ -128,6 +133,7 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 		panel.add(comboBoxModell, gbc_comboBoxModell);
 		
 		JLabel lblAnschaffungspreis = new JLabel("Anschaffungspreis:");
+		lblAnschaffungspreis.setForeground(Color.WHITE);
 		lblAnschaffungspreis.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblAnschaffungspreis = new GridBagConstraints();
 		gbc_lblAnschaffungspreis.insets = new Insets(0, 0, 5, 5);
@@ -157,6 +163,7 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 		panel.add(label_1, gbc_label_1);
 		
 		JLabel lblVerkaufspreis = new JLabel("Verkaufspreis:");
+		lblVerkaufspreis.setForeground(Color.WHITE);
 		lblVerkaufspreis.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblVerkaufspreis = new GridBagConstraints();
 		gbc_lblVerkaufspreis.anchor = GridBagConstraints.WEST;
@@ -186,6 +193,7 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 		panel.add(label, gbc_label);
 		
 		JLabel lblFarbe = new JLabel("Farbe:");
+		lblFarbe.setForeground(Color.WHITE);
 		lblFarbe.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblFarbe = new GridBagConstraints();
 		gbc_lblFarbe.anchor = GridBagConstraints.WEST;
@@ -206,6 +214,7 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 		textFarbe.setColumns(10);
 		
 		JLabel lblBaujahr = new JLabel("Baujahr:");
+		lblBaujahr.setForeground(Color.WHITE);
 		lblBaujahr.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblBaujahr = new GridBagConstraints();
 		gbc_lblBaujahr.anchor = GridBagConstraints.WEST;
@@ -226,6 +235,7 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 		textBaujahr.setColumns(10);
 		
 		JLabel lblMakel = new JLabel("Makel:");
+		lblMakel.setForeground(Color.WHITE);
 		lblMakel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblMakel = new GridBagConstraints();
 		gbc_lblMakel.anchor = GridBagConstraints.WEST;
@@ -246,13 +256,16 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 		textMakel.setColumns(10);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.DARK_GRAY);
 		add(panel_2, BorderLayout.SOUTH);
 		
 		JButton btnBestaetigen = new JButton("best\u00E4tigen");
 		btnBestaetigen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnBestaetigen.setBackground(new Color(255, 140, 0));
 		
 		JButton btnAbbrechen = new JButton("abbrechen");
 		btnAbbrechen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnAbbrechen.setBackground(new Color(255, 140, 0));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.TRAILING)
@@ -318,7 +331,7 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraetAnlegenGUI(), MainFrame.getGeraeteVerwaltungGUI());			}
+				MainFrame.change(MainFrame.getGeraetAnlegenGUI(), MainFrame.getSportgeraeteGUI());			}
 		});
 		
 		comboBoxTyp.addItemListener(new ItemListener(){

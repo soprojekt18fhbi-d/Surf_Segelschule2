@@ -8,6 +8,8 @@ import Datenbankmodels.IObjektModel;
 import Steuerung.BuchungModellSucheStrg;
 
 import javax.swing.GroupLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,6 +24,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 	private BuchungModellSucheStrg controller;
@@ -32,6 +35,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 	private int typNr;
 	private String talking = "gesamt";
 	private String search;
+	private Icon lupe;
 	
 	/**
 	 * Create the panel.
@@ -49,31 +53,29 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnZurck.setBackground(new Color(255, 140, 0));
 		
-		JButton btnSuchen = new JButton("Suchen");
-		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnSuchen.setBackground(new Color(255, 140, 0));
-		
 		textSuchen = new JTextField();
 		textSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textSuchen.setColumns(10);
+		
+		lupe = new ImageIcon(getClass().getResource("/GUI/suchenLogo.png"));
+		JLabel label = new JLabel(lupe);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-					.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+					.addComponent(label)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
+					.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-							.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addComponent(label))
 					.addContainerGap(17, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
@@ -82,9 +84,9 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		panel_1.setBackground(Color.DARK_GRAY);
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0, 0};
+		gbl_panel_1.columnWidths = new int[]{0, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.columnWeights = new double[]{1.0, 1.0};
 		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
@@ -105,21 +107,10 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		btnModellAendern.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_btnModellAendern = new GridBagConstraints();
 		gbc_btnModellAendern.fill = GridBagConstraints.BOTH;
-		gbc_btnModellAendern.insets = new Insets(0, 0, 5, 5);
+		gbc_btnModellAendern.insets = new Insets(0, 0, 5, 0);
 		gbc_btnModellAendern.gridx = 1;
 		gbc_btnModellAendern.gridy = 0;
 		panel_1.add(btnModellAendern, gbc_btnModellAendern);
-		
-		JButton btnModellDeaktivieren = new JButton("Modell deaktivieren");
-		btnModellDeaktivieren.setPreferredSize(new Dimension(300, 100));
-		btnModellDeaktivieren.setBackground(new Color(255, 140, 0));
-		btnModellDeaktivieren.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		GridBagConstraints gbc_btnModellDeaktivieren = new GridBagConstraints();
-		gbc_btnModellDeaktivieren.fill = GridBagConstraints.BOTH;
-		gbc_btnModellDeaktivieren.insets = new Insets(0, 0, 5, 0);
-		gbc_btnModellDeaktivieren.gridx = 2;
-		gbc_btnModellDeaktivieren.gridy = 0;
-		panel_1.add(btnModellDeaktivieren, gbc_btnModellDeaktivieren);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setPreferredSize(new Dimension(2, 375));
@@ -127,7 +118,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		gbc_scrollPane.gridheight = 6;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridwidth = 3;
+		gbc_scrollPane.gridwidth = 2;
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 1;
 		panel_1.add(scrollPane, gbc_scrollPane);
@@ -165,7 +156,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		GridBagConstraints gbc_btnGeraete = new GridBagConstraints();
 		gbc_btnGeraete.anchor = GridBagConstraints.EAST;
 		gbc_btnGeraete.fill = GridBagConstraints.VERTICAL;
-		gbc_btnGeraete.gridx = 2;
+		gbc_btnGeraete.gridx = 1;
 		gbc_btnGeraete.gridy = 7;
 		panel_1.add(btnGeraete, gbc_btnGeraete);
 				
@@ -174,13 +165,6 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getGeraeteVerwaltungGUI());
-				
-			}
-		});
-		
-		btnSuchen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
 				
 			}
 		});
@@ -202,12 +186,6 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getModellAendernGUI());
 				textSuchen.setText("");
-			}
-		});
-		
-		btnModellDeaktivieren.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
 			}
 		});
 		

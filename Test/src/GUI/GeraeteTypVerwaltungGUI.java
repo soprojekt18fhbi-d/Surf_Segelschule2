@@ -9,6 +9,8 @@ import Domaenklassen.IKunde;
 import Steuerung.BuchungTypSucheStrg;
 
 import javax.swing.GroupLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
@@ -41,6 +43,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 	private IKunde kunde;
 	private JTextField textSuchen;
 	private JTable table;
+	private Icon lupe;
 
 	/**
 	 * Create the panel.
@@ -58,31 +61,29 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnZurck.setBackground(new Color(255, 140, 0));
 		
-		JButton btnSuchen = new JButton("Suchen");
-		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnSuchen.setBackground(new Color(255, 140, 0));
-		
 		textSuchen = new JTextField();
 		textSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textSuchen.setColumns(10);
+		
+		lupe = new ImageIcon(getClass().getResource("/GUI/suchenLogo.png"));
+		JLabel label = new JLabel(lupe);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-					.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+					.addComponent(label)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
+					.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-							.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addComponent(label))
 					.addContainerGap(17, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
@@ -164,13 +165,6 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteVerwaltungGUI());
 				textSuchen.setText("");
-				
-			}
-		});
-		
-		btnSuchen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
 				
 			}
 		});
