@@ -124,7 +124,7 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 		    		}
 		    		if(mode.equals("Sportgeraet"))
 		    		{
-		    			queryIncome = "SELECT RECHNUNG.SUMME FROM RECHNUNG, BUCHUNG WHERE BUCHUNG.ID = RECHNUNG.BUCHUNGID AND BUCHUNG.SPORTGERAETID = " + specialID;
+		    			queryIncome = "SELECT RECHNUNG.SUMME FROM RECHNUNG, BUCHUNG WHERE BUCHUNG.ID = RECHNUNG.BUCHUNGID AND RECHNUNG.REPARATURID IS NULL AND BUCHUNG.SPORTGERAETID = " + specialID;
 		    		    queryExpensesDevices = "SELECT ANSCHAFFUNGSPREIS FROM SPORTGERAET WHERE ID = " + specialID;
 		    		    queryExpensesRepair = "SELECT KOSTEN FROM REPARATUR WHERE SPORTGERAETID = " + specialID;
 		    		    
@@ -162,7 +162,7 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 	private void incomeGeraete(Statement stmt) throws SQLException {
 		for (int i = 0; i < geraete.size(); i++)
 		{	
-			String query3 = "SELECT RECHNUNG.SUMME FROM RECHNUNG, BUCHUNG WHERE BUCHUNG.ID = RECHNUNG.BUCHUNGID AND BUCHUNG.SPORTGERAETID = " + geraete.get(i);
+			String query3 = "SELECT RECHNUNG.SUMME FROM RECHNUNG, BUCHUNG WHERE BUCHUNG.ID = RECHNUNG.BUCHUNGID AND RECHNUNG.REPARATURID IS NULL AND BUCHUNG.SPORTGERAETID = " + geraete.get(i);
 			ResultSet rs3 = stmt.executeQuery(query3);
 			while (rs3.next())
 			{
