@@ -46,6 +46,7 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 	private String talking = "category";
 	private String mode = "Unternehmen";
 	private int id;
+	private String giveString = "";
 	private JTextField txtIncome;
 	private JTextField txtExpenses;
 	private JTextField txtProfit;
@@ -92,21 +93,14 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 		
 		JComboBox cboxKateg = new JComboBox();
 		cboxKateg.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
+			public void itemStateChanged(ItemEvent arg0) throws NumberFormatException {
 				
 				try {
 					talking = "category";
 					mode = cboxKateg.getSelectedItem().toString();
-					model.anmelden(MainFrame.getWirtschaftlichkeitsverwaltungGUI());
-					controller.holeDaten(talking, mode, id);
-					model.abmelden(MainFrame.getWirtschaftlichkeitsverwaltungGUI());
+					anfrage();
 					if(cboxKateg.getSelectedItem().equals("Sportgeraet"))
-						try {
-							Integer.parseInt(JOptionPane.showInputDialog("Bitte Artikelnummer (ID) eingeben zur genauen Bestimmung!"));
-						} catch (NumberFormatException e) {
-							// TODO Auto-generated catch block
-							JOptionPane.showMessageDialog(null, "Das ist keine gültige Nummer!");
-						}
+						id = Integer.parseInt(JOptionPane.showInputDialog("Bitte Artikelnummer (ID) eingeben!")); 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -133,10 +127,12 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
+					
+					if(mode.equals("Unternehmen") == false && mode.equals("Sportgeraet") == false)
+						giveString = cboxSpec.getSelectedItem().toString();
+					
 					talking = "calc";
-					model.anmelden(MainFrame.getWirtschaftlichkeitsverwaltungGUI());
-					controller.holeDaten(talking, mode, id);
-					model.abmelden(MainFrame.getWirtschaftlichkeitsverwaltungGUI());
+					anfrage();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -144,6 +140,8 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 				
 				
 			}
+
+			
 		});
 		buttonCalc.setBackground(new Color(255, 140, 0));
 		buttonCalc.setForeground(new Color(0, 0, 0));
@@ -305,8 +303,20 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 	
 	public double roundDouble(double value) {
 		
-        int r = (int) Math.round(value*100);
-        double f = r / 100.0;
-        return f;
-     }
+        try {
+			int r = (int) Math.round(value*100);
+			value = r / 100.00;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return value;
+	}
+	
+	private void anfrage() {
+		model.anmelden(MainFrame.getWirtschaftlichkeitsverwaltungGUI());
+		controller.holeDaten(talking, mode, id, giveString);
+		model.abmelden(MainFrame.getWirtschaftlichkeitsverwaltungGUI());
+	}
+	
 }

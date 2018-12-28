@@ -23,14 +23,17 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 	private double income = 0;
 	private double expenses = 0;
 	private int specialID = 0;
+	private String givenString = "";
+	ArrayList<Integer> geraete = new ArrayList<Integer>();
 	
 	
-	public void holeDaten(String talking2, String mode2, int id2) {
+	
+	public void holeDaten(String talking2, String mode2, int id2, String giveString) {
 		
 		talking = talking2;
 		mode = mode2;
 		specialID = id2;
-		
+		givenString = giveString;
 		
 		 try {
 			 
@@ -84,24 +87,50 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 		    	{
 		    		if(mode.equals("Unternehmen"))
 		    		{
-		    			calcExpInc(stmt, queryIncome, queryExpensesDevices, queryExpensesRepair);
+		    			calcExpInc(stmt, queryIncome, queryExpensesDevices, queryExpensesRepair, "SUMME");
 		    		}
-		    		if(mode.equals("STANDORT"))
+		    		if(mode.equals("Standort"))
 		    		{
 		    			
-		    		}
-		    		if(mode.equals("TYP"))
-		    		{
+		    			starteBerechnung(stmt);
+		    			
+		    			motiviereGeraete(stmt);
+		    			
+		    			incomeGeraete(stmt);
+		    			
+		    			expensesGeraete(stmt);
 		    			
 		    		}
-		    		if(mode.equals("MODELL"))
+		    		if(mode.equals("Typ"))
 		    		{
+		    			starteBerechnung(stmt);
 		    			
+		    			motiviereGeraete(stmt);
+		    			
+		    			incomeGeraete(stmt);
+		    			
+		    			expensesGeraete(stmt);
+		    			
+		    		}
+		    		if(mode.equals("Modell"))
+		    		{
+						starteBerechnung(stmt);
+		    			
+		    			motiviereGeraete(stmt);
+		    			
+		    			incomeGeraete(stmt);
+		    			
+		    			expensesGeraete(stmt);
 		    		}
 		    		if(mode.equals("Sportgeraet"))
 		    		{
-		    			
+		    			queryIncome = "SELECT RECHNUNG.SUMME FROM RECHNUNG, BUCHUNG WHERE BUCHUNG.ID = RECHNUNG.BUCHUNGID AND BUCHUNG.SPORTGERAETID = " + specialID;
+		    		    queryExpensesDevices = "SELECT ANSCHAFFUNGSPREIS FROM SPORTGERAET WHERE ID = " + specialID;
+		    		    queryExpensesRepair = "SELECT KOSTEN FROM REPARATUR WHERE SPORTGERAETID = " + specialID;
+		    		    
+		    		    calcExpInc(stmt, queryIncome, queryExpensesDevices, queryExpensesRepair, "KOSTEN");
 		    		}
+		    		
 		    	}
 
 		        
@@ -116,7 +145,62 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 		}
 
 
-	private void calcExpInc(Statement stmt, String queryIncome, String queryExpensesDevices, String queryExpensesRepair)
+	private void expensesGeraete(Statement stmt) throws SQLException {
+		for (int i = 0; i < geraete.size(); i++)
+		{	
+			String query4 = "SELECT KOSTEN FROM REPARATUR WHERE SPORTGERAETID = " + geraete.get(i);
+			ResultSet rs4 = stmt.executeQuery(query4);
+			while (rs4.next())
+			{
+				expenses += rs4.getDouble("KOSTEN");
+				
+			}
+		}
+	}
+
+
+	private void incomeGeraete(Statement stmt) throws SQLException {
+		for (int i = 0; i < geraete.size(); i++)
+		{	
+			String query3 = "SELECT RECHNUNG.SUMME FROM RECHNUNG, BUCHUNG WHERE BUCHUNG.ID = RECHNUNG.BUCHUNGID AND BUCHUNG.SPORTGERAETID = " + geraete.get(i);
+			ResultSet rs3 = stmt.executeQuery(query3);
+			while (rs3.next())
+			{
+				income += rs3.getDouble("SUMME");
+			}
+		}
+	}
+
+
+	private void motiviereGeraete(Statement stmt) throws SQLException {
+		String queryGetDevice = "SELECT ID,ANSCHAFFUNGSPREIS FROM SPORTGERAET WHERE " + mode + "ID = " + specialID;
+		
+		ResultSet rs2 = stmt.executeQuery(queryGetDevice);
+		
+		while (rs2.next())
+		{
+			geraete.add(rs2.getInt("ID"));
+			expenses += rs2.getDouble("ANSCHAFFUNGSPREIS");
+			
+		}
+	}
+
+
+	private void starteBerechnung(Statement stmt) throws SQLException {
+		String query;
+		geraete.clear();
+		
+		query = "SELECT ID FROM " + mode + " WHERE NAME = '" + givenString + "'";
+		
+		ResultSet rs = stmt.executeQuery(query);
+		
+		
+		while (rs.next())
+			specialID = rs.getInt("ID");
+	}
+
+
+	private void calcExpInc(Statement stmt, String queryIncome, String queryExpensesDevices, String queryExpensesRepair, String uebergabe)
 			throws SQLException {
 		ResultSet rs = stmt.executeQuery(queryIncome);
 		while (rs.next())
@@ -135,7 +219,7 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 		rs = stmt.executeQuery(queryExpensesRepair);
 		while (rs.next())
 		{
-			expenses += rs.getDouble("SUMME");
+			expenses += rs.getDouble(uebergabe);
 			System.out.println(expenses);
 		}
 	}

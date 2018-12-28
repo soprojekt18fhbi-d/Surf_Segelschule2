@@ -23,9 +23,9 @@ public class WirtschaftlichkeitStrg implements IController { //Ben Kröncke
 		
 	}
 	
-	public void holeDaten(String talking2, String mode2, int id2) {
+	public void holeDaten(String talking2, String mode2, int id2, String giveString) {
 		
-		model.holeDaten(talking2, mode2, id2);
+		model.holeDaten(talking2, mode2, id2, giveString);
 		
 	}
 
