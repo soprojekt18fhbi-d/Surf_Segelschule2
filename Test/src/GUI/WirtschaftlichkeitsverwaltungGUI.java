@@ -99,8 +99,7 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 					talking = "category";
 					mode = cboxKateg.getSelectedItem().toString();
 					anfrage();
-					if(cboxKateg.getSelectedItem().equals("Sportgeraet"))
-						id = Integer.parseInt(JOptionPane.showInputDialog("Bitte Artikelnummer (ID) eingeben!")); 
+					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -131,6 +130,12 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 					if(mode.equals("Unternehmen") == false && mode.equals("Sportgeraet") == false)
 						giveString = cboxSpec.getSelectedItem().toString();
 					
+					boolean number = false;
+					
+					number = getSportID(cboxKateg, number);
+					
+					
+					
 					talking = "calc";
 					anfrage();
 				} catch (Exception e) {
@@ -139,6 +144,24 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 				}
 				
 				
+			}
+
+			private boolean getSportID(JComboBox cboxKateg, boolean number) {
+				while (number == false)
+				{
+					try {
+						if(cboxKateg.getSelectedItem().equals("Sportgeraet"))
+						{
+							id = Integer.parseInt(JOptionPane.showInputDialog("Bitte Artikelnummer (ID) eingeben!"));
+							number = true;
+						}	
+					} catch (NumberFormatException e) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null, "Das ist keine gültige Zahl!");
+						
+					}
+				}
+				return number;
 			}
 
 			
@@ -207,28 +230,31 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 							.addComponent(buttonCalc, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGap(172)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
 								.addGroup(gl_panel_1.createSequentialGroup()
-									.addComponent(lblSpezifizieren, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-									.addGap(4)
-									.addComponent(cboxSpec, 0, 326, Short.MAX_VALUE))
+									.addComponent(lblEinnahmen, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+									.addGap(18)
+									.addComponent(txtIncome, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))
+								.addComponent(labelHead, GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
 								.addGroup(gl_panel_1.createSequentialGroup()
-									.addComponent(lblEinnahmen, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtIncome, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
+									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+										.addComponent(lblSpezifizieren, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE))
+									.addGap(14)
+									.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
+										.addComponent(cboxKateg, 0, 327, Short.MAX_VALUE)
+										.addComponent(cboxSpec, Alignment.LEADING, 0, 327, Short.MAX_VALUE)))
 								.addGroup(gl_panel_1.createSequentialGroup()
-									.addComponent(lblAusgaben, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtExpenses, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addComponent(lblGewinn, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtProfit, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(cboxKateg, 0, 326, Short.MAX_VALUE))
-								.addComponent(labelHead, GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE))))
+									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_panel_1.createSequentialGroup()
+											.addComponent(lblGewinn, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+											.addGap(18))
+										.addGroup(gl_panel_1.createSequentialGroup()
+											.addComponent(lblAusgaben, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+											.addGap(18)))
+									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+										.addComponent(txtExpenses, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+										.addComponent(txtProfit, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))))))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
@@ -242,8 +268,8 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 					.addComponent(labelHead, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblNewLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-						.addComponent(cboxKateg, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+						.addComponent(cboxKateg, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
 					.addGap(5)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblSpezifizieren, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
@@ -251,11 +277,11 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(buttonCalc, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING, false)
-						.addGroup(Alignment.LEADING, gl_panel_1.createParallelGroup(Alignment.BASELINE)
-							.addComponent(txtIncome)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+							.addComponent(txtIncome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
-						.addComponent(lblEinnahmen, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
+						.addComponent(lblEinnahmen, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(gl_panel_1.createSequentialGroup()
