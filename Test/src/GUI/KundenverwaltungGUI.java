@@ -12,6 +12,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
@@ -36,13 +37,17 @@ public class KundenverwaltungGUI extends JPanel {
 
 	public KundenverwaltungGUI() {
 		
+		setBackground(Color.DARK_GRAY);
+		setForeground(Color.DARK_GRAY);
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.NORTH);
 		
 		JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnZurck.setBackground(new Color(255, 140, 0));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -59,6 +64,7 @@ public class KundenverwaltungGUI extends JPanel {
 		panel.setLayout(gl_panel);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.DARK_GRAY);
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0};
@@ -69,6 +75,8 @@ public class KundenverwaltungGUI extends JPanel {
 		
 		JButton btnKundeRegistrieren = new JButton("Kunde registrieren");
 		btnKundeRegistrieren.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnKundeRegistrieren.setBackground(new Color(255, 140, 0));
+
 		GridBagConstraints gbc_btnKundeHinzufgen = new GridBagConstraints();
 		gbc_btnKundeHinzufgen.insets = new Insets(0, 0, 5, 0);
 		gbc_btnKundeHinzufgen.fill = GridBagConstraints.BOTH;
@@ -78,6 +86,8 @@ public class KundenverwaltungGUI extends JPanel {
 		
 		JButton btnKundeAendern = new JButton("Kunde \u00E4ndern");
 		btnKundeAendern.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnKundeAendern.setBackground(new Color(255, 140, 0));
+
 		GridBagConstraints gbc_btnKundendern = new GridBagConstraints();
 		gbc_btnKundendern.fill = GridBagConstraints.BOTH;
 		gbc_btnKundendern.gridx = 0;

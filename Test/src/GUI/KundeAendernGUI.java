@@ -5,6 +5,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -44,6 +45,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
 
 public class KundeAendernGUI extends JPanel implements IObjektView{
 	
@@ -74,17 +76,25 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		this.model = smodel;
 		this.controller = scontroller;
 		
+		setBackground(Color.DARK_GRAY);
+		setForeground(Color.DARK_GRAY);
+		
 		setSize(980,580);
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.NORTH);
 		
 		
 		JButton btnZurueck = new JButton("Zurück");
 		btnZurueck.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnZurueck.setBackground(new Color(255, 140, 0));
+
 		
 		JButton btnHauptmen = new JButton("Hauptmen\u00FC");
 		btnHauptmen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnHauptmen.setBackground(new Color(255, 140, 0));
+
 		
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -106,6 +116,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		
 		
 		JPanel panel2 = new JPanel();
+		panel2.setBackground(Color.DARK_GRAY);
 		add(panel2, BorderLayout.CENTER);
 		
 		txtKnr = new JTextField();
@@ -189,6 +200,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		txtEmail.setColumns(10);
 		
 		JComboBox adresseArtBox = new JComboBox();
+		adresseArtBox.setBackground(Color.WHITE);
 		adresseArtBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if (adresseArtBox.getSelectedItem().equals("Heimatadresse"))
@@ -207,11 +219,15 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		JButton btnLeeren = new JButton("Leeren");
 		btnLeeren.setBounds(494, 192, 232, 35);
 		btnLeeren.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnLeeren.setBackground(new Color(255, 140, 0));
+
 		
 		JButton btnSuchen = new JButton("Suchen");
 		btnSuchen.setBounds(252, 192, 232, 35);
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSuchen.setPreferredSize(new Dimension(120, 35));
+		btnSuchen.setBackground(new Color(255, 140, 0));
+
 		
 		JButton btnndern = new JButton("Speichern");
 		btnndern.setBounds(736, 192, 232, 35);
@@ -246,8 +262,11 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		});
 		btnndern.setPreferredSize(new Dimension(120, 35));
 		btnndern.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnndern.setBackground(new Color(255, 140, 0));
 		
 		JCheckBox chckbxSurfschein = new JCheckBox("Surfschein");
+		chckbxSurfschein.setForeground(SystemColor.text);
+		chckbxSurfschein.setBackground(Color.DARK_GRAY);
 		chckbxSurfschein.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chckbxSurfschein.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -262,6 +281,8 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		chckbxSurfschein.setBounds(38, 150, 93, 23);
 		
 		JCheckBox chckbxMotorbootschein = new JCheckBox("Motorbootschein");
+		chckbxMotorbootschein.setForeground(SystemColor.text);
+		chckbxMotorbootschein.setBackground(Color.DARK_GRAY);
 		chckbxMotorbootschein.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chckbxMotorbootschein.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -278,6 +299,8 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		chckbxMotorbootschein.setBounds(145, 150, 133, 23);
 		
 		JCheckBox chckbxSegelschein = new JCheckBox("Segelschein");
+		chckbxSegelschein.setForeground(SystemColor.text);
+		chckbxSegelschein.setBackground(Color.DARK_GRAY);
 		chckbxSegelschein.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chckbxSegelschein.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -320,6 +343,8 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		});
 		
 		btnDeaktivieren.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnDeaktivieren.setBackground(new Color(255, 140, 0));
+
 		btnDeaktivieren.setMinimumSize(new Dimension(200, 35));
 		btnDeaktivieren.setMaximumSize(new Dimension(150, 35));
 		btnDeaktivieren.setPreferredSize(new Dimension(200, 35));
@@ -340,6 +365,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		JScrollPane scrollPane = new JScrollPane();
 
 		scrollPane.setBounds(10, 237, 960, 265);
+		panel2.setBackground(Color.DARK_GRAY);
 		panel2.add(scrollPane);
 		
 		table = new JTable();
@@ -427,6 +453,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		scrollPane.setViewportView(table);
 		
 		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBackground(Color.WHITE);
 		
 		comboBox_1.addItem("Wähle");
 		comboBox_1.addItem("Kunde");

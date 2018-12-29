@@ -5,6 +5,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -61,6 +62,8 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 		model=models;
 		controller=controllers;
 		
+		setBackground(Color.DARK_GRAY);
+		setForeground(Color.DARK_GRAY);
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.NORTH);

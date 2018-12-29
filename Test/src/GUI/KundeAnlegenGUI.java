@@ -3,6 +3,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -36,6 +37,7 @@ import javax.swing.JCheckBox;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Dimension;
+import java.awt.SystemColor;
 
 public class KundeAnlegenGUI extends JPanel implements IView{
 	private JTextField txtNname;
@@ -62,17 +64,25 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		this.controller = scontroller;
 		model.anmelden(this);
 		
+		
+		setBackground(Color.DARK_GRAY);
+		setForeground(Color.DARK_GRAY);
 		setLayout(new BorderLayout(0, 0));
 		setSize(1000,600);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.NORTH);
 		
 		JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnZurck.setBackground(new Color(255, 140, 0));
+
 		
 		JButton btnHauptmen = new JButton("Hauptmen\u00FC");
 		btnHauptmen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnHauptmen.setBackground(new Color(255, 140, 0));
+
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -92,6 +102,7 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		panel.setLayout(gl_panel);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.DARK_GRAY);
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
@@ -101,8 +112,9 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		panel_1.setLayout(gbl_panel_1);
 		
 		JLabel lblKundendatenEingeben = new JLabel("Kundendaten eingeben:");
+		lblKundendatenEingeben.setForeground(SystemColor.text);
 		lblKundendatenEingeben.setMinimumSize(new Dimension(100, 14));
-		lblKundendatenEingeben.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblKundendatenEingeben.setFont(new Font("Tahoma", Font.BOLD, 17));
 		GridBagConstraints gbc_lblKundendatenEingeben = new GridBagConstraints();
 		gbc_lblKundendatenEingeben.gridheight = 2;
 		gbc_lblKundendatenEingeben.gridwidth = 2;
@@ -113,7 +125,8 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		panel_1.add(lblKundendatenEingeben, gbc_lblKundendatenEingeben);
 		
 		JLabel lblPersoenlicheAngaben = new JLabel("Persönliche Angaben:");
-		lblPersoenlicheAngaben.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblPersoenlicheAngaben.setForeground(SystemColor.text);
+		lblPersoenlicheAngaben.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblPersoenlicheAngaben = new GridBagConstraints();
 		gbc_lblPersoenlicheAngaben.anchor = GridBagConstraints.WEST;
 		gbc_lblPersoenlicheAngaben.insets = new Insets(0, 0, 5, 5);
@@ -122,6 +135,8 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		panel_1.add(lblPersoenlicheAngaben, gbc_lblPersoenlicheAngaben);
 		
 		JLabel lblNachname = new JLabel("Nachname");
+		lblNachname.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNachname.setForeground(SystemColor.text);
 		GridBagConstraints gbc_lblNachname = new GridBagConstraints();
 		gbc_lblNachname.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNachname.anchor = GridBagConstraints.WEST;
@@ -139,6 +154,8 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		txtNname.setColumns(10);
 		
 		JLabel lblVorname = new JLabel("Vorname");
+		lblVorname.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblVorname.setForeground(SystemColor.text);
 		GridBagConstraints gbc_lblVorname = new GridBagConstraints();
 		gbc_lblVorname.anchor = GridBagConstraints.WEST;
 		gbc_lblVorname.insets = new Insets(0, 0, 5, 5);
@@ -156,7 +173,8 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		txtVname.setColumns(10);
 		
 		JLabel lblHeimatadresse = new JLabel("Heimatadresse:");
-		lblHeimatadresse.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblHeimatadresse.setForeground(SystemColor.text);
+		lblHeimatadresse.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblHeimatadresse = new GridBagConstraints();
 		gbc_lblHeimatadresse.anchor = GridBagConstraints.WEST;
 		gbc_lblHeimatadresse.insets = new Insets(0, 0, 5, 5);
@@ -165,6 +183,8 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		panel_1.add(lblHeimatadresse, gbc_lblHeimatadresse);
 		
 		JLabel lblPLZ = new JLabel("PLZ");
+		lblPLZ.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblPLZ.setForeground(SystemColor.text);
 		GridBagConstraints gbc_lblPLZ = new GridBagConstraints();
 		gbc_lblPLZ.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPLZ.anchor = GridBagConstraints.WEST;
@@ -182,6 +202,8 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		txtPlzH.setColumns(10);
 		
 		JLabel lblOrt = new JLabel("Ort");
+		lblOrt.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblOrt.setForeground(SystemColor.text);
 		GridBagConstraints gbc_lblOrt = new GridBagConstraints();
 		gbc_lblOrt.anchor = GridBagConstraints.WEST;
 		gbc_lblOrt.insets = new Insets(0, 0, 5, 5);
@@ -199,6 +221,8 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		txtOrtH.setColumns(10);
 		
 		JLabel lblStrasse = new JLabel("Straße");
+		lblStrasse.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblStrasse.setForeground(SystemColor.text);
 		GridBagConstraints gbc_lblStrasse = new GridBagConstraints();
 		gbc_lblStrasse.anchor = GridBagConstraints.WEST;
 		gbc_lblStrasse.insets = new Insets(0, 0, 5, 5);
@@ -216,6 +240,8 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		txtStrasseH.setColumns(10);
 		
 		JLabel lblHausnummer = new JLabel("Hausnummer");
+		lblHausnummer.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblHausnummer.setForeground(SystemColor.text);
 		GridBagConstraints gbc_lblHausnummer = new GridBagConstraints();
 		gbc_lblHausnummer.anchor = GridBagConstraints.WEST;
 		gbc_lblHausnummer.insets = new Insets(0, 0, 5, 5);
@@ -233,7 +259,8 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		txtHnrH.setColumns(10);
 		
 		JLabel lblUrlaubsadresse = new JLabel("Urlaubsadresse:");
-		lblUrlaubsadresse.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblUrlaubsadresse.setForeground(SystemColor.text);
+		lblUrlaubsadresse.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblUrlaubsadresse = new GridBagConstraints();
 		gbc_lblUrlaubsadresse.anchor = GridBagConstraints.WEST;
 		gbc_lblUrlaubsadresse.insets = new Insets(0, 0, 5, 5);
@@ -242,6 +269,8 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		panel_1.add(lblUrlaubsadresse, gbc_lblUrlaubsadresse);
 		
 		JLabel lblPLZ2 = new JLabel("PLZ");
+		lblPLZ2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblPLZ2.setForeground(SystemColor.text);
 		GridBagConstraints gbc_lblPLZ2 = new GridBagConstraints();
 		gbc_lblPLZ2.anchor = GridBagConstraints.WEST;
 		gbc_lblPLZ2.insets = new Insets(0, 0, 5, 5);
@@ -259,6 +288,8 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		txtPlzU.setColumns(10);
 		
 		JLabel lblOrt2 = new JLabel("Ort");
+		lblOrt2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblOrt2.setForeground(SystemColor.text);
 		GridBagConstraints gbc_lblOrt2 = new GridBagConstraints();
 		gbc_lblOrt2.anchor = GridBagConstraints.WEST;
 		gbc_lblOrt2.insets = new Insets(0, 0, 5, 5);
@@ -276,6 +307,8 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		txtOrtU.setColumns(10);
 		
 		JLabel lblStrasse2 = new JLabel("Straße");
+		lblStrasse2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblStrasse2.setForeground(SystemColor.text);
 		GridBagConstraints gbc_lblStrasse2 = new GridBagConstraints();
 		gbc_lblStrasse2.anchor = GridBagConstraints.WEST;
 		gbc_lblStrasse2.insets = new Insets(0, 0, 5, 5);
@@ -293,6 +326,8 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		txtStrasseU.setColumns(10);
 		
 		JLabel lblHausnummer2 = new JLabel("Hausnummer");
+		lblHausnummer2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblHausnummer2.setForeground(SystemColor.text);
 		GridBagConstraints gbc_lblHausnummer2 = new GridBagConstraints();
 		gbc_lblHausnummer2.anchor = GridBagConstraints.WEST;
 		gbc_lblHausnummer2.insets = new Insets(0, 0, 5, 5);
@@ -310,6 +345,8 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		txtHnrU.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("E-Mail");
+		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblEmail.setForeground(SystemColor.text);
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
 		gbc_lblEmail.anchor = GridBagConstraints.WEST;
 		gbc_lblEmail.insets = new Insets(0, 0, 5, 5);
@@ -327,6 +364,9 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		emailTextField.setColumns(10);
 		
 		JCheckBox chckbxSurfschein = new JCheckBox("Surfschein");
+		chckbxSurfschein.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		chckbxSurfschein.setBackground(Color.DARK_GRAY);
+		chckbxSurfschein.setForeground(SystemColor.text);
 		GridBagConstraints gbc_chckbxSurfschein = new GridBagConstraints();
 		gbc_chckbxSurfschein.anchor = GridBagConstraints.EAST;
 		gbc_chckbxSurfschein.insets = new Insets(0, 0, 0, 5);
@@ -335,6 +375,9 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		panel_1.add(chckbxSurfschein, gbc_chckbxSurfschein);
 		
 		JCheckBox chckbxSegelschein = new JCheckBox("Segelschein");
+		chckbxSegelschein.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		chckbxSegelschein.setForeground(SystemColor.text);
+		chckbxSegelschein.setBackground(Color.DARK_GRAY);
 		GridBagConstraints gbc_chckbxSegelschein = new GridBagConstraints();
 		gbc_chckbxSegelschein.anchor = GridBagConstraints.EAST;
 		gbc_chckbxSegelschein.insets = new Insets(0, 0, 0, 5);
@@ -343,6 +386,9 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		panel_1.add(chckbxSegelschein, gbc_chckbxSegelschein);
 		
 		JCheckBox chckbxMotorbootschein = new JCheckBox("Motorbootschein");
+		chckbxMotorbootschein.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		chckbxMotorbootschein.setBackground(Color.DARK_GRAY);
+		chckbxMotorbootschein.setForeground(SystemColor.text);
 		GridBagConstraints gbc_chckbxMotorbootschein = new GridBagConstraints();
 		gbc_chckbxMotorbootschein.insets = new Insets(0, 0, 0, 5);
 		gbc_chckbxMotorbootschein.gridwidth = 3;
@@ -353,12 +399,16 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 		
 
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.DARK_GRAY);
 		add(panel_2, BorderLayout.SOUTH);
 		
 		JButton btnLeeren = new JButton("Leeren");
 		btnLeeren.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnLeeren.setBackground(new Color(255, 140, 0));
 		JButton btnHinzufgen = new JButton("Hinzuf\u00FCgen");
 		btnHinzufgen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnHinzufgen.setBackground(new Color(255, 140, 0));
+
 		
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
@@ -425,16 +475,19 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 					KundeErstellen(chckbxSurfschein, chckbxSegelschein, chckbxMotorbootschein);
 					HeimadresseErstellen();
 					UrlaubsadresseErstellen();
+					JOptionPane.showMessageDialog(null, "Kunde wurde registriert", "Kunde registriert", JOptionPane.PLAIN_MESSAGE);
 					MainFrame.change(MainFrame.getKundeAnlegenGUI(), MainFrame.getHauptmenueGUI());	
 
 				} 	else if(KundeGefuellt() == true && HeimadresseGefuellt() == true && UrlaubsadresseLeer() == true ) {
 						KundeErstellen(chckbxSurfschein, chckbxSegelschein, chckbxMotorbootschein);
 						HeimadresseErstellen();
+						JOptionPane.showMessageDialog(null, "Kunde wurde registriert", "Kunde registriert", JOptionPane.PLAIN_MESSAGE);
 						MainFrame.change(MainFrame.getKundeAnlegenGUI(), MainFrame.getHauptmenueGUI());	
 						
 				} 	else if(KundeGefuellt() == true && UrlaubsadresseGefuellt() == true && HeimadresseLeer() == true ) {
 						KundeErstellen(chckbxSurfschein, chckbxSegelschein, chckbxMotorbootschein);
 						   UrlaubsadresseErstellen();
+							JOptionPane.showMessageDialog(null, "Kunde wurde registriert", "Kunde registriert", JOptionPane.PLAIN_MESSAGE);
 						   MainFrame.change(MainFrame.getKundeAnlegenGUI(), MainFrame.getHauptmenueGUI());	
 				
 				} 	else {
@@ -531,78 +584,6 @@ public class KundeAnlegenGUI extends JPanel implements IView{
 			return false;
 		}
 	}
-		
-//		btnHinzufgen.addActionListener(new ActionListener() {	
-//			
-//			public void actionPerformed(ActionEvent arg0) {
-//				
-//				String email;
-//				String nachname;
-//				String vorname;
-//				Boolean surfschein;
-//				Boolean segelschein;
-//				Boolean motorbootschein;
-//				
-//				int plz;
-//				String ort;
-//				String strasse;
-//				String hausnummer;
-//				String art;
-//				
-//				int plz2;
-//				String ort2;
-//				String strasse2;
-//				String hausnummer2;
-//				String art2;
-//				
-//				try {
-//					
-//					
-//					//KundeAnlegenStrg.AdresseAnlegen(strasse, hausnummer, ort, plz, "" );
-//					
-//					/**
-//					int plz2 = Integer.parseInt(textField_7.getText());
-//					String ort2 = textField_8.getText();
-//					String strasse2 = textField_9.getText();
-//					String hausnummer2 = textField_10.getText();
-//					**/
-//
-//					email = emailTextField.getText();		
-//					nachname = txtNname.getText();
-//					vorname = txtVname.getText();
-//					surfschein = chckbxSurfschein.isSelected();
-//					segelschein = chckbxSegelschein.isSelected();
-//					motorbootschein = chckbxMotorbootschein.isSelected();
-//					controller.KundeAnlegen(nachname, vorname, email, surfschein, segelschein, motorbootschein);
-//					
-//					
-//					plz = Integer.parseInt(txtPlzH.getText());
-//					ort = txtOrtH.getText();
-//					strasse = txtStrasseH.getText();
-//					hausnummer = txtHnrH.getText();
-//					art = "Heimadresse";
-//					controller.AdresseAnlegen(strasse, hausnummer, ort, plz, art);
-//					
-//					plz2 = Integer.parseInt(txtPlzH.getText());
-//					ort2 = txtOrtH.getText();
-//					strasse2 = txtStrasseH.getText();
-//					hausnummer2 = txtHnrH.getText();
-//					art2 = "Urlaubsadresse";
-//					controller.AdresseAnlegen(strasse2, hausnummer2, ort2, plz2, art2);
-//					
-//					/**
-//					 * Achtung, hier muss noch besseres exeption handling umgesetzt werden, DK
-//					 */
-//					
-//					
-//				} catch (NumberFormatException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//						
-//				MainFrame.change(MainFrame.getKundeRegistrieren(), MainFrame.getHauptmenue());	
-//				}
-//			});
 		
 
 
