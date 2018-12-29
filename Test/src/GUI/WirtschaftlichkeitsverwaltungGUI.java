@@ -130,9 +130,11 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 					if(mode.equals("Unternehmen") == false && mode.equals("Sportgeraet") == false)
 						giveString = cboxSpec.getSelectedItem().toString();
 					
-					boolean number = false;
-					
-					number = getSportID(cboxKateg, number);
+					if(mode.equals("Sportgeraet"))
+					{
+						boolean number = false;
+						number = getSportID(cboxKateg, number);
+					}
 					
 					
 					
