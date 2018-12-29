@@ -17,6 +17,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
@@ -124,14 +125,13 @@ public class RechnungAnzeigeStrg implements IController{
         PdfWriter.getInstance(document, new FileOutputStream(filename+".pdf"));
         document.open();
         
-//      Image img = Image.getInstance("logo.png");
-//      img.setAlignment(Element.ALIGN_RIGHT);
+
         
         PdfPTable table = new PdfPTable(3);
         table.setWidthPercentage(100);
         table.setSpacingBefore(150f);
         table.setWidths(new int[]{2, 1, 2});
-        PdfPCell cell = new PdfPCell(new Phrase("Firma\nSurf- und Segelschule\nMusterStrasse 1\nD 33619 Bielefeld\n", font1));
+        PdfPCell cell = new PdfPCell(new Phrase("Firma\nSurf- und Segelcenter\nMusterStrasse 1\nD 33619 Bielefeld\n", font1));
             cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
             cell.setBorder(0);
         table.addCell(cell);
@@ -147,14 +147,8 @@ public class RechnungAnzeigeStrg implements IController{
         cell2.setBorder(0);
         cell2.setHorizontalAlignment(PdfPCell.RIGHT);
         table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
-        
-        
-
-        
-//      Chunk chunkImg = new Chunk(img, 110, 0);
-//          cell2.addElement(chunkImg);
             
-            table.addCell(cell2);
+        table.addCell(cell2);
         document.add(table);
         
         Date date = new Date();
@@ -170,7 +164,7 @@ public class RechnungAnzeigeStrg implements IController{
         document.add(rightDate);
         document.add(new Paragraph(""));
         
-        //Adress
+        //adress
         PdfPTable adressTable = new PdfPTable(2);
         adressTable.setHorizontalAlignment(PdfPTable.ALIGN_RIGHT);
         adressTable.setSpacingBefore(40f);
@@ -185,35 +179,34 @@ public class RechnungAnzeigeStrg implements IController{
         adressTable.addCell(cell);
         document.add(adressTable);
         
+        // form of adress
+        PdfPTable textTable = new PdfPTable(1);
+        textTable.setHorizontalAlignment(PdfPTable.ALIGN_CENTER);
+        textTable.setSpacingBefore(40f);
+        textTable.setWidthPercentage(96f);
+        cell = new PdfPCell(new Phrase("Rechnung " + rechnungsID, font2));
+        cell.setBorder(0);
+        textTable.addCell(cell);
+        cell2 = new PdfPCell(new Phrase("Sehr geehrter Damen und Herren, \nwir berechnen Ihnen für Ihren Auftrag " + buchungsID + " folgendes:", font3));
+        cell2.setBorder(0);
+        textTable.addCell(cell2); 
+        document.add(textTable);
+        
         // content
-        
         PdfPTable contentTable = new PdfPTable(2);
-        
         contentTable.setHorizontalAlignment(PdfPTable.ALIGN_CENTER);
         contentTable.setSpacingBefore(40f);
         contentTable.setWidthPercentage(96f);
-        contentTable.addCell(new Phrase("modellnummer:", font3));
+        contentTable.addCell(new Phrase("Gerätenummer", font3));
         contentTable.addCell(new Phrase(modellID+"", font3));
-        contentTable.addCell(new Paragraph("modellname:", font3));
-        contentTable.addCell(new Paragraph(modellname, font3));
-        contentTable.addCell(new Paragraph("Test", font3));
-        contentTable.addCell(new Paragraph("1"));
-        contentTable.addCell(new Paragraph("2"));
-        contentTable.addCell(new Paragraph("3"));
-        contentTable.addCell(new Paragraph("4"));
-        contentTable.addCell(new Paragraph("5"));
-
-        
-//        PdfPTable contentTable = new PdfPTable(2);
-//        contentTable.setHorizontalAlignment(PdfPTable.ALIGN_LEFT);
-//        contentTable.setSpacingBefore(40f);
-//        contentTable.setWidthPercentage(96f);
-//        cell = new PdfPCell(new Phrase("Modell:", font3));
-//        cell = new PdfPCell(new Phrase("summe:", font3));
-//
-//        cell.setBorder(0);
-//        contentTable.addCell(cell);
-//        
+        contentTable.addCell(new Phrase("Modell", font3));
+        contentTable.addCell(new Phrase(modellname + " ( Farbe: " + farbe + ")" , font3));
+        contentTable.addCell(new Phrase("Summe (netto)", font3));
+        contentTable.addCell(new Phrase(String.valueOf(summe) + " €", font3));
+        contentTable.addCell(new Phrase("Mehrwertsteuer", font3));
+        contentTable.addCell(new Phrase(String.valueOf(mwst) + " €", font3));
+        contentTable.addCell(new Phrase("Summe (brutto)", font3));
+        contentTable.addCell(new Phrase(String.valueOf(summeMitMwst) + " €", font3));
         document.add(contentTable);
         
         document.close();
