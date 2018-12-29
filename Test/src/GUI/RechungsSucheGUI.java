@@ -22,6 +22,7 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -49,6 +50,7 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 	private JTextField txtRechnungGewaehlt;
 	private JTextField txtSearchbar;
 	private int rechnungsID;
+	private int heim_Urlaub;
 
 
 	/**
@@ -121,16 +123,7 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 		gbc_txtRechnungGewählt.gridx = 1;
 		gbc_txtRechnungGewählt.gridy = 0;
 		panel_1.add(txtRechnungGewaehlt,gbc_txtRechnungGewählt);
-		
-//		JButton btnREbezahlen = new JButton("Rechnung bezahlen");
-//		btnREbezahlen.setPreferredSize(new Dimension(300, 23));
-//		btnREbezahlen.setFont(new Font("Tahoma", Font.PLAIN, 30));
-//		GridBagConstraints gbc_btnTypAendern = new GridBagConstraints();
-//		gbc_btnTypAendern.fill = GridBagConstraints.BOTH;
-//		gbc_btnTypAendern.insets = new Insets(0, 0, 5, 0);
-//		gbc_btnTypAendern.gridx = 1;
-//		gbc_btnTypAendern.gridy = 0;
-//		panel_1.add(btnREbezahlen, gbc_btnTypAendern);
+
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setPreferredSize(new Dimension(2, 375));
@@ -166,7 +159,7 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getRechnungSucheGUI(), MainFrame.getHauptmenueGUI());
+				MainFrame.change(MainFrame.getRechnungSucheGUI(), MainFrame.getBuchungsverwaltungGUI());
 				
 			}
 		});
@@ -192,21 +185,49 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 			}
 		});
 		
+		// Wenn rechnungsID leer ist, dann wird eine Fehlermeldung ausgeworfen. Das Programme wird auch nicht ausgeführt, wenn heim_Urlaub ==2 (Abbrechen) ist.  
+
 		btnREVerschicken.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.anmelden(MainFrame.getRechnungSucheGUI());
-				rechnungsID = Integer.parseInt(txtRechnungGewaehlt.getText());
-				controller.getRechungDruck(rechnungsID);	
+				
+				try {
+					rechnungsID = Integer.parseInt(txtRechnungGewaehlt.getText());
+					System.out.println(rechnungsID);
+					heim_Urlaub = heimOderUrlaubsAdresse();					
+					if(heim_Urlaub == 0 || heim_Urlaub == 1) 
+						controller.getRechungDruck(rechnungsID, heim_Urlaub);
+				}
+				catch(NumberFormatException e2){
+					keineRechnungGewaehlt();
+					e2.printStackTrace();
+				}
 				model.abmelden(MainFrame.getRechnungSucheGUI());
+					
 			}
 		});
 		
-//		btnREbezahlen.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				MainFrame.change(MainFrame.getRechnungsVerwaltung(), MainFrame.getRechnungDetail());
-//			}
-//		});
-		
+	}
+	
+	public int heimOderUrlaubsAdresse() {
+		int testWert = JOptionPane.showConfirmDialog(null, "An die Heimatadresse verschicken?");
+		if (testWert == -1)
+			testWert = 2;
+		if (testWert == 0) {
+			System.out.println("Du hast Heimatadresse gewählt");
+			return 0;
+		}
+		if (testWert == 1) {
+			System.out.println("Du hast Urlaubsdresse gewählt");
+			return 1;
+		}
+		if (testWert == 2)
+			System.out.println("Du hast Abbrechen gewählt");
+			return 2;
+	}
+	
+	public void keineRechnungGewaehlt() {
+		JOptionPane.showMessageDialog(null, "Bitte wählen Sie eine Rechnung aus", "Rechnung wählen", JOptionPane.PLAIN_MESSAGE);
 	}
 
 	@Override
@@ -214,10 +235,4 @@ public void aktualisieren(IObjektModel model) {
 		table.setModel(model.getTableModel());
 	}
 	
-//	private void anfrage() {
-//		model.anmelden(MainFrame.getRechnungsVerwaltung());
-//		controller.getRechnungenSuche(txtSearchbar.getText() );
-//		table.setModel(model.getTableModel());
-//		model.abmelden(MainFrame.getRechnungsVerwaltung());
-//	}
 }

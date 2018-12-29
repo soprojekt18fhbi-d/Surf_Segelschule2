@@ -29,6 +29,7 @@ import com.itextpdf.text.pdf.draw.LineSeparator;
 
 import Datenbankmodels.RechnungAnzeigenModel;
 import GUI.IObjektView;
+import GUI.RechungsSucheGUI;
 
 
 /**
@@ -39,7 +40,7 @@ import GUI.IObjektView;
 public class RechnungAnzeigeStrg implements IController{
 	
 	private RechnungAnzeigenModel model;
-	private IObjektView view;
+	private RechungsSucheGUI view;
 	private String search;
 	private int kundenID;
 	private double summe;
@@ -74,9 +75,9 @@ public class RechnungAnzeigeStrg implements IController{
 		
 	}
 	
-	public void getRechungDruck(int rechnungsID)
+	public void getRechungDruck(int rechnungsID, int heim_urlaub)
 	{
-		model.holeDatenDrucken(rechnungsID);
+		model.holeDatenDrucken(rechnungsID, heim_urlaub);
 		summe = model.getSumme();
 		kundenID = model.getKundeID();
 		summeMitMwst = model.getSummeMitMwst();
@@ -104,7 +105,7 @@ public class RechnungAnzeigeStrg implements IController{
     		e1.printStackTrace();
     	}catch(IOException e2) {
     		e2.printStackTrace();
-    	}
+    	} 
 	}
 
 	

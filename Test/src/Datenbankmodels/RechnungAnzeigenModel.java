@@ -35,9 +35,6 @@ public class RechnungAnzeigenModel implements IObjektModel{
 	private int kundeID;
 	private int buchungsID;
 	private int reparaturID;
-//	private String ausleihdatum;
-//	private String rückgabedatum;
-//  private String verkaufsdaum;
 	private String art;
 	private int sportgeraetID;
 	private int modellID;
@@ -50,7 +47,7 @@ public class RechnungAnzeigenModel implements IObjektModel{
 	private String strasse;
 	private String ort;
 	private String hnr;
-	
+	private int heim_Urlaub;
 
 
 	@Override
@@ -122,7 +119,7 @@ public class RechnungAnzeigenModel implements IObjektModel{
         updateObserver();
 	}
 	
-	public void holeDatenDrucken(int rechnungsID) {
+	public void holeDatenDrucken(int rechnungsID, int heim_Urlaub) {
 
 		this.rechnungsID = rechnungsID;
 		
@@ -135,7 +132,7 @@ public class RechnungAnzeigenModel implements IObjektModel{
 			rechnungDruckenSportgeraet(conn, sportgeraetID);
 			rechnungDruckenModell(conn, modellID);
 			rechnungDruckenKunde(conn, kundeID);
-			rechnungDruckenAdresse(conn, kundeID);
+			rechnungDruckenAdresse(conn, kundeID, heim_Urlaub);
 
 			
 			
@@ -323,11 +320,21 @@ public class RechnungAnzeigenModel implements IObjektModel{
 
 		}
 	
-	public void rechnungDruckenAdresse(Connection con, int kundenID)
+	public void rechnungDruckenAdresse(Connection con, int kundenID, int heim_Urlaub)
 		    throws SQLException {
 
 		 Statement stmt = con.createStatement();
-		    String query = "SELECT * FROM ADRESSE WHERE KUNDEID = "+kundenID+"ORDER BY ART DESC";
+		 	String query = null;
+		 	System.out.println();
+		 	
+		 	if(heim_Urlaub==1) {
+			    query = "SELECT * FROM ADRESSE WHERE KUNDEID = "+kundenID+"ORDER BY ART ASC";
+		 	}
+		 	else{
+			    query = "SELECT * FROM ADRESSE WHERE KUNDEID = "+kundenID+"ORDER BY ART DESC";
+
+		 	}
+
 		    System.out.println(query);
 		    
 		    try {
