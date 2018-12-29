@@ -31,12 +31,10 @@ public class ModellHinzufuegenModel implements IAnlegenModel {
 		
         try {
         	
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here
 			viewTable(conn);
 			
-			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,8 +48,8 @@ public class ModellHinzufuegenModel implements IAnlegenModel {
 
 			
 		
-		    Statement stmt = con.createStatement();
-		    Statement stmt2 = con.createStatement();
+		    Statement stmtModellHinzufuegenModel = con.createStatement();
+		    Statement stmtModellHinzufuegenModel2 = con.createStatement();
 		    String query = null;
 		    
 		    if(talking.equals("first"))
@@ -59,7 +57,7 @@ public class ModellHinzufuegenModel implements IAnlegenModel {
 		    	query = "Select * from TYP";
 		    	 try {
 				    	System.out.println(query);
-				        ResultSet rs = stmt.executeQuery(query);
+				        ResultSet rs = stmtModellHinzufuegenModel.executeQuery(query);
 				        
 				        while (rs.next()){
 				        	
@@ -71,7 +69,7 @@ public class ModellHinzufuegenModel implements IAnlegenModel {
 				    } catch (SQLException e ) {
 				    	e.printStackTrace();
 				    } finally {
-				        if (stmt != null) { stmt.close(); }
+				        if (stmtModellHinzufuegenModel != null) { stmtModellHinzufuegenModel.close(); }
 				    }
 		    	 updateObserver();
 		    }
@@ -88,7 +86,7 @@ public class ModellHinzufuegenModel implements IAnlegenModel {
 							
 					query = "select * from TYP WHERE NAME = '" +typ+ "'";
 					System.out.println(query);
-					ResultSet rs = stmt.executeQuery(query);
+					ResultSet rs = stmtModellHinzufuegenModel.executeQuery(query);
 					
 					while (rs.next())
 						{	
@@ -96,13 +94,13 @@ public class ModellHinzufuegenModel implements IAnlegenModel {
 							String sqlupdate = "INSERT INTO MODELL VALUES (default,'" + name + "','" +typID+ "','" +preis+"')";
 							System.out.println(sqlupdate);
 						
-							stmt2.executeUpdate(sqlupdate);
+							stmtModellHinzufuegenModel2.executeUpdate(sqlupdate);
 						}
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					} finally {
-						 if (stmt2 != null) { stmt2.close(); }
-						 if (stmt != null) { stmt.close(); }
+						 if (stmtModellHinzufuegenModel2 != null) { stmtModellHinzufuegenModel2.close(); }
+						 if (stmtModellHinzufuegenModel != null) { stmtModellHinzufuegenModel.close(); }
 					}
 			}	
 		    
@@ -111,15 +109,13 @@ public class ModellHinzufuegenModel implements IAnlegenModel {
 		    
 		    try {
 		    	System.out.println(query);
-		        stmt = con.createStatement();
-		        ResultSet rs = stmt.executeQuery(query);
+		        stmtModellHinzufuegenModel = con.createStatement();
+		        ResultSet rs = stmtModellHinzufuegenModel.executeQuery(query);
 		        
 		        
 		        
 		    } catch (SQLException e ) {
 		    	e.printStackTrace();
-		    } finally {
-		        if (stmt != null) { stmt.close(); }
 		    }
 		    
 		    

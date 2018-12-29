@@ -39,12 +39,11 @@ public class BuchungGeraetSucheModel implements IObjektModel { //@author Ben Krö
 		System.out.println(talking);
 		
         try {
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here
 			viewTable(conn);
 			
-			conn.close();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,7 +55,7 @@ public class BuchungGeraetSucheModel implements IObjektModel { //@author Ben Krö
 		    throws SQLException {
 
 		
-				Statement stmt = null;
+				Statement stmtBuchungGeraetSucheModel = null;
 				String query = "select ID,MAKEL,VERKAUFSPREIS, FARBE from SPORTGERAET where MODELLID = '" + modellNr + "' AND STATUS = 'OK'";
 				String update = null;
 				
@@ -65,25 +64,24 @@ public class BuchungGeraetSucheModel implements IObjektModel { //@author Ben Krö
 
 			try {
 				
-				stmt = con.createStatement();
+				stmtBuchungGeraetSucheModel = con.createStatement();
 
 				if(talking.equals("Verleih"))
 				{
 					
-					erfasseVerleih(stmt, date);
+					erfasseVerleih(stmtBuchungGeraetSucheModel, date);
 				}
 				if(talking.equals("Verkauf"))
 				{
-					erfasseVerkauf(stmt, query, date);
+					erfasseVerkauf(stmtBuchungGeraetSucheModel, query, date);
 				}
 				
-				erzeugeGeraetTabelle(stmt);
+				erzeugeGeraetTabelle(stmtBuchungGeraetSucheModel);
 
 			} catch (SQLException e ) {
 				e.printStackTrace();
-			} finally {
-				if (stmt != null) { stmt.close(); }
 			}
+
 
 		}
 

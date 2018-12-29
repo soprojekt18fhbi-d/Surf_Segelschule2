@@ -92,12 +92,10 @@ public class RechnungAnzeigenModel implements IObjektModel{
 		this.search = search;
 		
         try {
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here
 			rechnungSuche(conn);
 			
-			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -117,7 +115,6 @@ public class RechnungAnzeigenModel implements IObjektModel{
 			// add application code here
 			viewTable(conn);
 			
-			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -155,21 +152,19 @@ public class RechnungAnzeigenModel implements IObjektModel{
 	public void viewTable(Connection con)
     throws SQLException {
 
-    Statement stmt = null;
+    Statement stmtRechnungAnzeigenModel = null;
 	String query = "select * from RECHNUNG ORDER BY ID DESC";
 	   
 	try {
-		stmt = con.createStatement();
+		stmtRechnungAnzeigenModel = con.createStatement();
 
 		System.out.println(query);
 			
-		ResultSet rs = stmt.executeQuery(query);
+		ResultSet rs = stmtRechnungAnzeigenModel.executeQuery(query);
 		table = DbUtils.resultSetToTableModel(rs);
 
 	} catch (SQLException e ) {
 		e.printStackTrace();
-	} finally {
-		if (stmt != null) { stmt.close(); }
 	}
 
 }

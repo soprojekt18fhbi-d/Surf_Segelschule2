@@ -26,12 +26,10 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 		
         try {
         	
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here
 			viewTable(conn);
 			
-			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,9 +46,9 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 
 			
 		
-		    Statement stmt = con.createStatement();
-		    Statement stmt2 = con.createStatement();
-		    Statement stmt3 = con.createStatement();
+		    Statement stmtGeraetAnlegenModel = con.createStatement();
+		    Statement stmtGeraetAnlegenModel2 = con.createStatement();
+		    Statement stmtGeraetAnlegenModel3 = con.createStatement();
 		    String query = null;
 		    String query2 = null;
 		
@@ -60,7 +58,7 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 		    	query = "Select * from TYP";
 		    	 try {
 				    	System.out.println(query);
-				        ResultSet rs = stmt.executeQuery(query);
+				        ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);
 				        
 				        while (rs.next()){
 				        	
@@ -71,8 +69,6 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 				        
 				    } catch (SQLException e ) {
 				    	e.printStackTrace();
-				    } finally {
-				        if (stmt != null) { stmt.close(); }
 				    }
 		    	 updateObserver();
 		    }
@@ -87,13 +83,13 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 			   query = "Select * from TYP WHERE NAME = '" +typ+ "'";
 			   System.out.println(query);
 			   
-			   ResultSet rs = stmt.executeQuery(query);
+			   ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);
 				
 				while (rs.next()){	
 					int typID =  Integer.parseInt(rs.getString("ID"));
 					
 					query2 = "select * from MODELL WHERE TYPID = '" +typID+ "'";
-					ResultSet rs2 = stmt2.executeQuery(query2);
+					ResultSet rs2 = stmtGeraetAnlegenModel2.executeQuery(query2);
 					while (rs2.next()){
 				        	
 						mengeAnModellen.add(rs2.getString("NAME"));
@@ -103,7 +99,7 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 				    } catch (SQLException e ) {
 				    	e.printStackTrace();
 				    } finally {
-				        if (stmt != null) { stmt.close(); }
+				        if (stmtGeraetAnlegenModel != null) { stmtGeraetAnlegenModel.close(); }
 				    }
 		    	 updateObserver();
 		    }
@@ -129,25 +125,25 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 					query = "select * from TYP WHERE NAME = '" +typ+ "'";
 					System.out.println(query);
 					query2 = "select * from MODELL WHERE NAME = '" +modell+ "'";
-					ResultSet rs = stmt.executeQuery(query);
+					ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);
 					
 					while (rs.next()){	
 						int typID =  Integer.parseInt(rs.getString("ID"));
-						ResultSet rs2 = stmt2.executeQuery(query2);
+						ResultSet rs2 = stmtGeraetAnlegenModel2.executeQuery(query2);
 						
 						while(rs2.next()){
 							int modellID = Integer.parseInt(rs2.getString("ID"));
 						
 							String sqlupdate = "INSERT INTO SPORTGERAET VALUES (default,'" + makel + "','" +verkaufspreis+ "','" +typID+"','" +modellID+ "','" +status+"','" +standortID+ "','" +farbe+"','" +baujahr+ "','" +anschaffungspreis+"')";
 							System.out.println(sqlupdate);
-							int ergebnis = stmt3.executeUpdate(sqlupdate);
+							int ergebnis = stmtGeraetAnlegenModel3.executeUpdate(sqlupdate);
 							}
 						}
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					} finally {
-						 if (stmt2 != null) { stmt2.close(); }
-						 if (stmt != null) { stmt.close(); }
+						 if (stmtGeraetAnlegenModel2 != null) { stmtGeraetAnlegenModel2.close(); }
+						 if (stmtGeraetAnlegenModel != null) { stmtGeraetAnlegenModel.close(); }
 					}
 				updateObserver();
 			}	

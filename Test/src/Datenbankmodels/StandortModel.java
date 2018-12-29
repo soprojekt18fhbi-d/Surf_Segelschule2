@@ -45,12 +45,11 @@ public class StandortModel implements IStandortModel { //Ben Kröncke
 		hnr = hnr2;
 
         try {
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here
 			vergleicheDaten(conn);
 			
-			conn.close();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,18 +60,18 @@ public class StandortModel implements IStandortModel { //Ben Kröncke
 	public void vergleicheDaten(Connection con)
 		    throws SQLException {
 
-		    Statement stmt = con.createStatement();
+		    Statement stmtStandortModel = con.createStatement();
 		    String update = null;
 		    String query = null;
 
 		    try {
 		    	if(talking.equals("register"))
 		    	{
-		    		registerStandort(stmt);
+		    		registerStandort(stmtStandortModel);
 		    	}
 		    	else if(talking.equals("login"))
 		    	{
-		    		loginStandort(stmt);
+		    		loginStandort(stmtStandortModel);
 		    	}
 
 		    
@@ -85,8 +84,6 @@ public class StandortModel implements IStandortModel { //Ben Kröncke
 
 		    } catch (SQLException e ) {
 		    	e.printStackTrace();
-		    } finally {
-		        if (stmt != null) { stmt.close(); }
 		    }
 
 		}

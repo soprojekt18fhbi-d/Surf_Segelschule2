@@ -62,10 +62,9 @@ public class TypAnlegenModel implements IAnlegenModel{
 	
  
         try {
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 
-			Statement statement = conn.createStatement();
+			Statement statementTypAnlegenModel = conn.createStatement();
 			
 			String talking = typ[0];
 			int id = Integer.parseInt(typ[1]);
@@ -79,9 +78,8 @@ public class TypAnlegenModel implements IAnlegenModel{
 				sqlupdate = "UPDATE TYP SET NAME = '"+name+"', FUEHRERSCHEIN = '"+schein+"' WHERE ID = "+id+"";
 			
 			
-			int ergebnis = statement.executeUpdate(sqlupdate);
+			int ergebnis = statementTypAnlegenModel.executeUpdate(sqlupdate);
 			
-			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

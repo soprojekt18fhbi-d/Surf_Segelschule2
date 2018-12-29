@@ -73,12 +73,10 @@ public class KundeSucheModel implements IObjektModel  {
 		 System.out.println("" + knrplz + nachnameort + vornamestrasse + emailhnr + selectedMode + variableKnr + motor2 + segel2 + surf2 + heimat2);
         try {
         	
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here
 			viewTable(conn);
 			
-			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -103,7 +101,7 @@ public class KundeSucheModel implements IObjektModel  {
 
 			
 		
-		    Statement stmt = con.createStatement();
+		    Statement stmtKundeSucheModel = con.createStatement();
 		    String query = null;
 		    
 		    if(mode == "Kunde")
@@ -145,7 +143,7 @@ public class KundeSucheModel implements IObjektModel  {
 		    	
 		    	String sql = "UPDATE TABLE KUNDE SET BESTANDSKUNDE = 'N' WHERE ID = '" + knrplzloc + "';";
 		    	
-		    	int ergebnis = stmt.executeUpdate(sql);
+		    	int ergebnis = stmtKundeSucheModel.executeUpdate(sql);
 		    	
 		    }
 		    else if (talking.equals("deaktivierenadresse"))
@@ -154,7 +152,7 @@ public class KundeSucheModel implements IObjektModel  {
 		    	
 		    	String sql = "DELETE FROM ADRESSE WHERE KUNDEID = '" + variableKnr + "' AND PLZ ='" + this.knrplzloc + "' AND STRASSE = '" + this.vornamestrasseloc + "';";
 		    	
-		    	int ergebnis = stmt.executeUpdate(sql);
+		    	int ergebnis = stmtKundeSucheModel.executeUpdate(sql);
 		    	
 		    }
 		    else if(talking.equals("kundespeichern"))
@@ -163,17 +161,17 @@ public class KundeSucheModel implements IObjektModel  {
 		    	
 
 		    		
-		    	changeVorname(stmt);
+		    	changeVorname(stmtKundeSucheModel);
 
-			    changeNachname(stmt);
+			    changeNachname(stmtKundeSucheModel);
 			    	
-			   	changeEmail(stmt);
+			   	changeEmail(stmtKundeSucheModel);
 			    	
-			   	changeSegel(stmt);
+			   	changeSegel(stmtKundeSucheModel);
 			    	
-			   	changeMotor(stmt);
+			   	changeMotor(stmtKundeSucheModel);
 			    	
-			    changeSurf(stmt);
+			    changeSurf(stmtKundeSucheModel);
 			    
 		    }
 		    else if(talking.equals("adressespeichern"))
@@ -182,22 +180,20 @@ public class KundeSucheModel implements IObjektModel  {
 		    	
 		    	String sql = "INSERT INTO ADRESSE VALUES(default, " + this.knrplzloc + ", '" + this.vornamestrasseloc + "', '" + this.nachnameortloc + "', '" + this.heimat + "', " + this.emailhnrloc + ", " + this.variableKnr + ");";
 		    	
-		    	int ergebnis = stmt.executeUpdate(sql);
+		    	int ergebnis = stmtKundeSucheModel.executeUpdate(sql);
 		    	
 		    }
 		    
 
 		    try {
 		    	System.out.println(query);
-		        stmt = con.createStatement();
-		        ResultSet rs = stmt.executeQuery(query);
+		        stmtKundeSucheModel = con.createStatement();
+		        ResultSet rs = stmtKundeSucheModel.executeQuery(query);
 		        
 		        result = DbUtils.resultSetToTableModel(rs);
 		        
 		    } catch (SQLException e ) {
 		    	e.printStackTrace();
-		    } finally {
-		        if (stmt != null) { stmt.close(); }
 		    }
 		    
 		    

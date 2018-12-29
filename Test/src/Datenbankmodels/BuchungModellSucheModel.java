@@ -71,12 +71,11 @@ public class BuchungModellSucheModel implements IObjektModel{ //Ben Kröncke
 		this.search = search;
 		
         try {
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here
 			viewTable(conn);
 			
-			conn.close();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -87,7 +86,7 @@ public class BuchungModellSucheModel implements IObjektModel{ //Ben Kröncke
 	public void viewTable(Connection con)
 	    throws SQLException {
 
-	    Statement stmt = null;
+	    Statement stmtBuchungModellSucheModel = null;
 		String query = "select * from MODELL";
 		   
 	    if(talking.equals("master"))
@@ -99,17 +98,15 @@ public class BuchungModellSucheModel implements IObjektModel{ //Ben Kröncke
 		if(talking.equals("suchen"))
 			query = "select * from Modell WHERE ID LIKE '"+search+"%' OR NAME LIKE '"+search+"%' OR TYPID LIKE '"+search+"%' OR PREISLISTEID LIKE '"+search+"%'";
 		try {
-			stmt = con.createStatement();
+			stmtBuchungModellSucheModel = con.createStatement();
 
 			System.out.println(query);
 				
-			ResultSet rs = stmt.executeQuery(query);
+			ResultSet rs = stmtBuchungModellSucheModel.executeQuery(query);
 			table = DbUtils.resultSetToTableModel(rs);
 
 		} catch (SQLException e ) {
 			e.printStackTrace();
-		} finally {
-			if (stmt != null) { stmt.close(); }
 		}
 
 	}

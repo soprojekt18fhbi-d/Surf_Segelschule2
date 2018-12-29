@@ -33,12 +33,11 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 		setVars(talking2, buchungID2, kNr2, geraetNr, search2, mode2, makel2);
 		
         try {
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here
 			viewTable(conn);
 			
-			conn.close();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,7 +50,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 		    throws SQLException {
 
 		
-				Statement stmt = null;
+				Statement stmtBuchungAnzeigeModel = null;
 				String query = null;
 				String update = null;
 				
@@ -60,43 +59,43 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 
 			try {
 				
-				stmt = con.createStatement();
+				stmtBuchungAnzeigeModel = con.createStatement();
 				if(mode.equals("Verleih"))
 				{
 					if(talking.equals("master"))
 					{
-						alleVerleihe(stmt);
+						alleVerleihe(stmtBuchungAnzeigeModel);
 					}
 					if(talking.equals("search"))
 					{
-						searchVerleihe(stmt);
+						searchVerleihe(stmtBuchungAnzeigeModel);
 					}
 					if(talking.equals("rckButton"))
 					{
-						vollendeAusleihe(stmt, date);
+						vollendeAusleihe(stmtBuchungAnzeigeModel, date);
 					}
 					if(talking.equals("stornButton"))
 					{
-						storniereBuchung(stmt);
+						storniereBuchung(stmtBuchungAnzeigeModel);
 					}
 				}
 				if(mode.equals("Verkauf"))
 				{
 					if(talking.equals("master"))
 					{
-						holeVerkaeufe(stmt);
+						holeVerkaeufe(stmtBuchungAnzeigeModel);
 					}
 					if(talking.equals("search"))
 					{
-						sucheVerkaeufe(stmt);
+						sucheVerkaeufe(stmtBuchungAnzeigeModel);
 					}
 					if(talking.equals("rckButton"))
 					{
-						erstelleRechnungVerkauf(stmt);
+						erstelleRechnungVerkauf(stmtBuchungAnzeigeModel);
 					}
 					if(talking.equals("stornButton"))
 					{
-						storniereBuchung(stmt);
+						storniereBuchung(stmtBuchungAnzeigeModel);
 					}
 				}
 				
@@ -104,8 +103,6 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 
 			} catch (SQLException e ) {
 				e.printStackTrace();
-			} finally {
-				if (stmt != null) { stmt.close(); }
 			}
 
 		}

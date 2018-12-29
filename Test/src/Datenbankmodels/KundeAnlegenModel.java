@@ -84,10 +84,10 @@ public class KundeAnlegenModel implements IModel{
 	
  
         try {
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 
-			Statement statement = conn.createStatement();
+
+			Statement kundeAnlegenModel = conn.createStatement();
 			
 			name = kunde.getName();
 			vorname = kunde.getVorname();
@@ -111,9 +111,8 @@ public class KundeAnlegenModel implements IModel{
 			String sqlupdate = "INSERT INTO KUNDE " + "VALUES (default, " + "'" + vorname + "', '" + name + "', '" + email +"', 'N', '" + segelschein + "', '" + motorbootschein + "', '" + surfschein + "')";
 			
 			
-			int ergebnis = statement.executeUpdate(sqlupdate);
+			int ergebnis = kundeAnlegenModel.executeUpdate(sqlupdate);
 			
-			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -153,7 +152,6 @@ public class KundeAnlegenModel implements IModel{
 			
 			int ergebnis = statement.executeUpdate(sqlupdate);
 			
-			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -62,14 +62,13 @@ public class ModellAnlegenModel implements IAnlegenModel{
 	}
 	
 	public void modellAnlegen(String[] modell) {
-		Statement statement = null;
-		Statement statement2 = null;
+		Statement statementModellAnlegenModel = null;
+		Statement statementModellAnlegenModel2 = null;
  
         try {
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 
-			statement = conn.createStatement();
+			statementModellAnlegenModel = conn.createStatement();
 			
 			String name = modell[0];
 			String typ = modell[1];
@@ -77,18 +76,18 @@ public class ModellAnlegenModel implements IAnlegenModel{
 			
 						
 			String query = "select * from TYP WHERE NAME = '" +typ+ "'";
-            ResultSet rs = statement.executeQuery(query);
+            ResultSet rs = statementModellAnlegenModel.executeQuery(query);
             while (rs.next()){
 		        int typID =  Integer.parseInt(rs.getString("TYPID"));
 		        
 		        
-		        statement2 = conn.createStatement();
+		        statementModellAnlegenModel2 = conn.createStatement();
 			    String sqlupdate = "INSERT INTO MODELL VALUES (default,'" + name + "','" +typID+ "','" +preis+"')";
-				int ergebnis = statement2.executeUpdate(sqlupdate);
+				int ergebnis = statementModellAnlegenModel2.executeUpdate(sqlupdate);
             }
 	        
 	        
-			conn.close();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -39,12 +39,10 @@ public class BuchungKundeSucheModel implements IObjektModel { //Ben Kröncke
 		 System.out.println();
         try {
         	
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here
 			viewTable(conn);
 			
-			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,7 +56,7 @@ public class BuchungKundeSucheModel implements IObjektModel { //Ben Kröncke
 
 			
 		
-		    Statement stmt = con.createStatement();
+		    Statement stmtBuchungKundeSucheModel = con.createStatement();
 		    String query = "Select * from kunde";
 		    
 		    if(talking.equals("master") || search.equals(""))
@@ -81,15 +79,13 @@ public class BuchungKundeSucheModel implements IObjektModel { //Ben Kröncke
 		    
 		    try {
 		    	System.out.println(query);
-		        stmt = con.createStatement();
-		        ResultSet rs = stmt.executeQuery(query);
+		        stmtBuchungKundeSucheModel = con.createStatement();
+		        ResultSet rs = stmtBuchungKundeSucheModel.executeQuery(query);
 		        
 		        result = DbUtils.resultSetToTableModel(rs);
 		        
 		    } catch (SQLException e ) {
 		    	e.printStackTrace();
-		    } finally {
-		        if (stmt != null) { stmt.close(); }
 		    }
 		    
 		    
@@ -147,7 +143,7 @@ public class BuchungKundeSucheModel implements IObjektModel { //Ben Kröncke
 	public void erstelleKunde(String knr) throws SQLException {
 		try {
        	
-			Connection conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here	
 			
 			String name = "";
@@ -182,7 +178,6 @@ public class BuchungKundeSucheModel implements IObjektModel { //Ben Kröncke
 			mengeAnKunden.add(kunde);
 			mengeAnKunden.set(0, kunde);
 			
-			conn.close();
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

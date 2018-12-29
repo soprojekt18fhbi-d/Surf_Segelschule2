@@ -69,11 +69,10 @@ public class PreislisteSucheModel implements IObjektModel {
 		System.out.println(talking);
 
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here
 			viewTable(conn);
 
-			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,7 +82,7 @@ public class PreislisteSucheModel implements IObjektModel {
 
 	public void viewTable(Connection conn) throws SQLException {
 
-		Statement stmt = conn.createStatement();
+		Statement stmtPreislisteSucheModel = conn.createStatement();
 		String query = "TestQuery";
 		System.out.println(query);
 
@@ -95,20 +94,17 @@ public class PreislisteSucheModel implements IObjektModel {
 //		}
 
 		try {
-			stmt = conn.createStatement();
+			stmtPreislisteSucheModel = conn.createStatement();
 			
 			System.out.println(query);
 			
-			ResultSet rs = stmt.executeQuery(query);
+			ResultSet rs = stmtPreislisteSucheModel.executeQuery(query);
 			tableModel = DbUtils.resultSetToTableModel(rs);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			if (stmt != null) {
-				stmt.close();
-			}
 		}
+		
 
 
 

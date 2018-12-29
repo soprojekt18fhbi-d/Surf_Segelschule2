@@ -90,9 +90,9 @@ public class PreislisteAnlegenModel implements IAnlegenModel {
 	public void PreislisteAnlegen(Preisliste preisliste) {
 
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 
-			Statement statement = conn.createStatement();
+			Statement statementPreislisteAnlegenModel = conn.createStatement();
 
 			preislisteID= preisliste.getPreislisteID();
 			eineStd= preisliste.getEineStd();
@@ -126,9 +126,8 @@ public class PreislisteAnlegenModel implements IAnlegenModel {
 					"', '" + vierWochen + "', '" + achtWochen +"', '" + kauf + "',  ')";
 			
 
-			int ergebnis = statement.executeUpdate(sqlupdate);
+			int ergebnis = statementPreislisteAnlegenModel.executeUpdate(sqlupdate);
 
-			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

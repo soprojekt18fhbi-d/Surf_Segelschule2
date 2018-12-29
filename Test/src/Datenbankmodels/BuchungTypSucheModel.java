@@ -74,12 +74,11 @@ public class BuchungTypSucheModel implements IObjektModel{
 		this.kunde = kunde;
 
         try {
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here
 			viewTable(conn);
 			
-			conn.close();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,7 +89,7 @@ public class BuchungTypSucheModel implements IObjektModel{
 	public void viewTable(Connection con)
 		    throws SQLException {
 
-		    Statement stmt = null;
+		    Statement stmtBuchungTypSucheModel = null;
 		    String query = null;
 		    
 		    String motor = "Motorbootschein";
@@ -125,8 +124,8 @@ public class BuchungTypSucheModel implements IObjektModel{
 		    
 		    
 		    try {
-		        stmt = con.createStatement();
-		        ResultSet rs = stmt.executeQuery(query);
+		        stmtBuchungTypSucheModel = con.createStatement();
+		        ResultSet rs = stmtBuchungTypSucheModel.executeQuery(query);
 		        tableModel = DbUtils.resultSetToTableModel(rs);
 		        
 		        
@@ -134,8 +133,6 @@ public class BuchungTypSucheModel implements IObjektModel{
 
 		    } catch (SQLException e ) {
 		    	e.printStackTrace();
-		    } finally {
-		        if (stmt != null) { stmt.close(); }
 		    }
 
 		}

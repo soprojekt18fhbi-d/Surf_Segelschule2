@@ -39,12 +39,10 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 			 
 			 
 			this.talking = talking2;
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 			
 			viewTable(conn);
-			
-			conn.close();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,7 +53,7 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 	
 	public void viewTable(Connection con) throws SQLException {
 
-		    Statement stmt = con.createStatement();
+		    Statement stmtWirtschaftlichkeitModel = con.createStatement();
 		    String queryIncome = "SELECT SUMME FROM RECHNUNG WHERE REPARATURID IS NULL";
 		    String queryExpensesDevices = "SELECT ANSCHAFFUNGSPREIS FROM SPORTGERAET";
 		    String queryExpensesRepair = "SELECT SUMME FROM RECHNUNG WHERE REPARATURID IS NOT NULL";
@@ -75,7 +73,7 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 		    		else
 		    		{
 		    			query = "SELECT NAME FROM " + mode;
-				        ResultSet rs = stmt.executeQuery(query);
+				        ResultSet rs = stmtWirtschaftlichkeitModel.executeQuery(query);
 				        while (rs.next())
 				        {
 				        	cboxStrings.add(rs.getString("NAME"));
@@ -87,40 +85,40 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 		    	{
 		    		if(mode.equals("Unternehmen"))
 		    		{
-		    			calcExpInc(stmt, queryIncome, queryExpensesDevices, queryExpensesRepair, "SUMME");
+		    			calcExpInc(stmtWirtschaftlichkeitModel, queryIncome, queryExpensesDevices, queryExpensesRepair, "SUMME");
 		    		}
 		    		if(mode.equals("Standort"))
 		    		{
 		    			
-		    			starteBerechnung(stmt);
+		    			starteBerechnung(stmtWirtschaftlichkeitModel);
 		    			
-		    			motiviereGeraete(stmt);
+		    			motiviereGeraete(stmtWirtschaftlichkeitModel);
 		    			
-		    			incomeGeraete(stmt);
+		    			incomeGeraete(stmtWirtschaftlichkeitModel);
 		    			
-		    			expensesGeraete(stmt);
+		    			expensesGeraete(stmtWirtschaftlichkeitModel);
 		    			
 		    		}
 		    		if(mode.equals("Typ"))
 		    		{
-		    			starteBerechnung(stmt);
+		    			starteBerechnung(stmtWirtschaftlichkeitModel);
 		    			
-		    			motiviereGeraete(stmt);
+		    			motiviereGeraete(stmtWirtschaftlichkeitModel);
 		    			
-		    			incomeGeraete(stmt);
+		    			incomeGeraete(stmtWirtschaftlichkeitModel);
 		    			
-		    			expensesGeraete(stmt);
+		    			expensesGeraete(stmtWirtschaftlichkeitModel);
 		    			
 		    		}
 		    		if(mode.equals("Modell"))
 		    		{
-						starteBerechnung(stmt);
+						starteBerechnung(stmtWirtschaftlichkeitModel);
 		    			
-		    			motiviereGeraete(stmt);
+		    			motiviereGeraete(stmtWirtschaftlichkeitModel);
 		    			
-		    			incomeGeraete(stmt);
+		    			incomeGeraete(stmtWirtschaftlichkeitModel);
 		    			
-		    			expensesGeraete(stmt);
+		    			expensesGeraete(stmtWirtschaftlichkeitModel);
 		    		}
 		    		if(mode.equals("Sportgeraet"))
 		    		{
@@ -128,7 +126,7 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 		    		    queryExpensesDevices = "SELECT ANSCHAFFUNGSPREIS FROM SPORTGERAET WHERE ID = " + specialID;
 		    		    queryExpensesRepair = "SELECT KOSTEN FROM REPARATUR WHERE SPORTGERAETID = " + specialID;
 		    		    
-		    		    calcExpInc(stmt, queryIncome, queryExpensesDevices, queryExpensesRepair, "KOSTEN");
+		    		    calcExpInc(stmtWirtschaftlichkeitModel, queryIncome, queryExpensesDevices, queryExpensesRepair, "KOSTEN");
 		    		}
 		    		
 		    	}
@@ -138,7 +136,7 @@ public class WirtschaftlichkeitModel implements IWirtschaftlichkeitModel{ //Ben 
 		    } catch (SQLException e ) {
 		    	e.printStackTrace();
 		    } finally {
-		        if (stmt != null) { stmt.close(); }
+		        if (stmtWirtschaftlichkeitModel != null) { stmtWirtschaftlichkeitModel.close(); }
 		    }
 		    
 		    
