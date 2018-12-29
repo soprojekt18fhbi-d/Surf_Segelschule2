@@ -66,22 +66,36 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 		setForeground(Color.DARK_GRAY);
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.NORTH);
 		
 		JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnZurck.setBackground(new Color(255, 140, 0));
+
 		
 		JButton btnSuchen = new JButton("Suchen");
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnSuchen.setBackground(new Color(255, 140, 0));
 
 
-		txtSearchbar = new JTextField();
+
+
 		txtRechnungGewaehlt = new JTextField();
+		txtRechnungGewaehlt.setBackground(new Color(255, 140, 0));
 		
+		txtSearchbar = new JTextField();
 		txtSearchbar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		txtSearchbar.setHorizontalAlignment(SwingConstants.CENTER);
 		txtSearchbar.setText("Kundennummer...");
 		txtSearchbar.setColumns(15);
+		
+		txtSearchbar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		
+				txtSearchbar.setText("");
+			}
+		});
 		
 		
 	
@@ -91,12 +105,14 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 		
 		JButton btnZeigeAlle = new JButton("Zeige Alle");
 		btnZeigeAlle.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnZeigeAlle.setBackground(new Color(255, 140, 0));
+
 		panel.add(btnZeigeAlle);
 		panel.add(txtSearchbar);
 		panel.add(btnSuchen);
-		panel.add(txtRechnungGewaehlt);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.DARK_GRAY);
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0};
@@ -107,6 +123,8 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 		
 		JButton btnREVerschicken = new JButton("Rechnung verschicken");
 		btnREVerschicken.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnREVerschicken.setBackground(new Color(255, 140, 0));
+
 		btnREVerschicken.setPreferredSize(new Dimension(300, 100));
 		GridBagConstraints gbc_btnTypHinzu = new GridBagConstraints();
 		gbc_btnTypHinzu.insets = new Insets(0, 0, 5, 5);
