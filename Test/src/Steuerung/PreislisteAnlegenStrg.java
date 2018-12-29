@@ -30,7 +30,7 @@ public class PreislisteAnlegenStrg implements IController {
 			double tagVierWochen, double vierWochen, double achtWochen, double kauf) {
 		
 
-		preisliste=new Preisliste( eineStd,  zweiStd,  vierStd,  einenTag,
+		preisliste=new Preisliste(eineStd,  zweiStd,  vierStd,  einenTag,
 			 zweiTage,  dreiTage,  vierTage,  fuenfTage,  sechsSiebenTage,
 			 achtTage,  neunTage,  zehnTage,  elfTage,  zwoelfVierzehnTage,
 			 fuenfzehnTage,  sechzehnTage,  siebzehnTage,  achtzehnEinundzwanzigTage,

@@ -23,14 +23,13 @@ import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import Berechnung.DatentypUmwandlung;
 import Datenbankmodels.IAnlegenModel;
 import Datenbankmodels.PreislisteAnlegenModel;
 import Steuerung.PreislisteAnlegenStrg;
 
-public class PreislisteAnlegenGUI extends JPanel  implements IAnlegenView{
+public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 
-
-	
 	PreislisteAnlegenModel model;
 	PreislisteAnlegenStrg controller;
 
@@ -58,8 +57,6 @@ public class PreislisteAnlegenGUI extends JPanel  implements IAnlegenView{
 	private JTextField tfKauf;
 	private JTextField textField_19;
 	private JTextField textField_20;
-
-
 
 	/**
 	 * 
@@ -629,33 +626,57 @@ public class PreislisteAnlegenGUI extends JPanel  implements IAnlegenView{
 			}
 
 			private void PreislisteAnlegen() {
-				double  preisEineStd = Double.parseDouble(tfEineStd.getText());
-				double	preisZweiStd =Double.parseDouble(tfZweiStd.getText());
-				double	preisVierStd = Double.parseDouble(tfVierStd.getText());
-				double	preisEinenTag=Double.parseDouble(tfEinTag.getText());
-				double	preisZweiTage = Double.parseDouble(tfZweiTage.getText());
-				double	preisDreiTage = Double.parseDouble(tfDreiTage.getText());
-				double	preisVierTage = Double.parseDouble(tfVierTage.getText());
-				double	preisFuenfTage = Double.parseDouble(tfFuenfTage.getText());
-				double	preisSechsSiebenTage = Double.parseDouble(tfAchtTage.getText());
-				double	preisAchtTage = Double.parseDouble(tfSechsSiebenTage.getText());
-				double	preisNeunTage= Double.parseDouble(tfNeunTage.getText());
-				double	preisZehnTage = Double.parseDouble(tfZehnTage.getText());
-				double	preisElfTage = Double.parseDouble(tfElfTage.getText());
-				double	preisZwoelfVierzehnTage = Double.parseDouble(tfZwoelfVierzehnTage.getText());
-				double	preisFuenfzehnTage = Double.parseDouble(tfFuenfzehnTage.getText());
-				double	preisSechzehnTage = Double.parseDouble(tfSechzehnTage.getText());
-				double	preisSiebzehnTage = Double.parseDouble(tfSiebzehnTage.getText());
-				double	preisAchtzehnEinundzwanzigTage = Double.parseDouble(tfAchtzehnEinundZwTage.getText());
-				double	preisTagVierWochen = Double.parseDouble(tfProTagVierW.getText());
-				double	presVierWochen = Double.parseDouble(tfVierWochen.getText());
-				double	preisAchtWochen = Double.parseDouble(tfAchtWochen.getText());
-				double	preisKauf = Double.parseDouble(tfKauf.getText());
-
 
 				
+				
+				String  preisEineStdString = tfEineStd.getText();
+				String	preisZweiStdString = tfZweiStd.getText();
+				String	preisVierStdString = tfVierStd.getText();
+				String	preisEinenTagString = tfEinTag.getText();
+				String	preisZweiTageString = tfZweiTage.getText();
+				String	preisDreiTageString = tfDreiTage.getText();
+				String	preisVierTageString = tfVierTage.getText();
+				String	preisFuenfTageString = tfFuenfTage.getText();
+				String	preisSechsSiebenTageString = tfAchtTage.getText();
+				String	preisAchtTageString = tfSechsSiebenTage.getText();
+				String	preisNeunTageString= tfNeunTage.getText();
+				String	preisZehnTageString = tfZehnTage.getText();
+				String	preisElfTageString = tfElfTage.getText();
+				String	preisZwoelfVierzehnTageString = tfZwoelfVierzehnTage.getText();
+				String	preisFuenfzehnTageString = tfFuenfzehnTage.getText();
+				String	preisSechzehnTageString = tfSechzehnTage.getText();
+				String	preisSiebzehnTageString = tfSiebzehnTage.getText();
+				String	preisAchtzehnEinundzwanzigTageString = tfAchtzehnEinundZwTage.getText();
+				String	preisTagVierWochenString = tfProTagVierW.getText();
+				String	presVierWochenString = tfVierWochen.getText();
+				String	preisAchtWochenString = tfAchtWochen.getText();
+				String	preisKaufString = tfKauf.getText();
 
-				controller.preislisteUebergeben(preisEineStd,  preisZweiStd,  preisVierStd,  preisEinenTag,
+				double  preisEineStd = DatentypUmwandlung.stringZuDouble(preisEineStdString);
+				double  preisZweiStd = DatentypUmwandlung.stringZuDouble(preisZweiStdString);
+				double  preisVierStd = DatentypUmwandlung.stringZuDouble(preisVierStdString);
+				double  preisEinenTag = DatentypUmwandlung.stringZuDouble(preisEinenTagString);
+				double  preisZweiTage = DatentypUmwandlung.stringZuDouble(preisZweiTageString);
+				double  preisDreiTage = DatentypUmwandlung.stringZuDouble(preisDreiTageString);
+				double  preisVierTage = DatentypUmwandlung.stringZuDouble(preisVierTageString);
+				double  preisFuenfTage = DatentypUmwandlung.stringZuDouble(preisFuenfTageString);
+				double  preisSechsSiebenTage = DatentypUmwandlung.stringZuDouble(preisSechsSiebenTageString);
+				double  preisAchtTage = DatentypUmwandlung.stringZuDouble(preisAchtTageString);
+				double  preisNeunTage= DatentypUmwandlung.stringZuDouble(preisNeunTageString);
+				double  preisZehnTage = DatentypUmwandlung.stringZuDouble(preisZehnTageString);
+				double  preisElfTage = DatentypUmwandlung.stringZuDouble(preisElfTageString);
+				double  preisZwoelfVierzehnTage = DatentypUmwandlung.stringZuDouble(preisZwoelfVierzehnTageString);
+				double  preisFuenfzehnTage = DatentypUmwandlung.stringZuDouble(preisFuenfzehnTageString);
+				double  preisSechzehnTage = DatentypUmwandlung.stringZuDouble(preisSechzehnTageString);
+				double  preisSiebzehnTage = DatentypUmwandlung.stringZuDouble(preisSiebzehnTageString);
+				double  preisAchtzehnEinundzwanzigTage = DatentypUmwandlung.stringZuDouble(preisAchtzehnEinundzwanzigTageString);
+				double  preisTagVierWochen = DatentypUmwandlung.stringZuDouble(preisTagVierWochenString);
+				double  presVierWochen = DatentypUmwandlung.stringZuDouble(presVierWochenString);
+				double  preisAchtWochen = DatentypUmwandlung.stringZuDouble(preisAchtWochenString);
+				double  preisKauf = DatentypUmwandlung.stringZuDouble(preisKaufString);
+				
+
+				controller.preislisteUebergeben(preisEineStd,  preisZweiStd,  preisVierStd, preisEinenTag,
 						 preisZweiTage,  preisDreiTage,  preisVierTage,  preisFuenfTage,  preisSechsSiebenTage,
 						 preisAchtTage,  preisNeunTage,  preisZehnTage,  preisElfTage,  preisZwoelfVierzehnTage,
 						 preisFuenfzehnTage,  preisSechzehnTage,  preisSiebzehnTage,  preisAchtzehnEinundzwanzigTage,
@@ -670,10 +691,11 @@ public class PreislisteAnlegenGUI extends JPanel  implements IAnlegenView{
 
 	}
 
-
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
 		JOptionPane.showMessageDialog(null, "Die Preisliste wurde angelegt!");
 	}
 	
+
+
 }

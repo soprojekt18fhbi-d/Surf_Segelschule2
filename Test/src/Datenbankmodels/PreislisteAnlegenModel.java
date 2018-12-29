@@ -10,34 +10,35 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import Berechnung.DatentypUmwandlung;
 import Domaenklassen.Preisliste;
 import GUI.IAnlegenView;
 
 public class PreislisteAnlegenModel implements IAnlegenModel {
 
-	 int preislisteID;
-	 double eineStd;
-	 double zweiStd;
-	 double vierStd;
-	 double einenTag;
-	 double zweiTage;
-	 double dreiTage;
-	 double vierTage;
-	 double fuenfTage;
-	 double sechsSiebenTage;
-	 double achtTage;
-	 double neunTage;
-	 double zehnTage;
-	 double elfTage;
-	 double zwoelfVierzehnTage;
-	 double fuenfzehnTage;
-	 double sechzehnTage;
-	 double siebzehnTage;
-	 double achtzehnEinundzwanzigTage;
-	 double tagVierWochen;
-	 double vierWochen;
-	 double achtWochen;
-	 double kauf;
+
+	 String eineStd;
+	 String zweiStd;
+	 String vierStd;
+	 String einenTag;
+	 String zweiTage;
+	 String dreiTage;
+	 String vierTage;
+	 String fuenfTage;
+	 String sechsSiebenTage;
+	 String achtTage;
+	 String neunTage;
+	 String zehnTage;
+	 String elfTage;
+	 String zwoelfVierzehnTage;
+	 String fuenfzehnTage;
+	 String sechzehnTage;
+	 String siebzehnTage;
+	 String achtzehnEinundzwanzigTage;
+	 String tagVierWochen;
+	 String vierWochen;
+	 String achtWochen;
+	 String kauf;
 
 	@Override
 	public void anmelden(IAnlegenView view) {
@@ -94,36 +95,38 @@ public class PreislisteAnlegenModel implements IAnlegenModel {
 
 			Statement statementPreislisteAnlegenModel = conn.createStatement();
 
-			preislisteID= preisliste.getPreislisteID();
-			eineStd= preisliste.getEineStd();
-			zweiStd= preisliste.getZweiStd();
-			vierStd= preisliste.getVierStd();
-			einenTag= preisliste.getEinenTag();
-			zweiTage=preisliste.getZweiTage(); 
-			dreiTage= preisliste.getDreiTage();
-			vierTage= preisliste.getVierTage();
-			fuenfTage= preisliste.getFuenfTage();
-			sechsSiebenTage= preisliste.getSechsSiebenTage();
-			achtTage= preisliste.getAchtTage();
-			neunTage= preisliste.getNeunTage();
-			zehnTage= preisliste.getZehnTage();
-			elfTage= preisliste.getElfTage();
-			zwoelfVierzehnTage= preisliste.getZwoelfVierzehnTage();
-			fuenfzehnTage= preisliste.getFuenfzehnTage();
-			sechzehnTage= preisliste.getSechzehnTage();
-			siebzehnTage= preisliste.getSiebzehnTage();
-			achtzehnEinundzwanzigTage= preisliste.getAchtzehnEinundzwanzigTage();
-			tagVierWochen= preisliste.getTagVierWochen();
-			vierWochen= preisliste.getVierWochen();
-			achtWochen= preisliste.getAchtWochen();
-			kauf= preisliste.getKauf();
+			//Strings für Abfrage initialisieren und aus den double Werten die 0.0'en filtern
+			eineStd= DatentypUmwandlung.doubleZuString(preisliste.getEineStd());
+			zweiStd= DatentypUmwandlung.doubleZuString(preisliste.getZweiStd());
+			vierStd= DatentypUmwandlung.doubleZuString(preisliste.getVierStd());
+			einenTag= DatentypUmwandlung.doubleZuString(preisliste.getEinenTag());
+			zweiTage= DatentypUmwandlung.doubleZuString(preisliste.getZweiTage());
+			dreiTage= DatentypUmwandlung.doubleZuString(preisliste.getDreiTage());
+			vierTage= DatentypUmwandlung.doubleZuString(preisliste.getVierTage());
+			fuenfTage= DatentypUmwandlung.doubleZuString(preisliste.getFuenfTage());
+			sechsSiebenTage= DatentypUmwandlung.doubleZuString(preisliste.getSechsSiebenTage());
+			achtTage= DatentypUmwandlung.doubleZuString(preisliste.getAchtTage());
+			neunTage= DatentypUmwandlung.doubleZuString(preisliste.getNeunTage());			
+			zehnTage= DatentypUmwandlung.doubleZuString(preisliste.getZehnTage());
+			elfTage= DatentypUmwandlung.doubleZuString(preisliste.getElfTage());
+			zwoelfVierzehnTage= DatentypUmwandlung.doubleZuString(preisliste.getZwoelfVierzehnTage());
+			fuenfzehnTage= DatentypUmwandlung.doubleZuString(preisliste.getFuenfzehnTage());
+			sechzehnTage= DatentypUmwandlung.doubleZuString(preisliste.getSechzehnTage());
+			siebzehnTage= DatentypUmwandlung.doubleZuString(preisliste.getSiebzehnTage());
+			achtzehnEinundzwanzigTage= DatentypUmwandlung.doubleZuString(preisliste.getAchtzehnEinundzwanzigTage());
+			tagVierWochen= DatentypUmwandlung.doubleZuString(preisliste.getTagVierWochen());
+			vierWochen= DatentypUmwandlung.doubleZuString(preisliste.getVierWochen());
+			achtWochen= DatentypUmwandlung.doubleZuString(preisliste.getAchtWochen());
+			kauf= DatentypUmwandlung.doubleZuString(preisliste.getKauf());
+
+
 
 			String sqlupdate = "INSERT INTO Preisliste VALUES"
-					+ "(default,'" + preislisteID + "', '" + eineStd + "', '" + zweiStd +"', '" + vierStd + "', '" + einenTag +
+					+ "(default,'" + eineStd + "', '" + zweiStd +"', '" + vierStd + "', '" + einenTag +
 					"', '" + zweiTage + "', '" + dreiTage +"', '" + vierTage + "', '" + fuenfTage +"', '" + sechsSiebenTage +
 					"', '" + achtTage + "', '" + neunTage +"', '" + zehnTage + "', '" + elfTage +"', '" + zwoelfVierzehnTage +
 					"', '" + fuenfzehnTage + "', '" + sechzehnTage +"', '" + siebzehnTage + "', '" + achtzehnEinundzwanzigTage +"', '" + tagVierWochen +
-					"', '" + vierWochen + "', '" + achtWochen +"', '" + kauf + "',  ')";
+					"', '" + vierWochen + "', '" + achtWochen +"', '" + kauf + "')";
 			
 
 			int ergebnis = statementPreislisteAnlegenModel.executeUpdate(sqlupdate);
