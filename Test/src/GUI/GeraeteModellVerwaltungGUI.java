@@ -175,12 +175,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		btnModellHinzu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getModellAnlegenGUI());
-				
-				if(counter == 1)
-				{
-					MainFrame.getModellAnlegenGUI().anfrage();
-					
-				}
+				MainFrame.getModellAnlegenGUI().anfrage();
 				textSuchen.setText("Suchen...");
 			}
 		});

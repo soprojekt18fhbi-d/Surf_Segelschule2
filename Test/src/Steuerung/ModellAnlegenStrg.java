@@ -1,7 +1,7 @@
 package Steuerung;
 
 import Datenbankmodels.ModellAnlegenModel;
-import Datenbankmodels.ModellHinzufuegenModel;
+import Datenbankmodels.ModellAnlegenModel;
 import Domaenklassen.GeraeteModell;
 import Domaenklassen.GeraeteTyp;
 import GUI.IAnlegenView;
@@ -11,10 +11,10 @@ public class ModellAnlegenStrg implements IController {
 
 	
 	private GeraeteModell modell;
-	private ModellHinzufuegenModel model;
+	private ModellAnlegenModel model;
 	private ModellAnlegenGUI view;
 	
-	public ModellAnlegenStrg (ModellHinzufuegenModel smodel)
+	public ModellAnlegenStrg (ModellAnlegenModel smodel)
 	{
 		model = smodel;
 		
