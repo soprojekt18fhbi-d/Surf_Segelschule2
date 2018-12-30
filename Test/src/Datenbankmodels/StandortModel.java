@@ -102,10 +102,14 @@ public class StandortModel implements IStandortModel { //Ben Kröncke
 		{
 			chckName = rs.getString("NAME");
 			chckPW = rs.getString("PASSWORD");
+			standortID = rs.getString("ID");
 		}
 		
 		System.out.println(chckName);
 		System.out.println(chckPW);
+		
+		
+		
 		
 		if(standortName.equals(chckName) && password.equals(chckPW))
 			success = true;
@@ -179,6 +183,9 @@ public class StandortModel implements IStandortModel { //Ben Kröncke
 		return success;
 	}
 
+	public int getStandort() {
+		return Integer.parseInt(standortID);
+	}
 
 
 

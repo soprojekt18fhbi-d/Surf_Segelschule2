@@ -28,13 +28,15 @@ public class BuchungGeraetSucheModel implements IObjektModel { //@author Ben Krö
 	private IKunde kunde;
 	private int geraetNrloc;
 	private int buchungID = 0;
+	private int standort = 0;
 	
-	public void holeGeraete(String talking2, int modellNr2, int kNr2, int geraetNr) {
+	public void holeGeraete(String talking2, int modellNr2, int kNr2, int geraetNr, int standort2) {
 
 		talking = talking2;
 		kNr = kNr2;
 		modellNr = modellNr2;
 		geraetNrloc = geraetNr;
+		standort = standort2;
 		
 		System.out.println(talking);
 		
@@ -56,7 +58,7 @@ public class BuchungGeraetSucheModel implements IObjektModel { //@author Ben Krö
 
 		
 				Statement stmtBuchungGeraetSucheModel = null;
-				String query = "select ID,MAKEL,VERKAUFSPREIS, FARBE from SPORTGERAET where MODELLID = '" + modellNr + "' AND STATUS = 'OK'";
+				String query = "select ID,MAKEL,VERKAUFSPREIS, FARBE from SPORTGERAET where MODELLID = '" + modellNr + "' AND STATUS = 'OK' AND STANDORTID = " + standort;
 				String update = null;
 				
 				String pattern = "yyyy-MM-dd' 'HH:mm:ss";
@@ -90,7 +92,7 @@ public class BuchungGeraetSucheModel implements IObjektModel { //@author Ben Krö
 		
 		//Die Sucheingabe wurde als "modellNr" übergeben, damit methode nicht mehr verändert werden muss!
 		String textEingabe = String.valueOf(modellNr);
-			query = "select ID,MAKEL,VERKAUFSPREIS, FARBE from SPORTGERAET where MODELLID = '" + modellNr + "' AND STATUS = 'OK'";
+			query = "select ID,MAKEL,VERKAUFSPREIS, FARBE from SPORTGERAET where MODELLID = '" + modellNr + "' AND STATUS = 'OK' AND STANDORTID = " + standort;
 		if (talking.equals("gesamt"))
 			query = "select * from SPORTGERAET";
 		if (talking.equals("suchen"))

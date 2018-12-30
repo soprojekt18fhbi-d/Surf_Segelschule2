@@ -17,9 +17,9 @@ public class BuchungGeraetSucheStrg implements IController{
 	
 
 	
-	public void fetchGeraete(String talking, int modellNr, int kNr, int geraetNr) {
+	public void fetchGeraete(String talking, int modellNr, int kNr, int geraetNr, int standort2) {
 		
-		model.holeGeraete(talking, modellNr, kNr, geraetNr);
+		model.holeGeraete(talking, modellNr, kNr, geraetNr, standort2);
 		
 		
 	}

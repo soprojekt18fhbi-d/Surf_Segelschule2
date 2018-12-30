@@ -157,7 +157,7 @@ public class BuchungGeraetSucheGUI extends JPanel implements IObjektView{
 				talking = "master";
 				
 				anfrage();
-				
+				JOptionPane.showMessageDialog(null, "Es werden alle Sportgeräte des hiesigen Standortes angezeigt!");
 			}
 
 
@@ -243,7 +243,7 @@ public class BuchungGeraetSucheGUI extends JPanel implements IObjektView{
 	
 	private void anfrage() {
 		model.anmelden(MainFrame.getBuchungGeraetSucheGUI());
-		controller.fetchGeraete(talking, modellNr, kNr, geraetNr);
+		controller.fetchGeraete(talking, modellNr, kNr, geraetNr, MainFrame.getStandort());
 		model.abmelden(MainFrame.getBuchungGeraetSucheGUI());
 	}
 	

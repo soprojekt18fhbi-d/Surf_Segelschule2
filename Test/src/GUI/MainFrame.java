@@ -60,8 +60,11 @@ import java.awt.Color;
 public class MainFrame extends JFrame {
 
 	
+	private static int standort;
+	
 	private JPanel contentPane;
 	private static Hauptmenue hauptmenueGUI = new Hauptmenue();
+	
 	
 	//Models erzeugen:
 	private static KundeSucheModel kundeSucheModel = new KundeSucheModel();
@@ -289,6 +292,17 @@ public class MainFrame extends JFrame {
 
 	public static WirtschaftlichkeitsverwaltungGUI getWirtschaftlichkeitsverwaltungGUI() {
 		return wirtschaftlichkeitsverwaltungGUI;
+	}
+
+	public static void setStandort(int standort2) {
+		// TODO Auto-generated method stub
+		standort = standort2;
+		System.out.println("Sie sind im Standort mit der ID: " + standort + " eingeloggt.");
+	}
+
+	public static int getStandort() {
+		// TODO Auto-generated method stub
+		return standort;
 	}
 	
 		

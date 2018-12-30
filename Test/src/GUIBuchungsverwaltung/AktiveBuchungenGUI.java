@@ -212,15 +212,17 @@ public class AktiveBuchungenGUI extends JPanel implements IObjektView { //Ben Kr
 				talking = "rckButton";
 				
 				try {
+					int ergebnis;
 					if(buchungID == 0 && kNr == 0)
 						JOptionPane.showMessageDialog(null, "Bitte Buchung zum Verändern auswählen!");
 					else if(buchungID != 0 && kNr != 0)
 					{
 						if(mode.equals("Verkauf"))
-							JOptionPane.showConfirmDialog(null, "Rechnung wirklich erstellen? Sie wird dann nicht mehr als aktive Buchung angezeigt!");
+							ergebnis = JOptionPane.showConfirmDialog(null, "Rechnung wirklich erstellen? Sie wird dann nicht mehr als aktive Buchung angezeigt!");
 						if(mode.equals("Verleih"))
 							makel = JOptionPane.showInputDialog("Gibt es Makel bei der Rückgabe? Bitte eintragen!");
 						System.out.println("" + kNr + " " + talking);
+						
 						anfrage();
 					}
 				} catch (HeadlessException e1) {
