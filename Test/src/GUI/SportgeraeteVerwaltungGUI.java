@@ -240,7 +240,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 	
 	public void anfrage() {
 		model.anmelden(MainFrame.getBuchungGeraetSucheGUI());
-		controller.fetchGeraete(talking, modellNr, kNr, geraetNr);
+		controller.fetchGeraete(talking, modellNr, kNr, geraetNr, 0);
 		aktualisieren(model);
 		model.abmelden(MainFrame.getBuchungGeraetSucheGUI());
 	}
