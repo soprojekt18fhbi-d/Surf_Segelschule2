@@ -73,6 +73,47 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 		    	 updateObserver();
 		    }
 		    
+		    if(talking.equals("standortID"))
+		    {
+		    	query = "Select * from STANDORT";
+		    	 try {
+				    	System.out.println(query);
+				        ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);
+				        
+				        while (rs.next()){
+				        	
+				        	mengeAnTypen.add(rs.getString("ID"));
+				        	
+				        }
+				        
+				        
+				    } catch (SQLException e ) {
+				    	e.printStackTrace();
+				    }
+		    	 updateObserver();
+		    }
+		    
+		    if(talking.equals("modellname"))
+		    {
+		    	int modellID = Integer.parseInt(geraet[6]);
+		    	query = "Select * from MODELL WHERE ID = '"+modellID+"'";
+		    	 try {
+				    	System.out.println(query);
+				        ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);
+				        
+				        while (rs.next()){
+				        	
+				        	mengeAnTypen.add(rs.getString("NAME"));
+				        	
+				        }
+				        
+				        
+				    } catch (SQLException e ) {
+				    	e.printStackTrace();
+				    }
+		    	 updateObserver();
+		    }
+		    
 		   if(talking.equals("second"))
 		   {
 			   
@@ -147,23 +188,7 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 					}
 				updateObserver();
 			}	
-		    
-		    
-		    
-		    /*
-		    try {
-		    	System.out.println(query);
-		        stmt = con.createStatement();
-		        ResultSet rs = stmt.executeQuery(query);
-		        
-		        
-		        
-		    } catch (SQLException e ) {
-		    	e.printStackTrace();
-		    } finally {
-		        if (stmt != null) { stmt.close(); }
-		    }
-		    */
+	
 		    
 		}
 	
@@ -221,6 +246,10 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 	@Override
 	public ArrayList<String> getObertypen() {
 		if (talking == "first")
+			return mengeAnTypen;
+		else if (talking == "standortID")
+			return mengeAnTypen;
+		else if (talking == "modellname")
 			return mengeAnTypen;
 		else
 			return mengeAnModellen;

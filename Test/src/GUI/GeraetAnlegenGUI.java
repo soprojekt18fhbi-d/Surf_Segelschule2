@@ -32,8 +32,8 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
-public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
-	private JTextField txtAPreis;
+public class GeraetAnlegenGUI extends JPanel implements IAnlegenView{
+	private JTextField textAPreis;
 	private JTextField textVPreis;
 	private JTextField textFarbe;
 	private JTextField textBaujahr;
@@ -142,18 +142,19 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 		gbc_lblAnschaffungspreis.gridy = 10;
 		panel.add(lblAnschaffungspreis, gbc_lblAnschaffungspreis);
 		
-		txtAPreis = new JTextField();
-		txtAPreis.setPreferredSize(new Dimension(6, 40));
-		txtAPreis.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textAPreis = new JTextField();
+		textAPreis.setPreferredSize(new Dimension(6, 40));
+		textAPreis.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_txtAPreis = new GridBagConstraints();
 		gbc_txtAPreis.insets = new Insets(0, 0, 5, 5);
 		gbc_txtAPreis.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtAPreis.gridx = 3;
 		gbc_txtAPreis.gridy = 10;
-		panel.add(txtAPreis, gbc_txtAPreis);
-		txtAPreis.setColumns(10);
+		panel.add(textAPreis, gbc_txtAPreis);
+		textAPreis.setColumns(10);
 		
 		JLabel label_1 = new JLabel("\u20AC");
+		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_label_1 = new GridBagConstraints();
 		gbc_label_1.anchor = GridBagConstraints.WEST;
@@ -184,6 +185,7 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 		textVPreis.setColumns(10);
 		
 		JLabel label = new JLabel("\u20AC");
+		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.anchor = GridBagConstraints.WEST;
@@ -297,7 +299,7 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 				try {
 					typ = String.valueOf(comboBoxTyp.getSelectedItem());
 					modell = String.valueOf(comboBoxModell.getSelectedItem());
-					anschaffungspreis = Double.parseDouble(txtAPreis.getText());
+					anschaffungspreis = Double.parseDouble(textAPreis.getText());
 					verkaufspreis = Double.parseDouble(textVPreis.getText());
 					farbe = textFarbe.getText();
 					baujahr = Integer.parseInt(textBaujahr.getText());
@@ -314,7 +316,7 @@ public class GeraetAnlegenGUI extends JPanel  implements IAnlegenView{
 					textFarbe.setText("");
 					textMakel.setText("");
 					textBaujahr.setText("");
-					txtAPreis.setText("");
+					textAPreis.setText("");
 					textVPreis.setText("");
 					comboBoxTyp.setSelectedIndex(0);
 					
