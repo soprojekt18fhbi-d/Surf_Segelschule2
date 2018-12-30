@@ -122,11 +122,11 @@ public class PreislisteAnlegenModel implements IAnlegenModel {
 
 
 			String sqlupdate = "INSERT INTO Preisliste VALUES"
-					+ "(default,'" + eineStd + "', '" + zweiStd +"', '" + vierStd + "', '" + einenTag +
-					"', '" + zweiTage + "', '" + dreiTage +"', '" + vierTage + "', '" + fuenfTage +"', '" + sechsSiebenTage +
-					"', '" + achtTage + "', '" + neunTage +"', '" + zehnTage + "', '" + elfTage +"', '" + zwoelfVierzehnTage +
-					"', '" + fuenfzehnTage + "', '" + sechzehnTage +"', '" + siebzehnTage + "', '" + achtzehnEinundzwanzigTage +"', '" + tagVierWochen +
-					"', '" + vierWochen + "', '" + achtWochen +"', '" + kauf + "')";
+					+ "(default," + eineStd + ", " + zweiStd +", " + vierStd + ", " + einenTag +
+					", " + zweiTage + ", " + dreiTage +", " + vierTage + ", " + fuenfTage +", " + sechsSiebenTage +
+					", " + achtTage + ", " + neunTage +", " + zehnTage + ", " + elfTage +", " + zwoelfVierzehnTage +
+					", " + fuenfzehnTage + ", " + sechzehnTage +", " + siebzehnTage + ", " + achtzehnEinundzwanzigTage +", " + tagVierWochen +
+					", " + vierWochen + ", " + achtWochen +", " + kauf + ")";
 			
 
 			int ergebnis = statementPreislisteAnlegenModel.executeUpdate(sqlupdate);

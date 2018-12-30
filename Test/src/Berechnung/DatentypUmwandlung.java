@@ -26,7 +26,7 @@ public class DatentypUmwandlung {
 		String string=null;
 		try {
 			if (zahl > 0.0){
-				string = String.valueOf(zahl);
+				string = "'"+String.valueOf(zahl)+"'";
 			}
 		}
 		catch(NumberFormatException numFormExc){
