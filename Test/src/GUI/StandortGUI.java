@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Datenbankmodels.DBConnectorSingleton;
 import Datenbankmodels.IStandortModel;
 import Steuerung.StandortStrg;
 
@@ -27,6 +28,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import java.awt.CardLayout;
@@ -185,6 +189,19 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 						MainFrame frame = new MainFrame();
 						frame.setVisible(true);
 						dispose();
+						
+						frame.addWindowListener(new WindowAdapter() {
+				            @Override
+				            public void windowClosing(WindowEvent e) {
+				                try {
+									DBConnectorSingleton.closeCon();
+								} catch (SQLException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+				                System.exit(0);
+				            }
+				        });
 					}
 					else if(success == false)
 						JOptionPane.showMessageDialog(null, "Falsches Passwort oder falscher User!");

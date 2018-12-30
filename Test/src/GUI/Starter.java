@@ -24,18 +24,7 @@ public class Starter {
 					frame.setVisible(true);
 					
 					
-					frame.addWindowListener(new WindowAdapter() {
-			            @Override
-			            public void windowClosing(WindowEvent e) {
-			                try {
-								DBConnectorSingleton.closeCon();
-							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-			                System.exit(0);
-			            }
-			        });
+					
 					
 				} catch (Exception e) {
 					e.printStackTrace();
