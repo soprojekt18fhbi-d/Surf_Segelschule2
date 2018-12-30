@@ -15,7 +15,7 @@ import Datenbankmodels.BuchungTypSucheModel;
 import Datenbankmodels.GeraetAnlegenModel;
 import Datenbankmodels.KundeAnlegenModel;
 import Datenbankmodels.KundeSucheModel;
-import Datenbankmodels.ModellHinzufuegenModel;
+import Datenbankmodels.ModellAnlegenModel;
 import Datenbankmodels.PreislisteSucheModel;
 import Datenbankmodels.RechnungAnzeigenModel;
 import Datenbankmodels.WirtschaftlichkeitModel;
@@ -73,7 +73,7 @@ public class MainFrame extends JFrame {
 	private static BuchungTypSucheModel buchungTypSucheModel = new BuchungTypSucheModel();
 	private static BuchungModellSucheModel buchungModellSucheModel = new BuchungModellSucheModel();
 	private static BuchungGeraetSucheModel buchungGeraetSucheModel = new BuchungGeraetSucheModel();
-	private static ModellHinzufuegenModel modellHinzufuegenModel = new ModellHinzufuegenModel();
+	private static ModellAnlegenModel modellHinzufuegenModel = new ModellAnlegenModel();
 	private static GeraetAnlegenModel geraetAnlegenModel = new GeraetAnlegenModel();
 	private static BuchungAnzeigeModel buchungAnzeigeModel = new BuchungAnzeigeModel();
 	private static RechnungAnzeigenModel rechnungAnzeigeModel = new RechnungAnzeigenModel();

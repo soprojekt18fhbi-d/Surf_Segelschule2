@@ -301,6 +301,7 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 	}
 	
 	public void anfrage() {
+		talking = "first";
 		comboBoxTyp.removeAllItems();
 		model.anmelden(this);
 		controller.anfrageModellhinzufuegen(talking, name, typ, preisID, id);
