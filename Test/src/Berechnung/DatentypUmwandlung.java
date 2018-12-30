@@ -5,12 +5,16 @@ public class DatentypUmwandlung {
 	public static double stringZuDouble(String string) {
 		
 		//null kann nicht als Double Wert gespeichert werden -> Strings werden überprüft
-		System.out.println(string +" TestString");
 		Double zahl=0.0;
-		if (string.isEmpty()==false || string!= "0,0" || string !="0" || string !="0.0"){
-			zahl = Double.parseDouble(string);
+		try {
+			if (string.isEmpty()==false){
+				zahl = Double.parseDouble(string);
+			}
+			
 		}
-		System.out.println(zahl);
+		catch(NumberFormatException numFormExc){
+			
+		}
 		return zahl;
 	}
 	
@@ -20,10 +24,14 @@ public class DatentypUmwandlung {
 		//null kann nicht als Double Wert gespeichert werden -> Strings werden überprüft
 		
 		String string=null;
-		if (zahl > 0.0){
-			string = String.valueOf(zahl);
+		try {
+			if (zahl > 0.0){
+				string = String.valueOf(zahl);
+			}
 		}
-
+		catch(NumberFormatException numFormExc){
+			
+		}
 		return string;
 	}
 	
