@@ -114,6 +114,27 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 		    	 updateObserver();
 		    }
 		    
+		    if(talking.equals("aendern"))
+		    {
+		    	int modellID = Integer.parseInt(geraet[0]);
+		    	int standortID = Integer.parseInt(geraet[1]);
+		    	int baujahr = Integer.parseInt(geraet[6]);
+		    	String farbe = geraet[5];
+		    	String makel = geraet[2];
+		    	double anschaffungspreis = Double.parseDouble(geraet[4]);
+		    	double verkaufspreis = Double.parseDouble(geraet[3]);
+		    	
+		    	
+		    	try {
+				    String sqlupdate = "UPDATE SPORTGERAET SET MAKEL = '"+makel+"', FARBE = '"+farbe+"' , BAUJAHR = '"+baujahr+"', STANDORTID = '"+standortID+"', VERKAUFSPREIS = '"+verkaufspreis+"', ANSCHAFFUNGSPREIS = '"+anschaffungspreis+"'  WHERE ID = "+modellID+"";
+				    int ergebnis = stmtGeraetAnlegenModel.executeUpdate(sqlupdate);	
+				             
+		    	} catch (SQLException e ) {
+			    	e.printStackTrace();
+			    }
+		    updateObserver();
+		    }
+		    
 		   if(talking.equals("second"))
 		   {
 			   

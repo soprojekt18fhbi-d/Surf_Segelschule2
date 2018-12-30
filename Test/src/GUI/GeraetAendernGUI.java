@@ -316,19 +316,20 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 				
 				try {
 					
+					farbe = textFarbe.getText();
+					makel = textMakel.getText();
+					baujahr = Integer.parseInt(textBaujahr.getText());
 					anschaffungspreis = Double.parseDouble(textAPreis.getText());
 					verkaufspreis = Double.parseDouble(textVPreis.getText());
-					farbe = textFarbe.getText();
-					baujahr = Integer.parseInt(textBaujahr.getText());
-					makel = textMakel.getText();
 					standortID = Integer.parseInt(String.valueOf(comboBoxStandort.getSelectedItem()));
-					
+					String standort = String.valueOf(standortID);
+					modell = String.valueOf(modellID);
 	
-					controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
+					controller.anfrageGeraethinzufuegen(talking, modell, standort, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
 					aktualisieren(model);
 					
 					JOptionPane.showMessageDialog(null, "Das Gerät wurde erfolgreich geändert!");
-					MainFrame.change(MainFrame.getGeraetAnlegenGUI(), MainFrame.getSportgeraeteGUI());
+					MainFrame.change(MainFrame.getGeraetAendernGUI(), MainFrame.getSportgeraeteGUI());
 					MainFrame.getSportgeraeteGUI().anfrage();
 					
 					
@@ -345,7 +346,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraetAnlegenGUI(), MainFrame.getSportgeraeteGUI());			}
+				MainFrame.change(MainFrame.getGeraetAendernGUI(), MainFrame.getSportgeraeteGUI());			}
 		});
 		
 
