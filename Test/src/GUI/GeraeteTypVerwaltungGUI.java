@@ -25,6 +25,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -63,7 +65,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnZurck.setBackground(new Color(255, 140, 0));
 		
-		textSuchen = new JTextField();
+		textSuchen = new JTextField("Suchen");
 		textSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textSuchen.setColumns(10);
 		
@@ -166,7 +168,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteVerwaltungGUI());
-				textSuchen.setText("");
+				textSuchen.setText("Suchen...");
 				
 			}
 		});
@@ -174,7 +176,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		btnTypHinzu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTypAnlegenGUI());
-				textSuchen.setText("");
+				textSuchen.setText("Suchen...");
 			}
 		});
 		
@@ -194,7 +196,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 					MainFrame.getTypAendernGUI().setText(name);
 					MainFrame.getTypAendernGUI().setFuehrerschein(fuehrerschein);
 					MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTypAendernGUI());
-					textSuchen.setText("");
+					textSuchen.setText("Suchen...");
 					System.out.println(fuehrerschein);
 				}	
 			}
@@ -204,6 +206,13 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
 				MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
+				textSuchen.setText("Suchen...");
+			}
+		});
+		
+		textSuchen.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		
 				textSuchen.setText("");
 			}
 		});

@@ -23,6 +23,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -54,7 +56,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnZurck.setBackground(new Color(255, 140, 0));
 		
-		textSuchen = new JTextField();
+		textSuchen = new JTextField("Suchen...");
 		textSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textSuchen.setColumns(10);
 		
@@ -166,7 +168,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getGeraeteVerwaltungGUI());
-				
+				textSuchen.setText("Suchen...");
 			}
 		});
 		
@@ -179,7 +181,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 					MainFrame.getModellAnlegenGUI().anfrage();
 					
 				}
-				textSuchen.setText("");
+				textSuchen.setText("Suchen...");
 			}
 		});
 		
@@ -204,7 +206,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 					MainFrame.getModellAendernGUI().setText(modellName);
 					MainFrame.getModellAendernGUI().anfrage();
 					MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getModellAendernGUI());
-					textSuchen.setText("");
+					textSuchen.setText("Suchen...");
 				}	
 			}
 		});
@@ -213,7 +215,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getGeraeteTypVerwaltung());
 				MainFrame.getGeraeteTypVerwaltung().anfrage();
-				textSuchen.setText("");
+				textSuchen.setText("Suchen...");
 			}
 		});
 				
@@ -221,6 +223,13 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getSportgeraeteGUI());
 				MainFrame.getSportgeraeteGUI().anfrage();
+				textSuchen.setText("Suchen...");
+			}
+		});
+		
+		textSuchen.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		
 				textSuchen.setText("");
 			}
 		});
