@@ -12,8 +12,7 @@ import Datenbankmodels.IModelSuche;
 import Datenbankmodels.KundeSucheModel;
 import Domaenklassen.Kunde;
 import GUI.KundeAendernGUI;
-import TESTPACKAGE.TestanbindungMVCBEISPIEL;
-import TESTPACKAGE.TestframeMVCBeispiel;
+
 
 public class KundeSucheStrg implements IController {
 
@@ -25,17 +24,7 @@ public class KundeSucheStrg implements IController {
 
 	}
 
-	/**
-	 * Der Button wurde gedrückt und es sollen Kunden geholt werden.
-	 * @param variableKnr 
-	 * @param selectedMode 
-	 * @param talking 
-	 * @param heimat 
-	 * @param motor 
-	 * @param segel 
-	 * @param surf 
-	 * 
-	 */
+
 	public void fetchObjekte(String knrplz, String nachnameort, String vornamestrasse, String emailhnr, String selectedMode, String variableKnr, String talking, String surf, String segel, String motor, String heimat) {
 
 		

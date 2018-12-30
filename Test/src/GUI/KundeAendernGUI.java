@@ -30,8 +30,6 @@ import Datenbankmodels.IModel;
 import Datenbankmodels.IModelSuche;
 import Datenbankmodels.IObjektModel;
 import Steuerung.KundeSucheStrg;
-import TESTPACKAGE.TestController;
-import TESTPACKAGE.TestanbindungMVCBEISPIEL;
 import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
