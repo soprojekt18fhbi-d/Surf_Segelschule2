@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import GUI.IAnlegenView;
 
-
+//Model Für Klassen, die hauptsächlich Entitäten in der Datenbank einpflegen wollen
 
 public interface IAnlegenModel {
 

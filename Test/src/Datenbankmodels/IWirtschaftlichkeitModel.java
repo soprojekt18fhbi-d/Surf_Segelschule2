@@ -6,6 +6,9 @@ import javax.swing.ComboBoxModel;
 
 import GUI.IWirtschaftlichkeitView;
 
+//Interface, dass den Beobachtern auch ermöglicht, auf die jeweiligen Wirtschaftlichkeitswerte aus dem Model zuzugreifen
+
+
 public interface IWirtschaftlichkeitModel { //Ben Kröncke
 		
 		/**

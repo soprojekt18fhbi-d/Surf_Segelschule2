@@ -8,6 +8,9 @@ import GUI.IObjektView;
 import GUI.IStandortView;
 import GUI.IView;
 
+//Spezielles Interface, dass für die Standortklasse gedacht ist, da diese mit Passwörten arbeitet dachte ich es wäre klüger für diese Klasse ein neues Interface zu entwerfen, dass unter umständen später erweitert
+//werden kann für weitere Operationen dieser Art, falls die Software weiterentwickelt wird
+
 public interface IStandortModel {
 
 	/**

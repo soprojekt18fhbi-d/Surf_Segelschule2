@@ -8,7 +8,7 @@ import javax.swing.table.TableModel;
 import GUI.IObjektView;
 import GUI.IView;
 
-
+//Interface, dass für Klassen gedacht ist, die Daten auslesen und anzeigen wollen
 
 public interface IObjektModel {
 

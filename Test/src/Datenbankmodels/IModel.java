@@ -6,7 +6,7 @@ import javax.swing.DefaultListModel;
 
 import GUI.IView;
 
-
+//Generelles Interface für Klassen, die andere Interfaces nicht verwenden können, da ihre Aufgabe in anderen Bereichen liegt.
 
 public interface IModel {
 
