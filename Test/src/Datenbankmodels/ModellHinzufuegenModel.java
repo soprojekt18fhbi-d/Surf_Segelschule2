@@ -73,6 +73,28 @@ public class ModellHinzufuegenModel implements IAnlegenModel {
 				    }
 		    	 updateObserver();
 		    }
+		    
+		    if(talking.equals("second"))
+		    {
+		    	query = "Select * from PREISLISTE";
+		    	 try {
+				    	System.out.println(query);
+				        ResultSet rs = stmtModellHinzufuegenModel.executeQuery(query);
+				        
+				        while (rs.next()){
+				        	
+				        	mengeAnTypen.add(rs.getString("ID"));
+				        	
+				        }
+				        
+				        
+				    } catch (SQLException e ) {
+				    	e.printStackTrace();
+				    } finally {
+				        if (stmtModellHinzufuegenModel != null) { stmtModellHinzufuegenModel.close(); }
+				    }
+		    	 updateObserver();
+		    }
 		   	
 
 			if(talking.equals("hinzufuegen"))

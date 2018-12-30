@@ -98,7 +98,7 @@ public class MainFrame extends JFrame {
 	private static GeraeteModellVerwaltungGUI geraeteModellVerwaltungGUI = new GeraeteModellVerwaltungGUI(buchungModellSucheModel, buchungModellSucheStrg);
 	private static GeraeteTypVerwaltungGUI geraeteTypVerwaltungGUI = new GeraeteTypVerwaltungGUI(buchungTypSucheModel, buchungTypSucheStrg);
 	private static GeraetAnlegenGUI geraetAnlegenGUI = new GeraetAnlegenGUI(geraetAnlegenModel, geraetAnlegenStrg);
-	private static ModellAnedernGUI modellAnedernGUI = new ModellAnedernGUI();
+	private static ModellAendernGUI modellAnedernGUI = new ModellAendernGUI(modellHinzufuegenModel, modellAnlegenStrg);
 	private static ModellAnlegenGUI modellAnlegenGUI = new ModellAnlegenGUI(modellHinzufuegenModel, modellAnlegenStrg);
 	private static SportgeraeteVerwaltungGUI sportgeraeteGUI = new SportgeraeteVerwaltungGUI(buchungGeraetSucheModel, buchungGeraetSucheStrg);
 	private static TypAendernGUI typAendernGUI = new TypAendernGUI();
@@ -211,7 +211,7 @@ public class MainFrame extends JFrame {
 		return geraetAnlegenGUI;
 	}
 	
-	public static JPanel getModellAendernGUI(){ 	
+	public static ModellAendernGUI getModellAendernGUI(){ 	
 		return modellAnedernGUI;
 	}
 	

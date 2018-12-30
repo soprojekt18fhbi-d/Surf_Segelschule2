@@ -25,6 +25,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 	private BuchungModellSucheStrg controller;
@@ -184,8 +185,27 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		
 		btnModellAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getModellAendernGUI());
-				textSuchen.setText("");
+				int zeile = table.getSelectedRow();
+				
+				if (zeile < 0)
+					JOptionPane.showMessageDialog(null, "Modell auswählen!");
+				else{
+					String modellID = String.valueOf(table.getValueAt(zeile, 0));
+					int mID = Integer.parseInt(modellID);
+					String modellName = String.valueOf(table.getValueAt(zeile, 1));
+					String typID = String.valueOf(table.getValueAt(zeile, 2));
+					int tID = Integer.parseInt(typID);
+					String preisID = String.valueOf(table.getValueAt(zeile, 3));
+					int pID = Integer.parseInt(preisID);
+					
+					MainFrame.getModellAendernGUI().setModellID(mID);
+					MainFrame.getModellAendernGUI().setTypID(tID);
+					MainFrame.getModellAendernGUI().setPreisID(pID);
+					MainFrame.getModellAendernGUI().setText(modellName);
+					MainFrame.getModellAendernGUI().anfrage();
+					MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getModellAendernGUI());
+					textSuchen.setText("");
+				}	
 			}
 		});
 		
