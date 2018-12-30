@@ -12,6 +12,7 @@ import Datenbankmodels.BuchungGeraetSucheModel;
 import Datenbankmodels.BuchungKundeSucheModel;
 import Datenbankmodels.BuchungModellSucheModel;
 import Datenbankmodels.BuchungTypSucheModel;
+import Datenbankmodels.DBConnectorSingleton;
 import Datenbankmodels.GeraetAnlegenModel;
 import Datenbankmodels.KundeAnlegenModel;
 import Datenbankmodels.KundeSucheModel;
