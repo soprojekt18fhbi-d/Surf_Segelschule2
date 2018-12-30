@@ -215,6 +215,7 @@ public class TypAendernGUI extends JPanel  implements IAnlegenView{
 					
 				controller.typUebergeben(talking, id, name, schein);
 				aktualisieren(model);
+				JOptionPane.showMessageDialog(null, "Der Typ wurde erfolgreich geändert!");
 				MainFrame.change(MainFrame.getTypAendernGUI(), MainFrame.getGeraeteTypVerwaltung());
 				MainFrame.getGeraeteTypVerwaltung().anfrage();
 				chckbxSegelschein.setSelected(false);

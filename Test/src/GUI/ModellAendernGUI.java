@@ -210,10 +210,10 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 					preisID = Integer.parseInt(preisKateg);
 					
 					
-					controller.anfrageModellhinzufuegen(talking, name, typ, preisID);						
+					controller.anfrageModellhinzufuegen(talking, name, typ, preisID, modellID);						
 					aktualisieren(model);
-					JOptionPane.showMessageDialog(null, "Das Modell wurde erfolgreich angelegt!");
-					MainFrame.change(MainFrame.getModellAnlegenGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
+					JOptionPane.showMessageDialog(null, "Das Modell wurde erfolgreich geändert!");
+					MainFrame.change(MainFrame.getModellAendernGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
 					MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
 					
 					txtModell.setText("");
@@ -276,9 +276,9 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 		comboBoxTyp.removeAllItems();
 		model.anmelden(this);
 		talking = "first";
-		controller.anfrageModellhinzufuegen(talking, name, typ, preisID);
+		controller.anfrageModellhinzufuegen(talking, name, typ, preisID, modellID);
 		talking = "second";
-		controller.anfrageModellhinzufuegen(talking, name, typ, preisID);
+		controller.anfrageModellhinzufuegen(talking, name, typ, preisID, modellID);
 		model.abmelden(this);
 		
 	}

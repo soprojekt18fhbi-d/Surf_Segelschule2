@@ -126,6 +126,30 @@ public class ModellHinzufuegenModel implements IAnlegenModel {
 					}
 			}	
 		    
+			if(talking.equals("aendern"))
+			{
+				try {
+					
+					String name = modell[0];
+					String typ = modell[1];
+					int preis = Integer.parseInt(modell[2]);
+					int id = Integer.parseInt(modell[3]);
+					
+					query = "select * from TYP WHERE NAME = '"+typ+"'";
+					
+					ResultSet rs = stmtModellHinzufuegenModel.executeQuery(query);
+					while (rs.next()){
+						int typID =  Integer.parseInt(rs.getString("ID"));
+						String sqlupdate = "UPDATE MODELL SET NAME = '"+name+"', TYPID = '"+typID+"' , PREISLISTEID = '"+preis+"' WHERE ID = "+id+"";
+						int ergebnis = stmtModellHinzufuegenModel2.executeUpdate(sqlupdate);		
+					}
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				} finally {
+					 if (stmtModellHinzufuegenModel2 != null) { stmtModellHinzufuegenModel2.close(); }
+					 if (stmtModellHinzufuegenModel != null) { stmtModellHinzufuegenModel.close(); }
+				}
+			}	
 		    
 		    
 		    

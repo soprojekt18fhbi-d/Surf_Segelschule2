@@ -47,6 +47,7 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 	private String name;
 	private String preisKateg;
 	private int preisID;
+	int id;
 	
 	
 	/**
@@ -210,7 +211,7 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 						preisID = 7;
 					
 					
-					controller.anfrageModellhinzufuegen(talking, name, typ, preisID);						
+					controller.anfrageModellhinzufuegen(talking, name, typ, preisID, id);						
 					aktualisieren(model);
 					JOptionPane.showMessageDialog(null, "Das Modell wurde erfolgreich angelegt!");
 					MainFrame.change(MainFrame.getModellAnlegenGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
@@ -302,7 +303,7 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 	public void anfrage() {
 		comboBoxTyp.removeAllItems();
 		model.anmelden(this);
-		controller.anfrageModellhinzufuegen(talking, name, typ, preisID);
+		controller.anfrageModellhinzufuegen(talking, name, typ, preisID, id);
 		model.abmelden(this);
 		
 	}

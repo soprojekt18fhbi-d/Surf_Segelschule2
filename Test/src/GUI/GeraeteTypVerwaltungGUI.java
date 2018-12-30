@@ -65,7 +65,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnZurck.setBackground(new Color(255, 140, 0));
 		
-		textSuchen = new JTextField("Suchen");
+		textSuchen = new JTextField("Suchen...");
 		textSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textSuchen.setColumns(10);
 		

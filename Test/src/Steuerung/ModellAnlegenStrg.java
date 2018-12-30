@@ -21,9 +21,9 @@ public class ModellAnlegenStrg implements IController {
 	}
 
 	
-	public void anfrageModellhinzufuegen(String talking, String name, String typ, int preis) {
+	public void anfrageModellhinzufuegen(String talking, String name, String typ, int preis, int id) {
 		
-		String [] values = {name, typ, "" + preis};
+		String [] values = {name, typ, "" + preis, "" + id};
 		model.anfrage(talking, values);
 	}
 
