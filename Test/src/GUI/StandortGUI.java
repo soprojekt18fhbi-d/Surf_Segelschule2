@@ -57,7 +57,13 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 	private StandortStrg controller;
 	private boolean success = false;
 
-
+	private MainFrame mainframe;
+	
+	
+	
+	public void setMainFrame(MainFrame mf) {
+		mainframe = mf;
+	}
 
 	/**
 	 * Create the frame.
@@ -186,8 +192,8 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 					
 					if(success == true)
 					{
-						MainFrame frame = new MainFrame();
-						frame.setVisible(true);
+						
+						mainframe.setVisible(true);
 						dispose();
 						
 						
