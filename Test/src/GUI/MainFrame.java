@@ -100,7 +100,8 @@ public class MainFrame extends JFrame {
 	
 	//Preislistenverwaltung
 	private static PreislisteGUI preislisteGUI; 
-	private static PreislisteAnlegenGUI preislisteAnlegenGUI = new PreislisteAnlegenGUI();
+	private static PreislisteAnlegenGUI preislisteAnlegenGUI;
+	private static PreislisteAendernGUI preislisteAendernGUI;
 	
 	// Rechnungsverwaltung
 	private static RechungsSucheGUI rechnungSucheGUI; 
@@ -277,6 +278,10 @@ public class MainFrame extends JFrame {
 	public static JPanel getPreislisteAnlegenGUI(){ 		
 		return preislisteAnlegenGUI;
 	}
+	
+	public static JPanel getPreislisteAendernGUI() {
+		return preislisteAendernGUI;
+	}
 
 	public static JPanel getKundenverwaltungGUI() {
 		return kundenverwaltungGUI;
@@ -309,6 +314,8 @@ public class MainFrame extends JFrame {
 		// TODO Auto-generated method stub
 		return standort;
 	}
+
+
 	
 		
 }

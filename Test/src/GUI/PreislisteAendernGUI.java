@@ -1,7 +1,3 @@
-/**
- * @author Ben S
- */
-
 package GUI;
 
 import java.awt.BorderLayout;
@@ -15,7 +11,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -24,14 +19,16 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import Berechnung.DatentypUmwandlung;
-import Datenbankmodels.IAnlegenModel;
-import Datenbankmodels.PreislisteAnlegenModel;
-import Steuerung.PreislisteAnlegenStrg;
+import Datenbankmodels.PreislisteAendernModel;
+import Domaenklassen.Preisliste;
+import Steuerung.PreislisteAendernStrg;
 
-public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
+public class PreislisteAendernGUI extends JPanel {
 
-	PreislisteAnlegenModel model;
-	PreislisteAnlegenStrg controller;
+	PreislisteAendernModel model;
+	PreislisteAendernStrg controller;
+	
+	private Preisliste preisliste=null;
 
 	private JTextField tfEineStd;
 	private JTextField tfZweiStd;
@@ -62,10 +59,11 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 	 * 
 	 * Create the panel.
 	 */
-	public PreislisteAnlegenGUI()  {
-		model = new PreislisteAnlegenModel();
-		controller = new PreislisteAnlegenStrg(model);
+	public PreislisteAendernGUI(Preisliste preisliste)  {
+		model = new PreislisteAendernModel();
+		controller = new PreislisteAendernStrg(model);
 		model.anmelden(this);
+		this.preisliste=preisliste;
 		
 		setSize(900,550);
 		setLayout(new BorderLayout(0, 0));
@@ -602,7 +600,7 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 		
 		
 
-		
+		textfieldFuellen();
 		
 		btnAnlegen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -612,7 +610,7 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 				
 				try {
 					
-					PreislisteAnlegen();
+					PreislisteAendern();
 					
 					aktualisieren(model);
 					MainFrame.change(MainFrame.getPreislisteAnlegenGUI(), MainFrame.getPreislisteGUI());
@@ -624,8 +622,10 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 				}
 				
 			}
+			
 
-			private void PreislisteAnlegen() {
+
+			private void PreislisteAendern() {
 
 				
 				
@@ -652,13 +652,6 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 				String	preisAchtWochenString = tfAchtWochen.getText();
 				String	preisKaufString = tfKauf.getText();
 				
-//				if((preisEineStdString.isEmpty() || ) (&& preisZweiStdString.isEmpty() || ) 
-//					
-//					JOptionPane.showMessageDialog(null, "Bitte alle Felder mit Preisen ausfüllen!");
-//				else
-//				{
-//					
-//				}
 
 				double  preisEineStd = DatentypUmwandlung.stringZuDouble(preisEineStdString);
 				double  preisZweiStd = DatentypUmwandlung.stringZuDouble(preisZweiStdString);
@@ -694,17 +687,39 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getPreislisteAnlegenGUI(), MainFrame.getPreislisteGUI());			}
+				MainFrame.change(MainFrame.getPreislisteAendernGUI(), MainFrame.getPreislisteGUI());			}
 		});
 
 	}
 
-	@Override
-	public void aktualisieren(IAnlegenModel model) {
-		JOptionPane.showMessageDialog(null, "Die Preisliste wurde angelegt!");
+	private void textfieldFuellen() {
+		tfEineStd.setText(DatentypUmwandlung.doubleZuString(preisliste.getEineStd()));
+		tfZweiStd.setText(DatentypUmwandlung.doubleZuString(preisliste.getZweiStd()));
+		tfVierStd.setText(DatentypUmwandlung.doubleZuString(preisliste.getVierStd()));
+		tfEinTag.setText(DatentypUmwandlung.doubleZuString(preisliste.getEinenTag()));
+		tfZweiTage.setText(DatentypUmwandlung.doubleZuString(preisliste.getZweiTage()));
+		tfDreiTage.setText(DatentypUmwandlung.doubleZuString(preisliste.getDreiTage()));
+		tfVierTage.setText(DatentypUmwandlung.doubleZuString(preisliste.getVierTage()));
+		tfFuenfTage.setText(DatentypUmwandlung.doubleZuString(preisliste.getFuenfTage()));
+		tfAchtTage.setText(DatentypUmwandlung.doubleZuString(preisliste.getAchtTage()));
+		tfSechsSiebenTage.setText(DatentypUmwandlung.doubleZuString(preisliste.getSechsSiebenTage()));
+		tfNeunTage.setText(DatentypUmwandlung.doubleZuString(preisliste.getNeunTage()));
+		tfZehnTage.setText(DatentypUmwandlung.doubleZuString(preisliste.getZehnTage()));
+		tfElfTage.setText(DatentypUmwandlung.doubleZuString(preisliste.getElfTage()));
+		tfZwoelfVierzehnTage.setText(DatentypUmwandlung.doubleZuString(preisliste.getZwoelfVierzehnTage()));
+		tfFuenfzehnTage.setText(DatentypUmwandlung.doubleZuString(preisliste.getFuenfzehnTage()));
+		tfSechzehnTage.setText(DatentypUmwandlung.doubleZuString(preisliste.getSechzehnTage()));
+		tfSiebzehnTage.setText(DatentypUmwandlung.doubleZuString(preisliste.getSiebzehnTage()));
+		tfAchtzehnEinundZwTage.setText(DatentypUmwandlung.doubleZuString(preisliste.getAchtzehnEinundzwanzigTage()));
+		tfProTagVierW.setText(DatentypUmwandlung.doubleZuString(preisliste.getTagVierWochen()));
+		tfVierWochen.setText(DatentypUmwandlung.doubleZuString(preisliste.getVierWochen()));
+		tfAchtWochen.setText(DatentypUmwandlung.doubleZuString(preisliste.getAchtWochen()));
+		tfKauf.setText(DatentypUmwandlung.doubleZuString(preisliste.getKauf()));
+		
+	}
+
+	public void aktualisieren(PreislisteAendernModel model) {
+		JOptionPane.showMessageDialog(null, "Die Preisliste wurde geändert!");
 	}
 	
-
-
-
 }

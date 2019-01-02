@@ -1,3 +1,7 @@
+/**
+ * @author BenS
+ */
+
 package Berechnung;
 
 public class DatentypUmwandlung {
@@ -8,7 +12,9 @@ public class DatentypUmwandlung {
 		Double zahl=0.0;
 		try {
 			if (string.isEmpty()==false){
-				zahl = Double.parseDouble(string);
+				string.replace(',', '.');
+				System.out.println(string);
+				zahl = Double.valueOf(string);
 			}
 			
 		}
