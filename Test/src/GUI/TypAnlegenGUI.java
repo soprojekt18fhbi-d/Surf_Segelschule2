@@ -208,6 +208,7 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MainFrame.getGeraeteTypVerwaltung().anfrage();
 				MainFrame.change(MainFrame.getTypAnlegenGUI(), MainFrame.getGeraeteTypVerwaltung());			}
 		});
 		

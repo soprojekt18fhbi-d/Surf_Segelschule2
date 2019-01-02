@@ -255,6 +255,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 				talking = "suchen";
 				modellNr = Integer.parseInt(textSuchen.getText());
 				anfrage();
+				talking = "gesamt";
 			}
 		});
 		
@@ -269,5 +270,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 		aktualisieren(model);
 		model.abmelden(MainFrame.getBuchungGeraetSucheGUI());
 	}
+	
+
 }
 

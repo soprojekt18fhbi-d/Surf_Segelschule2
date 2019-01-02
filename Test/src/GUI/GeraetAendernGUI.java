@@ -346,6 +346,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MainFrame.getSportgeraeteGUI().anfrage();
 				MainFrame.change(MainFrame.getGeraetAendernGUI(), MainFrame.getSportgeraeteGUI());			}
 		});
 		

@@ -221,6 +221,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 			public void keyReleased(KeyEvent e) {
 				talking = "suchen";
 				anfrage();
+				talking = "gesamt";
 			}
 		});
 		
@@ -236,6 +237,10 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		controller.fetchTypen(knr, talking, textSuchen.getText(), kunde);
 		aktualisieren(model);
 		model.abmelden(MainFrame.getBuchungTypSucheGUI());
+	}
+	
+	public void setTalking(String talking){
+		this.talking = talking;
 	}
 
 }

@@ -233,7 +233,7 @@ public class TypAendernGUI extends JPanel  implements IAnlegenView{
 				chckbxMotorbootschein.setSelected(false);
 				chckbxSurfschein.setSelected(false);
 				txtTyp.setText("");
-				
+				MainFrame.getGeraeteTypVerwaltung().anfrage();
 				MainFrame.change(MainFrame.getTypAendernGUI(), MainFrame.getGeraeteTypVerwaltung());			}
 		});
 
@@ -265,7 +265,6 @@ public class TypAendernGUI extends JPanel  implements IAnlegenView{
 
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
-		JOptionPane.showMessageDialog(null, "Der Gerätetyp wurde geändert!");
 	}
 	
 	public void setTyp(GeraeteTyp typ) {
