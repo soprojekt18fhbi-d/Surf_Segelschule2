@@ -25,6 +25,8 @@ import Domaenklassen.IKunde;
 import Steuerung.TypAnlegenStrg;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
@@ -231,16 +233,38 @@ public class TypAendernGUI extends JPanel  implements IAnlegenView{
 				chckbxMotorbootschein.setSelected(false);
 				chckbxSurfschein.setSelected(false);
 				txtTyp.setText("");
-				
+				MainFrame.getGeraeteTypVerwaltung().anfrage();
 				MainFrame.change(MainFrame.getTypAendernGUI(), MainFrame.getGeraeteTypVerwaltung());			}
 		});
 
+		chckbxSegelschein.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		
+				chckbxSurfschein.setSelected(false);
+				chckbxMotorbootschein.setSelected(false);
+			}
+		});
+		
+		chckbxSurfschein.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		
+				chckbxSegelschein.setSelected(false);
+				chckbxMotorbootschein.setSelected(false);
+			}
+		});
+		
+		chckbxMotorbootschein.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		
+				chckbxSurfschein.setSelected(false);
+				chckbxSegelschein.setSelected(false);
+			}
+		});
 	}
 
 
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
-		JOptionPane.showMessageDialog(null, "Der Gerätetyp wurde geändert!");
 	}
 	
 	public void setTyp(GeraeteTyp typ) {

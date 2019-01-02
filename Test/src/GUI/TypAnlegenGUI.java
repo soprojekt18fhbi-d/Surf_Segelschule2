@@ -20,6 +20,8 @@ import Steuerung.KundeAnlegenStrg;
 import Steuerung.TypAnlegenStrg;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 import java.awt.BorderLayout;
@@ -206,7 +208,32 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MainFrame.getGeraeteTypVerwaltung().anfrage();
 				MainFrame.change(MainFrame.getTypAnlegenGUI(), MainFrame.getGeraeteTypVerwaltung());			}
+		});
+		
+		chckbxSegelschein.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		
+				chckbxSurfschein.setSelected(false);
+				chckbxMotorbootschein.setSelected(false);
+			}
+		});
+		
+		chckbxSurfschein.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		
+				chckbxSegelschein.setSelected(false);
+				chckbxMotorbootschein.setSelected(false);
+			}
+		});
+		
+		chckbxMotorbootschein.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		
+				chckbxSurfschein.setSelected(false);
+				chckbxSegelschein.setSelected(false);
+			}
 		});
 
 	}

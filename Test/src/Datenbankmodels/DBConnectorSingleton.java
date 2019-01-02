@@ -25,5 +25,11 @@ public class DBConnectorSingleton { //Ben Kröncke
 	public static Connection getCon() {
 		return conn;
 	}
+	
+	
+	public static void closeCon() throws SQLException {
+		conn.close();
+	}
+	
 
 }

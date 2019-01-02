@@ -1,4 +1,3 @@
-package Datenbankmodels;
 
 
 import java.sql.Connection;

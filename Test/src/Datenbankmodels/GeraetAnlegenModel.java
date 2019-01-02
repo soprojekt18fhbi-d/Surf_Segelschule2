@@ -73,6 +73,68 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 		    	 updateObserver();
 		    }
 		    
+		    if(talking.equals("standortID"))
+		    {
+		    	query = "Select * from STANDORT";
+		    	 try {
+				    	System.out.println(query);
+				        ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);
+				        
+				        while (rs.next()){
+				        	
+				        	mengeAnTypen.add(rs.getString("ID"));
+				        	
+				        }
+				        
+				        
+				    } catch (SQLException e ) {
+				    	e.printStackTrace();
+				    }
+		    	 updateObserver();
+		    }
+		    
+		    if(talking.equals("modellname"))
+		    {
+		    	int modellID = Integer.parseInt(geraet[6]);
+		    	query = "Select * from MODELL WHERE ID = '"+modellID+"'";
+		    	 try {
+				    	System.out.println(query);
+				        ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);
+				        
+				        while (rs.next()){
+				        	
+				        	mengeAnTypen.add(rs.getString("NAME"));
+				        	
+				        }
+				        
+				        
+				    } catch (SQLException e ) {
+				    	e.printStackTrace();
+				    }
+		    	 updateObserver();
+		    }
+		    
+		    if(talking.equals("aendern"))
+		    {
+		    	int modellID = Integer.parseInt(geraet[0]);
+		    	int standortID = Integer.parseInt(geraet[1]);
+		    	int baujahr = Integer.parseInt(geraet[6]);
+		    	String farbe = geraet[5];
+		    	String makel = geraet[2];
+		    	double anschaffungspreis = Double.parseDouble(geraet[4]);
+		    	double verkaufspreis = Double.parseDouble(geraet[3]);
+		    	
+		    	
+		    	try {
+				    String sqlupdate = "UPDATE SPORTGERAET SET MAKEL = '"+makel+"', FARBE = '"+farbe+"' , BAUJAHR = '"+baujahr+"', STANDORTID = '"+standortID+"', VERKAUFSPREIS = '"+verkaufspreis+"', ANSCHAFFUNGSPREIS = '"+anschaffungspreis+"'  WHERE ID = "+modellID+"";
+				    int ergebnis = stmtGeraetAnlegenModel.executeUpdate(sqlupdate);	
+				             
+		    	} catch (SQLException e ) {
+			    	e.printStackTrace();
+			    }
+		    updateObserver();
+		    }
+		    
 		   if(talking.equals("second"))
 		   {
 			   
@@ -147,23 +209,7 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 					}
 				updateObserver();
 			}	
-		    
-		    
-		    
-		    /*
-		    try {
-		    	System.out.println(query);
-		        stmt = con.createStatement();
-		        ResultSet rs = stmt.executeQuery(query);
-		        
-		        
-		        
-		    } catch (SQLException e ) {
-		    	e.printStackTrace();
-		    } finally {
-		        if (stmt != null) { stmt.close(); }
-		    }
-		    */
+	
 		    
 		}
 	
@@ -221,6 +267,10 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 	@Override
 	public ArrayList<String> getObertypen() {
 		if (talking == "first")
+			return mengeAnTypen;
+		else if (talking == "standortID")
+			return mengeAnTypen;
+		else if (talking == "modellname")
 			return mengeAnTypen;
 		else
 			return mengeAnModellen;

@@ -45,7 +45,6 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 	private JComboBox comboBoxPreis;
 	private String typ;
 	private String name;
-	private String preisKateg;
 	private int preisID;
 	int id;
 	
@@ -193,23 +192,8 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 				try {
 					typ = String.valueOf(comboBoxTyp.getSelectedItem());
 					name = txtModell.getText();
-					preisKateg = String.valueOf(comboBoxPreis.getSelectedItem());
-					int preisID;
-					if (preisKateg == "1 (Kayak)")
-						preisID = 1;
-					else if (preisKateg == "2 (Segelboot)")
-						preisID = 2;	
-					else if (preisKateg == "3 (Motorboot)")
-						preisID = 3;
-					else if (preisKateg == "4 (Surfboard - A)")
-						preisID = 4;
-					else if (preisKateg == "5 (Surfboard - B)")
-						preisID = 5;
-					else if (preisKateg == "6 (Surfboard - C)")
-						preisID = 6;
-					else 
-						preisID = 7;
-					
+					preisID = Integer.parseInt(String.valueOf(comboBoxPreis.getSelectedItem()));
+										
 					
 					controller.anfrageModellhinzufuegen(talking, name, typ, preisID, id);						
 					aktualisieren(model);
@@ -234,57 +218,10 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
 				MainFrame.change(MainFrame.getModellAnlegenGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());			}
 		});
 		
-		comboBoxTyp.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent arg0) {
-				String value = String.valueOf(comboBoxTyp.getSelectedItem());
-				comboBoxPreis.removeAllItems();
-				switch(value){
-					case "Kayak": {
-						comboBoxPreis.removeAllItems();
-						comboBoxPreis.addItem("1 (Kayak)");
-						break;
-					}
-					case "Segelboot": {
-						comboBoxPreis.removeAllItems();
-						comboBoxPreis.addItem("2 (Segelboot)");
-						break;
-					}
-					case "Motorboot": {
-						comboBoxPreis.removeAllItems();
-						comboBoxPreis.addItem("3 (Motorboot)");
-						break;
-					}
-					case "Surfboard": {
-						comboBoxPreis.removeAllItems();
-						comboBoxPreis.addItem("4 (Surfboard - A)");
-						comboBoxPreis.addItem("5 (Surfboard - B)");
-						comboBoxPreis.addItem("6 (Surfboard - C)");
-						break;
-					}
-					case "Jetski": {
-						comboBoxPreis.removeAllItems();
-						comboBoxPreis.addItem("7 (Jetski)");
-						break;
-					}
-					default: {
-					    comboBoxPreis.removeAllItems();
-						comboBoxPreis.addItem("1 (Kayak)");
-						comboBoxPreis.addItem("2 (Segelboot)");
-						comboBoxPreis.addItem("3 (Motorboot)");
-						comboBoxPreis.addItem("4 (Surfboard - A)");
-						comboBoxPreis.addItem("5 (Surfboard - B)");
-						comboBoxPreis.addItem("6 (Surfboard - C)");
-						comboBoxPreis.addItem("7 (Jetski)");
-						break;
-					}
-				
-				}
-			}
-			
-		});
 		
 	}
 
@@ -293,9 +230,15 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 	public void aktualisieren(IAnlegenModel model) {
 		
 		ArrayList<String> comboboxItems = model.getObertypen();
-		
-		for(int i = 0; i < comboboxItems.size(); i++) {
-			comboBoxTyp.addItem(comboboxItems.get(i));
+		if (talking == "first"){
+			for(int i = 0; i < comboboxItems.size(); i++) {
+				comboBoxTyp.addItem(comboboxItems.get(i));
+			}
+		}
+		else if (talking == "second"){
+			for(int i = 0; i < comboboxItems.size(); i++) {
+				comboBoxPreis.addItem(comboboxItems.get(i));
+			}
 		}
 		comboboxItems.clear();
 	}
@@ -304,6 +247,8 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 		talking = "first";
 		comboBoxTyp.removeAllItems();
 		model.anmelden(this);
+		controller.anfrageModellhinzufuegen(talking, name, typ, preisID, id);
+		talking = "second";
 		controller.anfrageModellhinzufuegen(talking, name, typ, preisID, id);
 		model.abmelden(this);
 		

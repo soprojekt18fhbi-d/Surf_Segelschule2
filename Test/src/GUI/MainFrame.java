@@ -12,6 +12,7 @@ import Datenbankmodels.BuchungGeraetSucheModel;
 import Datenbankmodels.BuchungKundeSucheModel;
 import Datenbankmodels.BuchungModellSucheModel;
 import Datenbankmodels.BuchungTypSucheModel;
+import Datenbankmodels.DBConnectorSingleton;
 import Datenbankmodels.GeraetAnlegenModel;
 import Datenbankmodels.KundeAnlegenModel;
 import Datenbankmodels.KundeSucheModel;
@@ -66,73 +67,46 @@ public class MainFrame extends JFrame {
 	private static Hauptmenue hauptmenueGUI = new Hauptmenue();
 	
 	
-	//Models erzeugen:
-	private static KundeSucheModel kundeSucheModel = new KundeSucheModel();
-	private static KundeAnlegenModel kundeAnlegenModel = new KundeAnlegenModel();
-	private static BuchungKundeSucheModel buchungKundeSucheModel = new BuchungKundeSucheModel();
-	private static BuchungTypSucheModel buchungTypSucheModel = new BuchungTypSucheModel();
-	private static BuchungModellSucheModel buchungModellSucheModel = new BuchungModellSucheModel();
-	private static BuchungGeraetSucheModel buchungGeraetSucheModel = new BuchungGeraetSucheModel();
-	private static ModellAnlegenModel modellHinzufuegenModel = new ModellAnlegenModel();
-	private static GeraetAnlegenModel geraetAnlegenModel = new GeraetAnlegenModel();
-	private static BuchungAnzeigeModel buchungAnzeigeModel = new BuchungAnzeigeModel();
-	private static RechnungAnzeigenModel rechnungAnzeigeModel = new RechnungAnzeigenModel();
-	private static WirtschaftlichkeitModel wModel = new WirtschaftlichkeitModel();
-	private static PreislisteSucheModel preislisteSucheModel = new PreislisteSucheModel();
 	
-	
-	//Controller erzeugen:
-	private static KundeSucheStrg kundeSucheStrg = new KundeSucheStrg(kundeSucheModel);
-	private static KundeAnlegenStrg kundeAnlegenStrg = new KundeAnlegenStrg(kundeAnlegenModel);
-	private static BuchungKundeSucheStrg buchungKundeWaehlenStrg = new BuchungKundeSucheStrg(buchungKundeSucheModel);
-	private static BuchungTypSucheStrg buchungTypSucheStrg = new BuchungTypSucheStrg(buchungTypSucheModel);
-	private static BuchungModellSucheStrg buchungModellSucheStrg = new BuchungModellSucheStrg(buchungModellSucheModel);
-	private static BuchungGeraetSucheStrg buchungGeraetSucheStrg = new BuchungGeraetSucheStrg(buchungGeraetSucheModel);
-	private static ModellAnlegenStrg modellAnlegenStrg = new ModellAnlegenStrg(modellHinzufuegenModel);
-	private static GeraetAnlegenStrg geraetAnlegenStrg = new GeraetAnlegenStrg(geraetAnlegenModel);	
-	private static BuchungBuchungAnzeigenStrg buchungBuchungAnzeigenStrg = new BuchungBuchungAnzeigenStrg(buchungAnzeigeModel);
-	private static RechnungAnzeigeStrg rechnungAnzeigenStrg = new RechnungAnzeigeStrg(rechnungAnzeigeModel);
-	private static WirtschaftlichkeitStrg wStrg = new WirtschaftlichkeitStrg(wModel);
-	private static PreislisteSucheStrg preislisteSucheStrg = new PreislisteSucheStrg(preislisteSucheModel);
 	
 	
 	//Geräteverwaltung
-	private static GeraeteVerwaltungGUI geraeteVerwaltungGUI = new GeraeteVerwaltungGUI();
-	private static GeraeteModellVerwaltungGUI geraeteModellVerwaltungGUI = new GeraeteModellVerwaltungGUI(buchungModellSucheModel, buchungModellSucheStrg);
-	private static GeraeteTypVerwaltungGUI geraeteTypVerwaltungGUI = new GeraeteTypVerwaltungGUI(buchungTypSucheModel, buchungTypSucheStrg);
-	private static GeraetAnlegenGUI geraetAnlegenGUI = new GeraetAnlegenGUI(geraetAnlegenModel, geraetAnlegenStrg);
-	private static ModellAendernGUI modellAnedernGUI = new ModellAendernGUI(modellHinzufuegenModel, modellAnlegenStrg);
-	private static ModellAnlegenGUI modellAnlegenGUI = new ModellAnlegenGUI(modellHinzufuegenModel, modellAnlegenStrg);
-	private static SportgeraeteVerwaltungGUI sportgeraeteGUI = new SportgeraeteVerwaltungGUI(buchungGeraetSucheModel, buchungGeraetSucheStrg);
-	private static TypAendernGUI typAendernGUI = new TypAendernGUI();
-	private static TypAnlegenGUI typAnlegenGUI = new TypAnlegenGUI();
-	private static GeraetAendernGUI geraetAendernGUI = new GeraetAendernGUI();
-	
+	private static GeraeteVerwaltungGUI geraeteVerwaltungGUI;
+	private static GeraeteModellVerwaltungGUI geraeteModellVerwaltungGUI;
+	private static GeraeteTypVerwaltungGUI geraeteTypVerwaltungGUI;
+	private static GeraetAnlegenGUI geraetAnlegenGUI;
+	private static GeraetAendernGUI geraetAendernGUI;
+	private static ModellAendernGUI modellAnedernGUI;
+	private static ModellAnlegenGUI modellAnlegenGUI;
+	private static SportgeraeteVerwaltungGUI sportgeraeteGUI;
+	private static TypAendernGUI typAendernGUI;
+	private static TypAnlegenGUI typAnlegenGUI;
+		
 	
 	//BuchungsverwaltungGUI
-	private static BuchungsverwaltungGUI buchungsverwaltungGUI = new BuchungsverwaltungGUI();
-	private static BuchungKundeSucheGUI buchungKundeSucheGUI = new BuchungKundeSucheGUI(buchungKundeSucheModel, buchungKundeWaehlenStrg);
-	private static BuchungTypSucheGUI buchungTypSucheGUI = new BuchungTypSucheGUI(buchungTypSucheModel, buchungTypSucheStrg);
-	private static BuchungModellSucheGUI buchungModellSucheGUI = new BuchungModellSucheGUI(buchungModellSucheModel, buchungModellSucheStrg);
-	private static BuchungGeraetSucheGUI buchungGeraetSucheGUI = new BuchungGeraetSucheGUI(buchungGeraetSucheModel, buchungGeraetSucheStrg);
-	private static AktiveBuchungenGUI aktiveBuchungenGUI = new AktiveBuchungenGUI(buchungAnzeigeModel, buchungBuchungAnzeigenStrg);
+	private static BuchungsverwaltungGUI buchungsverwaltungGUI;
+	private static BuchungKundeSucheGUI buchungKundeSucheGUI;
+	private static BuchungTypSucheGUI buchungTypSucheGUI;
+	private static BuchungModellSucheGUI buchungModellSucheGUI;
+	private static BuchungGeraetSucheGUI buchungGeraetSucheGUI;
+	private static AktiveBuchungenGUI aktiveBuchungenGUI;
 	
 	
 	// Kundenverwaltung
-	private static KundenverwaltungGUI kundenverwaltungGUI = new KundenverwaltungGUI(); 
-	private static KundeAnlegenGUI kundeAnlegenGUI = new KundeAnlegenGUI(kundeAnlegenModel, kundeAnlegenStrg);
-	private static KundeAendernGUI kundeAendernGUI = new KundeAendernGUI(kundeSucheModel, kundeSucheStrg);
+	private static KundenverwaltungGUI kundenverwaltungGUI; 
+	private static KundeAnlegenGUI kundeAnlegenGUI;
+	private static KundeAendernGUI kundeAendernGUI;
 	
 	
 	//Preislistenverwaltung
-	private static PreislisteGUI preislisteGUI = new PreislisteGUI(preislisteSucheModel, preislisteSucheStrg); 
+	private static PreislisteGUI preislisteGUI; 
 	private static PreislisteAnlegenGUI preislisteAnlegenGUI = new PreislisteAnlegenGUI();
 	
 	// Rechnungsverwaltung
-	private static RechungsSucheGUI rechnungSucheGUI = new RechungsSucheGUI(rechnungAnzeigeModel, rechnungAnzeigenStrg); 
+	private static RechungsSucheGUI rechnungSucheGUI; 
 	
 	// Wirtschaftlichkeitsrechnung
-	private static WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltungGUI = new WirtschaftlichkeitsverwaltungGUI(wModel, wStrg);
+	private static WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltungGUI;
 
 
 
@@ -140,7 +114,38 @@ public class MainFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainFrame() {
+	public MainFrame(GeraeteVerwaltungGUI geraeteVerwaltungGUI, GeraeteModellVerwaltungGUI geraeteModellVerwaltungGUI, GeraeteTypVerwaltungGUI geraeteTypVerwaltungGUI, GeraetAnlegenGUI geraetAnlegenGUI, 
+			GeraetAendernGUI geraetAendernGUI, ModellAendernGUI modellAnedernGUI, ModellAnlegenGUI modellAnlegenGUI, SportgeraeteVerwaltungGUI sportgeraeteGUI, TypAendernGUI typAendernGUI, TypAnlegenGUI typAnlegenGUI, 
+			BuchungsverwaltungGUI buchungsverwaltungGUI, BuchungKundeSucheGUI buchungKundeSucheGUI, BuchungTypSucheGUI buchungTypSucheGUI, BuchungModellSucheGUI buchungModellSucheGUI, BuchungGeraetSucheGUI buchungGeraetSucheGUI, 
+			AktiveBuchungenGUI aktiveBuchungenGUI, KundenverwaltungGUI kundenverwaltungGUI, KundeAnlegenGUI kundeAnlegenGUI, KundeAendernGUI kundeAendernGUI, PreislisteGUI preislisteGUI, PreislisteAnlegenGUI preislisteAnlegenGUI, 
+			RechungsSucheGUI rechnungSucheGUI, WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltungGUI) {
+		
+		MainFrame.geraeteVerwaltungGUI = geraeteVerwaltungGUI;
+		MainFrame.geraeteModellVerwaltungGUI = geraeteModellVerwaltungGUI;
+		MainFrame.geraeteTypVerwaltungGUI = geraeteTypVerwaltungGUI;
+		MainFrame.geraetAnlegenGUI = geraetAnlegenGUI;
+		MainFrame.geraetAendernGUI = geraetAendernGUI;
+		MainFrame.modellAnedernGUI = modellAnedernGUI;
+		MainFrame.modellAnlegenGUI = modellAnlegenGUI;
+		MainFrame.sportgeraeteGUI = sportgeraeteGUI;
+		MainFrame.typAendernGUI = typAendernGUI;
+		MainFrame.typAnlegenGUI = typAnlegenGUI;
+		MainFrame.buchungsverwaltungGUI = buchungsverwaltungGUI;
+		MainFrame.buchungKundeSucheGUI = buchungKundeSucheGUI;
+		MainFrame.buchungTypSucheGUI = buchungTypSucheGUI;
+		MainFrame.buchungModellSucheGUI = buchungModellSucheGUI;
+		MainFrame.buchungGeraetSucheGUI = buchungGeraetSucheGUI;
+		MainFrame.aktiveBuchungenGUI = aktiveBuchungenGUI;
+		MainFrame.kundenverwaltungGUI = kundenverwaltungGUI;
+		MainFrame.kundeAnlegenGUI = kundeAnlegenGUI;
+		MainFrame.kundeAendernGUI = kundeAendernGUI;
+		MainFrame.preislisteGUI = preislisteGUI;
+		MainFrame.preislisteAnlegenGUI = preislisteAnlegenGUI;
+		MainFrame.rechnungSucheGUI = rechnungSucheGUI;
+		MainFrame.wirtschaftlichkeitsverwaltungGUI = wirtschaftlichkeitsverwaltungGUI;
+		
+		
+		
 		setBackground(Color.DARK_GRAY);
 		setTitle("Boots- & Segelverleih");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -182,7 +187,7 @@ public class MainFrame extends JFrame {
 
 		this.hauptmenueGUI.setVisible(true);
 
-
+		 
 
 	
 		
@@ -238,7 +243,7 @@ public class MainFrame extends JFrame {
 		return geraeteModellVerwaltungGUI;
 	}
 	
-	public static JPanel getGeraetAendernGUI(){ 		
+	public static GeraetAendernGUI getGeraetAendernGUI(){ 		
 		return geraetAendernGUI;
 	}
 	

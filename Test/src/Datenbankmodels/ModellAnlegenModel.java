@@ -27,7 +27,6 @@ public class ModellAnlegenModel implements IAnlegenModel {
 		
 		this.talking = talking2;
 		this.modell = modell;
-		//System.out.println();
 		
         try {
         	

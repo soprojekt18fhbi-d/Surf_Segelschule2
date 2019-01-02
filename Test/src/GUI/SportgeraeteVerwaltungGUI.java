@@ -33,6 +33,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 	private BuchungGeraetSucheStrg controller;
@@ -199,8 +200,32 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 		
 		btnGeraetAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraetAendernGUI());
-				textSuchen.setText("Suchen...");
+				int zeile = table.getSelectedRow();
+				
+				if (zeile < 0)
+					JOptionPane.showMessageDialog(null, "Gerät auswählen!");
+				else{
+					int modellID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 4)));
+					int geraeteID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 0)));
+					String farbe = String.valueOf(table.getValueAt(zeile, 7));
+					String makel = String.valueOf(table.getValueAt(zeile, 1));
+					double anschaffungspreis = Double.parseDouble(String.valueOf(table.getValueAt(zeile, 9)));
+					double verkaufspreis = Double.parseDouble(String.valueOf(table.getValueAt(zeile, 2)));
+					int baujahr = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 8)));
+					int standortID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 6)));
+										
+					MainFrame.getGeraetAendernGUI().setModellID(modellID);
+					MainFrame.getGeraetAendernGUI().setGeraeteID(geraeteID);
+					MainFrame.getGeraetAendernGUI().setFarbe(farbe);
+					MainFrame.getGeraetAendernGUI().setMakel(makel);
+					MainFrame.getGeraetAendernGUI().setAnschaffungspreis(anschaffungspreis);
+					MainFrame.getGeraetAendernGUI().setVerkaufspreis(verkaufspreis);
+					MainFrame.getGeraetAendernGUI().setBaujahr(baujahr);
+					MainFrame.getGeraetAendernGUI().setStandort(standortID);
+					MainFrame.getGeraetAendernGUI().anfrage();
+					MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraetAendernGUI());
+					textSuchen.setText("Suchen...");
+				}
 			}
 		});
 		
@@ -230,6 +255,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 				talking = "suchen";
 				modellNr = Integer.parseInt(textSuchen.getText());
 				anfrage();
+				talking = "gesamt";
 			}
 		});
 		
@@ -244,5 +270,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 		aktualisieren(model);
 		model.abmelden(MainFrame.getBuchungGeraetSucheGUI());
 	}
+	
+
 }
 

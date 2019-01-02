@@ -234,6 +234,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 				talking = "suchen";
 				search = textSuchen.getText();
 				anfrage();
+				talking = "gesamt";
 			}
 		});
 	}
@@ -250,6 +251,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		aktualisieren(model);
 		model.abmelden(MainFrame.getBuchungModellSucheGUI());
 	}
+
 
 
 }

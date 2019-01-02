@@ -231,6 +231,7 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
 				MainFrame.change(MainFrame.getModellAendernGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());			}
 		});
 		
