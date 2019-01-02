@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import Domaenklassen.GeraeteTyp;
 import GUI.IAnlegenView;
+import GUI.MainFrame;
 
 public class GeraetAnlegenModel implements IAnlegenModel{
 	
@@ -18,7 +19,7 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 	private ArrayList<String> mengeAnTypen = new ArrayList<String>();
 	private String talking = "first";
 	private String[] geraet;
-	
+	private int standortID;
 		
 	public void anfrage (String talking2, String[] geraet) {
 		this.talking = talking2;
@@ -125,6 +126,7 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 		    	double verkaufspreis = Double.parseDouble(geraet[3]);
 		    	
 		    	
+		    	
 		    	try {
 				    String sqlupdate = "UPDATE SPORTGERAET SET MAKEL = '"+makel+"', FARBE = '"+farbe+"' , BAUJAHR = '"+baujahr+"', STANDORTID = '"+standortID+"', VERKAUFSPREIS = '"+verkaufspreis+"', ANSCHAFFUNGSPREIS = '"+anschaffungspreis+"'  WHERE ID = "+modellID+"";
 				    int ergebnis = stmtGeraetAnlegenModel.executeUpdate(sqlupdate);	
@@ -180,7 +182,7 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 					String farbe = geraet[5];
 					int baujahr = Integer.parseInt(geraet[6]);
 					String status = "OK";
-					int standortID = 1;
+					
 					
 				
 							
@@ -276,7 +278,9 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 			return mengeAnModellen;
 	}
 	
-	
+	public void setStandort(int id) {
+		standortID = id;
+	}
 	
 
 	

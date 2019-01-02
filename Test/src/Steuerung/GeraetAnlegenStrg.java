@@ -4,6 +4,7 @@ import Datenbankmodels.GeraetAnlegenModel;
 import Domaenklassen.SportGeraet;
 import GUI.GeraetAnlegenGUI;
 import GUI.IAnlegenView;
+import GUI.MainFrame;
 
 public class GeraetAnlegenStrg implements IController {
 
@@ -30,5 +31,8 @@ public class GeraetAnlegenStrg implements IController {
 		
 	}
 	
+	public void setzeStandort() {
+		model.setStandort(MainFrame.getStandort());
+	}
 	
 }

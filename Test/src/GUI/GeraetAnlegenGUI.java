@@ -304,6 +304,7 @@ public class GeraetAnlegenGUI extends JPanel implements IAnlegenView{
 					farbe = textFarbe.getText();
 					baujahr = Integer.parseInt(textBaujahr.getText());
 					makel = textMakel.getText();
+					controller.setzeStandort();
 					
 	
 					controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
