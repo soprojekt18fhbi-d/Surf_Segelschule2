@@ -107,8 +107,7 @@ public class RechnungAnzeigenModel implements IObjektModel{
 		 System.out.println();
         try {
         	
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here
 			viewTable(conn);
 			
@@ -124,8 +123,7 @@ public class RechnungAnzeigenModel implements IObjektModel{
 		this.rechnungsID = rechnungsID;
 		
         try {
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here
 			rechnungDruckenRechnung(conn, rechnungsID);
 			rechnungDruckenBuchung(conn, buchungsID);
