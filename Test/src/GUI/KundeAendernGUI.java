@@ -1,5 +1,5 @@
 /*
- * @author BenKröncke
+ * @author Methoden: BenKröncke, GUI: Michael Schmidt
  */
 
 package GUI;
@@ -61,6 +61,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 	private String motor = "N";
 	private String segel = "N";
 	private String heimat = "N";
+	private String text;
 
 	/**
 	 * Create the panel.
@@ -350,6 +351,15 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 			}
 		});
 		
+		txtKnr.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {	
+				text = txtKnr.getText();				
+				if (text.equals("Kundennummer...") || text.equals("PLZ..."))
+					txtKnr.setText("");
+			}
+		});
+		
 		txtNachname.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -363,6 +373,15 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 					e1.printStackTrace();
 				}
 			}	
+		});
+		
+		txtNachname.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {	
+				text = txtNachname.getText();				
+				if (text.equals("Nachname...") || text.equals("Ort..."))
+					txtNachname.setText("");
+			}
 		});
 		
 		txtVorname.addKeyListener(new KeyAdapter() {
@@ -380,6 +399,15 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 			}
 		});
 		
+		txtVorname.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {	
+				text = txtVorname.getText();				
+				if (text.equals("Vorname...") || text.equals("Strasse..."))
+					txtVorname.setText("");
+			}
+		});
+		
 		txtEmail.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -392,6 +420,15 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+			}
+		});
+		
+		txtEmail.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {	
+				text = txtEmail.getText();				
+				if (text.equals("E-Mail...") || text.equals("Hausnummer..."))
+					txtEmail.setText("");
 			}
 		});
 		
