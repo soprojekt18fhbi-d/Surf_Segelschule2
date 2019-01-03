@@ -1,3 +1,7 @@
+ /*
+  *  @author Michael Schmidt
+  */
+
 package GUI;
 
 import javax.swing.JPanel;
@@ -232,7 +236,21 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 		
 		btnGeraetDeaktivieren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int zeile = table.getSelectedRow();
 				
+				if (zeile < 0)
+					JOptionPane.showMessageDialog(null, "Gerät auswählen!");
+				else{
+					int modellID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 4)));
+					int geraeteID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 0)));
+					String status = String.valueOf(table.getValueAt(zeile, 5));
+					MainFrame.getGeraeteStatusGUI().setModellID(modellID);
+					MainFrame.getGeraeteStatusGUI().setGeraeteID(geraeteID);
+					MainFrame.getGeraeteStatusGUI().setStatus(status);
+					MainFrame.getGeraeteStatusGUI().anfrage();
+					MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraeteStatusGUI());
+					textSuchen.setText("Suchen...");
+				}	
 			}
 		});
 		

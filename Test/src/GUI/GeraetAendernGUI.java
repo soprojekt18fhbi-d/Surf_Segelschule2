@@ -1,11 +1,13 @@
+ /*
+  *  @author Michael Schmidt
+  */
+ 
 package GUI;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Datenbankmodels.IAnlegenModel;
-import Datenbankmodels.IModel;
-import Datenbankmodels.IModelSuche;
 import Steuerung.GeraetAnlegenStrg;
 
 import javax.swing.GroupLayout;
@@ -309,7 +311,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		
 
 		
-		
+		//Funktionen der Button
 		btnBestaetigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				talking = "aendern";
@@ -406,8 +408,6 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 			lblModellname.setText(comboboxItems.get(0));
 		}
 		comboboxItems.clear();
-			
-				
 	}
 	
 
@@ -421,7 +421,6 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		talking = "modellname";
 		controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, modellID);
 		aktualisieren(model);
-		model.abmelden(this);
-		
+		model.abmelden(this);		
 	}
 }

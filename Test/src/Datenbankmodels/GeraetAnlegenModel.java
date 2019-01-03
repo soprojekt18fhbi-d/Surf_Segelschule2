@@ -1,3 +1,7 @@
+ /*
+  *  @author Michael Schmidt
+  */
+
 package Datenbankmodels;
 
 import java.sql.Connection;

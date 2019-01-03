@@ -90,11 +90,13 @@ public class Starter {
 					GeraeteTypVerwaltungGUI geraeteTypVerwaltungGUI = new GeraeteTypVerwaltungGUI(buchungTypSucheModel, buchungTypSucheStrg);
 					GeraetAnlegenGUI geraetAnlegenGUI = new GeraetAnlegenGUI(geraetAnlegenModel, geraetAnlegenStrg);
 					GeraetAendernGUI geraetAendernGUI = new GeraetAendernGUI(geraetAnlegenModel, geraetAnlegenStrg);
+					GeraeteStatusGUI geraeteStatusGUI = new GeraeteStatusGUI(geraetAnlegenModel, geraetAnlegenStrg);
 					ModellAendernGUI modellAnedernGUI = new ModellAendernGUI(modellHinzufuegenModel, modellAnlegenStrg);
 					ModellAnlegenGUI modellAnlegenGUI = new ModellAnlegenGUI(modellHinzufuegenModel, modellAnlegenStrg);
 					SportgeraeteVerwaltungGUI sportgeraeteGUI = new SportgeraeteVerwaltungGUI(buchungGeraetSucheModel, buchungGeraetSucheStrg);
 					TypAendernGUI typAendernGUI = new TypAendernGUI();
 					TypAnlegenGUI typAnlegenGUI = new TypAnlegenGUI();
+					
 						
 					
 					//BuchungsverwaltungGUI
@@ -123,7 +125,7 @@ public class Starter {
 					WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltungGUI = new WirtschaftlichkeitsverwaltungGUI(wModel, wStrg);
 					
 					//MainFrame erzeugen
-					MainFrame mainframe = new MainFrame(geraeteVerwaltungGUI, geraeteModellVerwaltungGUI, geraeteTypVerwaltungGUI, geraetAnlegenGUI, geraetAendernGUI, modellAnedernGUI, modellAnlegenGUI, 
+					MainFrame mainframe = new MainFrame(geraeteVerwaltungGUI, geraeteModellVerwaltungGUI, geraeteTypVerwaltungGUI, geraetAnlegenGUI, geraetAendernGUI, geraeteStatusGUI, modellAnedernGUI, modellAnlegenGUI, 
 							sportgeraeteGUI, typAendernGUI, typAnlegenGUI, buchungsverwaltungGUI, buchungKundeSucheGUI, buchungTypSucheGUI, buchungModellSucheGUI, buchungGeraetSucheGUI, aktiveBuchungenGUI, 
 							kundenverwaltungGUI, kundeAnlegenGUI, kundeAendernGUI, preislisteGUI, preislisteAnlegenGUI, rechnungSucheGUI, wirtschaftlichkeitsverwaltungGUI);
 					

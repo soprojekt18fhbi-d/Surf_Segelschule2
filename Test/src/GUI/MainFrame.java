@@ -76,6 +76,7 @@ public class MainFrame extends JFrame {
 	private static GeraeteTypVerwaltungGUI geraeteTypVerwaltungGUI;
 	private static GeraetAnlegenGUI geraetAnlegenGUI;
 	private static GeraetAendernGUI geraetAendernGUI;
+	private static GeraeteStatusGUI geraeteStatusGUI;
 	private static ModellAendernGUI modellAnedernGUI;
 	private static ModellAnlegenGUI modellAnlegenGUI;
 	private static SportgeraeteVerwaltungGUI sportgeraeteGUI;
@@ -116,7 +117,7 @@ public class MainFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public MainFrame(GeraeteVerwaltungGUI geraeteVerwaltungGUI, GeraeteModellVerwaltungGUI geraeteModellVerwaltungGUI, GeraeteTypVerwaltungGUI geraeteTypVerwaltungGUI, GeraetAnlegenGUI geraetAnlegenGUI, 
-			GeraetAendernGUI geraetAendernGUI, ModellAendernGUI modellAnedernGUI, ModellAnlegenGUI modellAnlegenGUI, SportgeraeteVerwaltungGUI sportgeraeteGUI, TypAendernGUI typAendernGUI, TypAnlegenGUI typAnlegenGUI, 
+			GeraetAendernGUI geraetAendernGUI, GeraeteStatusGUI geraeteStatusGUI, ModellAendernGUI modellAnedernGUI, ModellAnlegenGUI modellAnlegenGUI, SportgeraeteVerwaltungGUI sportgeraeteGUI, TypAendernGUI typAendernGUI, TypAnlegenGUI typAnlegenGUI, 
 			BuchungsverwaltungGUI buchungsverwaltungGUI, BuchungKundeSucheGUI buchungKundeSucheGUI, BuchungTypSucheGUI buchungTypSucheGUI, BuchungModellSucheGUI buchungModellSucheGUI, BuchungGeraetSucheGUI buchungGeraetSucheGUI, 
 			AktiveBuchungenGUI aktiveBuchungenGUI, KundenverwaltungGUI kundenverwaltungGUI, KundeAnlegenGUI kundeAnlegenGUI, KundeAendernGUI kundeAendernGUI, PreislisteGUI preislisteGUI, PreislisteAnlegenGUI preislisteAnlegenGUI, 
 			RechungsSucheGUI rechnungSucheGUI, WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltungGUI) {
@@ -126,6 +127,7 @@ public class MainFrame extends JFrame {
 		MainFrame.geraeteTypVerwaltungGUI = geraeteTypVerwaltungGUI;
 		MainFrame.geraetAnlegenGUI = geraetAnlegenGUI;
 		MainFrame.geraetAendernGUI = geraetAendernGUI;
+		MainFrame.geraeteStatusGUI = geraeteStatusGUI;
 		MainFrame.modellAnedernGUI = modellAnedernGUI;
 		MainFrame.modellAnlegenGUI = modellAnlegenGUI;
 		MainFrame.sportgeraeteGUI = sportgeraeteGUI;
@@ -169,6 +171,7 @@ public class MainFrame extends JFrame {
 		contentPane.add(modellAnlegenGUI);
 		contentPane.add(modellAnedernGUI);
 		contentPane.add(geraetAnlegenGUI);
+		contentPane.add(geraeteStatusGUI);
 		contentPane.add(geraeteTypVerwaltungGUI);
 		contentPane.add(geraeteModellVerwaltungGUI);
 		contentPane.add(geraetAendernGUI);
@@ -246,6 +249,10 @@ public class MainFrame extends JFrame {
 	
 	public static GeraetAendernGUI getGeraetAendernGUI(){ 		
 		return geraetAendernGUI;
+	}
+	
+	public static GeraeteStatusGUI getGeraeteStatusGUI(){ 		
+		return geraeteStatusGUI;
 	}
 	
 	public static JPanel getBuchungsverwaltungGUI(){ 		
