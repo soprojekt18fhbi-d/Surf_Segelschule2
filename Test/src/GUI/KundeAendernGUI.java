@@ -443,13 +443,24 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		
 		btnSpeichern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				boolean ok = true;
+					
 				try {
-					if(selectedMode.equals("Kunde"))
+					
+
+					if(selectedMode.equals("waiting") || txtKnr.getText().equals("") || variableKnr.getText().equals("") || txtKnr.getText().equals("Kundennummer...") || txtKnr.getText().equals("PLZ..."))
+					{
+						ok = false;
+						JOptionPane.showMessageDialog(null, "Das wird nicht funktionieren!");
+					}
+					
+					if(selectedMode.equals("Kunde") && ok == true)
 					{
 						talking = "kundespeichern";
 						anfrage();
 					}	
-					else if(selectedMode.equals("Adresse"))
+					else if(selectedMode.equals("Adresse") && ok == true)
 					{
 						talking = "adressespeichern";
 						anfrage();
@@ -501,15 +512,21 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		btnDeaktivieren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				boolean ok = true;
 				try {
-					if(selectedMode.equals("waiting") || txtKnr.equals("") || variableKnr.equals("") || txtKnr.equals("Kundennummer...") || txtKnr.equals("PLZ..."))
-						JOptionPane.showMessageDialog(null, "Das wird nicht funktionierten!");
-					else if(selectedMode.equals("Kunde"))
+					
+					if(selectedMode.equals("waiting") || txtKnr.getText().equals("") || variableKnr.getText().equals("") || txtKnr.getText().equals("Kundennummer...") || txtKnr.getText().equals("PLZ..."))
+					{
+						ok = false;
+						JOptionPane.showMessageDialog(null, "Das wird nicht funktionieren!");
+					}
+						
+					if(selectedMode.equals("Kunde") && ok == true)
 					{
 						talking = "deaktivierenkunde";
 						anfrage();
 					}
-					else if(selectedMode.equals("Adresse"))
+					else if(selectedMode.equals("Adresse") && ok == true)
 					{
 						talking = "deaktivierenadresse";
 						anfrage();
