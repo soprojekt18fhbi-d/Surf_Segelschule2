@@ -127,8 +127,7 @@ public class KundeAnlegenModel implements IModel{
 		
 		 
         try {
-			Connection conn = DriverManager.
-			    getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+        	Connection conn = DBConnectorSingleton.getCon();
 
 			Statement statement = conn.createStatement();
 			
