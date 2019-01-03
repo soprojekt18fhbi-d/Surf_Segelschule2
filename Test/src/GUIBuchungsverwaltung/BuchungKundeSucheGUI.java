@@ -47,7 +47,7 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 	private JTextField txtKnr;
 	private IObjektModel model;
 	private BuchungKundeSucheStrg controller;
-	private String talking;
+	private String talking = "Nachname";
 	
 
 	/**
@@ -57,100 +57,210 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 	 * @author M. Schmidt / Methoden: B. Kröncke
 	 */
 	public BuchungKundeSucheGUI(IObjektModel smodel, BuchungKundeSucheStrg scontroller) {
-		setBackground(Color.DARK_GRAY);
-		
 		this.model = smodel;
 		this.controller = scontroller;
 		
+		setSize(980, 580);
+		setLayout(new BorderLayout(0, 0));
 		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		add(panel, BorderLayout.NORTH);
 		
+		JButton btnZurueck = new JButton("Zur\u00FCck");
+		btnZurueck.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnZurueck.setBackground(new Color(255, 140, 0));
 		
-		setLayout(null);
+		JButton btnHauptmen = new JButton("Hauptmen\u00FC");
+		btnHauptmen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnHauptmen.setBackground(new Color(255, 140, 0));
+		
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(btnZurueck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 828, Short.MAX_VALUE)
+					.addComponent(btnHauptmen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnZurueck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnHauptmen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		panel.setLayout(gl_panel);
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.DARK_GRAY);
-		panel_1.setLayout(null);
-		panel_1.setBounds(0, 0, 668, 539);
-		add(panel_1);
+		add(panel_1, BorderLayout.CENTER);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_panel_1.rowHeights = new int[]{13, 0, 0, 20, 0, 0};
+		gbl_panel_1.columnWeights = new double[]{0.1, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.025, 0.0, 0.0, 0.04, 1.0, Double.MIN_VALUE};
+		panel_1.setLayout(gbl_panel_1);
+		
+		JLabel lblSucheKundeNach = new JLabel("Suche Kunde nach:");
+		lblSucheKundeNach.setForeground(Color.WHITE);
+		lblSucheKundeNach.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblSucheKundeNach = new GridBagConstraints();
+		gbc_lblSucheKundeNach.anchor = GridBagConstraints.WEST;
+		gbc_lblSucheKundeNach.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSucheKundeNach.gridx = 0;
+		gbc_lblSucheKundeNach.gridy = 1;
+		panel_1.add(lblSucheKundeNach, gbc_lblSucheKundeNach);
 		
 		txtSearchbar = new JTextField();
-		txtSearchbar.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent arg0) {
-				
-				try {
-					
-					
-					anfrage();
-					
-				
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-	
-		});
 		txtSearchbar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtSearchbar.setHorizontalAlignment(SwingConstants.CENTER);
-		txtSearchbar.setText("Suche...");
+		txtSearchbar.setText("Suchen...");
+		GridBagConstraints gbc_txtSearchbar = new GridBagConstraints();
+		gbc_txtSearchbar.insets = new Insets(0, 0, 5, 5);
+		gbc_txtSearchbar.fill = GridBagConstraints.BOTH;
+		gbc_txtSearchbar.gridx = 1;
+		gbc_txtSearchbar.gridy = 1;
+		panel_1.add(txtSearchbar, gbc_txtSearchbar);
 		txtSearchbar.setColumns(10);
-		txtSearchbar.setBounds(220, 75, 228, 35);
-		panel_1.add(txtSearchbar);
-		
-		JButton alleButton = new JButton("Suchen");
-		alleButton.setBackground(new Color(255, 140, 0));
-		alleButton.setForeground(new Color(0, 0, 0));
-		alleButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				talking = "master";
-				anfrage();
-
-			}
-		});
-		alleButton.setPreferredSize(new Dimension(120, 35));
-		alleButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		alleButton.setBounds(10, 192, 200, 35);
-		panel_1.add(alleButton);
-		
-		JButton leerButton = new JButton("Leeren");
-		leerButton.setBackground(new Color(255, 140, 0));
-		leerButton.setForeground(new Color(0, 0, 0));
-		leerButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				txtSearchbar.setText("");
-				txtKnr.setText("");
-			}
-		});
-		leerButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		leerButton.setBounds(220, 192, 228, 35);
-		panel_1.add(leerButton);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				
-				talking = comboBox.getSelectedItem().toString();
-				System.out.println(talking);
-			}
-		});
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 2;
+		gbc_comboBox.gridy = 1;
+		panel_1.add(comboBox, gbc_comboBox);
+		
 		comboBox.addItem("Nachname");
 		comboBox.addItem("Vorname");
 		comboBox.addItem("E-Mail");
 		comboBox.addItem("PLZ");
 		comboBox.addItem("Strasse");
-		comboBox.addItem("Ort");
+		comboBox.addItem("Ort");	
 		
+		JLabel lblKundennummer = new JLabel("Kundennummer:");
+		lblKundennummer.setForeground(Color.WHITE);
+		lblKundennummer.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblKundennummer = new GridBagConstraints();
+		gbc_lblKundennummer.anchor = GridBagConstraints.WEST;
+		gbc_lblKundennummer.insets = new Insets(0, 0, 5, 5);
+		gbc_lblKundennummer.gridx = 0;
+		gbc_lblKundennummer.gridy = 2;
+		panel_1.add(lblKundennummer, gbc_lblKundennummer);
 		
-		comboBox.setPreferredSize(new Dimension(80, 35));
-		comboBox.setMaximumSize(new Dimension(100, 35));
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		comboBox.setBounds(458, 75, 153, 35);
-		panel_1.add(comboBox);
+		txtKnr = new JTextField();
+		txtKnr.setHorizontalAlignment(SwingConstants.CENTER);
+		txtKnr.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtKnr.setEditable(false);
+		GridBagConstraints gbc_txtKnr = new GridBagConstraints();
+		gbc_txtKnr.insets = new Insets(0, 0, 5, 5);
+		gbc_txtKnr.fill = GridBagConstraints.BOTH;
+		gbc_txtKnr.gridx = 1;
+		gbc_txtKnr.gridy = 2;
+		panel_1.add(txtKnr, gbc_txtKnr);
+		txtKnr.setColumns(10);
 		
-		JButton waehleButton = new JButton("Ausw\u00E4hlen");
-		waehleButton.setBackground(new Color(255, 140, 0));
-		waehleButton.setForeground(new Color(0, 0, 0));
-		waehleButton.addActionListener(new ActionListener() {
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.DARK_GRAY);
+		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+		gbc_panel_2.gridwidth = 5;
+		gbc_panel_2.insets = new Insets(0, 0, 0, 5);
+		gbc_panel_2.fill = GridBagConstraints.BOTH;
+		gbc_panel_2.gridx = 0;
+		gbc_panel_2.gridy = 4;
+		panel_1.add(panel_2, gbc_panel_2);
+		GridBagLayout gbl_panel_2 = new GridBagLayout();
+		gbl_panel_2.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_panel_2.rowHeights = new int[]{0, 0, 0};
+		gbl_panel_2.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_2.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		panel_2.setLayout(gbl_panel_2);
+		
+		JButton btnSuchen = new JButton("Suchen");
+		btnSuchen.setBackground(new Color(255, 140, 0));
+		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_btnSuchen = new GridBagConstraints();
+		gbc_btnSuchen.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnSuchen.insets = new Insets(0, 0, 5, 5);
+		gbc_btnSuchen.gridx = 0;
+		gbc_btnSuchen.gridy = 0;
+		panel_2.add(btnSuchen, gbc_btnSuchen);
+		
+		JButton btnLeeren = new JButton("Leeren");
+		btnLeeren.setBackground(new Color(255, 140, 0));
+		btnLeeren.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_btnLeeren = new GridBagConstraints();
+		gbc_btnLeeren.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnLeeren.insets = new Insets(0, 0, 5, 5);
+		gbc_btnLeeren.gridx = 1;
+		gbc_btnLeeren.gridy = 0;
+		panel_2.add(btnLeeren, gbc_btnLeeren);
+		
+		JButton btnAuswhlen = new JButton("Ausw\u00E4hlen");
+		btnAuswhlen.setBackground(new Color(255, 140, 0));
+		btnAuswhlen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_btnAuswhlen = new GridBagConstraints();
+		gbc_btnAuswhlen.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAuswhlen.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnAuswhlen.gridx = 2;
+		gbc_btnAuswhlen.gridy = 0;
+		panel_2.add(btnAuswhlen, gbc_btnAuswhlen);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridwidth = 3;
+		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 1;
+		panel_2.add(scrollPane, gbc_scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
+		//Funktionen der Button
+		txtSearchbar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		
+				txtSearchbar.setText("");
+			}
+		});
+		
+		txtSearchbar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				try {
+					anfrage();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		btnSuchen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				talking = "master";
+				anfrage();
+			}
+		});
+		
+		btnLeeren.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtSearchbar.setText("Suchen...");
+				txtKnr.setText("");
+			}
+		});
+		
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				talking = comboBox.getSelectedItem().toString();
+				System.out.println(talking);
+			}
+		});
+		
+		btnAuswhlen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
@@ -166,23 +276,13 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 						
 						System.out.println(MainFrame.getBuchungTypSucheGUI().getKnr());
 					}
-					
+					txtSearchbar.setText("Suchen...");
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				
 			}
 		});
-		waehleButton.setPreferredSize(new Dimension(120, 35));
-		waehleButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		waehleButton.setBounds(458, 192, 200, 35);
-		panel_1.add(waehleButton);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 237, 648, 291);
-		panel_1.add(scrollPane);
-		
-		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -196,57 +296,21 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 				}
 			
 		}});
-		scrollPane.setViewportView(table);
 		
-		txtKnr = new JTextField();
-		txtKnr.setEditable(false);
-		txtKnr.setHorizontalAlignment(SwingConstants.CENTER);
-		txtKnr.setFont(new Font("Tahoma", Font.BOLD, 16));
-		txtKnr.setColumns(10);
-		txtKnr.setBounds(220, 121, 228, 35);
-		panel_1.add(txtKnr);
-		
-		JLabel lblSucheKundeNach = new JLabel("Suche Kunde nach:");
-		lblSucheKundeNach.setForeground(Color.WHITE);
-		lblSucheKundeNach.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblSucheKundeNach.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblSucheKundeNach.setBounds(24, 75, 184, 35);
-		panel_1.add(lblSucheKundeNach);
-		
-		JLabel lblKundennummer = new JLabel("Kundennummer:");
-		lblKundennummer.setForeground(Color.WHITE);
-		lblKundennummer.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblKundennummer.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblKundennummer.setBounds(24, 120, 184, 35);
-		panel_1.add(lblKundennummer);
-		
-		JButton button = new JButton("Zur\u00FCck");
-		button.setBackground(new Color(255, 140, 0));
-		button.setForeground(new Color(0, 0, 0));
-		button.addActionListener(new ActionListener() {
+		btnZurueck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getBuchungKundeSucheGUI(), MainFrame.getBuchungsverwaltungGUI());
+				txtSearchbar.setText("Suchen...");
 			}
 		});
-		button.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		button.setBounds(0, 0, 150, 35);
-		panel_1.add(button);
 		
-		JButton button_1 = new JButton("Hauptmen\u00FC");
-		button_1.setBackground(new Color(255, 140, 0));
-		button_1.setForeground(new Color(0, 0, 0));
-		button_1.addActionListener(new ActionListener() {
+		btnHauptmen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getBuchungKundeSucheGUI(), MainFrame.getHauptmenueGUI());
+				txtSearchbar.setText("Suchen...");
 			}
 		});
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		button_1.setBounds(545, 2, 123, 31);
-		panel_1.add(button_1);
-		
-
 	}
-
 	@Override
 	public void aktualisieren(IObjektModel model) {
 		table.setModel(model.getTableModel());
@@ -259,4 +323,6 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 		table.setModel(model.getTableModel());
 		model.abmelden(MainFrame.getKundeAendernGUI());
 	}
-}
+}	
+		
+

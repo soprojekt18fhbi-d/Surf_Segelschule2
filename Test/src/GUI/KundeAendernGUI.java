@@ -148,6 +148,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		txtNachname.setColumns(10);
 		
 		variableKnr = new JTextField();
+		variableKnr.setEditable(false);
 		GridBagConstraints gbc_variableKnr = new GridBagConstraints();
 		gbc_variableKnr.gridheight = 2;
 		gbc_variableKnr.gridwidth = 3;
