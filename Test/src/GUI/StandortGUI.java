@@ -69,6 +69,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 	 * Create the frame.
 	 */
 	public StandortGUI(IStandortModel models, StandortStrg controllers) {
+		setResizable(false);
 		
 		model = models;
 		controller = controllers;
@@ -225,74 +226,215 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		registrierenPanel = new JPanel();
 		registrierenPanel.setBackground(Color.DARK_GRAY);
 		getContentPane().add(registrierenPanel, "name_302221623575103");
+		GridBagLayout gbl_registrierenPanel = new GridBagLayout();
+		gbl_registrierenPanel.columnWidths = new int[]{363, 147, 170, 341, 0};
+		gbl_registrierenPanel.rowHeights = new int[]{79, 30, 36, 39, 28, 1, 34, 30, 34, 28, 28, 37, 0};
+		gbl_registrierenPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_registrierenPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		registrierenPanel.setLayout(gbl_registrierenPanel);
 		
 		JLabel label_4 = new JLabel("Willkommen im Surf- & Segelcenter!");
 		label_4.setHorizontalAlignment(SwingConstants.CENTER);
 		label_4.setForeground(Color.WHITE);
 		label_4.setFont(new Font("Tahoma", Font.BOLD, 48));
+		GridBagConstraints gbc_label_4 = new GridBagConstraints();
+		gbc_label_4.insets = new Insets(0, 0, 5, 0);
+		gbc_label_4.gridwidth = 4;
+		gbc_label_4.gridx = 0;
+		gbc_label_4.gridy = 0;
+		registrierenPanel.add(label_4, gbc_label_4);
 		
 		JLabel lblStandortname = new JLabel("StandortID:");
 		lblStandortname.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblStandortname.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblStandortname = new GridBagConstraints();
+		gbc_lblStandortname.gridwidth = 2;
+		gbc_lblStandortname.anchor = GridBagConstraints.EAST;
+		gbc_lblStandortname.fill = GridBagConstraints.VERTICAL;
+		gbc_lblStandortname.insets = new Insets(0, 0, 5, 5);
+		gbc_lblStandortname.gridx = 0;
+		gbc_lblStandortname.gridy = 2;
+		registrierenPanel.add(lblStandortname, gbc_lblStandortname);
 		
 		idFeld = new JTextField();
 		idFeld.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		idFeld.setColumns(10);
+		GridBagConstraints gbc_idFeld = new GridBagConstraints();
+		gbc_idFeld.fill = GridBagConstraints.BOTH;
+		gbc_idFeld.insets = new Insets(0, 0, 5, 5);
+		gbc_idFeld.gridx = 2;
+		gbc_idFeld.gridy = 2;
+		registrierenPanel.add(idFeld, gbc_idFeld);
 		
 		JLabel label_5 = new JLabel("Standortname:");
 		label_5.setForeground(Color.WHITE);
 		label_5.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_label_5 = new GridBagConstraints();
+		gbc_label_5.gridwidth = 2;
+		gbc_label_5.anchor = GridBagConstraints.EAST;
+		gbc_label_5.fill = GridBagConstraints.VERTICAL;
+		gbc_label_5.insets = new Insets(0, 0, 5, 5);
+		gbc_label_5.gridx = 0;
+		gbc_label_5.gridy = 3;
+		registrierenPanel.add(label_5, gbc_label_5);
 		
 		nameFeld = new JTextField();
 		nameFeld.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		nameFeld.setColumns(10);
+		GridBagConstraints gbc_nameFeld = new GridBagConstraints();
+		gbc_nameFeld.fill = GridBagConstraints.BOTH;
+		gbc_nameFeld.insets = new Insets(0, 0, 5, 5);
+		gbc_nameFeld.gridx = 2;
+		gbc_nameFeld.gridy = 3;
+		registrierenPanel.add(nameFeld, gbc_nameFeld);
 		
 		JLabel lblPasswort = new JLabel("Passwort:");
 		lblPasswort.setForeground(Color.WHITE);
 		lblPasswort.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblPasswort = new GridBagConstraints();
+		gbc_lblPasswort.gridwidth = 2;
+		gbc_lblPasswort.anchor = GridBagConstraints.EAST;
+		gbc_lblPasswort.fill = GridBagConstraints.VERTICAL;
+		gbc_lblPasswort.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPasswort.gridx = 0;
+		gbc_lblPasswort.gridy = 4;
+		registrierenPanel.add(lblPasswort, gbc_lblPasswort);
 		
 		pwFeld = new JPasswordField();
 		pwFeld.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_pwFeld = new GridBagConstraints();
+		gbc_pwFeld.fill = GridBagConstraints.BOTH;
+		gbc_pwFeld.insets = new Insets(0, 0, 5, 5);
+		gbc_pwFeld.gridx = 2;
+		gbc_pwFeld.gridy = 4;
+		registrierenPanel.add(pwFeld, gbc_pwFeld);
 		
 		JLabel lblTelefonnummer = new JLabel("Tel. Nr.:");
 		lblTelefonnummer.setForeground(Color.WHITE);
 		lblTelefonnummer.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblTelefonnummer = new GridBagConstraints();
+		gbc_lblTelefonnummer.gridwidth = 2;
+		gbc_lblTelefonnummer.anchor = GridBagConstraints.EAST;
+		gbc_lblTelefonnummer.fill = GridBagConstraints.VERTICAL;
+		gbc_lblTelefonnummer.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTelefonnummer.gridx = 0;
+		gbc_lblTelefonnummer.gridy = 5;
+		registrierenPanel.add(lblTelefonnummer, gbc_lblTelefonnummer);
 		
 		telFeld = new JTextField();
 		telFeld.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		telFeld.setColumns(10);
+		GridBagConstraints gbc_telFeld = new GridBagConstraints();
+		gbc_telFeld.fill = GridBagConstraints.BOTH;
+		gbc_telFeld.insets = new Insets(0, 0, 5, 5);
+		gbc_telFeld.gridx = 2;
+		gbc_telFeld.gridy = 5;
+		registrierenPanel.add(telFeld, gbc_telFeld);
 		
 		JLabel lblPlz = new JLabel("PLZ:");
 		lblPlz.setForeground(Color.WHITE);
 		lblPlz.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblPlz = new GridBagConstraints();
+		gbc_lblPlz.gridwidth = 2;
+		gbc_lblPlz.anchor = GridBagConstraints.EAST;
+		gbc_lblPlz.fill = GridBagConstraints.VERTICAL;
+		gbc_lblPlz.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPlz.gridx = 0;
+		gbc_lblPlz.gridy = 6;
+		registrierenPanel.add(lblPlz, gbc_lblPlz);
 		
 		plzFeld = new JTextField();
 		plzFeld.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		plzFeld.setColumns(10);
+		GridBagConstraints gbc_plzFeld = new GridBagConstraints();
+		gbc_plzFeld.fill = GridBagConstraints.BOTH;
+		gbc_plzFeld.insets = new Insets(0, 0, 5, 5);
+		gbc_plzFeld.gridx = 2;
+		gbc_plzFeld.gridy = 6;
+		registrierenPanel.add(plzFeld, gbc_plzFeld);
 		
 		JLabel lblStrae = new JLabel("Stra\u00DFe:");
 		lblStrae.setForeground(Color.WHITE);
 		lblStrae.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblStrae = new GridBagConstraints();
+		gbc_lblStrae.gridwidth = 2;
+		gbc_lblStrae.anchor = GridBagConstraints.EAST;
+		gbc_lblStrae.fill = GridBagConstraints.VERTICAL;
+		gbc_lblStrae.insets = new Insets(0, 0, 5, 5);
+		gbc_lblStrae.gridx = 0;
+		gbc_lblStrae.gridy = 7;
+		registrierenPanel.add(lblStrae, gbc_lblStrae);
 		
 		strFeld = new JTextField();
 		strFeld.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		strFeld.setColumns(10);
+		GridBagConstraints gbc_strFeld = new GridBagConstraints();
+		gbc_strFeld.fill = GridBagConstraints.BOTH;
+		gbc_strFeld.insets = new Insets(0, 0, 5, 5);
+		gbc_strFeld.gridx = 2;
+		gbc_strFeld.gridy = 7;
+		registrierenPanel.add(strFeld, gbc_strFeld);
 		
 		JLabel lblOrt = new JLabel("Ort:");
 		lblOrt.setForeground(Color.WHITE);
 		lblOrt.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblOrt = new GridBagConstraints();
+		gbc_lblOrt.gridwidth = 2;
+		gbc_lblOrt.anchor = GridBagConstraints.EAST;
+		gbc_lblOrt.fill = GridBagConstraints.VERTICAL;
+		gbc_lblOrt.insets = new Insets(0, 0, 5, 5);
+		gbc_lblOrt.gridx = 0;
+		gbc_lblOrt.gridy = 8;
+		registrierenPanel.add(lblOrt, gbc_lblOrt);
 		
 		ortFeld = new JTextField();
 		ortFeld.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		ortFeld.setColumns(10);
+		GridBagConstraints gbc_ortFeld = new GridBagConstraints();
+		gbc_ortFeld.fill = GridBagConstraints.BOTH;
+		gbc_ortFeld.insets = new Insets(0, 0, 5, 5);
+		gbc_ortFeld.gridx = 2;
+		gbc_ortFeld.gridy = 8;
+		registrierenPanel.add(ortFeld, gbc_ortFeld);
 		
 		JLabel lblHausnummer = new JLabel("Hausnummer:");
 		lblHausnummer.setForeground(Color.WHITE);
 		lblHausnummer.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblHausnummer = new GridBagConstraints();
+		gbc_lblHausnummer.gridwidth = 2;
+		gbc_lblHausnummer.anchor = GridBagConstraints.EAST;
+		gbc_lblHausnummer.fill = GridBagConstraints.VERTICAL;
+		gbc_lblHausnummer.insets = new Insets(0, 0, 5, 5);
+		gbc_lblHausnummer.gridx = 0;
+		gbc_lblHausnummer.gridy = 9;
+		registrierenPanel.add(lblHausnummer, gbc_lblHausnummer);
 		
 		hnrFeld = new JTextField();
 		hnrFeld.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		hnrFeld.setColumns(10);
+		GridBagConstraints gbc_hnrFeld = new GridBagConstraints();
+		gbc_hnrFeld.fill = GridBagConstraints.BOTH;
+		gbc_hnrFeld.insets = new Insets(0, 0, 5, 5);
+		gbc_hnrFeld.gridx = 2;
+		gbc_hnrFeld.gridy = 9;
+		registrierenPanel.add(hnrFeld, gbc_hnrFeld);
+		
+		JButton abbButton = new JButton("Abbrechen");
+		abbButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				changePanel();
+				
+			}
+		});
+		abbButton.setBackground(new Color(255, 140, 0));
+		abbButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_abbButton = new GridBagConstraints();
+		gbc_abbButton.insets = new Insets(0, 0, 5, 5);
+		gbc_abbButton.fill = GridBagConstraints.BOTH;
+		gbc_abbButton.gridx = 1;
+		gbc_abbButton.gridy = 10;
+		registrierenPanel.add(abbButton, gbc_abbButton);
 		
 		JButton regButton = new JButton("Registrieren");
 		regButton.addActionListener(new ActionListener() {
@@ -329,110 +471,12 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		});
 		regButton.setBackground(new Color(255, 140, 0));
 		regButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		
-		JButton abbButton = new JButton("Abbrechen");
-		abbButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				changePanel();
-				
-			}
-		});
-		abbButton.setBackground(new Color(255, 140, 0));
-		abbButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GroupLayout gl_registrierenPanel = new GroupLayout(registrierenPanel);
-		gl_registrierenPanel.setHorizontalGroup(
-			gl_registrierenPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_registrierenPanel.createSequentialGroup()
-					.addGroup(gl_registrierenPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 979, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_registrierenPanel.createSequentialGroup()
-							.addGap(270)
-							.addGroup(gl_registrierenPanel.createParallelGroup(Alignment.TRAILING, false)
-								.addGroup(gl_registrierenPanel.createSequentialGroup()
-									.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-									.addGap(4)
-									.addComponent(nameFeld, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_registrierenPanel.createSequentialGroup()
-									.addComponent(lblStandortname, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(idFeld, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_registrierenPanel.createSequentialGroup()
-									.addComponent(lblPasswort, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(pwFeld))
-								.addGroup(gl_registrierenPanel.createSequentialGroup()
-									.addComponent(lblTelefonnummer, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-									.addGap(4)
-									.addComponent(telFeld, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_registrierenPanel.createSequentialGroup()
-									.addComponent(lblPlz, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-									.addGap(4)
-									.addComponent(plzFeld, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_registrierenPanel.createSequentialGroup()
-									.addComponent(lblStrae, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(strFeld, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_registrierenPanel.createSequentialGroup()
-									.addComponent(lblOrt, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-									.addGap(4)
-									.addComponent(ortFeld, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_registrierenPanel.createSequentialGroup()
-									.addComponent(lblHausnummer, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-									.addGap(4)
-									.addComponent(hnrFeld, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_registrierenPanel.createSequentialGroup()
-									.addComponent(abbButton, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(regButton)))))
-					.addContainerGap(5, Short.MAX_VALUE))
-		);
-		gl_registrierenPanel.setVerticalGroup(
-			gl_registrierenPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_registrierenPanel.createSequentialGroup()
-					.addComponent(label_4)
-					.addGap(45)
-					.addGroup(gl_registrierenPanel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(idFeld, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-						.addComponent(lblStandortname, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_registrierenPanel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(nameFeld, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_registrierenPanel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(pwFeld, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-						.addComponent(lblPasswort, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_registrierenPanel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(lblTelefonnummer, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(telFeld, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
-					.addGap(5)
-					.addGroup(gl_registrierenPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblPlz, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(plzFeld, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_registrierenPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblStrae, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(strFeld, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_registrierenPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblOrt, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(ortFeld, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_registrierenPanel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(lblHausnummer, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-						.addComponent(hnrFeld, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_registrierenPanel.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(gl_registrierenPanel.createSequentialGroup()
-							.addComponent(regButton, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(73, Short.MAX_VALUE))
-						.addGroup(gl_registrierenPanel.createSequentialGroup()
-							.addComponent(abbButton, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())))
-		);
-		registrierenPanel.setLayout(gl_registrierenPanel);
+		GridBagConstraints gbc_regButton = new GridBagConstraints();
+		gbc_regButton.insets = new Insets(0, 0, 5, 5);
+		gbc_regButton.fill = GridBagConstraints.BOTH;
+		gbc_regButton.gridx = 2;
+		gbc_regButton.gridy = 10;
+		registrierenPanel.add(regButton, gbc_regButton);
 		logo = new ImageIcon(getClass().getResource("/GUI/surfLogo.png"));
 	}
 
