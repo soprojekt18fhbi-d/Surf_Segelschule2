@@ -47,6 +47,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 	private int modellNr;
 	private Icon lupe;
 
+
 	/**
 	 * Create the panel.
 	 */
@@ -252,8 +253,8 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 		
 		textSuchen.addKeyListener(new KeyAdapter(){
 			public void keyReleased(KeyEvent e) {
-				talking = "suchen";
-				modellNr = Integer.parseInt(textSuchen.getText());
+				talking = textSuchen.getText();
+				modellNr = 123456789; //damit methode "fetchGeräte" nicht geändert werden muss 
 				anfrage();
 				talking = "gesamt";
 			}

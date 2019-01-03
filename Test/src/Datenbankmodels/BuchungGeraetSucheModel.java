@@ -91,12 +91,12 @@ public class BuchungGeraetSucheModel implements IObjektModel { //@author Ben Krö
 		String query;
 		
 		//Die Sucheingabe wurde als "modellNr" übergeben, damit methode nicht mehr verändert werden muss!
-		String textEingabe = String.valueOf(modellNr);
+		String textEingabe = talking;
 			query = "select ID,MAKEL,VERKAUFSPREIS, FARBE from SPORTGERAET where MODELLID = '" + modellNr + "' AND STATUS = 'OK' AND STANDORTID = " + standort;
 		if (talking.equals("gesamt"))
 			query = "select * from SPORTGERAET";
-		if (talking.equals("suchen"))
-			query = "select * from SPORTGERAET WHERE ID LIKE '"+textEingabe+"%' OR MAKEL LIKE '"+textEingabe+"%' OR TYPID LIKE '"+textEingabe+"%' OR MODELLID LIKE '"+textEingabe+"%' OR STATUS LIKE '"+textEingabe+"%' OR FARBE LIKE '"+textEingabe+"%' OR BAUJAHR LIKE '"+textEingabe+"%' OR ANSCHAFFUNGSPREIS LIKE '"+textEingabe+"%'" ;
+		if (modellNr == 123456789)
+			query = "select * from SPORTGERAET WHERE ID LIKE '"+textEingabe+"%' OR MAKEL LIKE '"+textEingabe+"%' OR TYPID LIKE '"+textEingabe+"%' OR MODELLID LIKE '"+textEingabe+"%' OR STATUS LIKE '"+textEingabe+"%' OR FARBE LIKE '"+textEingabe+"%' OR BAUJAHR LIKE '"+textEingabe+"%' OR VERKAUFSPREIS LIKE '"+textEingabe+"%' OR ANSCHAFFUNGSPREIS LIKE '"+textEingabe+"%'" ;
 		System.out.println(query);
 			
 		ResultSet rs = stmt.executeQuery(query);
