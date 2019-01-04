@@ -423,4 +423,5 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		aktualisieren(model);
 		model.abmelden(this);		
 	}
+	
 }

@@ -449,10 +449,10 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 				try {
 					
 
-					if(selectedMode.equals("waiting") || txtKnr.getText().equals("") || variableKnr.getText().equals("") || txtKnr.getText().equals("Kundennummer...") || txtKnr.getText().equals("PLZ..."))
+					if(selectedMode.equals("waiting") || txtKnr.getText().equals("") || (selectedMode.equals("Adresse") && variableKnr.getText().equals("")) || txtKnr.getText().equals("Kundennummer...") || txtKnr.getText().equals("PLZ..."))
 					{
 						ok = false;
-						JOptionPane.showMessageDialog(null, "Das wird nicht funktionieren!");
+						JOptionPane.showMessageDialog(null, "Bitte einen Kunden auswählen!");
 					}
 					
 					if(selectedMode.equals("Kunde") && ok == true)
@@ -515,10 +515,10 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 				boolean ok = true;
 				try {
 					
-					if(selectedMode.equals("waiting") || txtKnr.getText().equals("") || variableKnr.getText().equals("") || txtKnr.getText().equals("Kundennummer...") || txtKnr.getText().equals("PLZ..."))
+					if(selectedMode.equals("waiting") || txtKnr.getText().equals("") || (selectedMode.equals("Adresse") && variableKnr.getText().equals("")) || txtKnr.getText().equals("Kundennummer...") || txtKnr.getText().equals("PLZ..."))
 					{
 						ok = false;
-						JOptionPane.showMessageDialog(null, "Das wird nicht funktionieren!");
+						JOptionPane.showMessageDialog(null, "Bitte Kunde wählen!");
 					}
 						
 					if(selectedMode.equals("Kunde") && ok == true)
