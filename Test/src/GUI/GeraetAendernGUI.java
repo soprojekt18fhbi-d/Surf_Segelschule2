@@ -317,42 +317,39 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 				talking = "aendern";
 				
 				try {
-					
-					farbe = textFarbe.getText();
-					makel = textMakel.getText();
-					baujahr = Integer.parseInt(textBaujahr.getText());
-					anschaffungspreis = Double.parseDouble(textAPreis.getText());
-					verkaufspreis = Double.parseDouble(textVPreis.getText());
-					standortID = Integer.parseInt(String.valueOf(comboBoxStandort.getSelectedItem()));
-					String standort = String.valueOf(standortID);
-					modell = String.valueOf(modellID);
-	
-					controller.anfrageGeraethinzufuegen(talking, modell, standort, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
-					aktualisieren(model);
-					
-					JOptionPane.showMessageDialog(null, "Das Gerät wurde erfolgreich geändert!");
-					MainFrame.change(MainFrame.getGeraetAendernGUI(), MainFrame.getSportgeraeteGUI());
-					MainFrame.getSportgeraeteGUI().anfrage();
-					
-					
-					
+					if(textFarbe.getText().trim().isEmpty() || textBaujahr.getText().trim().isEmpty() || textAPreis.getText().trim().isEmpty() || textVPreis.getText().trim().isEmpty()){
+						JOptionPane.showMessageDialog(null, "Füllen Sie alle Pflichtfelder aus!");
+					}
+					else{
+						geraetAendern();
+						
+						JOptionPane.showMessageDialog(null, "Das Gerät wurde erfolgreich geändert!");
+						MainFrame.change(MainFrame.getGeraetAendernGUI(), MainFrame.getSportgeraeteGUI());
+						MainFrame.getSportgeraeteGUI().anfrage();
+					}					
 				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Das Gerät konnte nicht geändert werden");
 				}
-				
-			}
+			}		
 		}); 
-		
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getSportgeraeteGUI().anfrage();
 				MainFrame.change(MainFrame.getGeraetAendernGUI(), MainFrame.getSportgeraeteGUI());			}
 		});
-		
-
+	}
+	
+	private void geraetAendern() {
+		farbe = textFarbe.getText();
+		makel = textMakel.getText();
+		baujahr = Integer.parseInt(textBaujahr.getText());
+		anschaffungspreis = Double.parseDouble(textAPreis.getText());
+		verkaufspreis = Double.parseDouble(textVPreis.getText());
+		standortID = Integer.parseInt(String.valueOf(comboBoxStandort.getSelectedItem()));
+		String standort = String.valueOf(standortID);
+		modell = String.valueOf(modellID);
+		controller.anfrageGeraethinzufuegen(talking, modell, standort, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
 	}
 	
 	public void setGeraeteID(int id){
@@ -393,8 +390,6 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		this.standortID = standort;
 	}
 
-
-	
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
 		ArrayList<String> comboboxItems = model.getObertypen();
@@ -409,8 +404,6 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		}
 		comboboxItems.clear();
 	}
-	
-
 	
 	public void anfrage() {
 		comboBoxStandort.removeAllItems();

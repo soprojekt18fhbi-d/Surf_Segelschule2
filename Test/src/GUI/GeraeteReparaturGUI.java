@@ -204,25 +204,22 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 				talking = "reparatur";
 								
 				try {
-					String beschreibung = String.valueOf(txtBeschreibung.getText());
-					double kosten = Double.parseDouble(String.valueOf(txtKosten.getText()));
-					String geraet = String.valueOf(geraeteID);
-															
-					controller.anfrageGeraethinzufuegen(talking, typ, geraet, beschreibung, kosten, anschaffungspreis, farbe, modellID);
-					//aktualisieren(model);
-					
-					
-					JOptionPane.showMessageDialog(null, "Die Reparatur wurde erfolgreich angelegt!");
-					MainFrame.change(MainFrame.getGeraeteReparaturGUI(), MainFrame.getSportgeraeteGUI());
-					MainFrame.getSportgeraeteGUI().anfrage();
-										
+					if(txtBeschreibung.getText().trim().isEmpty() || txtKosten.getText().trim().isEmpty()){
+						JOptionPane.showMessageDialog(null, "Füllen Sie alle Felder aus!");
+					}
+					else{
+						reparaturAnlegen();
+											
+						JOptionPane.showMessageDialog(null, "Die Reparatur wurde erfolgreich angelegt!");
+						MainFrame.change(MainFrame.getGeraeteReparaturGUI(), MainFrame.getSportgeraeteGUI());
+						MainFrame.getSportgeraeteGUI().anfrage();
+					}										
 				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Die Reparatur konnte nicht angelegt werden");
+					JOptionPane.showMessageDialog(null, "Geben Sie einen gültigen Wert für die Kosten ein!");
 				}
-				
 			}
+
+			
 		}); 
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
@@ -232,6 +229,13 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 		});
 
 	}
+	private void reparaturAnlegen() {
+		String beschreibung = String.valueOf(txtBeschreibung.getText());
+		double kosten = Double.parseDouble(String.valueOf(txtKosten.getText()));
+		String geraet = String.valueOf(geraeteID);										
+		controller.anfrageGeraethinzufuegen(talking, typ, geraet, beschreibung, kosten, anschaffungspreis, farbe, modellID);
+	}
+	
 	public void setGeraeteID(int id){
 		this.geraeteID = id;
 		lblGeraeteID.setText(String.valueOf(geraeteID));

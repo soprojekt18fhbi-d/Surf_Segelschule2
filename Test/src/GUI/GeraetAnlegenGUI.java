@@ -58,7 +58,6 @@ public class GeraetAnlegenGUI extends JPanel implements IAnlegenView{
 	IAnlegenModel model;
 	GeraetAnlegenStrg controller;
 	
-	
 	/**
 	 * 
 	 * Create the panel.
@@ -292,46 +291,32 @@ public class GeraetAnlegenGUI extends JPanel implements IAnlegenView{
 		);
 		panel_2.setLayout(gl_panel_2);
 		
-		
-
-		
-		
+		//Funktionen der Button
 		btnBestaetigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				talking = "hinzufuegen";
 				
 				try {
-					typ = String.valueOf(comboBoxTyp.getSelectedItem());
-					modell = String.valueOf(comboBoxModell.getSelectedItem());
-					anschaffungspreis = Double.parseDouble(textAPreis.getText());
-					verkaufspreis = Double.parseDouble(textVPreis.getText());
-					farbe = textFarbe.getText();
-					baujahr = Integer.parseInt(textBaujahr.getText());
-					makel = textMakel.getText();
-					controller.setzeStandort();
-					
-	
-					controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
-					aktualisieren(model);
-					
-					JOptionPane.showMessageDialog(null, "Das Gerät wurde erfolgreich angelegt!");
-					MainFrame.change(MainFrame.getGeraetAnlegenGUI(), MainFrame.getSportgeraeteGUI());
-					MainFrame.getSportgeraeteGUI().anfrage();
-					
-					textFarbe.setText("");
-					textMakel.setText("");
-					textBaujahr.setText("");
-					textAPreis.setText("");
-					textVPreis.setText("");
-					comboBoxTyp.setSelectedIndex(0);
-					
-					
+					if(textFarbe.getText().trim().isEmpty() || textBaujahr.getText().trim().isEmpty() || textAPreis.getText().trim().isEmpty() || textVPreis.getText().trim().isEmpty()){
+						JOptionPane.showMessageDialog(null, "Füllen Sie alle Pflichtfelder aus!");
+					}
+					else{
+						geraetAnlegen();
+						
+						JOptionPane.showMessageDialog(null, "Das Gerät wurde erfolgreich angelegt!");
+						MainFrame.change(MainFrame.getGeraetAnlegenGUI(), MainFrame.getSportgeraeteGUI());
+						MainFrame.getSportgeraeteGUI().anfrage();
+						
+						textFarbe.setText("");
+						textMakel.setText("");
+						textBaujahr.setText("");
+						textAPreis.setText("");
+						textVPreis.setText("");
+						comboBoxTyp.setSelectedIndex(0);
+					}
 				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Das Gerät konnte nicht angelegt werden");
 				}
-				
 			}
 		}); 
 		
@@ -363,7 +348,20 @@ public class GeraetAnlegenGUI extends JPanel implements IAnlegenView{
 
 	}
 
-
+	private void geraetAnlegen() {
+		typ = String.valueOf(comboBoxTyp.getSelectedItem());
+		modell = String.valueOf(comboBoxModell.getSelectedItem());
+		anschaffungspreis = Double.parseDouble(textAPreis.getText());
+		verkaufspreis = Double.parseDouble(textVPreis.getText());
+		farbe = textFarbe.getText();
+		baujahr = Integer.parseInt(textBaujahr.getText());
+		makel = textMakel.getText();
+		controller.setzeStandort();
+		
+		controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
+		aktualisieren(model);
+	}
+	
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
 		ArrayList<String> comboboxItems = model.getObertypen();
@@ -379,10 +377,7 @@ public class GeraetAnlegenGUI extends JPanel implements IAnlegenView{
 			}
 			comboboxItems.clear();
 		}			
-				
 	}
-	
-
 	
 	public void anfrage() {
 		comboBoxModell.removeAllItems();
@@ -390,7 +385,6 @@ public class GeraetAnlegenGUI extends JPanel implements IAnlegenView{
 		controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
 		aktualisieren(model);
 		model.abmelden(this);
-		
 	}
 	
 }

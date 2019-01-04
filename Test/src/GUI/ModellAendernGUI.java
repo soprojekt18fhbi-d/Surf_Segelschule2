@@ -135,7 +135,6 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 		comboBoxTyp = new JComboBox<String>();
 		comboBoxTyp.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		
 		GridBagConstraints gbc_comboBoxTyp = new GridBagConstraints();
 		gbc_comboBoxTyp.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBoxTyp.fill = GridBagConstraints.BOTH;
@@ -155,8 +154,6 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 		
 		comboBoxPreis = new JComboBox();
 		comboBoxPreis.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		
-		
 				
 		GridBagConstraints gbc_comboBoxPreis = new GridBagConstraints();
 		gbc_comboBoxPreis.insets = new Insets(0, 0, 5, 5);
@@ -197,48 +194,39 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 		);
 		panel_2.setLayout(gl_panel_2);
 		
-		
-
-		
-		
+		//Funktionen der Button
 		btnBestaetigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				talking = "aendern";
 				
 				try {
-					name = txtModell.getText();
-					if (name == "")
-						name = modellName;								
-					typ = String.valueOf(comboBoxTyp.getSelectedItem());
-					String preisKateg = String.valueOf(comboBoxPreis.getSelectedItem());
-					preisID = Integer.parseInt(preisKateg);
-					
-					
-					controller.anfrageModellhinzufuegen(talking, name, typ, preisID, modellID);						
-					aktualisieren(model);
+					modellAendern();
 					JOptionPane.showMessageDialog(null, "Das Modell wurde erfolgreich geändert!");
 					MainFrame.change(MainFrame.getModellAendernGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
 					MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
-					
 					txtModell.setText("");
-					
-					
 				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Das Modell konnte nicht geändert werden");
-				}
-				
+				}				
 			}
 		}); 
-		
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
 				MainFrame.change(MainFrame.getModellAendernGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());			}
 		});
-		
+	}
+	
+	private void modellAendern() {
+		name = txtModell.getText();
+		if (name == "")
+			name = modellName;								
+		typ = String.valueOf(comboBoxTyp.getSelectedItem());
+		String preisKateg = String.valueOf(comboBoxPreis.getSelectedItem());
+		preisID = Integer.parseInt(preisKateg);
+		controller.anfrageModellhinzufuegen(talking, name, typ, preisID, modellID);						
+		aktualisieren(model);
 	}
 
 	public void setModellID(int id) {

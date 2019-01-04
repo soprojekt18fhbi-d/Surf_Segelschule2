@@ -96,13 +96,8 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 		gbc_lblTyp.gridy = 4;
 		panel.add(lblTyp, gbc_lblTyp);
 		
-		
 		comboBoxTyp = new JComboBox<String>();
-		comboBoxTyp.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		
-		
-
-				
+		comboBoxTyp.setFont(new Font("Tahoma", Font.PLAIN, 20));	
 		
 		GridBagConstraints gbc_comboBoxTyp = new GridBagConstraints();
 		gbc_comboBoxTyp.insets = new Insets(0, 0, 5, 5);
@@ -145,7 +140,6 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 		comboBoxPreis = new JComboBox();
 		comboBoxPreis.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		
 		GridBagConstraints gbc_comboBoxPreis = new GridBagConstraints();
 		gbc_comboBoxPreis.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBoxPreis.fill = GridBagConstraints.BOTH;
@@ -186,49 +180,45 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 		panel_2.setLayout(gl_panel_2);
 		
 		
-
-		
-		
+		//Funktionen der Button		
 		btnBestaetigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				talking = "hinzufuegen";
 				
 				try {
-					typ = String.valueOf(comboBoxTyp.getSelectedItem());
-					name = txtModell.getText();
-					preisID = Integer.parseInt(String.valueOf(comboBoxPreis.getSelectedItem()));
-										
-					
-					controller.anfrageModellhinzufuegen(talking, name, typ, preisID, id);						
-					aktualisieren(model);
-					JOptionPane.showMessageDialog(null, "Das Modell wurde erfolgreich angelegt!");
-					MainFrame.change(MainFrame.getModellAnlegenGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
-					MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
-					
-					txtModell.setText("");
-					comboBoxTyp.setSelectedIndex(0);
-					comboBoxPreis.setSelectedIndex(0);
-					
-					
+					if(txtModell.getText().trim().isEmpty()){
+						JOptionPane.showMessageDialog(null, "Geben Sie einen Namen für das Modell ein!");
+					}
+					else{
+						modellAnlegen();
+						JOptionPane.showMessageDialog(null, "Das Modell wurde erfolgreich angelegt!");
+						MainFrame.change(MainFrame.getModellAnlegenGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
+						MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
+						
+						txtModell.setText("");
+						comboBoxTyp.setSelectedIndex(0);
+						comboBoxPreis.setSelectedIndex(0);
+					}
 				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Das Modell konnte nicht angelegt werden");
-				}
-				
+				}	
 			}
 		}); 
-		
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
 				MainFrame.change(MainFrame.getModellAnlegenGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());			}
 		});
-		
-		
 	}
-
+	
+	private void modellAnlegen() {
+		typ = String.valueOf(comboBoxTyp.getSelectedItem());
+		name = txtModell.getText();
+		preisID = Integer.parseInt(String.valueOf(comboBoxPreis.getSelectedItem()));
+		controller.anfrageModellhinzufuegen(talking, name, typ, preisID, id);						
+		aktualisieren(model);
+	}
 
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
@@ -257,5 +247,4 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 		model.abmelden(this);
 		
 	}
-	
 }

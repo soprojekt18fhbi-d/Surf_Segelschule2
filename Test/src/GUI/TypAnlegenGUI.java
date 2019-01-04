@@ -38,11 +38,13 @@ import java.awt.Color;
 public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 	private JTextField txtTyp;
 	private String talking = "anlegen";
+	private JCheckBox chckbxSegelschein;
+	private JCheckBox chckbxSurfschein;
+	private JCheckBox chckbxMotorbootschein;
 	
 	TypAnlegenModel model;
 	TypAnlegenStrg controller;
-
-
+	
 	/**
 	 * 
 	 * Create the panel.
@@ -108,7 +110,7 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		gbc_lblErforderlicherFhrerschein.gridy = 6;
 		panel.add(lblErforderlicherFhrerschein, gbc_lblErforderlicherFhrerschein);
 		
-		JCheckBox chckbxSegelschein = new JCheckBox("Segelschein");
+		chckbxSegelschein = new JCheckBox("Segelschein");
 		chckbxSegelschein.setBackground(Color.DARK_GRAY);
 		chckbxSegelschein.setForeground(Color.WHITE);
 		chckbxSegelschein.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -118,7 +120,7 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		gbc_chckbxSegelschein.gridy = 7;
 		panel.add(chckbxSegelschein, gbc_chckbxSegelschein);
 		
-		JCheckBox chckbxSurfschein = new JCheckBox("Surfschein");
+		chckbxSurfschein = new JCheckBox("Surfschein");
 		chckbxSurfschein.setForeground(Color.WHITE);
 		chckbxSurfschein.setBackground(Color.DARK_GRAY);
 		chckbxSurfschein.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -128,7 +130,7 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		gbc_chckbxSurfschein.gridy = 7;
 		panel.add(chckbxSurfschein, gbc_chckbxSurfschein);
 		
-		JCheckBox chckbxMotorbootschein = new JCheckBox("Motorbootschein");
+		chckbxMotorbootschein = new JCheckBox("Motorbootschein");
 		chckbxMotorbootschein.setBackground(Color.DARK_GRAY);
 		chckbxMotorbootschein.setForeground(Color.WHITE);
 		chckbxMotorbootschein.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -169,42 +171,28 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		);
 		panel_2.setLayout(gl_panel_2);
 		
-		
-
-		
-		
+		//Funktionen der Button
 		btnBestaetigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String name;
 				String schein;
 				
 				try {
-					
-					name = txtTyp.getText();					
-					
-					if(chckbxSegelschein.isSelected() == true)
-						schein = "Segelschein";
-					else if(chckbxSurfschein.isSelected() == true)
-						schein = "Surfschein";
-					else if(chckbxMotorbootschein.isSelected() == true)
-						schein = "Motorbootschein";
-					else
-						schein = "Kein";
-					
-
-					controller.typUebergeben(talking, 0, name, schein);
-					JOptionPane.showMessageDialog(null, "Der Typ wurde erfolgreich angelegt!");
-					MainFrame.change(MainFrame.getTypAnlegenGUI(), MainFrame.getGeraeteTypVerwaltung());
-					MainFrame.getGeraeteTypVerwaltung().anfrage();
-					
-					chckbxSegelschein.setSelected(false);
-					chckbxSurfschein.setSelected(false);
-					chckbxMotorbootschein.setSelected(false);
-					txtTyp.setText("");
-					
+					if(txtTyp.getText().trim().isEmpty()){
+						JOptionPane.showMessageDialog(null, "Geben Sie einen Namen für den Typen ein!");
+					}
+					else{
+						typAnlegen();
+						JOptionPane.showMessageDialog(null, "Der Typ wurde erfolgreich angelegt!");
+						MainFrame.change(MainFrame.getTypAnlegenGUI(), MainFrame.getGeraeteTypVerwaltung());
+						MainFrame.getGeraeteTypVerwaltung().anfrage();
+						
+						chckbxSegelschein.setSelected(false);
+						chckbxSurfschein.setSelected(false);
+						chckbxMotorbootschein.setSelected(false);
+						txtTyp.setText("");
+					}
 				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Der Typ konnte nicht angelegt werden");
 				}
 			}
@@ -239,9 +227,24 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 				chckbxSegelschein.setSelected(false);
 			}
 		});
-
 	}
+	
+	private void typAnlegen() {
+		String name;
+		String schein;
+		name = txtTyp.getText();					
 
+		if(chckbxSegelschein.isSelected() == true)
+			schein = "Segelschein";
+		else if(chckbxSurfschein.isSelected() == true)
+			schein = "Surfschein";
+		else if(chckbxMotorbootschein.isSelected() == true)
+			schein = "Motorbootschein";
+		else
+			schein = "Kein";
+		controller.typUebergeben(talking, 0, name, schein);
+	}
+	
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
 	}

@@ -195,32 +195,11 @@ public class TypAendernGUI extends JPanel  implements IAnlegenView{
 		);
 		panel_2.setLayout(gl_panel_2);
 		
-		
-
-		
-		
+		//Funktionen der Button
 		btnBestaetigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String name;
-				String schein;
-				int id = typ.getTypID();
-				name = txtTyp.getText();
-				
 				try{
-					if(name.equals(""))
-					name = label.getText();
-				
-					if (chckbxSegelschein.isSelected() == true)
-						schein = "Segelschein";
-					else if(chckbxSurfschein.isSelected() == true)
-						schein = "Surfschein";
-					else if(chckbxMotorbootschein.isSelected() == true)
-						schein = "Motorbootschein";
-					else
-						schein = "Kein";
-					
-					controller.typUebergeben(talking, id, name, schein);
-					aktualisieren(model);
+					typAendern();
 					JOptionPane.showMessageDialog(null, "Der Typ wurde erfolgreich geändert!");
 					MainFrame.change(MainFrame.getTypAendernGUI(), MainFrame.getGeraeteTypVerwaltung());
 					MainFrame.getGeraeteTypVerwaltung().anfrage();
@@ -229,10 +208,29 @@ public class TypAendernGUI extends JPanel  implements IAnlegenView{
 					chckbxSurfschein.setSelected(false);
 					txtTyp.setText("");
 				} catch(NumberFormatException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						JOptionPane.showMessageDialog(null, "Der Typ konnte nicht geändert werden");
+					JOptionPane.showMessageDialog(null, "Der Typ konnte nicht geändert werden");
 				}
+			}
+
+			private void typAendern() {
+				String name;
+				String schein;
+				int id = typ.getTypID();
+				name = txtTyp.getText();
+				if(name.equals(""))
+				name = label.getText();
+
+				if (chckbxSegelschein.isSelected() == true)
+					schein = "Segelschein";
+				else if(chckbxSurfschein.isSelected() == true)
+					schein = "Surfschein";
+				else if(chckbxMotorbootschein.isSelected() == true)
+					schein = "Motorbootschein";
+				else
+					schein = "Kein";
+				
+				controller.typUebergeben(talking, id, name, schein);
+				aktualisieren(model);
 			}
 		});	
 		

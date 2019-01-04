@@ -208,19 +208,7 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView{
 				talking = "status";
 								
 				try {
-					if(chckbxOK.isSelected() == true)
-						neuerStatus = "OK";
-					else if(chckbxVerliehen.isSelected() == true)
-						neuerStatus = "Verliehen";
-					else if(chckbxReparatur.isSelected() == true)
-						neuerStatus = "Reparatur";
-					else if(chckbxDeaktiviert.isSelected() == true)
-						neuerStatus = "Deaktiviert";
-					
-					geraet = String.valueOf(geraeteID);
-															
-					controller.anfrageGeraethinzufuegen(talking, geraet, neuerStatus, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
-									
+					statusAendern();									
 					JOptionPane.showMessageDialog(null, "Der Status wurde erfolgreich geändert!");
 					if (status.equals("Reparatur")){
 						MainFrame.getGeraeteReparaturGUI().setModellID(modellID);
@@ -232,13 +220,9 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView{
 						MainFrame.change(MainFrame.getGeraeteStatusGUI(), MainFrame.getSportgeraeteGUI());
 						MainFrame.getSportgeraeteGUI().anfrage();
 					}
-					
 				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Der Status konnte nicht geändert werden");
 				}
-				
 			}
 		}); 
 		
@@ -283,6 +267,19 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView{
 				chckbxReparatur.setSelected(false);
 			}
 		});
+	}
+	private void statusAendern() {
+		if(chckbxOK.isSelected() == true)
+			neuerStatus = "OK";
+		else if(chckbxVerliehen.isSelected() == true)
+			neuerStatus = "Verliehen";
+		else if(chckbxReparatur.isSelected() == true)
+			neuerStatus = "Reparatur";
+		else if(chckbxDeaktiviert.isSelected() == true)
+			neuerStatus = "Deaktiviert";
+		
+		geraet = String.valueOf(geraeteID);									
+		controller.anfrageGeraethinzufuegen(talking, geraet, neuerStatus, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
 	}
 
 	
