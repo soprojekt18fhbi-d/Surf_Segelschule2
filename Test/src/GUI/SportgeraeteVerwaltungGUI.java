@@ -101,7 +101,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
@@ -133,7 +133,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 		btnGeraetDeaktivieren.setBackground(new Color(255, 140, 0));
 		GridBagConstraints gbc_btnGeraetDeaktivieren = new GridBagConstraints();
 		gbc_btnGeraetDeaktivieren.fill = GridBagConstraints.BOTH;
-		gbc_btnGeraetDeaktivieren.insets = new Insets(0, 0, 5, 5);
+		gbc_btnGeraetDeaktivieren.insets = new Insets(0, 0, 5, 0);
 		gbc_btnGeraetDeaktivieren.gridx = 2;
 		gbc_btnGeraetDeaktivieren.gridy = 0;
 		panel_1.add(btnGeraetDeaktivieren, gbc_btnGeraetDeaktivieren);
