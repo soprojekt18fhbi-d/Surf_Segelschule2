@@ -13,7 +13,7 @@ public class DBConnectorSingleton { //Ben Kröncke
 		try {
 			
 			//Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/SurfSegelcenter", "sa", "sa");
 			
 			
 		}
