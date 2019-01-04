@@ -275,6 +275,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 				modellNr = 123456789; //damit methode "fetchGeräte" nicht geändert werden muss 
 				anfrage();
 				talking = "gesamt";
+				modellNr = 0;
 			}
 		});
 		
