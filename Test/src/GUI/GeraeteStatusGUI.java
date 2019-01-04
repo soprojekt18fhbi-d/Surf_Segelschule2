@@ -223,8 +223,10 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView{
 									
 					JOptionPane.showMessageDialog(null, "Der Status wurde erfolgreich geändert!");
 					if (status.equals("Reparatur")){
+						MainFrame.getGeraeteReparaturGUI().setModellID(modellID);
+						MainFrame.getGeraeteReparaturGUI().setGeraeteID(geraeteID);
+						MainFrame.getGeraeteReparaturGUI().anfrage();
 						MainFrame.change(MainFrame.getGeraeteStatusGUI(), MainFrame.getGeraeteReparaturGUI());
-						//MainFrame.getGeraeteReparaturGUI().anfrage();
 					}
 					else {
 						MainFrame.change(MainFrame.getGeraeteStatusGUI(), MainFrame.getSportgeraeteGUI());

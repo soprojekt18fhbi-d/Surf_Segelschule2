@@ -1,3 +1,7 @@
+ /*
+  *  @author Michael Schmidt
+  */
+
 package GUI;
 
 import javax.swing.JPanel;
@@ -325,7 +329,7 @@ public class GeraetAnlegenGUI extends JPanel implements IAnlegenView{
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Modell konnte nicht angelegt werden");
+					JOptionPane.showMessageDialog(null, "Das Gerät konnte nicht angelegt werden");
 				}
 				
 			}

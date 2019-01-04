@@ -1,3 +1,7 @@
+ /*
+  *  @author Michael Schmidt
+  */
+
 package Steuerung;
 
 import Datenbankmodels.GeraetAnlegenModel;

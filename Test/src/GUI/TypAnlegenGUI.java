@@ -1,3 +1,7 @@
+ /*
+  *  @author Michael Schmidt
+  */
+
 package GUI;
 
 import javax.swing.JPanel;
@@ -185,11 +189,11 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 					else if(chckbxMotorbootschein.isSelected() == true)
 						schein = "Motorbootschein";
 					else
-						schein = null;
+						schein = "Kein";
 					
 
 					controller.typUebergeben(talking, 0, name, schein);
-					aktualisieren(model);
+					JOptionPane.showMessageDialog(null, "Der Typ wurde erfolgreich angelegt!");
 					MainFrame.change(MainFrame.getTypAnlegenGUI(), MainFrame.getGeraeteTypVerwaltung());
 					MainFrame.getGeraeteTypVerwaltung().anfrage();
 					
@@ -201,8 +205,8 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Der Typ konnte nicht angelegt werden");
 				}
-				
 			}
 		});	
 		
@@ -238,9 +242,7 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 
 	}
 
-
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
-		JOptionPane.showMessageDialog(null, "Der Gerätetyp wurde angelegt!");
 	}
 }

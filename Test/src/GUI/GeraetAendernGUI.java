@@ -339,7 +339,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Das Gerät konnt nicht geändert werden");
+					JOptionPane.showMessageDialog(null, "Das Gerät konnte nicht geändert werden");
 				}
 				
 			}

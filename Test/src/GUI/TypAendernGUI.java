@@ -1,3 +1,7 @@
+ /*
+  *  @author Michael Schmidt
+  */
+
 package GUI;
 
 import javax.swing.JPanel;
@@ -202,28 +206,33 @@ public class TypAendernGUI extends JPanel  implements IAnlegenView{
 				int id = typ.getTypID();
 				name = txtTyp.getText();
 				
-				if(name.equals(""))
+				try{
+					if(name.equals(""))
 					name = label.getText();
 				
-				if (chckbxSegelschein.isSelected() == true)
-					schein = "Segelschein";
-				else if(chckbxSurfschein.isSelected() == true)
-					schein = "Surfschein";
-				else if(chckbxSurfschein.isSelected() == true)
-					schein = "Surfschein";
-				else
-					schein = "Kein";
+					if (chckbxSegelschein.isSelected() == true)
+						schein = "Segelschein";
+					else if(chckbxSurfschein.isSelected() == true)
+						schein = "Surfschein";
+					else if(chckbxMotorbootschein.isSelected() == true)
+						schein = "Motorbootschein";
+					else
+						schein = "Kein";
 					
-					
-				controller.typUebergeben(talking, id, name, schein);
-				aktualisieren(model);
-				JOptionPane.showMessageDialog(null, "Der Typ wurde erfolgreich geändert!");
-				MainFrame.change(MainFrame.getTypAendernGUI(), MainFrame.getGeraeteTypVerwaltung());
-				MainFrame.getGeraeteTypVerwaltung().anfrage();
-				chckbxSegelschein.setSelected(false);
-				chckbxMotorbootschein.setSelected(false);
-				chckbxSurfschein.setSelected(false);
-				txtTyp.setText("");
+					controller.typUebergeben(talking, id, name, schein);
+					aktualisieren(model);
+					JOptionPane.showMessageDialog(null, "Der Typ wurde erfolgreich geändert!");
+					MainFrame.change(MainFrame.getTypAendernGUI(), MainFrame.getGeraeteTypVerwaltung());
+					MainFrame.getGeraeteTypVerwaltung().anfrage();
+					chckbxSegelschein.setSelected(false);
+					chckbxMotorbootschein.setSelected(false);
+					chckbxSurfschein.setSelected(false);
+					txtTyp.setText("");
+				} catch(NumberFormatException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Der Typ konnte nicht geändert werden");
+				}
 			}
 		});	
 		

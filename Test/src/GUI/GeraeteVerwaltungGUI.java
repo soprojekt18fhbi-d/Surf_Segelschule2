@@ -1,3 +1,7 @@
+ /*
+  *  @author Michael Schmidt
+  */
+
 package GUI;
 
 import java.awt.BorderLayout;

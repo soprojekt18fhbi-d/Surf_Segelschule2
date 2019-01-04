@@ -244,8 +244,8 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 					MainFrame.getGeraeteStatusGUI().anfrage();
 					MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraeteStatusGUI());
 					textSuchen.setText("Suchen...");
-					MainFrame.getGeraeteReparaturGUI().setModellID(modellID);
-					MainFrame.getGeraeteReparaturGUI().setGeraeteID(geraeteID);
+					//MainFrame.getGeraeteReparaturGUI().setModellID(modellID);
+					//MainFrame.getGeraeteReparaturGUI().setGeraeteID(geraeteID);
 				}	
 			}
 		});

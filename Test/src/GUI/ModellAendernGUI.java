@@ -1,3 +1,7 @@
+ /*
+  *  @author Michael Schmidt
+  */
+
 package GUI;
 
 import javax.swing.JPanel;
@@ -222,7 +226,7 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Modell konnte nicht angelegt werden");
+					JOptionPane.showMessageDialog(null, "Das Modell konnte nicht geändert werden");
 				}
 				
 			}
