@@ -2,7 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/michi/Downloads/h2-1.4.197.jar"/>
-	<classpathentry kind="lib" path="C:/Users/michi/Downloads/rs2xml.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="h2-1.4.197.jar"/>
+	<classpathentry kind="lib" path="itextpdf-5.4.0.jar"/>
+	<classpathentry kind="lib" path="junit-4.10.jar"/>
+	<classpathentry kind="lib" path="rs2xml.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
