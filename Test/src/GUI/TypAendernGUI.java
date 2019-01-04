@@ -269,7 +269,6 @@ public class TypAendernGUI extends JPanel  implements IAnlegenView{
 		});
 	}
 
-
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
 	}

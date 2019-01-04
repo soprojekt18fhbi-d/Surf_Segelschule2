@@ -174,9 +174,6 @@ public class TypAnlegenGUI extends JPanel  implements IAnlegenView{
 		//Funktionen der Button
 		btnBestaetigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String name;
-				String schein;
-				
 				try {
 					if(txtTyp.getText().trim().isEmpty()){
 						JOptionPane.showMessageDialog(null, "Geben Sie einen Namen für den Typen ein!");
