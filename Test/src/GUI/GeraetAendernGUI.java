@@ -339,7 +339,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Modell konnte nicht angelegt werden");
+					JOptionPane.showMessageDialog(null, "Das Gerät konnt nicht geändert werden");
 				}
 				
 			}
@@ -423,5 +423,4 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		aktualisieren(model);
 		model.abmelden(this);		
 	}
-	
 }

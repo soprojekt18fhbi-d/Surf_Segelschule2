@@ -52,6 +52,7 @@ public class Starter {
 					
 					StandortGUI frame = new StandortGUI(standortModel, standortStrg);
 					frame.setVisible(true);
+					frame.setTitle("Surf- und Segelcenter");
 					
 					
 					//Models erzeugen:
@@ -91,6 +92,7 @@ public class Starter {
 					GeraetAnlegenGUI geraetAnlegenGUI = new GeraetAnlegenGUI(geraetAnlegenModel, geraetAnlegenStrg);
 					GeraetAendernGUI geraetAendernGUI = new GeraetAendernGUI(geraetAnlegenModel, geraetAnlegenStrg);
 					GeraeteStatusGUI geraeteStatusGUI = new GeraeteStatusGUI(geraetAnlegenModel, geraetAnlegenStrg);
+					GeraeteReparaturGUI geraeteReparaturGUI = new GeraeteReparaturGUI(geraetAnlegenModel, geraetAnlegenStrg);
 					ModellAendernGUI modellAnedernGUI = new ModellAendernGUI(modellHinzufuegenModel, modellAnlegenStrg);
 					ModellAnlegenGUI modellAnlegenGUI = new ModellAnlegenGUI(modellHinzufuegenModel, modellAnlegenStrg);
 					SportgeraeteVerwaltungGUI sportgeraeteGUI = new SportgeraeteVerwaltungGUI(buchungGeraetSucheModel, buchungGeraetSucheStrg);
@@ -125,7 +127,7 @@ public class Starter {
 					WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltungGUI = new WirtschaftlichkeitsverwaltungGUI(wModel, wStrg);
 					
 					//MainFrame erzeugen
-					MainFrame mainframe = new MainFrame(geraeteVerwaltungGUI, geraeteModellVerwaltungGUI, geraeteTypVerwaltungGUI, geraetAnlegenGUI, geraetAendernGUI, geraeteStatusGUI, modellAnedernGUI, modellAnlegenGUI, 
+					MainFrame mainframe = new MainFrame(geraeteVerwaltungGUI, geraeteModellVerwaltungGUI, geraeteTypVerwaltungGUI, geraetAnlegenGUI, geraetAendernGUI, geraeteStatusGUI, geraeteReparaturGUI, modellAnedernGUI, modellAnlegenGUI, 
 							sportgeraeteGUI, typAendernGUI, typAnlegenGUI, buchungsverwaltungGUI, buchungKundeSucheGUI, buchungTypSucheGUI, buchungModellSucheGUI, buchungGeraetSucheGUI, aktiveBuchungenGUI, 
 							kundenverwaltungGUI, kundeAnlegenGUI, kundeAendernGUI, preislisteGUI, preislisteAnlegenGUI, rechnungSucheGUI, wirtschaftlichkeitsverwaltungGUI);
 					

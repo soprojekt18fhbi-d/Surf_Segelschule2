@@ -44,7 +44,6 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 	private IObjektModel model;
 	private JTextField textSuchen;
 	private JTable table;
-	private int counter = 1;
 	private String talking = "gesamt";
 	private int kNr;
 	private int geraetNr;
@@ -128,7 +127,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 		gbc_btnGeraetAendern.gridy = 0;
 		panel_1.add(btnGeraetAendern, gbc_btnGeraetAendern);
 		
-		JButton btnGeraetDeaktivieren = new JButton("Ger\u00E4t deaktivieren");
+		JButton btnGeraetDeaktivieren = new JButton("Aktivieren/Deaktivieren");
 		btnGeraetDeaktivieren.setPreferredSize(new Dimension(300, 100));
 		btnGeraetDeaktivieren.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnGeraetDeaktivieren.setBackground(new Color(255, 140, 0));
@@ -193,12 +192,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 		btnGeraetHinzu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraetAnlegenGUI());
-				
-				if(counter == 1)
-				{
-					MainFrame.getGeraetAnlegenGUI().anfrage();
-					
-				}
+				MainFrame.getGeraetAnlegenGUI().anfrage();
 				textSuchen.setText("Suchen...");
 			}
 		});
@@ -250,6 +244,8 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 					MainFrame.getGeraeteStatusGUI().anfrage();
 					MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraeteStatusGUI());
 					textSuchen.setText("Suchen...");
+					MainFrame.getGeraeteReparaturGUI().setModellID(modellID);
+					MainFrame.getGeraeteReparaturGUI().setGeraeteID(geraeteID);
 				}	
 			}
 		});

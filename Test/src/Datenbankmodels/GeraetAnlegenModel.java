@@ -141,6 +141,37 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 		    updateObserver();
 		    }
 		    
+		    if(talking.equals("status"))
+		    {
+		    	int geraeteID = Integer.parseInt(geraet[0]);
+		    	String status = geraet[1];		    	
+		    	
+		    	try {
+				    String sqlupdate = "UPDATE SPORTGERAET SET STATUS = '"+status+"'  WHERE ID = "+geraeteID+"";
+				    int ergebnis = stmtGeraetAnlegenModel.executeUpdate(sqlupdate);	
+				             
+		    	} catch (SQLException e ) {
+			    	e.printStackTrace();
+			    }
+		    updateObserver();
+		    }
+		    
+		    if(talking.equals("reparatur"))
+		    {
+		    	int geraeteID = Integer.parseInt(geraet[1]);
+		    	String beschreibung = geraet[2];
+		    	double kosten = Double.parseDouble(geraet[3]);   	
+		    	
+		    	try {
+				    String sqlupdate = "INSERT INTO REPARATUR VALUES(default,'" + beschreibung + "','" +kosten+ "','" +geraeteID+ "')"; 
+				    int ergebnis = stmtGeraetAnlegenModel.executeUpdate(sqlupdate);	
+				             
+		    	} catch (SQLException e ) {
+			    	e.printStackTrace();
+			    }
+		    updateObserver();
+		    }
+		    
 		   if(talking.equals("second"))
 		   {
 			   
@@ -285,8 +316,5 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 	public void setStandort(int id) {
 		standortID = id;
 	}
-	
-
-	
 
 }

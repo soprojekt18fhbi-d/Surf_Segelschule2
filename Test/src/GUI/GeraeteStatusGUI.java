@@ -12,6 +12,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -34,6 +36,7 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView{
 	private int modellID;
 	private int geraeteID;
 	private String status;
+	private String neuerStatus;
 	private String talking;
 	private JLabel lblModellname;
 	private JLabel lblGeraeteID;
@@ -41,8 +44,11 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView{
 	private String makel;
 	private String farbe;
 	private String typ;
+	private String geraet;
+	private int baujahr;
 	private double anschaffungspreis;
 	private double verkaufspreis;
+	
 	
 	private JCheckBox chckbxOK;
 	private JCheckBox chckbxVerliehen;
@@ -199,33 +205,36 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView{
 		//Funktionen der Button
 		btnBestaetigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				talking = "aendern";
-				
+				talking = "status";
+								
 				try {
-					/*
-					farbe = textFarbe.getText();
-					makel = textMakel.getText();
-					baujahr = Integer.parseInt(textBaujahr.getText());
-					anschaffungspreis = Double.parseDouble(textAPreis.getText());
-					verkaufspreis = Double.parseDouble(textVPreis.getText());
-					standortID = Integer.parseInt(String.valueOf(comboBoxStandort.getSelectedItem()));
-					String standort = String.valueOf(standortID);
-					modell = String.valueOf(modellID);
-						
-					controller.anfrageGeraethinzufuegen(talking, modell, standort, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
-					aktualisieren(model);
-					*/
+					if(chckbxOK.isSelected() == true)
+						neuerStatus = "OK";
+					else if(chckbxVerliehen.isSelected() == true)
+						neuerStatus = "Verliehen";
+					else if(chckbxReparatur.isSelected() == true)
+						neuerStatus = "Reparatur";
+					else if(chckbxDeaktiviert.isSelected() == true)
+						neuerStatus = "Deaktiviert";
 					
-					JOptionPane.showMessageDialog(null, "Das Gerät wurde erfolgreich geändert!");
-					MainFrame.change(MainFrame.getGeraeteStatusGUI(), MainFrame.getSportgeraeteGUI());
-					MainFrame.getSportgeraeteGUI().anfrage();
-					
-					
+					geraet = String.valueOf(geraeteID);
+															
+					controller.anfrageGeraethinzufuegen(talking, geraet, neuerStatus, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
+									
+					JOptionPane.showMessageDialog(null, "Der Status wurde erfolgreich geändert!");
+					if (status.equals("Reparatur")){
+						MainFrame.change(MainFrame.getGeraeteStatusGUI(), MainFrame.getGeraeteReparaturGUI());
+						//MainFrame.getGeraeteReparaturGUI().anfrage();
+					}
+					else {
+						MainFrame.change(MainFrame.getGeraeteStatusGUI(), MainFrame.getSportgeraeteGUI());
+						MainFrame.getSportgeraeteGUI().anfrage();
+					}
 					
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Modell konnte nicht angelegt werden");
+					JOptionPane.showMessageDialog(null, "Der Status konnte nicht geändert werden");
 				}
 				
 			}
@@ -235,6 +244,42 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView{
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getSportgeraeteGUI().anfrage();
 				MainFrame.change(MainFrame.getGeraeteStatusGUI(), MainFrame.getSportgeraeteGUI());			}
+		});
+		
+		chckbxOK.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		
+				chckbxVerliehen.setSelected(false);
+				chckbxReparatur.setSelected(false);
+				chckbxDeaktiviert.setSelected(false);
+			}
+		});
+		
+		chckbxVerliehen.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		
+				chckbxOK.setSelected(false);
+				chckbxReparatur.setSelected(false);
+				chckbxDeaktiviert.setSelected(false);
+			}
+		});
+		
+		chckbxReparatur.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		
+				chckbxOK.setSelected(false);
+				chckbxVerliehen.setSelected(false);
+				chckbxDeaktiviert.setSelected(false);
+			}
+		});
+		
+		chckbxDeaktiviert.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		
+				chckbxOK.setSelected(false);
+				chckbxVerliehen.setSelected(false);
+				chckbxReparatur.setSelected(false);
+			}
 		});
 	}
 
@@ -272,7 +317,6 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView{
 		talking = "modellname";
 		controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, modellID);
 		aktualisieren(model);
-		model.abmelden(this);
-		
+		model.abmelden(this);		
 	}
 }
