@@ -23,6 +23,8 @@ import Berechnung.DatentypUmwandlung;
 import Datenbankmodels.IAnlegenModel;
 import Datenbankmodels.PreislisteAendernModel;
 import Domaenklassen.Preisliste;
+import GUI.IAnlegenView;
+import GUI.MainFrame;
 import Steuerung.ModellAnlegenStrg;
 import Steuerung.PreislisteAendernStrg;
 
@@ -36,28 +38,28 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 	private String[] preisliste;
 	
 	int id;
-	String  preisEineStdString;
-	String	preisZweiStdString;
-	String	preisVierStdString;
-	String	preisEinenTagString;
-	String	preisZweiTageString;
-	String	preisDreiTageString;
-	String	preisVierTageString;
-	String	preisFuenfTageString;
-	String	preisSechsSiebenTageString;
-	String	preisAchtTageString;
-	String	preisNeunTageString;
-	String	preisZehnTageString;
-	String	preisElfTageString;
-	String	preisZwoelfVierzehnTageString;
-	String	preisFuenfzehnTageString;
-	String	preisSechzehnTageString;
-	String	preisSiebzehnTageString;
-	String	preisAchtzehnEinundzwanzigTageString;
-	String	preisTagVierWochenString;
-	String	presVierWochenString;
-	String	preisAchtWochenString;
-	String	preisKaufString;
+	private String  preisEineStdString;
+	private String	preisZweiStdString;
+	private String	preisVierStdString;
+	private String	preisEinenTagString;
+	private String	preisZweiTageString;
+	private String	preisDreiTageString;
+	private String	preisVierTageString;
+	private String	preisFuenfTageString;
+	private String	preisSechsSiebenTageString;
+	private String	preisAchtTageString;
+	private String	preisNeunTageString;
+	private String	preisZehnTageString;
+	private String	preisElfTageString;
+	private String	preisZwoelfVierzehnTageString;
+	private String	preisFuenfzehnTageString;
+	private String	preisSechzehnTageString;
+	private String	preisSiebzehnTageString;
+	private String	preisAchtzehnEinundzwanzigTageString;
+	private String	preisTagVierWochenString;
+	private String	presVierWochenString;
+	private String	preisAchtWochenString;
+	private String	preisKaufString;
 
 	private JTextField tfEineStd;
 	private JTextField tfZweiStd;
@@ -654,6 +656,10 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 				MainFrame.change(MainFrame.getPreislisteAendernGUI(), MainFrame.getPreislisteGUI());			}
 		});
 
+	}
+	
+	public void setPreisliste(String[] preisliste) {
+		this.preisliste = preisliste;
 	}
 
 	private void textfieldFuellen() {

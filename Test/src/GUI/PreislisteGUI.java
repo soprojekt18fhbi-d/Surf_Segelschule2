@@ -220,11 +220,32 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 			}
 		});
 
-		 btnPreislisteAendern.addActionListener(new ActionListener() {
-		 public void actionPerformed(ActionEvent e) {
-		 MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getPreislisteGUI());
-		 }
-		 });
+		btnPreislisteAendern.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getPreislisteAendernGUI());
+
+				int zeile = table.getSelectedRow();
+
+				if (zeile < 0)
+					JOptionPane.showMessageDialog(null, "Preisliste auswählen!");
+				else {
+
+					String[] preislistetabelle = tableRowToArray(table);
+
+					PreislisteAendernGUI.setPreisliste(preislistetabelle);
+
+					MainFrame.getPreislisteAendernGUI().setPreisliste(preislistetabelle);
+					MainFrame.getModellAendernGUI().setTypID(tID);
+					MainFrame.getModellAendernGUI().setPreisID(pID);
+					MainFrame.getModellAendernGUI().setText(modellName);
+					MainFrame.getModellAendernGUI().anfrage();
+					MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getPreislisteAendernGUI());
+					;
+					textSuchen.setText("Suchen...");
+				}
+
+			}
+		});
 
 		btnLoeschen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -245,6 +266,16 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 		controller.fetchObjekte(talking, tfSuche.getText());
 		table.setModel(model.getTableModel());
 		model.abmelden(MainFrame.getBuchungTypSucheGUI());
+	}
+
+	public String[] tableRowToArray(JTable table) {
+		DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+		int selectedRowIndex = table.getSelectedRow();
+		int nCol = dtm.getColumnCount();
+		String[] tableData = new String[nCol];
+		for (int j = 0; j < nCol; j++)
+			tableData[j] = (String) dtm.getValueAt(selectedRowIndex, j);
+		return tableData;
 	}
 
 }
