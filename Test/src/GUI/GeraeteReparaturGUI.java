@@ -213,7 +213,9 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 						JOptionPane.showMessageDialog(null, "Die Reparatur wurde erfolgreich angelegt!");
 						MainFrame.change(MainFrame.getGeraeteReparaturGUI(), MainFrame.getSportgeraeteGUI());
 						MainFrame.getSportgeraeteGUI().anfrage();
-					}										
+					}		
+					txtBeschreibung.setText("");
+					txtKosten.setText("");
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Geben Sie einen gültigen Wert für die Kosten ein!");
 				}
@@ -225,7 +227,10 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getSportgeraeteGUI().anfrage();
-				MainFrame.change(MainFrame.getGeraeteReparaturGUI(), MainFrame.getSportgeraeteGUI());			}
+				MainFrame.change(MainFrame.getGeraeteReparaturGUI(), MainFrame.getSportgeraeteGUI());
+				txtBeschreibung.setText("");
+				txtKosten.setText("");
+			}
 		});
 
 	}

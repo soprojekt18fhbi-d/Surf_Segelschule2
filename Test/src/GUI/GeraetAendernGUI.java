@@ -48,6 +48,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 	private int modellID;
 	private String typ;
 	private String modell;
+	private String geraet;
 	private double anschaffungspreis;
 	private double verkaufspreis;
 	private String farbe;
@@ -348,8 +349,8 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		verkaufspreis = Double.parseDouble(textVPreis.getText());
 		standortID = Integer.parseInt(String.valueOf(comboBoxStandort.getSelectedItem()));
 		String standort = String.valueOf(standortID);
-		modell = String.valueOf(modellID);
-		controller.anfrageGeraethinzufuegen(talking, modell, standort, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
+		geraet = String.valueOf(geraeteID);
+		controller.anfrageGeraethinzufuegen(talking, geraet, standort, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
 	}
 	
 	public void setGeraeteID(int id){
