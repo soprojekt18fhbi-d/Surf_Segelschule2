@@ -260,7 +260,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 		}
 		if(tageStunden[0] <= 28 && tageStunden[0] > 27)
 		{	
-			String spalte = "VIERWOCHEN";
+			String spalte = "VIERWOCHEN"; //Hier fehlt noch tag-vierwochen
 			setzePreis(stmt, spalte);
 		}
 		if(tageStunden[0] >= 56 )
