@@ -28,7 +28,8 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 	private int buchungID = 0;
 	private String makel = "";
 	String patternBerechnung = "yyyy-MM-dd' 'HH:mm";
-	private double preis;
+	private double preis = 0;
+	private int[] tageStunden = new int[2];
 	
 	public void holeBuchung(String talking2, int buchungID2, int kNr2, int geraetNr, String search2, String mode2, String makel2) {
 
@@ -114,6 +115,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 		String query;
 		String update;
 		double verkaufspreis = 0;
+		preis = 0;
 		query = "SELECT VERKAUFSPREIS FROM SPORTGERAET WHERE ID = " + geraetNrloc;
 		ResultSet rs = stmt.executeQuery(query);
 		while (rs.next())
@@ -152,28 +154,29 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 		System.out.println(rueckdatum);
 		System.out.println(verleihdatum);
 		
-		int[] tageStunden = holeTageStunden(rueckdatum, verleihdatum);
-			
+		tageStunden = holeTageStunden(rueckdatum, verleihdatum);
+		
+		
 		pruefepreisSetzen(stmt, tageStunden);
 		
 		update = "INSERT INTO RECHNUNG VALUES (default," + preis/1.19 + ", " + (preis/1.19)*0.19 + ", " + preis + ", " + kNr + ", null, " + buchungID + ");";
-
+		
 		stmt.executeUpdate(update);
 	}
 
 
 	private void pruefepreisSetzen(Statement stmt, int[] tageStunden) throws SQLException {
-		if(tageStunden[1] <= 1)
+		if(tageStunden[1] <= 1 && tageStunden[0] < 1)
 		{	
 			String spalte = "EINESTD";
 			setzePreis(stmt, spalte);
 		}
-		if(tageStunden[1] <= 2 && tageStunden[1] > 1)
+		if(tageStunden[1] <= 2 && tageStunden[1] > 1 && tageStunden[0] < 1)
 		{	
 			String spalte = "ZWEISTD";
 			setzePreis(stmt, spalte);
 		}
-		if(tageStunden[1] <= 4 && tageStunden[1] > 2)
+		if(tageStunden[1] <= 4 && tageStunden[1] > 2 && tageStunden[0] < 1)
 		{	
 			String spalte = "VIERSTD";
 			setzePreis(stmt, spalte);
@@ -205,7 +208,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 		}
 		if(tageStunden[0] <= 7 && tageStunden[0] > 5)
 		{	
-			String spalte = "SECHS-SIEBENTAGE";
+			String spalte = "SECHSSIEBENTAGE";
 			setzePreis(stmt, spalte);
 		}
 		if(tageStunden[0] <= 8 && tageStunden[0] > 7)
@@ -230,7 +233,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 		}
 		if(tageStunden[0] <= 14 && tageStunden[0] > 11)
 		{	
-			String spalte = "ZWOELF-VIERZEHNTAGE";
+			String spalte = "ZWOELFVIERZEHNTAGE";
 			setzePreis(stmt, spalte);
 		}
 		if(tageStunden[0] <= 15 && tageStunden[0] > 14)
@@ -248,26 +251,40 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 			String spalte = "SIEBZEHNTAGE";
 			setzePreis(stmt, spalte);
 		}
-		if(tageStunden[0] <= 21 && tageStunden[0] > 17)
+		if(tageStunden[0] <= 27 && tageStunden[0] > 17)
 		{	
-			String spalte = "ACHTZEHN-EINUNDZWANZIGTAGE";
+			String spalte = "ACHTZEHNEINUNDZWANZIGTAGE";
 			setzePreis(stmt, spalte);
-		}
-		if(tageStunden[0] <= 27 && tageStunden[0] > 21)
-		{	
-			String spalte = "TAG-VIERWOCHEN";
-			setzePreis(stmt, spalte);
+			if(tageStunden[0] > 21)
+				preis += (tageStunden[0]-21)*holeBonuspreis(stmt, "TAGVIERWOCHEN");
 		}
 		if(tageStunden[0] <= 28 && tageStunden[0] > 27)
 		{	
-			String spalte = "VIERWOCHEN"; //Hier fehlt noch tag-vierwochendd
+			String spalte = "VIERWOCHEN";
 			setzePreis(stmt, spalte);
+
 		}
 		if(tageStunden[0] >= 56 )
 		{	
 			String spalte = "ACHTWOCHEN";
 			setzePreis(stmt, spalte);
 		}
+	}
+
+
+	private double holeBonuspreis(Statement stmt, String spalte) throws SQLException {
+		// TODO Auto-generated method stub
+		String query;
+		ResultSet rs;
+		double bonus = 0;
+		query = "SELECT PREISLISTE." + spalte + " FROM PREISLISTE, MODELL, SPORTGERAET WHERE SPORTGERAET.ID = " + geraetNrloc + " AND SPORTGERAET.MODELLID = MODELL.ID AND MODELL.PREISLISTEID = PREISLISTE.ID";
+		
+		rs = stmt.executeQuery(query);
+		while (rs.next())
+		{
+			bonus = rs.getDouble(spalte);
+		}
+		return bonus;
 	}
 
 
@@ -281,6 +298,12 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 		{
 			preis = rs.getDouble(spalte);
 		}
+		while(preis == 0)
+		{
+			tageStunden[0]--;
+			pruefepreisSetzen(stmt, tageStunden);
+		}
+			
 	}
 
 
