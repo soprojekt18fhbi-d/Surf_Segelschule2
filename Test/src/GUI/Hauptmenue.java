@@ -3,6 +3,8 @@ package GUI;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -20,6 +22,11 @@ import java.awt.Component;
 
 public class Hauptmenue extends JPanel {
 
+	private Icon iconKundenverwaltung;
+	private Icon iconBuchungsverwaltung;
+	private Icon iconGeraeteverwaltung;
+	private Icon iconWirtschaftlichkeit; 
+	
 	/**
 	 * Create the panel.
 	 */
@@ -69,6 +76,8 @@ public class Hauptmenue extends JPanel {
 		gbc_btnKundenverwaltung.gridx = 0;
 		gbc_btnKundenverwaltung.gridy = 0;
 		panel_1.add(btnKundenverwaltung, gbc_btnKundenverwaltung);
+		iconKundenverwaltung = new ImageIcon(getClass().getResource("/GUI/icon_kunde.png"));
+		btnKundenverwaltung.setIcon(iconKundenverwaltung);
 		
 		JButton btnGerteverwaltung = new JButton("Ger\u00E4teverwaltung");
 		btnGerteverwaltung.setFont(new Font("Tahoma", Font.PLAIN, 40));
@@ -79,6 +88,8 @@ public class Hauptmenue extends JPanel {
 		gbc_btnGerteverwaltung.gridx = 1;
 		gbc_btnGerteverwaltung.gridy = 0;
 		panel_1.add(btnGerteverwaltung, gbc_btnGerteverwaltung);
+		iconGeraeteverwaltung = new ImageIcon(getClass().getResource("/GUI/icon_geraete.png"));
+		btnGerteverwaltung.setIcon(iconGeraeteverwaltung);
 		
 		JButton btnBuchungsverwaltung = new JButton("Buchungsverwaltung");
 		btnBuchungsverwaltung.setFont(new Font("Tahoma", Font.PLAIN, 40));
@@ -89,6 +100,8 @@ public class Hauptmenue extends JPanel {
 		gbc_btnBuchungsverwaltung.gridx = 0;
 		gbc_btnBuchungsverwaltung.gridy = 1;
 		panel_1.add(btnBuchungsverwaltung, gbc_btnBuchungsverwaltung);
+		iconBuchungsverwaltung = new ImageIcon(getClass().getResource("/GUI/icon_buchung.png"));
+		btnBuchungsverwaltung.setIcon(iconBuchungsverwaltung);
 		
 		JButton btnWirtschaftlichkeit = new JButton("Wirtschaftlichkeit");
 		btnWirtschaftlichkeit.setFont(new Font("Tahoma", Font.PLAIN, 40));
@@ -98,6 +111,8 @@ public class Hauptmenue extends JPanel {
 		gbc_btnWirtschaftlichkeit.gridx = 1;
 		gbc_btnWirtschaftlichkeit.gridy = 1;
 		panel_1.add(btnWirtschaftlichkeit, gbc_btnWirtschaftlichkeit);
+		iconWirtschaftlichkeit = new ImageIcon(getClass().getResource("/GUI/icon_wirtschaftlichkeit.png"));
+		btnWirtschaftlichkeit.setIcon(iconWirtschaftlichkeit);
 		
 		//Funktionen der Button
 		btnKundenverwaltung.addActionListener(new ActionListener() {
