@@ -54,9 +54,7 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 	private JTextField tfProTagVierW;
 	private JTextField tfVierWochen;
 	private JTextField tfAchtWochen;
-	private JTextField tfKauf;
-	private JTextField textField_19;
-	private JTextField textField_20;
+
 
 	/**
 	 * 
@@ -430,26 +428,6 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 		gbc_tfZwoelfVierzehnTage.gridy = 7;
 		panel.add(tfZwoelfVierzehnTage, gbc_tfZwoelfVierzehnTage);
 		
-		JLabel lblKauf = new JLabel("Kauf:");
-		lblKauf.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		GridBagConstraints gbc_lblKauf = new GridBagConstraints();
-		gbc_lblKauf.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblKauf.insets = new Insets(0, 0, 5, 5);
-		gbc_lblKauf.gridx = 7;
-		gbc_lblKauf.gridy = 7;
-		panel.add(lblKauf, gbc_lblKauf);
-		
-		tfKauf = new JTextField();
-		tfKauf.setPreferredSize(new Dimension(6, 40));
-		tfKauf.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		tfKauf.setColumns(10);
-		GridBagConstraints gbc_tfKauf = new GridBagConstraints();
-		gbc_tfKauf.insets = new Insets(0, 0, 5, 5);
-		gbc_tfKauf.fill = GridBagConstraints.HORIZONTAL;
-		gbc_tfKauf.gridx = 8;
-		gbc_tfKauf.gridy = 7;
-		panel.add(tfKauf, gbc_tfKauf);
-		
 		JLabel lblVierTage = new JLabel("4 Tage:");
 		lblVierTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblVierTage = new GridBagConstraints();
@@ -490,26 +468,6 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 		gbc_tfFuenfzehnTage.gridy = 8;
 		panel.add(tfFuenfzehnTage, gbc_tfFuenfzehnTage);
 		
-		JLabel lblTest = new JLabel("Test");
-		lblTest.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		GridBagConstraints gbc_lblTest = new GridBagConstraints();
-		gbc_lblTest.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblTest.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTest.gridx = 7;
-		gbc_lblTest.gridy = 8;
-		panel.add(lblTest, gbc_lblTest);
-		
-		textField_19 = new JTextField();
-		textField_19.setPreferredSize(new Dimension(6, 40));
-		textField_19.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField_19.setColumns(10);
-		GridBagConstraints gbc_textField_19 = new GridBagConstraints();
-		gbc_textField_19.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_19.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_19.gridx = 8;
-		gbc_textField_19.gridy = 8;
-		panel.add(textField_19, gbc_textField_19);
-		
 		JLabel lblFuenfTage = new JLabel("5 Tage:");
 		lblFuenfTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblFuenfTage = new GridBagConstraints();
@@ -549,27 +507,6 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 		gbc_tfSechzehnTage.gridx = 5;
 		gbc_tfSechzehnTage.gridy = 9;
 		panel.add(tfSechzehnTage, gbc_tfSechzehnTage);
-		
-		JLabel lblTest_1 = new JLabel("Test");
-		lblTest_1.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		GridBagConstraints gbc_lblTest_1 = new GridBagConstraints();
-		gbc_lblTest_1.anchor = GridBagConstraints.NORTH;
-		gbc_lblTest_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblTest_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTest_1.gridx = 7;
-		gbc_lblTest_1.gridy = 9;
-		panel.add(lblTest_1, gbc_lblTest_1);
-		
-		textField_20 = new JTextField();
-		textField_20.setPreferredSize(new Dimension(6, 40));
-		textField_20.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField_20.setColumns(10);
-		GridBagConstraints gbc_textField_20 = new GridBagConstraints();
-		gbc_textField_20.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_20.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_20.gridx = 8;
-		gbc_textField_20.gridy = 9;
-		panel.add(textField_20, gbc_textField_20);
 		
 		JPanel panel_2 = new JPanel();
 		add(panel_2, BorderLayout.SOUTH);
@@ -650,7 +587,6 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 				String	preisTagVierWochenString = tfProTagVierW.getText();
 				String	presVierWochenString = tfVierWochen.getText();
 				String	preisAchtWochenString = tfAchtWochen.getText();
-				String	preisKaufString = tfKauf.getText();
 				
 //				if((preisEineStdString.isEmpty() || ) (&& preisZweiStdString.isEmpty() || ) 
 //					
@@ -681,14 +617,14 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 				double  preisTagVierWochen = DatentypUmwandlung.stringZuDouble(preisTagVierWochenString);
 				double  presVierWochen = DatentypUmwandlung.stringZuDouble(presVierWochenString);
 				double  preisAchtWochen = DatentypUmwandlung.stringZuDouble(preisAchtWochenString);
-				double  preisKauf = DatentypUmwandlung.stringZuDouble(preisKaufString);
+
 				
 
 				controller.preislisteUebergeben(preisEineStd,  preisZweiStd,  preisVierStd, preisEinenTag,
 						 preisZweiTage,  preisDreiTage,  preisVierTage,  preisFuenfTage,  preisSechsSiebenTage,
 						 preisAchtTage,  preisNeunTage,  preisZehnTage,  preisElfTage,  preisZwoelfVierzehnTage,
 						 preisFuenfzehnTage,  preisSechzehnTage,  preisSiebzehnTage,  preisAchtzehnEinundzwanzigTage,
-						 preisTagVierWochen,  presVierWochen,  preisAchtWochen,  preisKauf);
+						 preisTagVierWochen,  presVierWochen,  preisAchtWochen);
 			}
 		});	
 		

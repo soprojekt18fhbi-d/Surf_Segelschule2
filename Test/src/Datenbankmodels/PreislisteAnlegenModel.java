@@ -38,7 +38,6 @@ public class PreislisteAnlegenModel implements IAnlegenModel {
 	 String tagVierWochen;
 	 String vierWochen;
 	 String achtWochen;
-	 String kauf;
 
 	@Override
 	public void anmelden(IAnlegenView view) {
@@ -117,7 +116,7 @@ public class PreislisteAnlegenModel implements IAnlegenModel {
 			tagVierWochen= DatentypUmwandlung.doubleZuString(preisliste.getTagVierWochen());
 			vierWochen= DatentypUmwandlung.doubleZuString(preisliste.getVierWochen());
 			achtWochen= DatentypUmwandlung.doubleZuString(preisliste.getAchtWochen());
-			kauf= DatentypUmwandlung.doubleZuString(preisliste.getKauf());
+
 
 
 
@@ -126,7 +125,7 @@ public class PreislisteAnlegenModel implements IAnlegenModel {
 					", " + zweiTage + ", " + dreiTage +", " + vierTage + ", " + fuenfTage +", " + sechsSiebenTage +
 					", " + achtTage + ", " + neunTage +", " + zehnTage + ", " + elfTage +", " + zwoelfVierzehnTage +
 					", " + fuenfzehnTage + ", " + sechzehnTage +", " + siebzehnTage + ", " + achtzehnEinundzwanzigTage +", "
-					+ tagVierWochen +", " + vierWochen + ", " + achtWochen +", " + kauf + ")";
+					+ tagVierWochen +", " + vierWochen + ", " + achtWochen +")";
 			
 
 			int ergebnis = statementPreislisteAnlegenModel.executeUpdate(sqlupdate);

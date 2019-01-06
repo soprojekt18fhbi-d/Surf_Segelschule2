@@ -29,7 +29,6 @@ public class Preisliste {
 	private double tagVierWochen;
 	private double VierWochen;
 	private double achtWochen;
-	private double Kauf;
 
 	
 	
@@ -38,7 +37,7 @@ public class Preisliste {
 			double zweiTage, double dreiTage, double vierTage, double fuenfTage, double sechsSiebenTage,
 			double achtTage, double neunTage, double zehnTage, double elfTage, double zwoelfVierzehnTage,
 			double fuenfzehnTage, double sechzehnTage, double siebzehnTage, double achtzehnEinundzwanzigTage,
-			double tagVierWochen, double vierWochen, double achtWochen, double kauf) {
+			double tagVierWochen, double vierWochen, double achtWochen) {
 		super();
 		this.preislisteID = preislisteID;
 		this.eineStd = eineStd;
@@ -62,7 +61,6 @@ public class Preisliste {
 		this.tagVierWochen = tagVierWochen;
 		this.VierWochen = vierWochen;
 		this.achtWochen = achtWochen;
-		this.Kauf = kauf;
 	}
 
 	
@@ -243,12 +241,5 @@ public class Preisliste {
 		this.achtWochen = achtWochen;
 	}
 
-	public double getKauf() {
-		return Kauf;
-	}
-
-	public void setKauf(double kauf) {
-		Kauf = kauf;
-	}
 
 }

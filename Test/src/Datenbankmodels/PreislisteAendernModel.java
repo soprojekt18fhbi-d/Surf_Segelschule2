@@ -95,6 +95,7 @@ public class PreislisteAendernModel implements IAnlegenModel {
 		
 		if(talking.equals("aendern"))
 		{
+			int resultSet = 0;
 			try {
 				setPreislisteStrings(preisliste);
 					String sqlupdate = "UPDATE PREISLISTE SET EINESTD = '"+preisEineStd+"', ZWEISTD = '"+preisZweiStd
@@ -107,12 +108,12 @@ public class PreislisteAendernModel implements IAnlegenModel {
 							+ "' , VIERWOCHEN = '"+preisVierWochen+ "' , ACHTWOCHEN = '"+preisAchtWochen
 							+ "' WHERE ID = "+id+";";
 					System.out.println(sqlupdate);
-					stmtPreislisteAendernModel.executeUpdate(sqlupdate);		
+					resultSet = stmtPreislisteAendernModel.executeUpdate(sqlupdate);		
 				}
 			 catch (SQLException e1) {
 				e1.printStackTrace();
 			} finally {
-				 if (stmtPreislisteAendernModel != null) { stmtPreislisteAendernModel.close(); }
+				{ stmtPreislisteAendernModel.close(); }
 			}
 		}
 

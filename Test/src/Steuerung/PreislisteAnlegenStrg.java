@@ -27,14 +27,14 @@ public class PreislisteAnlegenStrg implements IController {
 			double zweiTage, double dreiTage, double vierTage, double fuenfTage, double sechsSiebenTage,
 			double achtTage, double neunTage, double zehnTage, double elfTage, double zwoelfVierzehnTage,
 			double fuenfzehnTage, double sechzehnTage, double siebzehnTage, double achtzehnEinundzwanzigTage,
-			double tagVierWochen, double vierWochen, double achtWochen, double kauf) {
+			double tagVierWochen, double vierWochen, double achtWochen) {
 		
 
 		preisliste=new Preisliste(eineStd,  zweiStd,  vierStd,  einenTag,
 			 zweiTage,  dreiTage,  vierTage,  fuenfTage,  sechsSiebenTage,
 			 achtTage,  neunTage,  zehnTage,  elfTage,  zwoelfVierzehnTage,
 			 fuenfzehnTage,  sechzehnTage,  siebzehnTage,  achtzehnEinundzwanzigTage,
-			 tagVierWochen,  vierWochen,  achtWochen,  kauf);
+			 tagVierWochen,  vierWochen,  achtWochen);
 		model.PreislisteAnlegen(preisliste);
 	}
 
