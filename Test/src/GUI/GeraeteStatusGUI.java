@@ -220,6 +220,10 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView{
 						MainFrame.change(MainFrame.getGeraeteStatusGUI(), MainFrame.getSportgeraeteGUI());
 						MainFrame.getSportgeraeteGUI().anfrage();
 					}
+					chckbxOK.setSelected(false);
+					chckbxVerliehen.setSelected(false);
+					chckbxReparatur.setSelected(false);
+					chckbxDeaktiviert.setSelected(false);
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Der Status konnte nicht geändert werden");
 				}
@@ -229,7 +233,12 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView{
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getSportgeraeteGUI().anfrage();
-				MainFrame.change(MainFrame.getGeraeteStatusGUI(), MainFrame.getSportgeraeteGUI());			}
+				MainFrame.change(MainFrame.getGeraeteStatusGUI(), MainFrame.getSportgeraeteGUI());
+				chckbxOK.setSelected(false);
+				chckbxVerliehen.setSelected(false);
+				chckbxReparatur.setSelected(false);
+				chckbxDeaktiviert.setSelected(false);
+				}
 		});
 		
 		chckbxOK.addMouseListener(new MouseAdapter() {
