@@ -95,20 +95,35 @@ public class PreislisteAendernModel implements IAnlegenModel {
 		
 		if(talking.equals("aendern"))
 		{
-			int resultSet = 0;
 			try {
 				setPreislisteStrings(preisliste);
-					String sqlupdate = "UPDATE PREISLISTE SET EINESTD = '"+preisEineStd+"', ZWEISTD = '"+preisZweiStd
-							+"' , VIERSTD = '"+preisVierStd+ " , EINENTAG = '"+preisEinenTag+ "' , ZWEITAGE = '"+preisZweiTage
-							+ "' , DREITAGE = '"+preisDreiTage+ "' , VIERTAGE = '"+preisVierTage+ "' , FUENFTAGE = '"+preisFuenfTage
-							+ "' , 'SECHSSIEBENTAGE' = '"+preisSechsSiebenTage+ "' , ACHTTAGE = '"+preisAchtTage+ "' , NEUNTAGE = '"+preisNeunTage
-							+ "' , ZEHNTAGE = '"+preisZehnTage+ "' , ELFTAGE = '"+preisElfTage+ "' , 'ZWOELFVIERZEHNTAGE' = '"+preisZwoelfVierzehnTage
-							+ "' , FUENFZEHNTAGE = '"+preisFuenfzehnTage+ " , SECHSZEHNTAGE = '"+preisSechzehnTage+ " , SIEBZEHNTAGE = '"+preisSiebzehnTage
-							+ "' , 'ACHTZEHNEINUNDZWANZIGTAGE' = '"+preisAchtzehnEinundzwanzigTage+ "' , 'TAGVIERWOCHEN' = '"+preisTagVierWochen
-							+ "' , VIERWOCHEN = '"+preisVierWochen+ "' , ACHTWOCHEN = '"+preisAchtWochen
-							+ "' WHERE ID = "+id+";";
+				String sqlupdate = "UPDATE PREISLISTE SET EINESTD = "+preisEineStd+", ZWEISTD =" +preisZweiStd
+						+ " , VIERSTD = "+preisVierStd+" , EINENTAG = "+preisEinenTag+ " , ZWEITAGE = "+preisZweiTage
+						+ " , DREITAGE = "+preisDreiTage+ " , VIERTAGE = "+preisVierTage+ " , FUENFTAGE = "+preisFuenfTage
+						+ " , SECHSSIEBENTAGE = "+preisSechsSiebenTage+ " , ACHTTAGE = "+preisAchtTage+ " , NEUNTAGE = "+preisNeunTage
+						+ " , ZEHNTAGE = "+preisZehnTage+ " , ELFTAGE = "+preisElfTage+ " , ZWOELFVIERZEHNTAGE = "+preisZwoelfVierzehnTage
+						+ " , FUENFZEHNTAGE = "+preisFuenfzehnTage+ " , SECHZEHNTAGE = "+preisSechzehnTage+ " , SIEBZEHNTAGE = "+preisSiebzehnTage
+						+ " , ACHTZEHNEINUNDZWANZIGTAGE = "+preisAchtzehnEinundzwanzigTage+ " , TAGVIERWOCHEN = "+preisTagVierWochen
+						+ " , VIERWOCHEN = "+preisVierWochen+ " , ACHTWOCHEN = "+preisAchtWochen
+						+ " WHERE ID = "+id+";";
+				
 					System.out.println(sqlupdate);
-					resultSet = stmtPreislisteAendernModel.executeUpdate(sqlupdate);		
+					int resultSet = stmtPreislisteAendernModel.executeUpdate(sqlupdate);		
+				}
+			 catch (SQLException e1) {
+				e1.printStackTrace();
+			} finally {
+				{ stmtPreislisteAendernModel.close(); }
+			}
+		}
+		
+		if(talking.equals("loeschen"))
+		{
+			try {
+				setPreislisteStrings(preisliste);
+					String sqlupdate = "DELETE FROM PREISLISTE WHERE ID = "+id+";";
+					System.out.println(sqlupdate);
+					int resultSet = stmtPreislisteAendernModel.executeUpdate(sqlupdate);		
 				}
 			 catch (SQLException e1) {
 				e1.printStackTrace();

@@ -231,14 +231,13 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 
 				int zeile = table.getSelectedRow();
 
-				if (zeile >0)
+				if (zeile <0)
 					JOptionPane.showMessageDialog(null, "Bitte eine Preisliste auswählen.");
 				else {
 					
 					String[] preislistetabelle = tableRowToArray(table);
 					MainFrame.getPreislisteAendernGUI().textFelderInArray();
 					MainFrame.getPreislisteAendernGUI().setPreislisteTextfelder(preislistetabelle);
-					
 
 					MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getPreislisteAendernGUI());
 					tableLeeren();

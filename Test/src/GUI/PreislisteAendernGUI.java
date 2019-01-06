@@ -40,28 +40,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 	private String[] preisliste;
 
 	int id;
-//	private String preisEineStdString;
-//	private String preisZweiStdString;
-//	private String preisVierStdString;
-//	private String preisEinenTagString;
-//	private String preisZweiTageString;
-//	private String preisDreiTageString;
-//	private String preisVierTageString;
-//	private String preisFuenfTageString;
-//	private String preisSechsSiebenTageString;
-//	private String preisAchtTageString;
-//	private String preisNeunTageString;
-//	private String preisZehnTageString;
-//	private String preisElfTageString;
-//	private String preisZwoelfVierzehnTageString;
-//	private String preisFuenfzehnTageString;
-//	private String preisSechzehnTageString;
-//	private String preisSiebzehnTageString;
-//	private String preisAchtzehnEinundzwanzigTageString;
-//	private String preisTagVierWochenString;
-//	private String presVierWochenString;
-//	private String preisAchtWochenString;
-//	private String preisKaufString;
+
 
 	private JTextField tfEineStd;
 	private JTextField tfZweiStd;
@@ -110,15 +89,15 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbl_panel.rowWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
 
-		JLabel lblPreislisteHinzufgen = new JLabel("Preisliste hinzuf\u00FCgen:");
-		lblPreislisteHinzufgen.setFont(new Font("Tahoma", Font.BOLD, 32));
-		GridBagConstraints gbc_lblPreislisteHinzufgen = new GridBagConstraints();
-		gbc_lblPreislisteHinzufgen.anchor = GridBagConstraints.WEST;
-		gbc_lblPreislisteHinzufgen.gridwidth = 3;
-		gbc_lblPreislisteHinzufgen.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPreislisteHinzufgen.gridx = 3;
-		gbc_lblPreislisteHinzufgen.gridy = 1;
-		panel.add(lblPreislisteHinzufgen, gbc_lblPreislisteHinzufgen);
+		JLabel lblPreislisteAendern = new JLabel("Preisliste ändern:");
+		lblPreislisteAendern.setFont(new Font("Tahoma", Font.BOLD, 32));
+		GridBagConstraints gbc_lblPreislisteAendern = new GridBagConstraints();
+		gbc_lblPreislisteAendern.anchor = GridBagConstraints.WEST;
+		gbc_lblPreislisteAendern.gridwidth = 3;
+		gbc_lblPreislisteAendern.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPreislisteAendern.gridx = 3;
+		gbc_lblPreislisteAendern.gridy = 1;
+		panel.add(lblPreislisteAendern, gbc_lblPreislisteAendern);
 
 		JLabel lblEineStd = new JLabel("1 Std:");
 		lblEineStd.setFont(new Font("Tahoma", Font.PLAIN, 28));
@@ -550,27 +529,63 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		JButton btnSpeichern = new JButton("Speichern");
 		btnSpeichern.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
-		JButton btnAbbrechen = new JButton("abbrechen");
+		JButton btnLoeschen = new JButton("L\u00F6schen");
+		btnLoeschen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
-		gl_panel_2.setHorizontalGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_2.createSequentialGroup().addContainerGap(573, Short.MAX_VALUE)
-						.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(btnSpeichern, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-						.addGap(17)));
-		gl_panel_2.setVerticalGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup().addGap(0, 0, Short.MAX_VALUE)
-						.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnSpeichern, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap()));
+		gl_panel_2.setHorizontalGroup(
+			gl_panel_2.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addContainerGap(413, Short.MAX_VALUE)
+					.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnLoeschen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnSpeichern, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addGap(17))
+		);
+		gl_panel_2.setVerticalGroup(
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addGap(0, 0, Short.MAX_VALUE)
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnLoeschen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnSpeichern, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
 		panel_2.setLayout(gl_panel_2);
 		
 
 		btnSpeichern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				talking = "aendern";
+
+				try {
+
+					PreislisteAendern();
+
+					aktualisieren(model);
+					textFelderLeeren();
+					setPreisliste(null);
+					MainFrame.change(MainFrame.getPreislisteAendernGUI(), MainFrame.getPreislisteGUI());
+
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+		
+		btnLoeschen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				talking = "loeschen";
 
 				try {
 
@@ -615,16 +630,9 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 	}
 	
 	private void TextFelderFuellen () {
-		//TODO
-		
-
-		
 			for (int i = 0; i<mengeAnTextFeldern.length;i++) {
 				mengeAnTextFeldern[i].setText(preisliste[i+1]);
 			}
-			
-
-		
 	}
 
 	@Override
@@ -721,5 +729,4 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 			mengeAnTextFeldern[i].setText("");
 		}
 	}
-
 }
