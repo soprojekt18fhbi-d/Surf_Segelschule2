@@ -16,7 +16,7 @@ import GUI.IAnlegenView;
 import GUI.PreislisteAendernGUI;
 
 public class PreislisteAendernModel implements IAnlegenModel {
-
+ 
 	private ArrayList<IAnlegenView> observers = new ArrayList<IAnlegenView>();
 
 	private ArrayList<Object> mengeAnPreislisten = new ArrayList<Object>();

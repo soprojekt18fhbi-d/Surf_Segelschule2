@@ -28,7 +28,7 @@ import Berechnung.DatentypUmwandlung;
 import Datenbankmodels.IAnlegenModel;
 import Datenbankmodels.PreislisteAnlegenModel;
 import Steuerung.PreislisteAnlegenStrg;
-
+ 
 public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 
 	PreislisteAnlegenModel model;
@@ -55,7 +55,7 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 	private JTextField tfProTagVierW;
 	private JTextField tfVierWochen;
 	private JTextField tfAchtWochen;
-
+ 
 
 	/**
 	 * 

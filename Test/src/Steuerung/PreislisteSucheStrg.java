@@ -7,7 +7,7 @@ package Steuerung;
 import Datenbankmodels.PreislisteSucheModel;
 import GUI.PreislisteGUI;
 
-
+ 
 public class PreislisteSucheStrg implements IController {
 
 	

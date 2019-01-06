@@ -34,7 +34,7 @@ import GUI.IAnlegenView;
 import GUI.MainFrame;
 import Steuerung.ModellAnlegenStrg;
 import Steuerung.PreislisteAendernStrg;
-
+ 
 public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 
 	IAnlegenModel model;
@@ -45,7 +45,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 	private String[] preisliste;
 
 	int id;
-
+ 
 
 	private JTextField tfEineStd;
 	private JTextField tfZweiStd;

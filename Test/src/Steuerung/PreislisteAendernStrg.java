@@ -17,7 +17,7 @@ public class PreislisteAendernStrg implements IController{
 	public PreislisteAendernStrg(PreislisteAendernModel model) {
 		
 		this.model=model;
-	}
+	} 
 
 
 	public void preislisteUebergeben(String talking, int id, double preisEineStd, double preisZweiStd, double preisVierStd,

@@ -36,7 +36,7 @@ import Datenbankmodels.IObjektModel;
 import Datenbankmodels.PreislisteSucheModel;
 import Steuerung.PreislisteAendernStrg;
 import Steuerung.PreislisteSucheStrg;
-
+ 
 public class PreislisteGUI extends JPanel implements IObjektView {
 	private JTextField tfSuche;
 	private JTable table;
@@ -47,7 +47,7 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 
 	public PreislisteGUI(IObjektModel smodel, PreislisteSucheStrg scontroller) {
 
-
+ 
 		this.oModel = smodel;
 		this.sController = scontroller;
 

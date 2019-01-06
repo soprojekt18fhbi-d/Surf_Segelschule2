@@ -26,7 +26,7 @@ public class PreislisteSucheModel implements IObjektModel {
 	private String talking = "master";
 	private String suchTxt;
 
-	@Override
+	@Override 
 	public void anmelden(IObjektView view) {
 
 		try {

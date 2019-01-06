@@ -15,7 +15,7 @@ import Domaenklassen.Preisliste;
 import GUI.IAnlegenView;
 
 public class PreislisteAnlegenModel implements IAnlegenModel {
-
+ 
 
 	 String eineStd;
 	 String zweiStd;
