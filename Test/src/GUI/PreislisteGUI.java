@@ -1,3 +1,7 @@
+/**
+ * @author Ben S
+ */
+
 package GUI;
 
 import java.awt.BorderLayout;
@@ -36,31 +40,29 @@ import Steuerung.PreislisteSucheStrg;
 public class PreislisteGUI extends JPanel implements IObjektView {
 	private JTextField tfSuche;
 	private JTable table;
-
 	private PreislisteSucheStrg sController;
-	private PreislisteAendernStrg aeController;
 	private IObjektModel oModel;
-	private IAnlegenModel aModel;
-	private int preislisteId;
 	private String talking;
 	private JTextField tfSuchID;
 
 	public PreislisteGUI(IObjektModel smodel, PreislisteSucheStrg scontroller) {
 
-		setBackground(Color.DARK_GRAY);
 
 		this.oModel = smodel;
 		this.sController = scontroller;
 
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.NORTH);
 
 		JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnZurck.setBackground(new Color(255, 140, 0));
 
 		JButton btnSuchen = new JButton("Suchen");
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnSuchen.setBackground(new Color(255, 140, 0));
 
 		tfSuche = new JTextField();
 		tfSuche.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -114,6 +116,7 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 
 		JButton btnPreislisteHinzu = new JButton("Preisliste hinzuf\u00FCgen");
 		btnPreislisteHinzu.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnPreislisteHinzu.setBackground(new Color(255, 140, 0));
 		btnPreislisteHinzu.setPreferredSize(new Dimension(300, 100));
 		GridBagConstraints gbc_btnPreislisteHinzu = new GridBagConstraints();
 		gbc_btnPreislisteHinzu.insets = new Insets(0, 0, 5, 5);
@@ -125,6 +128,7 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 		JButton btnPreislisteAendern = new JButton("Preisliste \u00E4ndern");
 		btnPreislisteAendern.setPreferredSize(new Dimension(300, 23));
 		btnPreislisteAendern.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnPreislisteAendern.setBackground(new Color(255, 140, 0));
 		GridBagConstraints gbc_btnPreislisteAendern = new GridBagConstraints();
 		gbc_btnPreislisteAendern.fill = GridBagConstraints.BOTH;
 		gbc_btnPreislisteAendern.insets = new Insets(0, 0, 5, 0);
@@ -188,16 +192,13 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 		table.setPreferredScrollableViewportSize(new Dimension(450, 600));
 		scrollPane.setViewportView(table);
 
-		JButton btnLoeschen = new JButton("Löschen");
-		btnLoeschen.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnLoeschen.setMinimumSize(new Dimension(150, 35));
-		btnLoeschen.setPreferredSize(new Dimension(150, 35));
+
 		GridBagConstraints gbc_btnAuswhlen = new GridBagConstraints();
 		gbc_btnAuswhlen.anchor = GridBagConstraints.EAST;
 		gbc_btnAuswhlen.fill = GridBagConstraints.VERTICAL;
 		gbc_btnAuswhlen.gridx = 1;
 		gbc_btnAuswhlen.gridy = 7;
-		panel_1.add(btnLoeschen, gbc_btnAuswhlen);
+
 
 		// Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
@@ -244,13 +245,6 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 				}
 				
 
-			}
-		});
-
-		btnLoeschen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getPreislisteGUI());
-				tableLeeren();
 			}
 		});
 

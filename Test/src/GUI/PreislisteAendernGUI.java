@@ -1,6 +1,11 @@
+/**
+ * @author Ben S
+ */
+
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -81,6 +86,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		setLayout(new BorderLayout(0, 0));
 
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] { 0, 0, 30, 30, 0, 30, 30, 0, 30, 0, 0 };
@@ -90,6 +96,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.setLayout(gbl_panel);
 
 		JLabel lblPreislisteAendern = new JLabel("Preisliste ändern:");
+		lblPreislisteAendern.setForeground(Color.WHITE);
 		lblPreislisteAendern.setFont(new Font("Tahoma", Font.BOLD, 32));
 		GridBagConstraints gbc_lblPreislisteAendern = new GridBagConstraints();
 		gbc_lblPreislisteAendern.anchor = GridBagConstraints.WEST;
@@ -100,7 +107,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(lblPreislisteAendern, gbc_lblPreislisteAendern);
 
 		JLabel lblEineStd = new JLabel("1 Std:");
-		lblEineStd.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblEineStd.setForeground(Color.WHITE);
+		lblEineStd.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblEineStd = new GridBagConstraints();
 		gbc_lblEineStd.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblEineStd.insets = new Insets(0, 0, 5, 5);
@@ -120,7 +128,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		tfEineStd.setColumns(10);
 
 		JLabel lblSechsSiebenTage = new JLabel("6 - 7 Tage:");
-		lblSechsSiebenTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblSechsSiebenTage.setForeground(Color.WHITE);
+		lblSechsSiebenTage.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblSechsSiebenTage = new GridBagConstraints();
 		gbc_lblSechsSiebenTage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblSechsSiebenTage.insets = new Insets(0, 0, 5, 5);
@@ -140,7 +149,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfSechsSiebenTage, gbc_tfSechsSiebenTage);
 
 		JLabel lblSiebzehnTage = new JLabel("17 Tage:");
-		lblSiebzehnTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblSiebzehnTage.setForeground(Color.WHITE);
+		lblSiebzehnTage.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblSiebzehnTage = new GridBagConstraints();
 		gbc_lblSiebzehnTage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblSiebzehnTage.insets = new Insets(0, 0, 5, 5);
@@ -160,7 +170,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfSiebzehnTage, gbc_tfSiebzehnTage);
 
 		JLabel lblZweiStd = new JLabel("2 Std:");
-		lblZweiStd.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblZweiStd.setForeground(Color.WHITE);
+		lblZweiStd.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblZweiStd = new GridBagConstraints();
 		gbc_lblZweiStd.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblZweiStd.insets = new Insets(0, 0, 5, 5);
@@ -180,7 +191,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		tfZweiStd.setColumns(10);
 
 		JLabel lblAchtTage = new JLabel("8 Tage:");
-		lblAchtTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblAchtTage.setForeground(Color.WHITE);
+		lblAchtTage.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblAchtTage = new GridBagConstraints();
 		gbc_lblAchtTage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblAchtTage.insets = new Insets(0, 0, 5, 5);
@@ -200,7 +212,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfAchtTage, gbc_tfAchtTage);
 
 		JLabel lblAchtzehnEinundZwTage = new JLabel("18 - 21 Tage:");
-		lblAchtzehnEinundZwTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblAchtzehnEinundZwTage.setForeground(Color.WHITE);
+		lblAchtzehnEinundZwTage.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblAchtzehnEinundZwTage = new GridBagConstraints();
 		gbc_lblAchtzehnEinundZwTage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblAchtzehnEinundZwTage.insets = new Insets(0, 0, 5, 5);
@@ -220,7 +233,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfAchtzehnEinundZwTage, gbc_tfAchtzehnEinundZwTage);
 
 		JLabel lblVierStd = new JLabel("4 Std:");
-		lblVierStd.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblVierStd.setForeground(Color.WHITE);
+		lblVierStd.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblVierStd = new GridBagConstraints();
 		gbc_lblVierStd.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblVierStd.insets = new Insets(0, 0, 5, 5);
@@ -240,7 +254,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfVierStd, gbc_tfVierStd);
 
 		JLabel lblNeunTage = new JLabel("9 Tage:");
-		lblNeunTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblNeunTage.setForeground(Color.WHITE);
+		lblNeunTage.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblNeunTage = new GridBagConstraints();
 		gbc_lblNeunTage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblNeunTage.insets = new Insets(0, 0, 5, 5);
@@ -260,7 +275,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfNeunTage, gbc_tfNeunTage);
 
 		JLabel lblProTagVierW = new JLabel("+ Pro Tag - 4 W");
-		lblProTagVierW.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblProTagVierW.setForeground(Color.WHITE);
+		lblProTagVierW.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblProTagVierW = new GridBagConstraints();
 		gbc_lblProTagVierW.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblProTagVierW.insets = new Insets(0, 0, 5, 5);
@@ -280,7 +296,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfProTagVierW, gbc_tfProTagVierW);
 
 		JLabel lblEinTag = new JLabel("1 Tag:");
-		lblEinTag.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblEinTag.setForeground(Color.WHITE);
+		lblEinTag.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblEinTag = new GridBagConstraints();
 		gbc_lblEinTag.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblEinTag.insets = new Insets(0, 0, 5, 5);
@@ -300,7 +317,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfEinTag, gbc_tfEinTag);
 
 		JLabel lblZehnTage = new JLabel("10 Tage:");
-		lblZehnTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblZehnTage.setForeground(Color.WHITE);
+		lblZehnTage.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblZehnTage = new GridBagConstraints();
 		gbc_lblZehnTage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblZehnTage.insets = new Insets(0, 0, 5, 5);
@@ -320,7 +338,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfZehnTage, gbc_tfZehnTage);
 
 		JLabel lblVierWochen = new JLabel("4 Wochen:");
-		lblVierWochen.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblVierWochen.setForeground(Color.WHITE);
+		lblVierWochen.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblVierWochen = new GridBagConstraints();
 		gbc_lblVierWochen.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblVierWochen.insets = new Insets(0, 0, 5, 5);
@@ -340,7 +359,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfVierWochen, gbc_tfVierWochen);
 
 		JLabel lblZweiTage = new JLabel("2 Tage:");
-		lblZweiTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblZweiTage.setForeground(Color.WHITE);
+		lblZweiTage.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblZweiTage = new GridBagConstraints();
 		gbc_lblZweiTage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblZweiTage.insets = new Insets(0, 0, 5, 5);
@@ -360,7 +380,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfZweiTage, gbc_tfZweiTage);
 
 		JLabel lblElfTage = new JLabel("11 Tage:");
-		lblElfTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblElfTage.setForeground(Color.WHITE);
+		lblElfTage.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblElfTage = new GridBagConstraints();
 		gbc_lblElfTage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblElfTage.insets = new Insets(0, 0, 5, 5);
@@ -380,7 +401,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfElfTage, gbc_tfElfTage);
 
 		JLabel lblAchtWochen = new JLabel("8 Wochen:");
-		lblAchtWochen.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblAchtWochen.setForeground(Color.WHITE);
+		lblAchtWochen.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblAchtWochen = new GridBagConstraints();
 		gbc_lblAchtWochen.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblAchtWochen.insets = new Insets(0, 0, 5, 5);
@@ -401,7 +423,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfAchtWochen, gbc_tfAchtWochen);
 
 		JLabel lblDreiTage = new JLabel("3 Tage:");
-		lblDreiTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblDreiTage.setForeground(Color.WHITE);
+		lblDreiTage.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblDreiTage = new GridBagConstraints();
 		gbc_lblDreiTage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblDreiTage.insets = new Insets(0, 0, 5, 5);
@@ -421,7 +444,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfDreiTage, gbc_tfDreiTage);
 
 		JLabel lblZwoelfVierzehnTage = new JLabel("12 - 14 Tage:");
-		lblZwoelfVierzehnTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblZwoelfVierzehnTage.setForeground(Color.WHITE);
+		lblZwoelfVierzehnTage.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblZwoelfVierzehnTage = new GridBagConstraints();
 		gbc_lblZwoelfVierzehnTage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblZwoelfVierzehnTage.insets = new Insets(0, 0, 5, 5);
@@ -444,7 +468,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 
 
 		JLabel lblVierTage = new JLabel("4 Tage:");
-		lblVierTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblVierTage.setForeground(Color.WHITE);
+		lblVierTage.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblVierTage = new GridBagConstraints();
 		gbc_lblVierTage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblVierTage.insets = new Insets(0, 0, 5, 5);
@@ -464,7 +489,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfVierTage, gbc_tfVierTage);
 
 		JLabel lblFuenfzehnTage = new JLabel("15 Tage:");
-		lblFuenfzehnTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblFuenfzehnTage.setForeground(Color.WHITE);
+		lblFuenfzehnTage.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblFuenfzehnTage = new GridBagConstraints();
 		gbc_lblFuenfzehnTage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblFuenfzehnTage.insets = new Insets(0, 0, 5, 5);
@@ -484,7 +510,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfFuenfzehnTage, gbc_tfFuenfzehnTage);
 
 		JLabel lblFuenfTage = new JLabel("5 Tage:");
-		lblFuenfTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblFuenfTage.setForeground(Color.WHITE);
+		lblFuenfTage.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblFuenfTage = new GridBagConstraints();
 		gbc_lblFuenfTage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblFuenfTage.insets = new Insets(0, 0, 5, 5);
@@ -504,7 +531,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		panel.add(tfFuenfTage, gbc_tfFuenfTage);
 
 		JLabel lblSechzehnTage = new JLabel("16 Tage:");
-		lblSechzehnTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblSechzehnTage.setForeground(Color.WHITE);
+		lblSechzehnTage.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblSechzehnTage = new GridBagConstraints();
 		gbc_lblSechzehnTage.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblSechzehnTage.insets = new Insets(0, 0, 5, 5);
@@ -525,16 +553,25 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 
 		JPanel panel_2 = new JPanel();
 		add(panel_2, BorderLayout.SOUTH);
+		panel_2.setBackground(Color.DARK_GRAY);
 
 		JButton btnSpeichern = new JButton("Speichern");
 		btnSpeichern.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnSpeichern.setBackground(new Color(255, 140, 0));
+
 
 		JButton btnLoeschen = new JButton("L\u00F6schen");
 		btnLoeschen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnLoeschen.setBackground(new Color(255, 140, 0));
+
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnAbbrechen.setBackground(new Color(255, 140, 0));
+
+		
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
+		
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_2.createSequentialGroup()

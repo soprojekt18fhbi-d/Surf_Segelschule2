@@ -1,3 +1,7 @@
+/**
+ * @author Ben S
+ */
+
 package Datenbankmodels;
 
 import java.sql.Connection;
@@ -106,8 +110,7 @@ public class PreislisteAendernModel implements IAnlegenModel {
 						+ " , ACHTZEHNEINUNDZWANZIGTAGE = "+preisAchtzehnEinundzwanzigTage+ " , TAGVIERWOCHEN = "+preisTagVierWochen
 						+ " , VIERWOCHEN = "+preisVierWochen+ " , ACHTWOCHEN = "+preisAchtWochen
 						+ " WHERE ID = "+id+";";
-				
-					System.out.println(sqlupdate);
+			
 					int resultSet = stmtPreislisteAendernModel.executeUpdate(sqlupdate);		
 				}
 			 catch (SQLException e1) {
@@ -122,7 +125,6 @@ public class PreislisteAendernModel implements IAnlegenModel {
 			try {
 				setPreislisteStrings(preisliste);
 					String sqlupdate = "DELETE FROM PREISLISTE WHERE ID = "+id+";";
-					System.out.println(sqlupdate);
 					int resultSet = stmtPreislisteAendernModel.executeUpdate(sqlupdate);		
 				}
 			 catch (SQLException e1) {
