@@ -19,6 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import com.sun.corba.se.pept.protocol.ServerRequestDispatcher;
+
 import Berechnung.DatentypUmwandlung;
 import Datenbankmodels.IAnlegenModel;
 import Datenbankmodels.PreislisteAendernModel;
@@ -30,36 +32,36 @@ import Steuerung.PreislisteAendernStrg;
 
 public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 
-	PreislisteAendernModel model;
+	IAnlegenModel model;
 	PreislisteAendernStrg controller;
-	
+
 	private String talking = null;
-	
+
 	private String[] preisliste;
-	
+
 	int id;
-	private String  preisEineStdString;
-	private String	preisZweiStdString;
-	private String	preisVierStdString;
-	private String	preisEinenTagString;
-	private String	preisZweiTageString;
-	private String	preisDreiTageString;
-	private String	preisVierTageString;
-	private String	preisFuenfTageString;
-	private String	preisSechsSiebenTageString;
-	private String	preisAchtTageString;
-	private String	preisNeunTageString;
-	private String	preisZehnTageString;
-	private String	preisElfTageString;
-	private String	preisZwoelfVierzehnTageString;
-	private String	preisFuenfzehnTageString;
-	private String	preisSechzehnTageString;
-	private String	preisSiebzehnTageString;
-	private String	preisAchtzehnEinundzwanzigTageString;
-	private String	preisTagVierWochenString;
-	private String	presVierWochenString;
-	private String	preisAchtWochenString;
-	private String	preisKaufString;
+//	private String preisEineStdString;
+//	private String preisZweiStdString;
+//	private String preisVierStdString;
+//	private String preisEinenTagString;
+//	private String preisZweiTageString;
+//	private String preisDreiTageString;
+//	private String preisVierTageString;
+//	private String preisFuenfTageString;
+//	private String preisSechsSiebenTageString;
+//	private String preisAchtTageString;
+//	private String preisNeunTageString;
+//	private String preisZehnTageString;
+//	private String preisElfTageString;
+//	private String preisZwoelfVierzehnTageString;
+//	private String preisFuenfzehnTageString;
+//	private String preisSechzehnTageString;
+//	private String preisSiebzehnTageString;
+//	private String preisAchtzehnEinundzwanzigTageString;
+//	private String preisTagVierWochenString;
+//	private String presVierWochenString;
+//	private String preisAchtWochenString;
+//	private String preisKaufString;
 
 	private JTextField tfEineStd;
 	private JTextField tfZweiStd;
@@ -82,30 +84,32 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 	private JTextField tfProTagVierW;
 	private JTextField tfVierWochen;
 	private JTextField tfAchtWochen;
-	private JTextField tfKauf;
-	private JTextField textField_19;
-	private JTextField textField_20;
+
+
+	
+	private JTextField [] mengeAnTextFeldern= new JTextField[21];
 
 	/**
 	 * 
 	 * Create the panel.
 	 */
-	public PreislisteAendernGUI(IAnlegenModel models, ModellAnlegenStrg controllers)  {
+	public PreislisteAendernGUI(IAnlegenModel models, PreislisteAendernStrg controllers) {
 		model = models;
-		controller = controllers;;
-		
-		setSize(900,550);
+		controller = controllers;
+
+
+		setSize(900, 550);
 		setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 30, 30, 0, 30, 30, 0, 30, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.columnWidths = new int[] { 0, 0, 30, 30, 0, 30, 30, 0, 30, 0, 0 };
+		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panel.columnWeights = new double[] { 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
-		
+
 		JLabel lblPreislisteHinzufgen = new JLabel("Preisliste hinzuf\u00FCgen:");
 		lblPreislisteHinzufgen.setFont(new Font("Tahoma", Font.BOLD, 32));
 		GridBagConstraints gbc_lblPreislisteHinzufgen = new GridBagConstraints();
@@ -115,7 +119,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblPreislisteHinzufgen.gridx = 3;
 		gbc_lblPreislisteHinzufgen.gridy = 1;
 		panel.add(lblPreislisteHinzufgen, gbc_lblPreislisteHinzufgen);
-		
+
 		JLabel lblEineStd = new JLabel("1 Std:");
 		lblEineStd.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblEineStd = new GridBagConstraints();
@@ -124,7 +128,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblEineStd.gridx = 1;
 		gbc_lblEineStd.gridy = 2;
 		panel.add(lblEineStd, gbc_lblEineStd);
-		
+
 		tfEineStd = new JTextField();
 		tfEineStd.setPreferredSize(new Dimension(6, 40));
 		tfEineStd.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -135,7 +139,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfEineStd.gridy = 2;
 		panel.add(tfEineStd, gbc_tfEineStd);
 		tfEineStd.setColumns(10);
-		
+
 		JLabel lblSechsSiebenTage = new JLabel("6 - 7 Tage:");
 		lblSechsSiebenTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblSechsSiebenTage = new GridBagConstraints();
@@ -144,7 +148,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblSechsSiebenTage.gridx = 4;
 		gbc_lblSechsSiebenTage.gridy = 2;
 		panel.add(lblSechsSiebenTage, gbc_lblSechsSiebenTage);
-		
+
 		tfSechsSiebenTage = new JTextField();
 		tfSechsSiebenTage.setPreferredSize(new Dimension(6, 40));
 		tfSechsSiebenTage.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -155,7 +159,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfSechsSiebenTage.gridx = 5;
 		gbc_tfSechsSiebenTage.gridy = 2;
 		panel.add(tfSechsSiebenTage, gbc_tfSechsSiebenTage);
-		
+
 		JLabel lblSiebzehnTage = new JLabel("17 Tage:");
 		lblSiebzehnTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblSiebzehnTage = new GridBagConstraints();
@@ -164,7 +168,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblSiebzehnTage.gridx = 7;
 		gbc_lblSiebzehnTage.gridy = 2;
 		panel.add(lblSiebzehnTage, gbc_lblSiebzehnTage);
-		
+
 		tfSiebzehnTage = new JTextField();
 		tfSiebzehnTage.setPreferredSize(new Dimension(6, 40));
 		tfSiebzehnTage.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -175,7 +179,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfSiebzehnTage.gridx = 8;
 		gbc_tfSiebzehnTage.gridy = 2;
 		panel.add(tfSiebzehnTage, gbc_tfSiebzehnTage);
-		
+
 		JLabel lblZweiStd = new JLabel("2 Std:");
 		lblZweiStd.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblZweiStd = new GridBagConstraints();
@@ -184,7 +188,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblZweiStd.gridx = 1;
 		gbc_lblZweiStd.gridy = 3;
 		panel.add(lblZweiStd, gbc_lblZweiStd);
-		
+
 		tfZweiStd = new JTextField();
 		tfZweiStd.setPreferredSize(new Dimension(6, 40));
 		tfZweiStd.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -195,7 +199,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfZweiStd.gridy = 3;
 		panel.add(tfZweiStd, gbc_tfZweiStd);
 		tfZweiStd.setColumns(10);
-		
+
 		JLabel lblAchtTage = new JLabel("8 Tage:");
 		lblAchtTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblAchtTage = new GridBagConstraints();
@@ -204,7 +208,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblAchtTage.gridx = 4;
 		gbc_lblAchtTage.gridy = 3;
 		panel.add(lblAchtTage, gbc_lblAchtTage);
-		
+
 		tfAchtTage = new JTextField();
 		tfAchtTage.setPreferredSize(new Dimension(6, 40));
 		tfAchtTage.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -215,7 +219,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfAchtTage.gridx = 5;
 		gbc_tfAchtTage.gridy = 3;
 		panel.add(tfAchtTage, gbc_tfAchtTage);
-		
+
 		JLabel lblAchtzehnEinundZwTage = new JLabel("18 - 21 Tage:");
 		lblAchtzehnEinundZwTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblAchtzehnEinundZwTage = new GridBagConstraints();
@@ -224,7 +228,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblAchtzehnEinundZwTage.gridx = 7;
 		gbc_lblAchtzehnEinundZwTage.gridy = 3;
 		panel.add(lblAchtzehnEinundZwTage, gbc_lblAchtzehnEinundZwTage);
-		
+
 		tfAchtzehnEinundZwTage = new JTextField();
 		tfAchtzehnEinundZwTage.setPreferredSize(new Dimension(6, 40));
 		tfAchtzehnEinundZwTage.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -235,7 +239,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfAchtzehnEinundZwTage.gridx = 8;
 		gbc_tfAchtzehnEinundZwTage.gridy = 3;
 		panel.add(tfAchtzehnEinundZwTage, gbc_tfAchtzehnEinundZwTage);
-		
+
 		JLabel lblVierStd = new JLabel("4 Std:");
 		lblVierStd.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblVierStd = new GridBagConstraints();
@@ -244,7 +248,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblVierStd.gridx = 1;
 		gbc_lblVierStd.gridy = 4;
 		panel.add(lblVierStd, gbc_lblVierStd);
-		
+
 		tfVierStd = new JTextField();
 		tfVierStd.setPreferredSize(new Dimension(6, 40));
 		tfVierStd.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -255,7 +259,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfVierStd.gridx = 2;
 		gbc_tfVierStd.gridy = 4;
 		panel.add(tfVierStd, gbc_tfVierStd);
-		
+
 		JLabel lblNeunTage = new JLabel("9 Tage:");
 		lblNeunTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblNeunTage = new GridBagConstraints();
@@ -264,7 +268,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblNeunTage.gridx = 4;
 		gbc_lblNeunTage.gridy = 4;
 		panel.add(lblNeunTage, gbc_lblNeunTage);
-		
+
 		tfNeunTage = new JTextField();
 		tfNeunTage.setPreferredSize(new Dimension(6, 40));
 		tfNeunTage.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -275,7 +279,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfNeunTage.gridx = 5;
 		gbc_tfNeunTage.gridy = 4;
 		panel.add(tfNeunTage, gbc_tfNeunTage);
-		
+
 		JLabel lblProTagVierW = new JLabel("+ Pro Tag - 4 W");
 		lblProTagVierW.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblProTagVierW = new GridBagConstraints();
@@ -284,7 +288,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblProTagVierW.gridx = 7;
 		gbc_lblProTagVierW.gridy = 4;
 		panel.add(lblProTagVierW, gbc_lblProTagVierW);
-		
+
 		tfProTagVierW = new JTextField();
 		tfProTagVierW.setPreferredSize(new Dimension(6, 40));
 		tfProTagVierW.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -295,7 +299,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfProTagVierW.gridx = 8;
 		gbc_tfProTagVierW.gridy = 4;
 		panel.add(tfProTagVierW, gbc_tfProTagVierW);
-		
+
 		JLabel lblEinTag = new JLabel("1 Tag:");
 		lblEinTag.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblEinTag = new GridBagConstraints();
@@ -304,7 +308,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblEinTag.gridx = 1;
 		gbc_lblEinTag.gridy = 5;
 		panel.add(lblEinTag, gbc_lblEinTag);
-		
+
 		tfEinTag = new JTextField();
 		tfEinTag.setPreferredSize(new Dimension(6, 40));
 		tfEinTag.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -315,7 +319,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfEinTag.gridx = 2;
 		gbc_tfEinTag.gridy = 5;
 		panel.add(tfEinTag, gbc_tfEinTag);
-		
+
 		JLabel lblZehnTage = new JLabel("10 Tage:");
 		lblZehnTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblZehnTage = new GridBagConstraints();
@@ -324,7 +328,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblZehnTage.gridx = 4;
 		gbc_lblZehnTage.gridy = 5;
 		panel.add(lblZehnTage, gbc_lblZehnTage);
-		
+
 		tfZehnTage = new JTextField();
 		tfZehnTage.setPreferredSize(new Dimension(6, 40));
 		tfZehnTage.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -335,7 +339,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfZehnTage.gridx = 5;
 		gbc_tfZehnTage.gridy = 5;
 		panel.add(tfZehnTage, gbc_tfZehnTage);
-		
+
 		JLabel lblVierWochen = new JLabel("4 Wochen:");
 		lblVierWochen.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblVierWochen = new GridBagConstraints();
@@ -344,7 +348,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblVierWochen.gridx = 7;
 		gbc_lblVierWochen.gridy = 5;
 		panel.add(lblVierWochen, gbc_lblVierWochen);
-		
+
 		tfVierWochen = new JTextField();
 		tfVierWochen.setPreferredSize(new Dimension(6, 40));
 		tfVierWochen.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -355,7 +359,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfVierWochen.gridx = 8;
 		gbc_tfVierWochen.gridy = 5;
 		panel.add(tfVierWochen, gbc_tfVierWochen);
-		
+
 		JLabel lblZweiTage = new JLabel("2 Tage:");
 		lblZweiTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblZweiTage = new GridBagConstraints();
@@ -364,7 +368,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblZweiTage.gridx = 1;
 		gbc_lblZweiTage.gridy = 6;
 		panel.add(lblZweiTage, gbc_lblZweiTage);
-		
+
 		tfZweiTage = new JTextField();
 		tfZweiTage.setPreferredSize(new Dimension(6, 40));
 		tfZweiTage.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -375,7 +379,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfZweiTage.gridx = 2;
 		gbc_tfZweiTage.gridy = 6;
 		panel.add(tfZweiTage, gbc_tfZweiTage);
-		
+
 		JLabel lblElfTage = new JLabel("11 Tage:");
 		lblElfTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblElfTage = new GridBagConstraints();
@@ -384,7 +388,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblElfTage.gridx = 4;
 		gbc_lblElfTage.gridy = 6;
 		panel.add(lblElfTage, gbc_lblElfTage);
-		
+
 		tfElfTage = new JTextField();
 		tfElfTage.setPreferredSize(new Dimension(6, 40));
 		tfElfTage.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -395,7 +399,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfElfTage.gridx = 5;
 		gbc_tfElfTage.gridy = 6;
 		panel.add(tfElfTage, gbc_tfElfTage);
-		
+
 		JLabel lblAchtWochen = new JLabel("8 Wochen:");
 		lblAchtWochen.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblAchtWochen = new GridBagConstraints();
@@ -404,7 +408,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblAchtWochen.gridx = 7;
 		gbc_lblAchtWochen.gridy = 6;
 		panel.add(lblAchtWochen, gbc_lblAchtWochen);
-		
+
 		tfAchtWochen = new JTextField();
 		tfAchtWochen.setPreferredSize(new Dimension(6, 40));
 		tfAchtWochen.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -416,7 +420,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfAchtWochen.gridx = 8;
 		gbc_tfAchtWochen.gridy = 6;
 		panel.add(tfAchtWochen, gbc_tfAchtWochen);
-		
+
 		JLabel lblDreiTage = new JLabel("3 Tage:");
 		lblDreiTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblDreiTage = new GridBagConstraints();
@@ -425,7 +429,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblDreiTage.gridx = 1;
 		gbc_lblDreiTage.gridy = 7;
 		panel.add(lblDreiTage, gbc_lblDreiTage);
-		
+
 		tfDreiTage = new JTextField();
 		tfDreiTage.setPreferredSize(new Dimension(6, 40));
 		tfDreiTage.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -436,7 +440,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfDreiTage.gridx = 2;
 		gbc_tfDreiTage.gridy = 7;
 		panel.add(tfDreiTage, gbc_tfDreiTage);
-		
+
 		JLabel lblZwoelfVierzehnTage = new JLabel("12 - 14 Tage:");
 		lblZwoelfVierzehnTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblZwoelfVierzehnTage = new GridBagConstraints();
@@ -445,7 +449,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblZwoelfVierzehnTage.gridx = 4;
 		gbc_lblZwoelfVierzehnTage.gridy = 7;
 		panel.add(lblZwoelfVierzehnTage, gbc_lblZwoelfVierzehnTage);
-		
+
 		tfZwoelfVierzehnTage = new JTextField();
 		tfZwoelfVierzehnTage.setPreferredSize(new Dimension(6, 40));
 		tfZwoelfVierzehnTage.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -456,27 +460,10 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfZwoelfVierzehnTage.gridx = 5;
 		gbc_tfZwoelfVierzehnTage.gridy = 7;
 		panel.add(tfZwoelfVierzehnTage, gbc_tfZwoelfVierzehnTage);
-		
-		JLabel lblKauf = new JLabel("Kauf:");
-		lblKauf.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		GridBagConstraints gbc_lblKauf = new GridBagConstraints();
-		gbc_lblKauf.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblKauf.insets = new Insets(0, 0, 5, 5);
-		gbc_lblKauf.gridx = 7;
-		gbc_lblKauf.gridy = 7;
-		panel.add(lblKauf, gbc_lblKauf);
-		
-		tfKauf = new JTextField();
-		tfKauf.setPreferredSize(new Dimension(6, 40));
-		tfKauf.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		tfKauf.setColumns(10);
-		GridBagConstraints gbc_tfKauf = new GridBagConstraints();
-		gbc_tfKauf.insets = new Insets(0, 0, 5, 5);
-		gbc_tfKauf.fill = GridBagConstraints.HORIZONTAL;
-		gbc_tfKauf.gridx = 8;
-		gbc_tfKauf.gridy = 7;
-		panel.add(tfKauf, gbc_tfKauf);
-		
+
+
+
+
 		JLabel lblVierTage = new JLabel("4 Tage:");
 		lblVierTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblVierTage = new GridBagConstraints();
@@ -485,7 +472,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblVierTage.gridx = 1;
 		gbc_lblVierTage.gridy = 8;
 		panel.add(lblVierTage, gbc_lblVierTage);
-		
+
 		tfVierTage = new JTextField();
 		tfVierTage.setPreferredSize(new Dimension(6, 40));
 		tfVierTage.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -496,7 +483,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfVierTage.gridx = 2;
 		gbc_tfVierTage.gridy = 8;
 		panel.add(tfVierTage, gbc_tfVierTage);
-		
+
 		JLabel lblFuenfzehnTage = new JLabel("15 Tage:");
 		lblFuenfzehnTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblFuenfzehnTage = new GridBagConstraints();
@@ -505,7 +492,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblFuenfzehnTage.gridx = 4;
 		gbc_lblFuenfzehnTage.gridy = 8;
 		panel.add(lblFuenfzehnTage, gbc_lblFuenfzehnTage);
-		
+
 		tfFuenfzehnTage = new JTextField();
 		tfFuenfzehnTage.setPreferredSize(new Dimension(6, 40));
 		tfFuenfzehnTage.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -516,27 +503,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfFuenfzehnTage.gridx = 5;
 		gbc_tfFuenfzehnTage.gridy = 8;
 		panel.add(tfFuenfzehnTage, gbc_tfFuenfzehnTage);
-		
-		JLabel lblTest = new JLabel("Test");
-		lblTest.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		GridBagConstraints gbc_lblTest = new GridBagConstraints();
-		gbc_lblTest.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblTest.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTest.gridx = 7;
-		gbc_lblTest.gridy = 8;
-		panel.add(lblTest, gbc_lblTest);
-		
-		textField_19 = new JTextField();
-		textField_19.setPreferredSize(new Dimension(6, 40));
-		textField_19.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField_19.setColumns(10);
-		GridBagConstraints gbc_textField_19 = new GridBagConstraints();
-		gbc_textField_19.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_19.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_19.gridx = 8;
-		gbc_textField_19.gridy = 8;
-		panel.add(textField_19, gbc_textField_19);
-		
+
 		JLabel lblFuenfTage = new JLabel("5 Tage:");
 		lblFuenfTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblFuenfTage = new GridBagConstraints();
@@ -545,7 +512,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblFuenfTage.gridx = 1;
 		gbc_lblFuenfTage.gridy = 9;
 		panel.add(lblFuenfTage, gbc_lblFuenfTage);
-		
+
 		tfFuenfTage = new JTextField();
 		tfFuenfTage.setPreferredSize(new Dimension(6, 40));
 		tfFuenfTage.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -556,7 +523,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfFuenfTage.gridx = 2;
 		gbc_tfFuenfTage.gridy = 9;
 		panel.add(tfFuenfTage, gbc_tfFuenfTage);
-		
+
 		JLabel lblSechzehnTage = new JLabel("16 Tage:");
 		lblSechzehnTage.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblSechzehnTage = new GridBagConstraints();
@@ -565,7 +532,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblSechzehnTage.gridx = 4;
 		gbc_lblSechzehnTage.gridy = 9;
 		panel.add(lblSechzehnTage, gbc_lblSechzehnTage);
-		
+
 		tfSechzehnTage = new JTextField();
 		tfSechzehnTage.setPreferredSize(new Dimension(6, 40));
 		tfSechzehnTage.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -576,178 +543,183 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		gbc_tfSechzehnTage.gridx = 5;
 		gbc_tfSechzehnTage.gridy = 9;
 		panel.add(tfSechzehnTage, gbc_tfSechzehnTage);
-		
-		JLabel lblTest_1 = new JLabel("Test");
-		lblTest_1.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		GridBagConstraints gbc_lblTest_1 = new GridBagConstraints();
-		gbc_lblTest_1.anchor = GridBagConstraints.NORTH;
-		gbc_lblTest_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblTest_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTest_1.gridx = 7;
-		gbc_lblTest_1.gridy = 9;
-		panel.add(lblTest_1, gbc_lblTest_1);
-		
-		textField_20 = new JTextField();
-		textField_20.setPreferredSize(new Dimension(6, 40));
-		textField_20.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField_20.setColumns(10);
-		GridBagConstraints gbc_textField_20 = new GridBagConstraints();
-		gbc_textField_20.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_20.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_20.gridx = 8;
-		gbc_textField_20.gridy = 9;
-		panel.add(textField_20, gbc_textField_20);
-		
+
 		JPanel panel_2 = new JPanel();
 		add(panel_2, BorderLayout.SOUTH);
-		
+
 		JButton btnSpeichern = new JButton("Speichern");
 		btnSpeichern.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		
+
 		JButton btnAbbrechen = new JButton("abbrechen");
 		btnAbbrechen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
-		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addContainerGap(573, Short.MAX_VALUE)
-					.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnSpeichern, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addGap(17))
-		);
-		gl_panel_2.setVerticalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(0, 0, Short.MAX_VALUE)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnSpeichern, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
-		);
+		gl_panel_2.setHorizontalGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel_2.createSequentialGroup().addContainerGap(573, Short.MAX_VALUE)
+						.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(btnSpeichern, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+						.addGap(17)));
+		gl_panel_2.setVerticalGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup().addGap(0, 0, Short.MAX_VALUE)
+						.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnSpeichern, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap()));
 		panel_2.setLayout(gl_panel_2);
 		
-		
 
-		textfieldFuellen();
-		
 		btnSpeichern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				talking = "aendern";
 
 				try {
-					
-					PreislisteAendern();
-					
-					aktualisieren(model);
-					MainFrame.change(MainFrame.getPreislisteAnlegenGUI(), MainFrame.getPreislisteGUI());
 
-					
+					PreislisteAendern();
+
+					aktualisieren(model);
+					textFelderLeeren();
+					setPreisliste(null);
+					MainFrame.change(MainFrame.getPreislisteAendernGUI(), MainFrame.getPreislisteGUI());
+
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+
 			}
-		});	
-		
+		});
+
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getPreislisteAendernGUI(), MainFrame.getPreislisteGUI());			}
+				textFelderLeeren();
+				setPreisliste(null);
+				MainFrame.change(MainFrame.getPreislisteAendernGUI(), MainFrame.getPreislisteGUI());
+			}
 		});
 
 	}
-	
-	public void setPreisliste(String[] preisliste) {
-		this.preisliste = preisliste;
-	}
 
-	private void textfieldFuellen() {
-		tfEineStd.setText(preisliste[1]);
-		tfZweiStd.setText(preisliste[2]);
-		tfVierStd.setText(preisliste[3]);
-		tfEinTag.setText(preisliste[4]);
-		tfZweiTage.setText(preisliste[5]);
-		tfDreiTage.setText(preisliste[6]);
-		tfVierTage.setText(preisliste[7]);
-		tfFuenfTage.setText(preisliste[8]);
-		tfAchtTage.setText(preisliste[9]);
-		tfSechsSiebenTage.setText(preisliste[10]);
-		tfNeunTage.setText(preisliste[11]);
-		tfZehnTage.setText(preisliste[12]);
-		tfElfTage.setText(preisliste[13]);
-		tfZwoelfVierzehnTage.setText(preisliste[14]);
-		tfFuenfzehnTage.setText(preisliste[15]);
-		tfSechzehnTage.setText(preisliste[16]);
-		tfSiebzehnTage.setText(preisliste[17]);
-		tfAchtzehnEinundZwTage.setText(preisliste[18]);
-		tfProTagVierW.setText(preisliste[19]);
-		tfVierWochen.setText(preisliste[20]);
-		tfAchtWochen.setText(preisliste[21]);
-		tfKauf.setText(preisliste[22]);
+	void setPreislisteTextfelder(String[] preisliste) {
+
+		setPreisliste(preisliste);
+
+		TextFelderFuellen();
+		id = Integer.parseInt(preisliste [0]);
+		
+	}
+	
+	private void setPreisliste(String[] preisliste) {
+		this.preisliste = preisliste;
+
+		
+	}
+	
+	private void TextFelderFuellen () {
+		//TODO
+		
+
+		
+			for (int i = 0; i<mengeAnTextFeldern.length;i++) {
+				mengeAnTextFeldern[i].setText(preisliste[i+1]);
+			}
+			
+
 		
 	}
 
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
 		JOptionPane.showMessageDialog(null, "Die Preisliste wurde geändert!");
-		
+
 	}
-	
+
 	private void PreislisteAendern() {
 
-		String  preisEineStdString = tfEineStd.getText();
-		String	preisZweiStdString = tfZweiStd.getText();
-		String	preisVierStdString = tfVierStd.getText();
-		String	preisEinenTagString = tfEinTag.getText();
-		String	preisZweiTageString = tfZweiTage.getText();
-		String	preisDreiTageString = tfDreiTage.getText();
-		String	preisVierTageString = tfVierTage.getText();
-		String	preisFuenfTageString = tfFuenfTage.getText();
-		String	preisSechsSiebenTageString = tfAchtTage.getText();
-		String	preisAchtTageString = tfSechsSiebenTage.getText();
-		String	preisNeunTageString= tfNeunTage.getText();
-		String	preisZehnTageString = tfZehnTage.getText();
-		String	preisElfTageString = tfElfTage.getText();
-		String	preisZwoelfVierzehnTageString = tfZwoelfVierzehnTage.getText();
-		String	preisFuenfzehnTageString = tfFuenfzehnTage.getText();
-		String	preisSechzehnTageString = tfSechzehnTage.getText();
-		String	preisSiebzehnTageString = tfSiebzehnTage.getText();
-		String	preisAchtzehnEinundzwanzigTageString = tfAchtzehnEinundZwTage.getText();
-		String	preisTagVierWochenString = tfProTagVierW.getText();
-		String	presVierWochenString = tfVierWochen.getText();
-		String	preisAchtWochenString = tfAchtWochen.getText();
-		String	preisKaufString = tfKauf.getText();
-		
-		double  preisEineStd = DatentypUmwandlung.stringZuDouble(preisEineStdString);
-		double  preisZweiStd = DatentypUmwandlung.stringZuDouble(preisZweiStdString);
-		double  preisVierStd = DatentypUmwandlung.stringZuDouble(preisVierStdString);
-		double  preisEinenTag = DatentypUmwandlung.stringZuDouble(preisEinenTagString);
-		double  preisZweiTage = DatentypUmwandlung.stringZuDouble(preisZweiTageString);
-		double  preisDreiTage = DatentypUmwandlung.stringZuDouble(preisDreiTageString);
-		double  preisVierTage = DatentypUmwandlung.stringZuDouble(preisVierTageString);
-		double  preisFuenfTage = DatentypUmwandlung.stringZuDouble(preisFuenfTageString);
-		double  preisSechsSiebenTage = DatentypUmwandlung.stringZuDouble(preisSechsSiebenTageString);
-		double  preisAchtTage = DatentypUmwandlung.stringZuDouble(preisAchtTageString);
-		double  preisNeunTage= DatentypUmwandlung.stringZuDouble(preisNeunTageString);
-		double  preisZehnTage = DatentypUmwandlung.stringZuDouble(preisZehnTageString);
-		double  preisElfTage = DatentypUmwandlung.stringZuDouble(preisElfTageString);
-		double  preisZwoelfVierzehnTage = DatentypUmwandlung.stringZuDouble(preisZwoelfVierzehnTageString);
-		double  preisFuenfzehnTage = DatentypUmwandlung.stringZuDouble(preisFuenfzehnTageString);
-		double  preisSechzehnTage = DatentypUmwandlung.stringZuDouble(preisSechzehnTageString);
-		double  preisSiebzehnTage = DatentypUmwandlung.stringZuDouble(preisSiebzehnTageString);
-		double  preisAchtzehnEinundzwanzigTage = DatentypUmwandlung.stringZuDouble(preisAchtzehnEinundzwanzigTageString);
-		double  preisTagVierWochen = DatentypUmwandlung.stringZuDouble(preisTagVierWochenString);
-		double  presVierWochen = DatentypUmwandlung.stringZuDouble(presVierWochenString);
-		double  preisAchtWochen = DatentypUmwandlung.stringZuDouble(preisAchtWochenString);
-		double  preisKauf = DatentypUmwandlung.stringZuDouble(preisKaufString);
+		String preisEineStdString = tfEineStd.getText();
+		String preisZweiStdString = tfZweiStd.getText();
+		String preisVierStdString = tfVierStd.getText();
+		String preisEinenTagString = tfEinTag.getText();
+		String preisZweiTageString = tfZweiTage.getText();
+		String preisDreiTageString = tfDreiTage.getText();
+		String preisVierTageString = tfVierTage.getText();
+		String preisFuenfTageString = tfFuenfTage.getText();
+		String preisSechsSiebenTageString = tfAchtTage.getText();
+		String preisAchtTageString = tfSechsSiebenTage.getText();
+		String preisNeunTageString = tfNeunTage.getText();
+		String preisZehnTageString = tfZehnTage.getText();
+		String preisElfTageString = tfElfTage.getText();
+		String preisZwoelfVierzehnTageString = tfZwoelfVierzehnTage.getText();
+		String preisFuenfzehnTageString = tfFuenfzehnTage.getText();
+		String preisSechzehnTageString = tfSechzehnTage.getText();
+		String preisSiebzehnTageString = tfSiebzehnTage.getText();
+		String preisAchtzehnEinundzwanzigTageString = tfAchtzehnEinundZwTage.getText();
+		String preisTagVierWochenString = tfProTagVierW.getText();
+		String presVierWochenString = tfVierWochen.getText();
+		String preisAchtWochenString = tfAchtWochen.getText();
 		
 
-		controller.preislisteUebergeben(talking, id, preisEineStd,  preisZweiStd,  preisVierStd, preisEinenTag,
-				 preisZweiTage,  preisDreiTage,  preisVierTage,  preisFuenfTage,  preisSechsSiebenTage,
-				 preisAchtTage,  preisNeunTage,  preisZehnTage,  preisElfTage,  preisZwoelfVierzehnTage,
-				 preisFuenfzehnTage,  preisSechzehnTage,  preisSiebzehnTage,  preisAchtzehnEinundzwanzigTage,
-				 preisTagVierWochen,  presVierWochen,  preisAchtWochen,  preisKauf);
+		double preisEineStd = DatentypUmwandlung.stringZuDouble(preisEineStdString);
+		double preisZweiStd = DatentypUmwandlung.stringZuDouble(preisZweiStdString);
+		double preisVierStd = DatentypUmwandlung.stringZuDouble(preisVierStdString);
+		double preisEinenTag = DatentypUmwandlung.stringZuDouble(preisEinenTagString);
+		double preisZweiTage = DatentypUmwandlung.stringZuDouble(preisZweiTageString);
+		double preisDreiTage = DatentypUmwandlung.stringZuDouble(preisDreiTageString);
+		double preisVierTage = DatentypUmwandlung.stringZuDouble(preisVierTageString);
+		double preisFuenfTage = DatentypUmwandlung.stringZuDouble(preisFuenfTageString);
+		double preisSechsSiebenTage = DatentypUmwandlung.stringZuDouble(preisSechsSiebenTageString);
+		double preisAchtTage = DatentypUmwandlung.stringZuDouble(preisAchtTageString);
+		double preisNeunTage = DatentypUmwandlung.stringZuDouble(preisNeunTageString);
+		double preisZehnTage = DatentypUmwandlung.stringZuDouble(preisZehnTageString);
+		double preisElfTage = DatentypUmwandlung.stringZuDouble(preisElfTageString);
+		double preisZwoelfVierzehnTage = DatentypUmwandlung.stringZuDouble(preisZwoelfVierzehnTageString);
+		double preisFuenfzehnTage = DatentypUmwandlung.stringZuDouble(preisFuenfzehnTageString);
+		double preisSechzehnTage = DatentypUmwandlung.stringZuDouble(preisSechzehnTageString);
+		double preisSiebzehnTage = DatentypUmwandlung.stringZuDouble(preisSiebzehnTageString);
+		double preisAchtzehnEinundzwanzigTage = DatentypUmwandlung.stringZuDouble(preisAchtzehnEinundzwanzigTageString);
+		double preisTagVierWochen = DatentypUmwandlung.stringZuDouble(preisTagVierWochenString);
+		double presVierWochen = DatentypUmwandlung.stringZuDouble(presVierWochenString);
+		double preisAchtWochen = DatentypUmwandlung.stringZuDouble(preisAchtWochenString);
+
+		controller.preislisteUebergeben(talking, id, preisEineStd, preisZweiStd, preisVierStd, preisEinenTag,
+				preisZweiTage, preisDreiTage, preisVierTage, preisFuenfTage, preisSechsSiebenTage, preisAchtTage,
+				preisNeunTage, preisZehnTage, preisElfTage, preisZwoelfVierzehnTage, preisFuenfzehnTage,
+				preisSechzehnTage, preisSiebzehnTage, preisAchtzehnEinundzwanzigTage, preisTagVierWochen,
+				presVierWochen, preisAchtWochen);
 	}
 	
+	
+
+	
+	
+	public void textFelderInArray() {
+		mengeAnTextFeldern[0]=tfEineStd;
+		mengeAnTextFeldern[1]=tfZweiStd;
+		mengeAnTextFeldern[2]=tfVierStd;
+		mengeAnTextFeldern[3]=tfEinTag;
+		mengeAnTextFeldern[4]=tfZweiTage;
+		mengeAnTextFeldern[5]=tfDreiTage;
+		mengeAnTextFeldern[6]=tfVierTage;
+		mengeAnTextFeldern[7]=tfFuenfTage;
+		mengeAnTextFeldern[8]=tfSechsSiebenTage;
+		mengeAnTextFeldern[9]=tfAchtTage;
+		mengeAnTextFeldern[10]=tfNeunTage;
+		mengeAnTextFeldern[11]=tfZehnTage;
+		mengeAnTextFeldern[12]=tfElfTage;
+		mengeAnTextFeldern[13]=tfZwoelfVierzehnTage;
+		mengeAnTextFeldern[14]=tfFuenfzehnTage;
+		mengeAnTextFeldern[15]=tfSechzehnTage;
+		mengeAnTextFeldern[16]=tfSiebzehnTage;
+		mengeAnTextFeldern[17]=tfAchtzehnEinundZwTage;
+		mengeAnTextFeldern[18]=tfProTagVierW;
+		mengeAnTextFeldern[19]=tfVierWochen;
+		mengeAnTextFeldern[20]=tfAchtWochen;
+
+	}
+	
+	private void textFelderLeeren() {
+		for (int i=0;i<mengeAnTextFeldern.length;i++) {
+			mengeAnTextFeldern[i].setText("");
+		}
+	}
+
 }

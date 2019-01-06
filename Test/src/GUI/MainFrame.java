@@ -120,7 +120,7 @@ public class MainFrame extends JFrame {
 	public MainFrame(GeraeteVerwaltungGUI geraeteVerwaltungGUI, GeraeteModellVerwaltungGUI geraeteModellVerwaltungGUI, GeraeteTypVerwaltungGUI geraeteTypVerwaltungGUI, GeraetAnlegenGUI geraetAnlegenGUI, 
 			GeraetAendernGUI geraetAendernGUI, GeraeteStatusGUI geraeteStatusGUI, GeraeteReparaturGUI geraeteReparaturGUI, ModellAendernGUI modellAnedernGUI, ModellAnlegenGUI modellAnlegenGUI, SportgeraeteVerwaltungGUI sportgeraeteGUI, TypAendernGUI typAendernGUI, TypAnlegenGUI typAnlegenGUI, 
 			BuchungsverwaltungGUI buchungsverwaltungGUI, BuchungKundeSucheGUI buchungKundeSucheGUI, BuchungTypSucheGUI buchungTypSucheGUI, BuchungModellSucheGUI buchungModellSucheGUI, BuchungGeraetSucheGUI buchungGeraetSucheGUI, 
-			AktiveBuchungenGUI aktiveBuchungenGUI, KundenverwaltungGUI kundenverwaltungGUI, KundeAnlegenGUI kundeAnlegenGUI, KundeAendernGUI kundeAendernGUI, PreislisteGUI preislisteGUI, PreislisteAnlegenGUI preislisteAnlegenGUI, 
+			AktiveBuchungenGUI aktiveBuchungenGUI, KundenverwaltungGUI kundenverwaltungGUI, KundeAnlegenGUI kundeAnlegenGUI, KundeAendernGUI kundeAendernGUI, PreislisteGUI preislisteGUI, PreislisteAnlegenGUI preislisteAnlegenGUI, PreislisteAendernGUI preislisteAendernGUI,
 			RechungsSucheGUI rechnungSucheGUI, WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltungGUI) {
 		
 		MainFrame.geraeteVerwaltungGUI = geraeteVerwaltungGUI;
@@ -146,6 +146,7 @@ public class MainFrame extends JFrame {
 		MainFrame.kundeAendernGUI = kundeAendernGUI;
 		MainFrame.preislisteGUI = preislisteGUI;
 		MainFrame.preislisteAnlegenGUI = preislisteAnlegenGUI;
+		MainFrame.preislisteAendernGUI = preislisteAendernGUI;
 		MainFrame.rechnungSucheGUI = rechnungSucheGUI;
 		MainFrame.wirtschaftlichkeitsverwaltungGUI = wirtschaftlichkeitsverwaltungGUI;
 		
@@ -185,7 +186,8 @@ public class MainFrame extends JFrame {
 		contentPane.add(buchungGeraetSucheGUI);
 		contentPane.add(aktiveBuchungenGUI);
 		contentPane.add(preislisteGUI);	
-		contentPane.add(preislisteAnlegenGUI);	
+		contentPane.add(preislisteAnlegenGUI);
+		contentPane.add(preislisteAendernGUI);
 		contentPane.add(kundenverwaltungGUI);
 		contentPane.add(kundeAnlegenGUI);
 		contentPane.add(kundeAendernGUI);
@@ -286,14 +288,14 @@ public class MainFrame extends JFrame {
 		return aktiveBuchungenGUI;
 	}
 	
-	public static JPanel getPreislisteGUI(){ 		
+	public static PreislisteGUI getPreislisteGUI(){ 		
 		return preislisteGUI;
 	}
-	public static JPanel getPreislisteAnlegenGUI(){ 		
+	public static PreislisteAnlegenGUI getPreislisteAnlegenGUI(){ 		
 		return preislisteAnlegenGUI;
 	}
 	
-	public static JPanel getPreislisteAendernGUI() {
+	public static PreislisteAendernGUI getPreislisteAendernGUI() {
 		return preislisteAendernGUI;
 	}
 

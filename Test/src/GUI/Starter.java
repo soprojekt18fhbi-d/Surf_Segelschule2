@@ -15,6 +15,7 @@ import Datenbankmodels.GeraetAnlegenModel;
 import Datenbankmodels.KundeAnlegenModel;
 import Datenbankmodels.KundeSucheModel;
 import Datenbankmodels.ModellAnlegenModel;
+import Datenbankmodels.PreislisteAendernModel;
 import Datenbankmodels.PreislisteSucheModel;
 import Datenbankmodels.RechnungAnzeigenModel;
 import Datenbankmodels.StandortModel;
@@ -34,6 +35,7 @@ import Steuerung.GeraetAnlegenStrg;
 import Steuerung.KundeAnlegenStrg;
 import Steuerung.KundeSucheStrg;
 import Steuerung.ModellAnlegenStrg;
+import Steuerung.PreislisteAendernStrg;
 import Steuerung.PreislisteSucheStrg;
 import Steuerung.RechnungAnzeigeStrg;
 import Steuerung.StandortStrg;
@@ -68,6 +70,7 @@ public class Starter {
 					RechnungAnzeigenModel rechnungAnzeigeModel = new RechnungAnzeigenModel();
 					WirtschaftlichkeitModel wModel = new WirtschaftlichkeitModel();
 					PreislisteSucheModel preislisteSucheModel = new PreislisteSucheModel();
+					PreislisteAendernModel preislisteAendernModel = new PreislisteAendernModel();
 					
 					
 					//Controller erzeugen:
@@ -83,6 +86,7 @@ public class Starter {
 					RechnungAnzeigeStrg rechnungAnzeigenStrg = new RechnungAnzeigeStrg(rechnungAnzeigeModel);
 					WirtschaftlichkeitStrg wStrg = new WirtschaftlichkeitStrg(wModel);
 					PreislisteSucheStrg preislisteSucheStrg = new PreislisteSucheStrg(preislisteSucheModel);
+					PreislisteAendernStrg preislisteAendernStrg = new PreislisteAendernStrg(preislisteAendernModel);
 					
 					
 					//Geräteverwaltung
@@ -119,6 +123,7 @@ public class Starter {
 					//Preislistenverwaltung
 					PreislisteGUI preislisteGUI = new PreislisteGUI(preislisteSucheModel, preislisteSucheStrg); 
 					PreislisteAnlegenGUI preislisteAnlegenGUI = new PreislisteAnlegenGUI();
+					PreislisteAendernGUI preislisteAendernGUI = new PreislisteAendernGUI(preislisteAendernModel, preislisteAendernStrg);
 					
 					// Rechnungsverwaltung
 					RechungsSucheGUI rechnungSucheGUI = new RechungsSucheGUI(rechnungAnzeigeModel, rechnungAnzeigenStrg); 
@@ -129,7 +134,7 @@ public class Starter {
 					//MainFrame erzeugen
 					MainFrame mainframe = new MainFrame(geraeteVerwaltungGUI, geraeteModellVerwaltungGUI, geraeteTypVerwaltungGUI, geraetAnlegenGUI, geraetAendernGUI, geraeteStatusGUI, geraeteReparaturGUI, modellAnedernGUI, modellAnlegenGUI, 
 							sportgeraeteGUI, typAendernGUI, typAnlegenGUI, buchungsverwaltungGUI, buchungKundeSucheGUI, buchungTypSucheGUI, buchungModellSucheGUI, buchungGeraetSucheGUI, aktiveBuchungenGUI, 
-							kundenverwaltungGUI, kundeAnlegenGUI, kundeAendernGUI, preislisteGUI, preislisteAnlegenGUI, rechnungSucheGUI, wirtschaftlichkeitsverwaltungGUI);
+							kundenverwaltungGUI, kundeAnlegenGUI, kundeAendernGUI, preislisteGUI, preislisteAnlegenGUI, preislisteAendernGUI, rechnungSucheGUI, wirtschaftlichkeitsverwaltungGUI);
 					
 					frame.setMainFrame(mainframe);
 					

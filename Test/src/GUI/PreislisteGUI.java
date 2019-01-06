@@ -26,17 +26,21 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
+import Datenbankmodels.IAnlegenModel;
 import Datenbankmodels.IModelSuche;
 import Datenbankmodels.IObjektModel;
 import Datenbankmodels.PreislisteSucheModel;
+import Steuerung.PreislisteAendernStrg;
 import Steuerung.PreislisteSucheStrg;
 
 public class PreislisteGUI extends JPanel implements IObjektView {
 	private JTextField tfSuche;
 	private JTable table;
 
-	private PreislisteSucheStrg controller;
-	private IObjektModel model;
+	private PreislisteSucheStrg sController;
+	private PreislisteAendernStrg aeController;
+	private IObjektModel oModel;
+	private IAnlegenModel aModel;
 	private int preislisteId;
 	private String talking;
 	private JTextField tfSuchID;
@@ -45,8 +49,8 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 
 		setBackground(Color.DARK_GRAY);
 
-		this.model = smodel;
-		this.controller = scontroller;
+		this.oModel = smodel;
+		this.sController = scontroller;
 
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
@@ -200,6 +204,7 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getGeraeteVerwaltungGUI());
+				tableLeeren();
 
 			}
 		});
@@ -217,39 +222,36 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 		btnPreislisteHinzu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getPreislisteAnlegenGUI());
+				tableLeeren();
 			}
 		});
 
 		btnPreislisteAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getPreislisteAendernGUI());
 
 				int zeile = table.getSelectedRow();
 
-				if (zeile < 0)
-					JOptionPane.showMessageDialog(null, "Preisliste auswählen!");
+				if (zeile >0)
+					JOptionPane.showMessageDialog(null, "Bitte eine Preisliste auswählen.");
 				else {
-
+					
 					String[] preislistetabelle = tableRowToArray(table);
+					MainFrame.getPreislisteAendernGUI().textFelderInArray();
+					MainFrame.getPreislisteAendernGUI().setPreislisteTextfelder(preislistetabelle);
+					
 
-					PreislisteAendernGUI.setPreisliste(preislistetabelle);
-
-					MainFrame.getPreislisteAendernGUI().setPreisliste(preislistetabelle);
-					MainFrame.getModellAendernGUI().setTypID(tID);
-					MainFrame.getModellAendernGUI().setPreisID(pID);
-					MainFrame.getModellAendernGUI().setText(modellName);
-					MainFrame.getModellAendernGUI().anfrage();
 					MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getPreislisteAendernGUI());
-					;
-					textSuchen.setText("Suchen...");
+					tableLeeren();
 				}
+				
 
 			}
 		});
 
 		btnLoeschen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
+				MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getPreislisteGUI());
+				tableLeeren();
 			}
 		});
 
@@ -262,10 +264,10 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 	}
 
 	public void anfrage() {
-		model.anmelden(MainFrame.getBuchungTypSucheGUI());
-		controller.fetchObjekte(talking, tfSuche.getText());
-		table.setModel(model.getTableModel());
-		model.abmelden(MainFrame.getBuchungTypSucheGUI());
+		oModel.anmelden(MainFrame.getBuchungTypSucheGUI());
+		sController.fetchObjekte(talking, tfSuche.getText());
+		table.setModel(oModel.getTableModel());
+		oModel.abmelden(MainFrame.getBuchungTypSucheGUI());
 	}
 
 	public String[] tableRowToArray(JTable table) {
@@ -274,8 +276,16 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 		int nCol = dtm.getColumnCount();
 		String[] tableData = new String[nCol];
 		for (int j = 0; j < nCol; j++)
-			tableData[j] = (String) dtm.getValueAt(selectedRowIndex, j);
+			tableData[j] =  String.valueOf(dtm.getValueAt(selectedRowIndex, j));
 		return tableData;
+	}
+	
+	private void tableLeeren() {
+		DefaultTableModel dm = (DefaultTableModel)table.getModel();
+		while(dm.getRowCount() > 0)
+		{
+		    dm.removeRow(0);
+		}
 	}
 
 }
