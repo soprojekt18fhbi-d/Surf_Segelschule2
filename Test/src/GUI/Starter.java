@@ -48,7 +48,7 @@ public class Starter {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
+					 
 					StandortModel standortModel = new StandortModel();
 					StandortStrg standortStrg = new StandortStrg(standortModel);
 					

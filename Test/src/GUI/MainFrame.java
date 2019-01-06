@@ -66,7 +66,7 @@ public class MainFrame extends JFrame {
 	private JPanel contentPane;
 	private static Hauptmenue hauptmenueGUI = new Hauptmenue();
 	
-	
+	 
 	
 	
 	
