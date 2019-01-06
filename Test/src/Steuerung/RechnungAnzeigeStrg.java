@@ -132,7 +132,7 @@ public class RechnungAnzeigeStrg implements IController{
         table.setWidthPercentage(100);
         table.setSpacingBefore(150f);
         table.setWidths(new int[]{2, 1, 2});
-        PdfPCell cell = new PdfPCell(new Phrase("Firma\nSurf- und Segelcenter\nMusterStrasse 1\nD 33619 Bielefeld\n", font1));
+        PdfPCell cell = new PdfPCell(new Phrase("Firma\nSurf- und Segelcenter\nStrandstraße 14\nD 24235 Laboe\n", font1));
             cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
             cell.setBorder(0);
         table.addCell(cell);
@@ -188,7 +188,7 @@ public class RechnungAnzeigeStrg implements IController{
         cell = new PdfPCell(new Phrase("Rechnung " + rechnungsID, font2));
         cell.setBorder(0);
         textTable.addCell(cell);
-        cell2 = new PdfPCell(new Phrase("Sehr geehrter Damen und Herren, \nwir berechnen Ihnen für Ihren Auftrag " + buchungsID + " folgendes:", font3));
+        cell2 = new PdfPCell(new Phrase("Sehr geehrter Damen und Herren, \nwir bedanken uns für Ihren Auftrag " + buchungsID + ". Bitte zahlen Sie die Rechungssumme innerhalb der nächsten 14 Tage auf unser Bankkonto. ", font3));
         cell2.setBorder(0);
         textTable.addCell(cell2); 
         document.add(textTable);
