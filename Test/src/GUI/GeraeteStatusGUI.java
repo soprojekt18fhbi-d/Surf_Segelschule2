@@ -207,18 +207,21 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView{
 			public void actionPerformed(ActionEvent arg0) {
 				talking = "status";
 								
-				try {
-					statusAendern();									
-					JOptionPane.showMessageDialog(null, "Der Status wurde erfolgreich geändert!");
+				try {					
 					if (status.equals("Reparatur")){
 						MainFrame.getGeraeteReparaturGUI().setModellID(modellID);
 						MainFrame.getGeraeteReparaturGUI().setGeraeteID(geraeteID);
+						holeStatus();
+						MainFrame.getGeraeteReparaturGUI().setStatus(neuerStatus);
 						MainFrame.getGeraeteReparaturGUI().anfrage();
+						JOptionPane.showMessageDialog(null, "Die Reparatur wird erfasst");
 						MainFrame.change(MainFrame.getGeraeteStatusGUI(), MainFrame.getGeraeteReparaturGUI());
 					}
 					else {
+						statusAendern();		
+						JOptionPane.showMessageDialog(null, "Der Status wurde erfolgreich geändert!");						
 						MainFrame.change(MainFrame.getGeraeteStatusGUI(), MainFrame.getSportgeraeteGUI());
-						MainFrame.getSportgeraeteGUI().anfrage();
+						MainFrame.getSportgeraeteGUI().anfrage();	
 					}
 					chckbxOK.setSelected(false);
 					chckbxVerliehen.setSelected(false);
@@ -277,7 +280,7 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView{
 			}
 		});
 	}
-	private void statusAendern() {
+	private void holeStatus() {
 		if(chckbxOK.isSelected() == true)
 			neuerStatus = "OK";
 		else if(chckbxVerliehen.isSelected() == true)
@@ -286,6 +289,10 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView{
 			neuerStatus = "Reparatur";
 		else if(chckbxDeaktiviert.isSelected() == true)
 			neuerStatus = "Deaktiviert";
+	}
+	
+	private void statusAendern() {
+		holeStatus();
 		
 		geraet = String.valueOf(geraeteID);									
 		controller.anfrageGeraethinzufuegen(talking, geraet, neuerStatus, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);

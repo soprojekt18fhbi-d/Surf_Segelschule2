@@ -38,11 +38,13 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 	
 	private int modellID;
 	private int geraeteID;
+	private String status;
 	private String talking;
 	private String modell;
 	private String makel;
 	private String farbe;
 	private String typ;
+	private int baujahr;
 	private double anschaffungspreis;
 	private double verkaufspreis;	
 	private JTextField txtBeschreibung;
@@ -200,17 +202,16 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 		
 		//Funktionen der Button
 		btnBestaetigen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				talking = "reparatur";
-								
+			public void actionPerformed(ActionEvent arg0) {								
 				try {
 					if(txtBeschreibung.getText().trim().isEmpty() || txtKosten.getText().trim().isEmpty()){
 						JOptionPane.showMessageDialog(null, "Füllen Sie alle Felder aus!");
 					}
 					else{
+						statusAendern();
 						reparaturAnlegen();
 											
-						JOptionPane.showMessageDialog(null, "Die Reparatur wurde erfolgreich angelegt!");
+						JOptionPane.showMessageDialog(null, "Der Status wurde geändert und die Reparatur wurde erfolgreich angelegt!");
 						MainFrame.change(MainFrame.getGeraeteReparaturGUI(), MainFrame.getSportgeraeteGUI());
 						MainFrame.getSportgeraeteGUI().anfrage();
 					}		
@@ -233,8 +234,16 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 			}
 		});
 
+		
 	}
+	private void statusAendern() {
+		talking = "status"; 		
+		String geraet = String.valueOf(geraeteID);
+		controller.anfrageGeraethinzufuegen(talking, geraet, status, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
+	}
+	
 	private void reparaturAnlegen() {
+		talking = "reparatur";
 		String beschreibung = String.valueOf(txtBeschreibung.getText());
 		double kosten = Double.parseDouble(String.valueOf(txtKosten.getText()));
 		String geraet = String.valueOf(geraeteID);										
@@ -248,6 +257,10 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 	
 	public void setModellID(int id){
 		this.modellID = id;
+	}
+	
+	public void setStatus(String status){
+		this.status = status;
 	}
 	
 	@Override
