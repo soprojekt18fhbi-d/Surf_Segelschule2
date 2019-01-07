@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
 import Domaenklassen.Adresse;
@@ -34,7 +35,7 @@ public class KundeSucheModel implements IObjektModel  {
 	
 	private int kundeNr = 0;
 	
-	private String knrplzloc = "";
+	private int knrplzloc = 0;
 	private String nachnameortloc = "";
 	private String vornamestrasseloc = "";
 	private String emailhnrloc = "";
@@ -55,7 +56,17 @@ public class KundeSucheModel implements IObjektModel  {
 	
 	public void holeDaten(String knrplz, String nachnameort, String vornamestrasse, String emailhnr, String selectedMode, String variableKnr, String talking, String surf2, String segel2, String motor2, String heimat2) {
 		
-		knrplzloc = knrplz;
+		boolean weiter = true;
+		try {
+			knrplzloc = Integer.parseInt(knrplz);
+		} catch (NumberFormatException e1) {
+			// TODO Auto-generated catch block
+			if(!talking.equals("boss"))
+			{
+				JOptionPane.showMessageDialog(null, "Bitte Kundennummer oder PLZ überprüfen!");
+				weiter = false;
+			}
+		}
 		nachnameortloc = nachnameort;
 		vornamestrasseloc = vornamestrasse;
 		emailhnrloc = emailhnr;
@@ -69,19 +80,22 @@ public class KundeSucheModel implements IObjektModel  {
 		this.heimat = heimat2;
 		
 		
-		
-		 System.out.println("" + knrplz + nachnameort + vornamestrasse + emailhnr + selectedMode + variableKnr + motor2 + segel2 + surf2 + heimat2);
-        try {
-        	
-			Connection conn = DBConnectorSingleton.getCon();
-			// add application code here
-			viewTable(conn);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(weiter == true)
+		{
+			System.out.println("" + knrplz + nachnameort + vornamestrasse + emailhnr + selectedMode + variableKnr + motor2 + segel2 + surf2 + heimat2);
+	        try {
+	        	
+				Connection conn = DBConnectorSingleton.getCon();
+				// add application code here
+				viewTable(conn);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        updateObserver();
 		}
-        updateObserver();
+		
 	}
 
 	@Override

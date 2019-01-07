@@ -342,8 +342,11 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 			public void keyReleased(KeyEvent arg0) {
 				
 				try {
-					talking = "knrplz";
-					anfrage();
+					if(!selectedMode.equals("waiting"))
+					{
+						talking = "knrplz";
+						anfrage();
+					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -365,9 +368,11 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 			public void keyReleased(KeyEvent e) {
 				
 				try {
-					
-					talking = "nachnameort";
-					anfrage();
+					if(!selectedMode.equals("waiting"))
+					{
+						talking = "nachnameort";
+						anfrage();
+					}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -389,9 +394,11 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 			public void keyReleased(KeyEvent e) {
 				
 				try {
-					
-					talking = "vornamestrasse";
-					anfrage();
+					if(!selectedMode.equals("waiting"))
+					{
+						talking = "vornamestrasse";
+						anfrage();
+					}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -413,9 +420,11 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 			public void keyReleased(KeyEvent e) {
 				
 				try {
-					
-					talking = "emailhnr";
-					anfrage();
+					if(!selectedMode.equals("waiting"))
+					{
+						talking = "emailhnr";
+						anfrage();
+					}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
