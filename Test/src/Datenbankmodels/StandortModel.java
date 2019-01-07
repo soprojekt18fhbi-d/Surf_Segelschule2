@@ -1,5 +1,6 @@
 package Datenbankmodels;
 
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
 import Domaenklassen.GeraeteTyp;
@@ -120,21 +122,54 @@ public class StandortModel implements IStandortModel { //Ben Kröncke
 	private void registerStandort(Statement stmt) throws SQLException {
 		String update;
 		String query;
-		update = "INSERT INTO ADRESSE VALUES (default, '" + plz + "', '" + strasse + "', '" + ort + "', 'Standortadresse', '" + hnr + "', null)";
-		stmt.executeUpdate(update);
-		System.out.println(update);
-		query = "SELECT ID FROM ADRESSE WHERE PLZ = '" + plz + "' AND STRASSE = '" + strasse + "' AND hnr = '" + hnr + "' AND ORT = '" + ort + "'";
-		System.out.println(query);
-		ResultSet rs = stmt.executeQuery(query);
+		boolean goon = true;
+		
+		goon = checkID(stmt, goon);
+		
+		
+		
+		if (goon == true)
+		{
+			update = "INSERT INTO ADRESSE VALUES (default, '" + plz + "', '" + strasse + "', '" + ort + "', 'Standortadresse', '" + hnr + "', null)";
+			stmt.executeUpdate(update);
+			System.out.println(update);
+			query = "SELECT ID FROM ADRESSE WHERE PLZ = '" + plz + "' AND STRASSE = '" + strasse + "' AND hnr = '" + hnr + "' AND ORT = '" + ort + "'";
+			System.out.println(query);
+			ResultSet rs = stmt.executeQuery(query);
   	
-		while (rs.next())
-			addressID = rs.getInt("ID");
-		System.out.println(addressID);
+			while (rs.next())
+				addressID = rs.getInt("ID");
+			System.out.println(addressID);
   	
   	
-		update = "INSERT INTO STANDORT VALUES('" + standortID + "', '" + telnr + "', '" + addressID + "', '" + standortName + "', '" + password + "')";
-		stmt.executeUpdate(update);
-		System.out.println(update);
+			update = "INSERT INTO STANDORT VALUES('" + standortID + "', '" + telnr + "', '" + addressID + "', '" + standortName + "', '" + password + "')";
+			stmt.executeUpdate(update);
+			System.out.println(update);
+		}
+	}
+
+	private boolean checkID(Statement stmt, boolean goon) throws SQLException {
+		try {
+			String query;
+			query = "SELECT ID FROM STANDORT WHERE ID = " + standortID +";";
+			System.out.println(query);
+			ResultSet rs = stmt.executeQuery(query);
+			
+			int newSID;
+			try {
+				rs.next();
+				newSID = rs.getInt("ID");
+				System.out.println(newSID);
+				goon = false;
+				JOptionPane.showMessageDialog(null, "Fehler! Diese ID wurde bereits verwendet!");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return goon;
 	}
 	
 	

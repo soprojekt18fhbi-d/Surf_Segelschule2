@@ -600,8 +600,12 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 				
 				try {
 					
-					if(idFeld.getText().equals("") || nameFeld.getText().equals("") || pwFeld.getPassword().equals("") || plzFeld.getText().equals("") || strFeld.getText().equals("") || ortFeld.getText().equals("") || hnrFeld.getText().equals("") || telFeld.getText().equals("") )
-						JOptionPane.showMessageDialog(null, "Bitte alle Felder ausfüllen!");
+					boolean umwandlung = true;
+					umwandlung = checkInteger(umwandlung);
+					
+					
+					if(idFeld.getText().equals("") || nameFeld.getText().equals("") || pwFeld.getPassword().equals("") || plzFeld.getText().equals("") || strFeld.getText().equals("") || ortFeld.getText().equals("") || hnrFeld.getText().equals("") || telFeld.getText().equals("") || umwandlung == false )
+						JOptionPane.showMessageDialog(null, "Bitte die Felder überprüfen!");
 					else
 					{
 						talking = "register";
@@ -623,6 +627,18 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 					e1.printStackTrace();
 				}
 					
+			}
+
+			private boolean checkInteger(boolean umwandlung) {
+				try {
+					int plz = Integer.parseInt(plzFeld.getText());
+					int stdID = Integer.parseInt(idFeld.getText());
+				} catch (NumberFormatException e) {
+					umwandlung = false;
+					JOptionPane.showMessageDialog(null, "Sie haben falsche Werte für StandortID oder PLZ eingegeben!");
+				}
+				return umwandlung;
+				
 			}
 
 			
