@@ -53,7 +53,6 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 	private int rechnungsID;
 	private int heim_Urlaub;
 
-
 	/**
 	 * Create the panel.
 	 */
