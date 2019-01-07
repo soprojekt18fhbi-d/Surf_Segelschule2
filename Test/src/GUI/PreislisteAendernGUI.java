@@ -722,14 +722,14 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		double preisSiebzehnTage = DatentypUmwandlung.stringZuDouble(preisSiebzehnTageString);
 		double preisAchtzehnEinundzwanzigTage = DatentypUmwandlung.stringZuDouble(preisAchtzehnEinundzwanzigTageString);
 		double preisTagVierWochen = DatentypUmwandlung.stringZuDouble(preisTagVierWochenString);
-		double presVierWochen = DatentypUmwandlung.stringZuDouble(presVierWochenString);
+		double preisVierWochen = DatentypUmwandlung.stringZuDouble(presVierWochenString);
 		double preisAchtWochen = DatentypUmwandlung.stringZuDouble(preisAchtWochenString);
 
 		controller.preislisteUebergeben(talking, id, preisEineStd, preisZweiStd, preisVierStd, preisEinenTag,
 				preisZweiTage, preisDreiTage, preisVierTage, preisFuenfTage, preisSechsSiebenTage, preisAchtTage,
 				preisNeunTage, preisZehnTage, preisElfTage, preisZwoelfVierzehnTage, preisFuenfzehnTage,
 				preisSechzehnTage, preisSiebzehnTage, preisAchtzehnEinundzwanzigTage, preisTagVierWochen,
-				presVierWochen, preisAchtWochen);
+				preisVierWochen, preisAchtWochen);
 	}
 	
 	
