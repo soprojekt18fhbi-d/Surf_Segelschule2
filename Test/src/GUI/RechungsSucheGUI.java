@@ -62,6 +62,7 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 		model=models;
 		controller=controllers;
 		
+		setSize(980, 580);
 		setBackground(Color.DARK_GRAY);
 		setForeground(Color.DARK_GRAY);
 		setLayout(new BorderLayout(0, 0));
@@ -70,46 +71,56 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 		add(panel, BorderLayout.NORTH);
 		
 		JButton btnZurck = new JButton("Zur\u00FCck");
-		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnZurck.setBackground(new Color(255, 140, 0));
-
+		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		JButton btnSuchen = new JButton("Suchen");
-		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnSuchen.setBackground(new Color(255, 140, 0));
-
-
-
-
-		txtRechnungGewaehlt = new JTextField();
-		txtRechnungGewaehlt.setBackground(new Color(255, 140, 0));
+		JButton btnZeigeAlle = new JButton("Zeige Alle");
+		btnZeigeAlle.setBackground(new Color(255, 140, 0));
+		btnZeigeAlle.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		txtSearchbar = new JTextField();
-		txtSearchbar.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtSearchbar.setHorizontalAlignment(SwingConstants.CENTER);
+		txtSearchbar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtSearchbar.setText("Kundennummer...");
-		txtSearchbar.setColumns(15);
+		txtSearchbar.setColumns(10);
 		
+		JButton btnSuchen = new JButton("Suchen");
+		btnSuchen.setBackground(new Color(255, 140, 0));
+		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 326, Short.MAX_VALUE)
+					.addComponent(btnZeigeAlle, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtSearchbar, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+							.addComponent(txtSearchbar, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnZeigeAlle, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		panel.setLayout(gl_panel);
+		
+		
+		txtRechnungGewaehlt = new JTextField();
+		txtRechnungGewaehlt.setBackground(new Color(255, 140, 0));
+				
 		txtSearchbar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {		
 				txtSearchbar.setText("");
 			}
 		});
-		
-		
-	
-
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel.add(btnZurck);
-		
-		JButton btnZeigeAlle = new JButton("Zeige Alle");
-		btnZeigeAlle.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnZeigeAlle.setBackground(new Color(255, 140, 0));
-
-		panel.add(btnZeigeAlle);
-		panel.add(txtSearchbar);
-		panel.add(btnSuchen);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.DARK_GRAY);
@@ -252,8 +263,7 @@ public class RechungsSucheGUI extends JPanel implements IObjektView{
 	}
 
 	@Override
-public void aktualisieren(IObjektModel model) {
+	public void aktualisieren(IObjektModel model) {
 		table.setModel(model.getTableModel());
 	}
-	
 }
