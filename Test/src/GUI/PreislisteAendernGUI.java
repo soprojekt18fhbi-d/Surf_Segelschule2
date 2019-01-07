@@ -27,6 +27,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import com.sun.corba.se.pept.protocol.ServerRequestDispatcher;
 
 import Berechnung.DatentypUmwandlung;
+import Berechnung.StringEnthaeltX;
 import Datenbankmodels.IAnlegenModel;
 import Datenbankmodels.PreislisteAendernModel;
 import Domaenklassen.Preisliste;
@@ -680,56 +681,135 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 
 	private void PreislisteAendern() {
 
-		String preisEineStdString = tfEineStd.getText();
-		String preisZweiStdString = tfZweiStd.getText();
-		String preisVierStdString = tfVierStd.getText();
-		String preisEinenTagString = tfEinTag.getText();
-		String preisZweiTageString = tfZweiTage.getText();
-		String preisDreiTageString = tfDreiTage.getText();
-		String preisVierTageString = tfVierTage.getText();
-		String preisFuenfTageString = tfFuenfTage.getText();
-		String preisSechsSiebenTageString = tfAchtTage.getText();
-		String preisAchtTageString = tfSechsSiebenTage.getText();
-		String preisNeunTageString = tfNeunTage.getText();
-		String preisZehnTageString = tfZehnTage.getText();
-		String preisElfTageString = tfElfTage.getText();
-		String preisZwoelfVierzehnTageString = tfZwoelfVierzehnTage.getText();
-		String preisFuenfzehnTageString = tfFuenfzehnTage.getText();
-		String preisSechzehnTageString = tfSechzehnTage.getText();
-		String preisSiebzehnTageString = tfSiebzehnTage.getText();
-		String preisAchtzehnEinundzwanzigTageString = tfAchtzehnEinundZwTage.getText();
-		String preisTagVierWochenString = tfProTagVierW.getText();
-		String presVierWochenString = tfVierWochen.getText();
-		String preisAchtWochenString = tfAchtWochen.getText();
+		String  preisEineStdString = tfEineStd.getText();
+		String	preisZweiStdString = tfZweiStd.getText();
+		String	preisVierStdString = tfVierStd.getText();
+		String	preisEinenTagString = tfEinTag.getText();
+		String	preisZweiTageString = tfZweiTage.getText();
+		String	preisDreiTageString = tfDreiTage.getText();
+		String	preisVierTageString = tfVierTage.getText();
+		String	preisFuenfTageString = tfFuenfTage.getText();
+		String	preisSechsSiebenTageString = tfAchtTage.getText();
+		String	preisAchtTageString = tfSechsSiebenTage.getText();
+		String	preisNeunTageString= tfNeunTage.getText();
+		String	preisZehnTageString = tfZehnTage.getText();
+		String	preisElfTageString = tfElfTage.getText();
+		String	preisZwoelfVierzehnTageString = tfZwoelfVierzehnTage.getText();
+		String	preisFuenfzehnTageString = tfFuenfzehnTage.getText();
+		String	preisSechzehnTageString = tfSechzehnTage.getText();
+		String	preisSiebzehnTageString = tfSiebzehnTage.getText();
+		String	preisAchtzehnEinundzwanzigTageString = tfAchtzehnEinundZwTage.getText();
+		String	preisTagVierWochenString = tfProTagVierW.getText();
+		String	preisVierWochenString = tfVierWochen.getText();
+		String	preisAchtWochenString = tfAchtWochen.getText();
+
+		preisEineStdString=stringKommaPunktErsetzen(preisEineStdString);
+		preisZweiStdString=stringKommaPunktErsetzen(preisZweiStdString);
+		preisVierStdString=stringKommaPunktErsetzen(preisVierStdString);
+		preisEinenTagString=stringKommaPunktErsetzen(preisEinenTagString);
+		preisZweiTageString=stringKommaPunktErsetzen(preisZweiTageString);
+		preisDreiTageString=stringKommaPunktErsetzen(preisDreiTageString);
+		preisVierTageString=stringKommaPunktErsetzen(preisVierTageString);
+		preisFuenfTageString=stringKommaPunktErsetzen(preisFuenfTageString);
+		preisSechsSiebenTageString=stringKommaPunktErsetzen(preisSechsSiebenTageString);
+		preisAchtTageString=stringKommaPunktErsetzen(preisAchtTageString);
+		preisNeunTageString=stringKommaPunktErsetzen(preisNeunTageString);
+		preisZehnTageString=stringKommaPunktErsetzen(preisZehnTageString);
+		preisElfTageString=stringKommaPunktErsetzen(preisElfTageString);
+		preisZwoelfVierzehnTageString=stringKommaPunktErsetzen(preisZwoelfVierzehnTageString);
+		preisFuenfzehnTageString=stringKommaPunktErsetzen(preisFuenfzehnTageString);
+		preisSechzehnTageString=stringKommaPunktErsetzen(preisSechzehnTageString);
+		preisSiebzehnTageString=stringKommaPunktErsetzen(preisSiebzehnTageString);
+		preisAchtzehnEinundzwanzigTageString=stringKommaPunktErsetzen(preisAchtzehnEinundzwanzigTageString);
+		preisTagVierWochenString=stringKommaPunktErsetzen(preisTagVierWochenString);
+		preisVierWochenString=stringKommaPunktErsetzen(preisVierWochenString);
+		preisAchtWochenString=stringKommaPunktErsetzen(preisAchtWochenString);
 		
+		if(
+			preisEineStdString.isEmpty() &&
+			preisZweiStdString.isEmpty() &&
+			preisVierStdString.isEmpty() &&
+			preisEinenTagString.isEmpty() &&
+			preisZweiTageString.isEmpty() &&
+			preisDreiTageString.isEmpty() &&
+			preisVierTageString.isEmpty() &&
+			preisFuenfTageString.isEmpty() &&
+			preisSechsSiebenTageString.isEmpty() &&
+			preisAchtTageString.isEmpty() &&
+			preisNeunTageString.isEmpty() &&
+			preisZehnTageString.isEmpty() &&
+			preisElfTageString.isEmpty() &&
+			preisZwoelfVierzehnTageString.isEmpty() &&
+			preisFuenfzehnTageString.isEmpty() &&
+			preisSechzehnTageString.isEmpty() &&
+			preisSiebzehnTageString.isEmpty() &&
+			preisAchtzehnEinundzwanzigTageString.isEmpty() &&
+			preisTagVierWochenString.isEmpty() &&
+			preisVierWochenString.isEmpty() &&
+			preisAchtWochenString.isEmpty()
+				) 
+		{
+			JOptionPane.showMessageDialog(null, "Bitte alle Felder mit Preisen ausfüllen!");
+		}
+		else if (
+			StringEnthaeltX.stringIstKeineZahl(preisEineStdString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisZweiStdString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisVierStdString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisEinenTagString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisZweiTageString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisDreiTageString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisVierTageString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisFuenfTageString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisSechsSiebenTageString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisAchtTageString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisNeunTageString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisZehnTageString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisElfTageString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisZwoelfVierzehnTageString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisFuenfzehnTageString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisSechzehnTageString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisSiebzehnTageString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisAchtzehnEinundzwanzigTageString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisTagVierWochenString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisVierWochenString) ||
+			StringEnthaeltX.stringIstKeineZahl(preisAchtWochenString)
+				)
+		{
+			JOptionPane.showMessageDialog(null, "Bitte nur Zahlen für die Preise verwenden!");
+		}
+		else
+		{
+			double  preisEineStd = DatentypUmwandlung.stringZuDouble(preisEineStdString);
+			double  preisZweiStd = DatentypUmwandlung.stringZuDouble(preisZweiStdString);
+			double  preisVierStd = DatentypUmwandlung.stringZuDouble(preisVierStdString);
+			double  preisEinenTag = DatentypUmwandlung.stringZuDouble(preisEinenTagString);
+			double  preisZweiTage = DatentypUmwandlung.stringZuDouble(preisZweiTageString);
+			double  preisDreiTage = DatentypUmwandlung.stringZuDouble(preisDreiTageString);
+			double  preisVierTage = DatentypUmwandlung.stringZuDouble(preisVierTageString);
+			double  preisFuenfTage = DatentypUmwandlung.stringZuDouble(preisFuenfTageString);
+			double  preisSechsSiebenTage = DatentypUmwandlung.stringZuDouble(preisSechsSiebenTageString);
+			double  preisAchtTage = DatentypUmwandlung.stringZuDouble(preisAchtTageString);
+			double  preisNeunTage= DatentypUmwandlung.stringZuDouble(preisNeunTageString);
+			double  preisZehnTage = DatentypUmwandlung.stringZuDouble(preisZehnTageString);
+			double  preisElfTage = DatentypUmwandlung.stringZuDouble(preisElfTageString);
+			double  preisZwoelfVierzehnTage = DatentypUmwandlung.stringZuDouble(preisZwoelfVierzehnTageString);
+			double  preisFuenfzehnTage = DatentypUmwandlung.stringZuDouble(preisFuenfzehnTageString);
+			double  preisSechzehnTage = DatentypUmwandlung.stringZuDouble(preisSechzehnTageString);
+			double  preisSiebzehnTage = DatentypUmwandlung.stringZuDouble(preisSiebzehnTageString);
+			double  preisAchtzehnEinundzwanzigTage = DatentypUmwandlung.stringZuDouble(preisAchtzehnEinundzwanzigTageString);
+			double  preisTagVierWochen = DatentypUmwandlung.stringZuDouble(preisTagVierWochenString);
+			double  presVierWochen = DatentypUmwandlung.stringZuDouble(preisVierWochenString);
+			double  preisAchtWochen = DatentypUmwandlung.stringZuDouble(preisAchtWochenString);
 
-		double preisEineStd = DatentypUmwandlung.stringZuDouble(preisEineStdString);
-		double preisZweiStd = DatentypUmwandlung.stringZuDouble(preisZweiStdString);
-		double preisVierStd = DatentypUmwandlung.stringZuDouble(preisVierStdString);
-		double preisEinenTag = DatentypUmwandlung.stringZuDouble(preisEinenTagString);
-		double preisZweiTage = DatentypUmwandlung.stringZuDouble(preisZweiTageString);
-		double preisDreiTage = DatentypUmwandlung.stringZuDouble(preisDreiTageString);
-		double preisVierTage = DatentypUmwandlung.stringZuDouble(preisVierTageString);
-		double preisFuenfTage = DatentypUmwandlung.stringZuDouble(preisFuenfTageString);
-		double preisSechsSiebenTage = DatentypUmwandlung.stringZuDouble(preisSechsSiebenTageString);
-		double preisAchtTage = DatentypUmwandlung.stringZuDouble(preisAchtTageString);
-		double preisNeunTage = DatentypUmwandlung.stringZuDouble(preisNeunTageString);
-		double preisZehnTage = DatentypUmwandlung.stringZuDouble(preisZehnTageString);
-		double preisElfTage = DatentypUmwandlung.stringZuDouble(preisElfTageString);
-		double preisZwoelfVierzehnTage = DatentypUmwandlung.stringZuDouble(preisZwoelfVierzehnTageString);
-		double preisFuenfzehnTage = DatentypUmwandlung.stringZuDouble(preisFuenfzehnTageString);
-		double preisSechzehnTage = DatentypUmwandlung.stringZuDouble(preisSechzehnTageString);
-		double preisSiebzehnTage = DatentypUmwandlung.stringZuDouble(preisSiebzehnTageString);
-		double preisAchtzehnEinundzwanzigTage = DatentypUmwandlung.stringZuDouble(preisAchtzehnEinundzwanzigTageString);
-		double preisTagVierWochen = DatentypUmwandlung.stringZuDouble(preisTagVierWochenString);
-		double presVierWochen = DatentypUmwandlung.stringZuDouble(presVierWochenString);
-		double preisAchtWochen = DatentypUmwandlung.stringZuDouble(preisAchtWochenString);
-
-		controller.preislisteUebergeben(talking, id, preisEineStd, preisZweiStd, preisVierStd, preisEinenTag,
-				preisZweiTage, preisDreiTage, preisVierTage, preisFuenfTage, preisSechsSiebenTage, preisAchtTage,
-				preisNeunTage, preisZehnTage, preisElfTage, preisZwoelfVierzehnTage, preisFuenfzehnTage,
-				preisSechzehnTage, preisSiebzehnTage, preisAchtzehnEinundzwanzigTage, preisTagVierWochen,
-				presVierWochen, preisAchtWochen);
+			controller.preislisteUebergeben(talking, id, preisEineStd,  preisZweiStd,  preisVierStd, preisEinenTag,
+					 preisZweiTage,  preisDreiTage,  preisVierTage,  preisFuenfTage,  preisSechsSiebenTage,
+					 preisAchtTage,  preisNeunTage,  preisZehnTage,  preisElfTage,  preisZwoelfVierzehnTage,
+					 preisFuenfzehnTage,  preisSechzehnTage,  preisSiebzehnTage,  preisAchtzehnEinundzwanzigTage,
+					 preisTagVierWochen,  presVierWochen,  preisAchtWochen);
+			
+			aktualisieren(model);
+			MainFrame.change(MainFrame.getPreislisteAnlegenGUI(), MainFrame.getPreislisteGUI());
+		}
 	}
 	
 	
@@ -759,6 +839,12 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		mengeAnTextFeldern[19]=tfVierWochen;
 		mengeAnTextFeldern[20]=tfAchtWochen;
 
+	}
+	
+	public String stringKommaPunktErsetzen(String string){
+		string = string.replace(",",".");
+		return string;
+		
 	}
 	
 	private void textFelderLeeren() {
