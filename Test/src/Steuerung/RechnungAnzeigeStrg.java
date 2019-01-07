@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 import org.h2.table.Table;
 
@@ -50,6 +51,8 @@ public class RechnungAnzeigeStrg implements IController{
 	private int buchungsID;
 	private int reparaturID;
 	private String art;
+	private String ausleihdatum;
+	private String verkaufsdatum;
 	private int sportgeraetID;
 	private int modellID;
 	private String farbe;
@@ -85,6 +88,8 @@ public class RechnungAnzeigeStrg implements IController{
 		reparaturID = model.getReparaturID();
 		buchungsID = model.getBuchungsID();
         art = model.getArt();
+        ausleihdatum = model.getAusleihdatum();
+        verkaufsdatum = model.getVerkaufsdatum();
         sportgeraetID  = model.getSportgeraetID();
         modellID=model.getModellID();
         farbe = model.getFarbe();
@@ -99,12 +104,14 @@ public class RechnungAnzeigeStrg implements IController{
     	filename = "Rechnung "+String.valueOf(rechnungsID);
     	try {
     		erstellePDF(filename, rechnungsID);
+    		JOptionPane.showMessageDialog(null, "Die Rechnung wurde in Ihrem Workspace erstellt", "Rechnung erstellt", JOptionPane.PLAIN_MESSAGE);
     	}catch(DocumentException e){
     		e.printStackTrace();
     	}catch(MalformedURLException e1) {
     		e1.printStackTrace();
     	}catch(IOException e2) {
     		e2.printStackTrace();
+    		JOptionPane.showMessageDialog(null, "Falls Sie noch eine Rechnung geöffnet haben, schließen Sie diese bitte", "Rechnung schließen", JOptionPane.PLAIN_MESSAGE);
     	} 
 	}
 
@@ -202,6 +209,16 @@ public class RechnungAnzeigeStrg implements IController{
         contentTable.addCell(new Phrase(modellID+"", font3));
         contentTable.addCell(new Phrase("Modell", font3));
         contentTable.addCell(new Phrase(modellname + " ( Farbe: " + farbe + ")" , font3));
+        System.out.println(art);
+        
+        // Hier wird bei einem Verkauf das Verkaufsdatum ausgegeben und bei einer Ausleihe das Ausleihdatum.
+        if (art.equals("Verkauf")) {
+        	contentTable.addCell(new Phrase("Verkaufsdatum", font3));
+            contentTable.addCell(new Phrase(verkaufsdatum , font3));
+        }else {
+        	contentTable.addCell(new Phrase("Ausleihdatum", font3));
+            contentTable.addCell(new Phrase(ausleihdatum , font3));
+        }
         contentTable.addCell(new Phrase("Summe (netto)", font3));
         contentTable.addCell(new Phrase(String.valueOf(summe) + " €", font3));
         contentTable.addCell(new Phrase("Mehrwertsteuer", font3));

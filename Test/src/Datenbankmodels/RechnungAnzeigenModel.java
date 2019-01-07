@@ -32,6 +32,8 @@ public class RechnungAnzeigenModel implements IObjektModel{
 	private double summe;
 	private double summeMitMwst;
 	private double mwst;
+	private String ausleihdatum;
+	private String verkaufsdatum;
 	private int kundeID;
 	private int buchungsID;
 	private int reparaturID;
@@ -234,6 +236,8 @@ public class RechnungAnzeigenModel implements IObjektModel{
 		        stmt = con.createStatement();
 		        ResultSet rs = stmt.executeQuery(query);
 		        while(rs.next()) {
+		        ausleihdatum = rs.getString(2);
+		        verkaufsdatum = rs.getString(5); 
 		        art = rs.getString(6);
 		        sportgeraetID  = rs.getInt(7);
 		        System.out.println("Buchung:" + art +" "+ sportgeraetID);
@@ -391,6 +395,14 @@ public class RechnungAnzeigenModel implements IObjektModel{
 
 	public double getSumme() {
 		return summe;
+	}
+
+	public String getAusleihdatum() {
+		return ausleihdatum;
+	}
+
+	public String getVerkaufsdatum() {
+		return verkaufsdatum;
 	}
 
 	public ArrayList<IObjektView> getObservers() {
