@@ -586,8 +586,6 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 			}
 
 			private void PreislisteAnlegen() {
-
-				
 				
 				String  preisEineStdString = tfEineStd.getText();
 				String	preisZweiStdString = tfZweiStd.getText();
@@ -610,77 +608,77 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 				String	preisTagVierWochenString = tfProTagVierW.getText();
 				String	preisVierWochenString = tfVierWochen.getText();
 				String	preisAchtWochenString = tfAchtWochen.getText();
-				
-				stringKommaPunktErsetzen(preisEineStdString);
-				stringKommaPunktErsetzen(preisZweiStdString);
-				stringKommaPunktErsetzen(preisVierStdString);
-				stringKommaPunktErsetzen(preisEinenTagString);
-				stringKommaPunktErsetzen(preisZweiTageString);
-				stringKommaPunktErsetzen(preisDreiTageString);
-				stringKommaPunktErsetzen(preisVierTageString);
-				stringKommaPunktErsetzen(preisFuenfTageString);
-				stringKommaPunktErsetzen(preisSechsSiebenTageString);
-				stringKommaPunktErsetzen(preisAchtTageString);
-				stringKommaPunktErsetzen(preisNeunTageString);
-				stringKommaPunktErsetzen(preisZehnTageString);
-				stringKommaPunktErsetzen(preisElfTageString);
-				stringKommaPunktErsetzen(preisZwoelfVierzehnTageString);
-				stringKommaPunktErsetzen(preisFuenfzehnTageString);
-				stringKommaPunktErsetzen(preisSechzehnTageString);
-				stringKommaPunktErsetzen(preisSiebzehnTageString);
-				stringKommaPunktErsetzen(preisAchtzehnEinundzwanzigTageString);
-				stringKommaPunktErsetzen(preisTagVierWochenString);
-				stringKommaPunktErsetzen(preisVierWochenString);
-				stringKommaPunktErsetzen(preisAchtWochenString);
+	
+				preisEineStdString=stringKommaPunktErsetzen(preisEineStdString);
+				preisZweiStdString=stringKommaPunktErsetzen(preisZweiStdString);
+				preisVierStdString=stringKommaPunktErsetzen(preisVierStdString);
+				preisEinenTagString=stringKommaPunktErsetzen(preisEinenTagString);
+				preisZweiTageString=stringKommaPunktErsetzen(preisZweiTageString);
+				preisDreiTageString=stringKommaPunktErsetzen(preisDreiTageString);
+				preisVierTageString=stringKommaPunktErsetzen(preisVierTageString);
+				preisFuenfTageString=stringKommaPunktErsetzen(preisFuenfTageString);
+				preisSechsSiebenTageString=stringKommaPunktErsetzen(preisSechsSiebenTageString);
+				preisAchtTageString=stringKommaPunktErsetzen(preisAchtTageString);
+				preisNeunTageString=stringKommaPunktErsetzen(preisNeunTageString);
+				preisZehnTageString=stringKommaPunktErsetzen(preisZehnTageString);
+				preisElfTageString=stringKommaPunktErsetzen(preisElfTageString);
+				preisZwoelfVierzehnTageString=stringKommaPunktErsetzen(preisZwoelfVierzehnTageString);
+				preisFuenfzehnTageString=stringKommaPunktErsetzen(preisFuenfzehnTageString);
+				preisSechzehnTageString=stringKommaPunktErsetzen(preisSechzehnTageString);
+				preisSiebzehnTageString=stringKommaPunktErsetzen(preisSiebzehnTageString);
+				preisAchtzehnEinundzwanzigTageString=stringKommaPunktErsetzen(preisAchtzehnEinundzwanzigTageString);
+				preisTagVierWochenString=stringKommaPunktErsetzen(preisTagVierWochenString);
+				preisVierWochenString=stringKommaPunktErsetzen(preisVierWochenString);
+				preisAchtWochenString=stringKommaPunktErsetzen(preisAchtWochenString);
 				
 				if(
-						preisEineStdString.isEmpty() &&
-						preisZweiStdString.isEmpty() &&
-						preisVierStdString.isEmpty() &&
-						preisEinenTagString.isEmpty() &&
-						preisZweiTageString.isEmpty() &&
-						preisDreiTageString.isEmpty() &&
-						preisVierTageString.isEmpty() &&
-						preisFuenfTageString.isEmpty() &&
-						preisSechsSiebenTageString.isEmpty() &&
-						preisAchtTageString.isEmpty() &&
-						preisNeunTageString.isEmpty() &&
-						preisZehnTageString.isEmpty() &&
-						preisElfTageString.isEmpty() &&
-						preisZwoelfVierzehnTageString.isEmpty() &&
-						preisFuenfzehnTageString.isEmpty() &&
-						preisSechzehnTageString.isEmpty() &&
-						preisSiebzehnTageString.isEmpty() &&
-						preisAchtzehnEinundzwanzigTageString.isEmpty() &&
-						preisTagVierWochenString.isEmpty() &&
-						preisVierWochenString.isEmpty() &&
-						preisAchtWochenString.isEmpty()
+					preisEineStdString.isEmpty() &&
+					preisZweiStdString.isEmpty() &&
+					preisVierStdString.isEmpty() &&
+					preisEinenTagString.isEmpty() &&
+					preisZweiTageString.isEmpty() &&
+					preisDreiTageString.isEmpty() &&
+					preisVierTageString.isEmpty() &&
+					preisFuenfTageString.isEmpty() &&
+					preisSechsSiebenTageString.isEmpty() &&
+					preisAchtTageString.isEmpty() &&
+					preisNeunTageString.isEmpty() &&
+					preisZehnTageString.isEmpty() &&
+					preisElfTageString.isEmpty() &&
+					preisZwoelfVierzehnTageString.isEmpty() &&
+					preisFuenfzehnTageString.isEmpty() &&
+					preisSechzehnTageString.isEmpty() &&
+					preisSiebzehnTageString.isEmpty() &&
+					preisAchtzehnEinundzwanzigTageString.isEmpty() &&
+					preisTagVierWochenString.isEmpty() &&
+					preisVierWochenString.isEmpty() &&
+					preisAchtWochenString.isEmpty()
 						) 
 				{
 					JOptionPane.showMessageDialog(null, "Bitte alle Felder mit Preisen ausfüllen!");
 				}
 				else if (
-						StringEnthaeltX.stringIstKeineZahl(preisEineStdString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisZweiStdString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisVierStdString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisEinenTagString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisZweiTageString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisDreiTageString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisVierTageString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisFuenfTageString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisSechsSiebenTageString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisAchtTageString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisNeunTageString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisZehnTageString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisElfTageString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisZwoelfVierzehnTageString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisFuenfzehnTageString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisSechzehnTageString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisSiebzehnTageString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisAchtzehnEinundzwanzigTageString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisTagVierWochenString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisVierWochenString) ||
-						StringEnthaeltX.stringIstKeineZahl(preisAchtWochenString)
+					StringEnthaeltX.stringIstKeineZahl(preisEineStdString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisZweiStdString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisVierStdString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisEinenTagString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisZweiTageString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisDreiTageString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisVierTageString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisFuenfTageString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisSechsSiebenTageString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisAchtTageString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisNeunTageString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisZehnTageString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisElfTageString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisZwoelfVierzehnTageString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisFuenfzehnTageString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisSechzehnTageString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisSiebzehnTageString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisAchtzehnEinundzwanzigTageString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisTagVierWochenString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisVierWochenString) ||
+					StringEnthaeltX.stringIstKeineZahl(preisAchtWochenString)
 						)
 				{
 					JOptionPane.showMessageDialog(null, "Bitte nur Zahlen für die Preise verwenden!");
@@ -722,8 +720,10 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 				
 			}
 
-			public void stringKommaPunktErsetzen(String string) {
-				string.replace(".", ",");
+			public String stringKommaPunktErsetzen(String string){
+				string = string.replace(",",".");
+				return string;
+				
 			}
 		});	
 		
