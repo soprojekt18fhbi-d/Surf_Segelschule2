@@ -12,7 +12,7 @@ import javax.swing.DefaultListModel;
 
 import Domaenklassen.Kunde;
 import GUI.IView;
-//sdhsdhj
+//sdhsdhjerewrwerwerwreewr
 
 public class AusleiheAnlegenModel implements IModel{
 
