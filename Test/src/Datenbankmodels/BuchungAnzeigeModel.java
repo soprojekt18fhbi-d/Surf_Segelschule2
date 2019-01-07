@@ -27,7 +27,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 	private int geraetNrloc;
 	private int buchungID = 0;
 	private String makel = "";
-	String patternBerechnung = "yyyy-MM-dd' 'HH:mm";
+	private String patternBerechnung = "yyyy-MM-dd' 'HH:mm";
 	private double preis = 0;
 	private int[] tageStunden = new int[2];
 	
@@ -111,7 +111,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 		}
 
 
-	private void erstelleRechnungVerkauf(Statement stmt) throws SQLException {
+	public void erstelleRechnungVerkauf(Statement stmt) throws SQLException {
 		String query;
 		String update;
 		double verkaufspreis = 0;
@@ -130,7 +130,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 	}
 
 
-	private void vollendeAusleihe(Statement stmt, String date) throws SQLException {
+	public void vollendeAusleihe(Statement stmt, String date) throws SQLException {
 		String update;
 		String query;
 		update = "UPDATE BUCHUNG SET RÜCKGABEDATUM = '" + date + "' WHERE ID = " + buchungID;
@@ -165,7 +165,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 	}
 
 
-	private void pruefepreisSetzen(Statement stmt, int[] tageStunden) throws SQLException {
+	public void pruefepreisSetzen(Statement stmt, int[] tageStunden) throws SQLException {
 		if(tageStunden[1] <= 1 && tageStunden[0] < 1)
 		{	
 			String spalte = "EINESTD";
@@ -272,7 +272,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 	}
 
 
-	private double holeBonuspreis(Statement stmt, String spalte) throws SQLException {
+	public double holeBonuspreis(Statement stmt, String spalte) throws SQLException {
 		// TODO Auto-generated method stub
 		String query;
 		ResultSet rs;
@@ -288,7 +288,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 	}
 
 
-	private void setzePreis(Statement stmt, String spalte) throws SQLException {
+	public void setzePreis(Statement stmt, String spalte) throws SQLException {
 		String query;
 		ResultSet rs;
 		query = "SELECT PREISLISTE." + spalte + " FROM PREISLISTE, MODELL, SPORTGERAET WHERE SPORTGERAET.ID = " + geraetNrloc + " AND SPORTGERAET.MODELLID = MODELL.ID AND MODELL.PREISLISTEID = PREISLISTE.ID";
@@ -307,7 +307,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 	}
 
 
-	private int[] holeTageStunden(String rueckdatum, String verleihdatum) {
+	public int[] holeTageStunden(String rueckdatum, String verleihdatum) {
 		
 		
 		
@@ -328,7 +328,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 	}
 
 
-	private int[] berechneTageStunden(String[] datumRueck, String[] uhrzeitRueck, String[] datumVerleih,
+	public int[] berechneTageStunden(String[] datumRueck, String[] uhrzeitRueck, String[] datumVerleih,
 			String[] uhrzeitVerleih) {
 		
 		int[] tageStunden = new int[2];
@@ -363,7 +363,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 	}
 
 
-	private void storniereBuchung(Statement stmt) throws SQLException {
+	public void storniereBuchung(Statement stmt) throws SQLException {
 		String update;
 		update = "DELETE FROM BUCHUNG WHERE ID = " + buchungID;
 		System.out.println(update);
@@ -374,7 +374,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 	}
 
 
-	private void sucheVerkaeufe(Statement stmt) throws SQLException {
+	public void sucheVerkaeufe(Statement stmt) throws SQLException {
 		String query;
 		query = "SELECT ID,KUNDEID,SPORTGERAETID,VERKAUFSDATUM FROM BUCHUNG WHERE ART = 'Verkauf' AND VERKAUFSDATUM LIKE '%" + search + "%'";
 		ResultSet rs = stmt.executeQuery(query);
@@ -382,7 +382,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 	}
 
 
-	private void holeVerkaeufe(Statement stmt) throws SQLException {
+	public void holeVerkaeufe(Statement stmt) throws SQLException {
 		String query;
 		query = "SELECT ID,KUNDEID,SPORTGERAETID,VERKAUFSDATUM FROM BUCHUNG WHERE ART = 'Verkauf' ORDER BY VERKAUFSDATUM DESC";
 		ResultSet rs = stmt.executeQuery(query);
@@ -390,7 +390,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 	}
 
 
-	private void searchVerleihe(Statement stmt) throws SQLException {
+	public void searchVerleihe(Statement stmt) throws SQLException {
 		String query;
 		query = "SELECT ID,KUNDEID,SPORTGERAETID,AUSLEIHDATUM,RÜCKGABEDATUM FROM BUCHUNG WHERE ART = 'Verleih' AND AUSLEIHDATUM LIKE '%" + search + "%'";
 		System.out.println(query);
@@ -399,7 +399,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 	}
 
 
-	private void alleVerleihe(Statement stmt) throws SQLException {
+	public void alleVerleihe(Statement stmt) throws SQLException {
 		String query;
 		query = "SELECT ID,KUNDEID,SPORTGERAETID,AUSLEIHDATUM,RÜCKGABEDATUM FROM BUCHUNG WHERE ART = 'Verleih' AND RÜCKGABEDATUM IS NULL ORDER BY AUSLEIHDATUM DESC";
 		System.out.println(query);
@@ -410,7 +410,7 @@ public class BuchungAnzeigeModel implements IObjektModel { //Ben Kröncke
 
 
 
-	private void setVars(String talking2, int buchungID2, int kNr2, int geraetNr, String search2, String mode2, String makel2) {
+	public void setVars(String talking2, int buchungID2, int kNr2, int geraetNr, String search2, String mode2, String makel2) {
 		talking = talking2;
 		kNr = kNr2;
 		geraetNrloc = geraetNr;
