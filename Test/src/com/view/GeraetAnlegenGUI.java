@@ -356,6 +356,8 @@ public class GeraetAnlegenGUI extends JPanel implements IAnlegenView{
 		farbe = textFarbe.getText();
 		baujahr = Integer.parseInt(textBaujahr.getText());
 		makel = textMakel.getText();
+		if (makel.equals(""))
+			makel = "Keine";
 		controller.setzeStandort();
 		
 		controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
@@ -372,6 +374,8 @@ public class GeraetAnlegenGUI extends JPanel implements IAnlegenView{
 			comboboxItems.clear();
 		}	
 		else if(talking == "second"){
+			if (comboboxItems.size() == 0)
+				JOptionPane.showMessageDialog(null, "Von diesem Typen muss noch ein Modell angelegt werden.");
 			for(int i = 0; i < comboboxItems.size(); i++) {
 				comboBoxModell.addItem(comboboxItems.get(i));
 			}

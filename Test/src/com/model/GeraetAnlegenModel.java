@@ -174,7 +174,6 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 			    String typ = geraet[0];
 			   
 			    query = "Select * from TYP WHERE NAME = '" +typ+ "'";
-			    System.out.println(query);		   
 			    ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);
 				
 			    while (rs.next()){	

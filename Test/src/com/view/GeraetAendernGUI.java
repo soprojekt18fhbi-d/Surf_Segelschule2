@@ -344,13 +344,15 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 	
 	private void geraetAendern() {
 		farbe = textFarbe.getText();
-		makel = textMakel.getText();
 		baujahr = Integer.parseInt(textBaujahr.getText());
 		anschaffungspreis = Double.parseDouble(textAPreis.getText());
 		verkaufspreis = Double.parseDouble(textVPreis.getText());
 		standortID = Integer.parseInt(String.valueOf(comboBoxStandort.getSelectedItem()));
 		String standort = String.valueOf(standortID);
 		geraet = String.valueOf(geraeteID);
+		makel = textMakel.getText();
+		if (makel.equals(""))
+			makel = "Keine";
 		controller.anfrageGeraethinzufuegen(talking, geraet, standort, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
 	}
 	

@@ -4,18 +4,12 @@
 
 package com.controller;
 
-import com.entity.SportGeraet;
 import com.model.GeraetAnlegenModel;
-import com.view.GeraetAnlegenGUI;
-import com.view.IAnlegenView;
 import com.view.MainFrame;
 
 public class GeraetAnlegenStrg implements IController {
 
-	
-	private SportGeraet geraet;
 	private GeraetAnlegenModel model;
-	private GeraetAnlegenGUI view;
 	
 	public GeraetAnlegenStrg (GeraetAnlegenModel smodel)
 	{
