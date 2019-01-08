@@ -24,10 +24,13 @@ import javax.swing.SwingConstants;
 
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
 
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -62,37 +65,194 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 		model = models;
 		controller = controllers;
 		
-		
-		
+		setSize(980,580);
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.NORTH);
-		panel.setLayout(new BorderLayout(0, 0));
 		
 		JButton zrckButton = new JButton("Zur\u00FCck");
-		zrckButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				try {
-					MainFrame.change(MainFrame.getWirtschaftlichkeitsverwaltungGUI(), MainFrame.getHauptmenueGUI());
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-			}
-		});
 		zrckButton.setBackground(new Color(255, 140, 0));
 		zrckButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel.add(zrckButton, BorderLayout.WEST);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(zrckButton, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(300, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addComponent(zrckButton, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		panel.setLayout(gl_panel);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.DARK_GRAY);
 		add(panel_1, BorderLayout.CENTER);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_1.columnWeights = new double[]{1.0, 0.1, 0.5, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 2.0, Double.MIN_VALUE};
+		panel_1.setLayout(gbl_panel_1);
+		
+		JLabel lblWirtschaftlichkeit = new JLabel("Wirtschaftlichkeit");
+		lblWirtschaftlichkeit.setForeground(new Color(255, 140, 0));
+		lblWirtschaftlichkeit.setFont(new Font("Tahoma", Font.BOLD, 52));
+		GridBagConstraints gbc_lblWirtschaftlichkeit = new GridBagConstraints();
+		gbc_lblWirtschaftlichkeit.gridwidth = 5;
+		gbc_lblWirtschaftlichkeit.insets = new Insets(0, 0, 5, 0);
+		gbc_lblWirtschaftlichkeit.gridx = 0;
+		gbc_lblWirtschaftlichkeit.gridy = 1;
+		panel_1.add(lblWirtschaftlichkeit, gbc_lblWirtschaftlichkeit);
+		
+		JLabel lblKategorieWhlen = new JLabel("Kategorie w\u00E4hlen:");
+		lblKategorieWhlen.setForeground(Color.WHITE);
+		lblKategorieWhlen.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		GridBagConstraints gbc_lblKategorieWhlen = new GridBagConstraints();
+		gbc_lblKategorieWhlen.insets = new Insets(0, 0, 5, 5);
+		gbc_lblKategorieWhlen.anchor = GridBagConstraints.WEST;
+		gbc_lblKategorieWhlen.gridx = 1;
+		gbc_lblKategorieWhlen.gridy = 3;
+		panel_1.add(lblKategorieWhlen, gbc_lblKategorieWhlen);
 		
 		JComboBox cboxKateg = new JComboBox();
+		cboxKateg.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		GridBagConstraints gbc_cboxKateg = new GridBagConstraints();
+		gbc_cboxKateg.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cboxKateg.insets = new Insets(0, 0, 5, 5);
+		gbc_cboxKateg.gridx = 2;
+		gbc_cboxKateg.gridy = 3;
+		panel_1.add(cboxKateg, gbc_cboxKateg);
+		cboxKateg.setModel(new DefaultComboBoxModel(new String[] {"Unternehmen", "Standort", "Typ", "Modell", "Sportgeraet"}));
+		
+		JLabel lblSpezifizieren = new JLabel("Spezifizieren:");
+		lblSpezifizieren.setForeground(Color.WHITE);
+		lblSpezifizieren.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		GridBagConstraints gbc_lblSpezifizieren = new GridBagConstraints();
+		gbc_lblSpezifizieren.anchor = GridBagConstraints.WEST;
+		gbc_lblSpezifizieren.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSpezifizieren.gridx = 1;
+		gbc_lblSpezifizieren.gridy = 4;
+		panel_1.add(lblSpezifizieren, gbc_lblSpezifizieren);
+		
+		cboxSpec = new JComboBox();
+		cboxSpec.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		GridBagConstraints gbc_cboxSpec = new GridBagConstraints();
+		gbc_cboxSpec.insets = new Insets(0, 0, 5, 5);
+		gbc_cboxSpec.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cboxSpec.gridx = 2;
+		gbc_cboxSpec.gridy = 4;
+		panel_1.add(cboxSpec, gbc_cboxSpec);
+		
+		JButton buttonCalc = new JButton("Berechnen");
+		buttonCalc.setBackground(new Color(255, 140, 0));
+		buttonCalc.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		GridBagConstraints gbc_buttonCalc = new GridBagConstraints();
+		gbc_buttonCalc.anchor = GridBagConstraints.EAST;
+		gbc_buttonCalc.insets = new Insets(0, 0, 5, 5);
+		gbc_buttonCalc.gridx = 2;
+		gbc_buttonCalc.gridy = 5;
+		panel_1.add(buttonCalc, gbc_buttonCalc);
+		
+		JLabel lblEinnahmen = new JLabel("Einnahmen:");
+		lblEinnahmen.setForeground(Color.GREEN);
+		lblEinnahmen.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		GridBagConstraints gbc_lblEinnahmen = new GridBagConstraints();
+		gbc_lblEinnahmen.anchor = GridBagConstraints.WEST;
+		gbc_lblEinnahmen.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEinnahmen.gridx = 1;
+		gbc_lblEinnahmen.gridy = 7;
+		panel_1.add(lblEinnahmen, gbc_lblEinnahmen);
+		
+		txtIncome = new JTextField();
+		txtIncome.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_txtIncome = new GridBagConstraints();
+		gbc_txtIncome.insets = new Insets(0, 0, 5, 5);
+		gbc_txtIncome.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtIncome.gridx = 2;
+		gbc_txtIncome.gridy = 7;
+		panel_1.add(txtIncome, gbc_txtIncome);
+		txtIncome.setColumns(10);
+		txtIncome.setEditable(false);
+		
+		JLabel label = new JLabel("\u20AC");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.anchor = GridBagConstraints.WEST;
+		gbc_label.insets = new Insets(0, 0, 5, 5);
+		gbc_label.gridx = 3;
+		gbc_label.gridy = 7;
+		panel_1.add(label, gbc_label);
+		
+		JLabel lblAusgaben = new JLabel("Ausgaben:");
+		lblAusgaben.setForeground(Color.RED);
+		lblAusgaben.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		GridBagConstraints gbc_lblAusgaben = new GridBagConstraints();
+		gbc_lblAusgaben.anchor = GridBagConstraints.WEST;
+		gbc_lblAusgaben.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAusgaben.gridx = 1;
+		gbc_lblAusgaben.gridy = 8;
+		panel_1.add(lblAusgaben, gbc_lblAusgaben);
+		
+		txtExpenses = new JTextField();
+		txtExpenses.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_txtExpenses = new GridBagConstraints();
+		gbc_txtExpenses.insets = new Insets(0, 0, 5, 5);
+		gbc_txtExpenses.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtExpenses.gridx = 2;
+		gbc_txtExpenses.gridy = 8;
+		panel_1.add(txtExpenses, gbc_txtExpenses);
+		txtExpenses.setColumns(10);
+		txtExpenses.setEditable(false);
+		
+		JLabel label_1 = new JLabel("\u20AC");
+		label_1.setForeground(Color.WHITE);
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		GridBagConstraints gbc_label_1 = new GridBagConstraints();
+		gbc_label_1.anchor = GridBagConstraints.WEST;
+		gbc_label_1.insets = new Insets(0, 0, 5, 5);
+		gbc_label_1.gridx = 3;
+		gbc_label_1.gridy = 8;
+		panel_1.add(label_1, gbc_label_1);
+		
+		JLabel lblRohgewinn = new JLabel("Rohgewinn:");
+		lblRohgewinn.setForeground(Color.WHITE);
+		lblRohgewinn.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		GridBagConstraints gbc_lblRohgewinn = new GridBagConstraints();
+		gbc_lblRohgewinn.anchor = GridBagConstraints.WEST;
+		gbc_lblRohgewinn.insets = new Insets(0, 0, 5, 5);
+		gbc_lblRohgewinn.gridx = 1;
+		gbc_lblRohgewinn.gridy = 9;
+		panel_1.add(lblRohgewinn, gbc_lblRohgewinn);
+		
+		txtProfit = new JTextField();
+		txtProfit.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_txtProfit = new GridBagConstraints();
+		gbc_txtProfit.insets = new Insets(0, 0, 5, 5);
+		gbc_txtProfit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtProfit.gridx = 2;
+		gbc_txtProfit.gridy = 9;
+		panel_1.add(txtProfit, gbc_txtProfit);
+		txtProfit.setColumns(10);
+		txtProfit.setEditable(false);
+		
+		JLabel label_2 = new JLabel("\u20AC");
+		label_2.setForeground(Color.WHITE);
+		label_2.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		GridBagConstraints gbc_label_2 = new GridBagConstraints();
+		gbc_label_2.anchor = GridBagConstraints.WEST;
+		gbc_label_2.insets = new Insets(0, 0, 5, 5);
+		gbc_label_2.gridx = 3;
+		gbc_label_2.gridy = 9;
+		panel_1.add(label_2, gbc_label_2);
+
+		
 		cboxKateg.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) throws NumberFormatException {
 				
@@ -105,29 +265,25 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
 			}
 		});
-		cboxKateg.setModel(new DefaultComboBoxModel(new String[] {"Unternehmen", "Standort", "Typ", "Modell", "Sportgeraet"}));
-		cboxKateg.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		
-		JLabel lblNewLabel = new JLabel("Kategorie w\u00E4hlen:");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 32));
-		
-		JLabel lblSpezifizieren = new JLabel("Spezifizieren:");
-		lblSpezifizieren.setForeground(new Color(255, 255, 255));
-		lblSpezifizieren.setFont(new Font("Tahoma", Font.BOLD, 32));
-		
-		cboxSpec = new JComboBox();
-		cboxSpec.setFont(new Font("Tahoma", Font.PLAIN, 32));
-		
-		JButton buttonCalc = new JButton("Berechne");
-		buttonCalc.addActionListener(new ActionListener() {
+		zrckButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					
+					MainFrame.change(MainFrame.getWirtschaftlichkeitsverwaltungGUI(), MainFrame.getHauptmenueGUI());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
+			}
+		});
+		
+		buttonCalc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {					
 					if(mode.equals("Unternehmen") == false && mode.equals("Sportgeraet") == false)
 						giveString = cboxSpec.getSelectedItem().toString();
 					
@@ -135,18 +291,13 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 					{
 						boolean number = false;
 						number = getSportID(cboxKateg, number);
-					}
-					
-					
-					
+					}		
 					talking = "calc";
 					anfrage();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				
 			}
 
 			private boolean getSportID(JComboBox cboxKateg, boolean number) {
@@ -161,151 +312,12 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 					} catch (NumberFormatException e) {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(null, "Das ist keine gültige Zahl!");
-						
 					}
 				}
 				return number;
 			}
-
-			
 		});
-		buttonCalc.setBackground(new Color(255, 140, 0));
-		buttonCalc.setForeground(new Color(0, 0, 0));
-		buttonCalc.setFont(new Font("Tahoma", Font.PLAIN, 32));
-		
-		JLabel lblEinnahmen = new JLabel("Einnahmen:");
-		lblEinnahmen.setForeground(Color.GREEN);
-		lblEinnahmen.setFont(new Font("Tahoma", Font.BOLD, 32));
-		
-		txtIncome = new JTextField();
-		txtIncome.setHorizontalAlignment(SwingConstants.CENTER);
-		txtIncome.setForeground(new Color(0, 128, 0));
-		txtIncome.setEditable(false);
-		txtIncome.setFont(new Font("Tahoma", Font.BOLD, 36));
-		txtIncome.setColumns(10);
-		
-		JLabel lblAusgaben = new JLabel("Ausgaben:");
-		lblAusgaben.setForeground(Color.RED);
-		lblAusgaben.setFont(new Font("Tahoma", Font.BOLD, 32));
-		
-		JLabel lblGewinn = new JLabel("Rohgewinn:");
-		lblGewinn.setForeground(Color.BLACK);
-		lblGewinn.setFont(new Font("Tahoma", Font.BOLD, 32));
-		
-		txtExpenses = new JTextField();
-		txtExpenses.setHorizontalAlignment(SwingConstants.CENTER);
-		txtExpenses.setForeground(new Color(128, 0, 0));
-		txtExpenses.setFont(new Font("Tahoma", Font.BOLD, 36));
-		txtExpenses.setEditable(false);
-		txtExpenses.setColumns(10);
-		
-		txtProfit = new JTextField();
-		txtProfit.setHorizontalAlignment(SwingConstants.CENTER);
-		txtProfit.setFont(new Font("Tahoma", Font.BOLD, 36));
-		txtProfit.setEditable(false);
-		txtProfit.setColumns(10);
-		Image photo = new ImageIcon(this.getClass().getResource("Scanner.png")).getImage();
-		
-		JLabel labelHead = new JLabel("Wirtschaftlichkeit");
-		labelHead.setHorizontalAlignment(SwingConstants.CENTER);
-		labelHead.setForeground(new Color(255, 140, 0));
-		labelHead.setFont(new Font("Tahoma", Font.BOLD, 52));
-		
-		JLabel lblNewLabel_1 = new JLabel("\u20AC");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 36));
-		
-		JLabel label = new JLabel("\u20AC");
-		label.setForeground(new Color(255, 255, 255));
-		label.setFont(new Font("Tahoma", Font.BOLD, 36));
-		
-		JLabel label_1 = new JLabel("\u20AC");
-		label_1.setForeground(new Color(255, 255, 255));
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 36));
-		
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(buttonCalc, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(172)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addComponent(lblEinnahmen, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
-									.addGap(18)
-									.addComponent(txtIncome, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))
-								.addComponent(labelHead, GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
-										.addComponent(lblSpezifizieren, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE))
-									.addGap(14)
-									.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-										.addComponent(cboxKateg, 0, 327, Short.MAX_VALUE)
-										.addComponent(cboxSpec, Alignment.LEADING, 0, 327, Short.MAX_VALUE)))
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel_1.createSequentialGroup()
-											.addComponent(lblGewinn, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
-											.addGap(18))
-										.addGroup(gl_panel_1.createSequentialGroup()
-											.addComponent(lblAusgaben, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
-											.addGap(18)))
-									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-										.addComponent(txtExpenses, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-										.addComponent(txtProfit, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))))))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_1))
-					.addGap(122))
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addComponent(labelHead, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-						.addComponent(cboxKateg, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
-					.addGap(5)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblSpezifizieren, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cboxSpec, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(buttonCalc, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-							.addComponent(txtIncome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
-						.addComponent(lblEinnahmen, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblAusgaben, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtExpenses, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtProfit, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblGewinn, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addComponent(label, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(label_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-					.addGap(43))
-		);
-		gl_panel_1.linkSize(SwingConstants.VERTICAL, new Component[] {cboxKateg, lblNewLabel, lblSpezifizieren, cboxSpec});
-		gl_panel_1.linkSize(SwingConstants.VERTICAL, new Component[] {lblEinnahmen, txtIncome, lblAusgaben, lblGewinn, txtExpenses, txtProfit});
-		panel_1.setLayout(gl_panel_1);
-	}
-
+	}	
 
 	@Override
 	public void aktualisieren(IWirtschaftlichkeitModel model) {
