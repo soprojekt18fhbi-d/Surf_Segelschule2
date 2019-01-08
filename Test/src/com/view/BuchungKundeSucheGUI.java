@@ -198,7 +198,7 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 		btnAuswhlen.setBackground(new Color(255, 140, 0));
 		btnAuswhlen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_btnAuswhlen = new GridBagConstraints();
-		gbc_btnAuswhlen.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAuswhlen.insets = new Insets(0, 0, 5, 0);
 		gbc_btnAuswhlen.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnAuswhlen.gridx = 2;
 		gbc_btnAuswhlen.gridy = 0;
@@ -208,7 +208,7 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridwidth = 3;
-		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
+		gbc_scrollPane.insets = new Insets(0, 0, 0, 0);
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 1;
 		panel_2.add(scrollPane, gbc_scrollPane);
