@@ -7,9 +7,9 @@ import javax.swing.JTextField;
 
 import org.junit.Test;
 
-import Datenbankmodels.BuchungAnzeigeModel;
-import GUI.KundeAnlegenGUI;
-import Steuerung.KundeAnlegenStrg;
+import com.controller.KundeAnlegenStrg;
+import com.model.BuchungAnzeigeModel;
+import com.view.KundeAnlegenGUI;
 
 
 
