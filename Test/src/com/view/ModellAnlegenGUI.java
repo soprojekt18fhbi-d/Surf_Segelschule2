@@ -193,8 +193,8 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 					else{
 						modellAnlegen();
 						JOptionPane.showMessageDialog(null, "Das Modell wurde erfolgreich angelegt!");
-						MainFrame.change(MainFrame.getModellAnlegenGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
-						MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
+						MainFrame.change(MainFrame.getModellAnlegenGUI(), MainFrame.getGeraeteModellVerwaltungGUI());
+						MainFrame.getGeraeteModellVerwaltungGUI().anfrage();
 						
 						txtModell.setText("");
 						comboBoxTyp.setSelectedIndex(0);
@@ -208,8 +208,8 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView{
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
-				MainFrame.change(MainFrame.getModellAnlegenGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());			}
+				MainFrame.getGeraeteModellVerwaltungGUI().anfrage();
+				MainFrame.change(MainFrame.getModellAnlegenGUI(), MainFrame.getGeraeteModellVerwaltungGUI());			}
 		});
 	}
 	

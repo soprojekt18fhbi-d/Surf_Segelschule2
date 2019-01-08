@@ -252,8 +252,8 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 		
 		btnModelle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
-				MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
+				MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraeteModellVerwaltungGUI());
+				MainFrame.getGeraeteModellVerwaltungGUI().anfrage();
 				textSuchen.setText("Suchen...");
 			}
 		});

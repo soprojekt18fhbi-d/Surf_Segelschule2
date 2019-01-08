@@ -120,8 +120,8 @@ setLayout(new BorderLayout(0, 0));
 
 		btnModelle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteVerwaltungGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
-				MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
+				MainFrame.change(MainFrame.getGeraeteVerwaltungGUI(), MainFrame.getGeraeteModellVerwaltungGUI());
+				MainFrame.getGeraeteModellVerwaltungGUI().anfrage();
 			}
 		});
 		

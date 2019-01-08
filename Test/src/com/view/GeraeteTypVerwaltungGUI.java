@@ -208,8 +208,8 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		
 		btnModelle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
-				MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
+				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteModellVerwaltungGUI());
+				MainFrame.getGeraeteModellVerwaltungGUI().anfrage();
 				textSuchen.setText("Suchen...");
 			}
 		});

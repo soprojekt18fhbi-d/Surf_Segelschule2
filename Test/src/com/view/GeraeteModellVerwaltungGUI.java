@@ -171,14 +171,14 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		//Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getGeraeteVerwaltungGUI());
+				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUI(), MainFrame.getGeraeteVerwaltungGUI());
 				textSuchen.setText("Suchen...");
 			}
 		});
 		
 		btnModellHinzu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getModellAnlegenGUI());
+				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUI(), MainFrame.getModellAnlegenGUI());
 				MainFrame.getModellAnlegenGUI().anfrage();
 				textSuchen.setText("Suchen...");
 			}
@@ -204,7 +204,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 					MainFrame.getModellAendernGUI().setPreisID(pID);
 					MainFrame.getModellAendernGUI().setText(modellName);
 					MainFrame.getModellAendernGUI().anfrage();
-					MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getModellAendernGUI());
+					MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUI(), MainFrame.getModellAendernGUI());
 					textSuchen.setText("Suchen...");
 				}	
 			}
@@ -212,7 +212,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 		
 		btnTypen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getGeraeteTypVerwaltung());
+				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUI(), MainFrame.getGeraeteTypVerwaltung());
 				MainFrame.getGeraeteTypVerwaltung().anfrage();
 				textSuchen.setText("Suchen...");
 			}
@@ -220,7 +220,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView{
 				
 		btnGeraete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUIGUI(), MainFrame.getSportgeraeteGUI());
+				MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUI(), MainFrame.getSportgeraeteGUI());
 				MainFrame.getSportgeraeteGUI().anfrage();
 				textSuchen.setText("Suchen...");
 			}

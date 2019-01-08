@@ -242,7 +242,7 @@ public class MainFrame extends JFrame {
 		return typAnlegenGUI;
 	}
 	
-	public static GeraeteModellVerwaltungGUI getGeraeteModellVerwaltungGUIGUI(){ 		
+	public static GeraeteModellVerwaltungGUI getGeraeteModellVerwaltungGUI(){ 		
 		return geraeteModellVerwaltungGUI;
 	}
 	

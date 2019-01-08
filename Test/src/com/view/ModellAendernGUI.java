@@ -202,8 +202,8 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 				try {
 					modellAendern();
 					JOptionPane.showMessageDialog(null, "Das Modell wurde erfolgreich geändert!");
-					MainFrame.change(MainFrame.getModellAendernGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());
-					MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
+					MainFrame.change(MainFrame.getModellAendernGUI(), MainFrame.getGeraeteModellVerwaltungGUI());
+					MainFrame.getGeraeteModellVerwaltungGUI().anfrage();
 					txtModell.setText("");
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Das Modell konnte nicht geändert werden");
@@ -213,8 +213,8 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 		
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.getGeraeteModellVerwaltungGUIGUI().anfrage();
-				MainFrame.change(MainFrame.getModellAendernGUI(), MainFrame.getGeraeteModellVerwaltungGUIGUI());			}
+				MainFrame.getGeraeteModellVerwaltungGUI().anfrage();
+				MainFrame.change(MainFrame.getModellAendernGUI(), MainFrame.getGeraeteModellVerwaltungGUI());			}
 		});
 	}
 	
