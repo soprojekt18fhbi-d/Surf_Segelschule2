@@ -55,6 +55,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 	private int baujahr;
 	private String makel;
 	private int standortID;
+	private String standort;
 	private String talking = "first";
 	
 	IAnlegenModel model;
@@ -387,8 +388,9 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		textVPreis.setText(String.valueOf(verkaufspreis));
 	}
 
-	public void setStandort(int standort){
-		this.standortID = standort;
+	public void setStandort(int standortID){
+		this.standortID = standortID;
+		standort = String.valueOf(standortID);
 	}
 
 	@Override
@@ -398,7 +400,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 			for(int i = 0; i < comboboxItems.size(); i++) {
 				comboBoxStandort.addItem(comboboxItems.get(i));
 			}
-			comboBoxStandort.setSelectedIndex(standortID-1);
+			comboBoxStandort.setSelectedItem(standort);
 		}
 		else if (talking.equals("modellname")){
 			lblModellname.setText(comboboxItems.get(0));
