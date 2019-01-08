@@ -16,11 +16,6 @@ import com.view.IObjektView;
 
 import net.proteanit.sql.DbUtils;
 
-
-/**
- * @author michi
- *
- */
 public class BuchungModellSucheModel implements IObjektModel{ //Ben Kröncke
 	
 	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
@@ -111,28 +106,6 @@ public class BuchungModellSucheModel implements IObjektModel{ //Ben Kröncke
 		}
 
 	}
-	
-
-	
-
-	/* Datenbank
-		create table MODELL(
-		MODELLID int (10) not null AUTO_INCREMENT,
-		MODELLNAME varchar (50) not null,
-		TYPID int(10) not null,
-		PREISLISTEID int (10) not null,
-		constraint pk_modell primary key (MODELLID),
-		constraint fk_modell_typ foreign key (TYPID)
-		references TYP(TYPID));
-		
-		insert into modell
-		values (default, 'COSTWAY Surfbrett Surfboard Stand up', 1, 1),
-		(default, 'Bestway HYDRO-FORCE iSUP Oceana', 1, 1),
-		(default, 'Segelboot Leisure 17', 2, 2),
-		(default, 'ZRAY Nassau 13,4" Professional Kajak 2 Personen', 3, 3);
-	 * 
-	 * 
-	 */
 
 	@Override
 	public ArrayList<Object> getObjekte() {

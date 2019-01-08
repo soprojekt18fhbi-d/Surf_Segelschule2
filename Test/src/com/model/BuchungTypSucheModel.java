@@ -18,7 +18,7 @@ import net.proteanit.sql.DbUtils;
 
 
 /**
- * @author michi / Ben Kröncke
+ * @author Ben Kröncke
  *
  */
 public class BuchungTypSucheModel implements IObjektModel{
