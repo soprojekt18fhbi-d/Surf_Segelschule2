@@ -587,14 +587,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 				talking = "aendern";
 
 				try {
-
 					PreislisteAendern();
-
-					aktualisieren(model);
-					textFelderLeeren();
-					setPreisliste(null);
-					MainFrame.change(MainFrame.getPreislisteAendernGUI(), MainFrame.getPreislisteGUI());
-
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Geben Sie nur einen gültige Werte für die Preisliste ein.");
 					e.printStackTrace();
@@ -608,13 +601,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 				talking = "loeschen";
 
 				try {
-
 					PreislisteAendern();
-					aktualisieren(model);
-					textFelderLeeren();
-					setPreisliste(null);
-					MainFrame.change(MainFrame.getPreislisteAendernGUI(), MainFrame.getPreislisteGUI());
-
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -705,6 +692,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		preisVierWochenString = stringKommaPunktErsetzen(preisVierWochenString);
 		preisAchtWochenString = stringKommaPunktErsetzen(preisAchtWochenString);
 
+		// if (talking=="aendern") {
 		if (preisEineStdString.isEmpty() && preisZweiStdString.isEmpty() && preisVierStdString.isEmpty()
 				&& preisEinenTagString.isEmpty() && preisZweiTageString.isEmpty() && preisDreiTageString.isEmpty()
 				&& preisVierTageString.isEmpty() && preisFuenfTageString.isEmpty()
@@ -714,8 +702,12 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 				&& preisSechzehnTageString.isEmpty() && preisSiebzehnTageString.isEmpty()
 				&& preisAchtzehnEinundzwanzigTageString.isEmpty() && preisTagVierWochenString.isEmpty()
 				&& preisVierWochenString.isEmpty() && preisAchtWochenString.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Bitte alle Felder mit Preisen ausfüllen!");
-		} else if (StringEnthaeltX.stringIstKeineZahl(preisEineStdString)
+				JOptionPane.showMessageDialog(null, "Bitte alle Felder mit Preisen ausfüllen!");
+			
+				
+		}
+
+		else if (StringEnthaeltX.stringIstKeineZahl(preisEineStdString)
 				|| StringEnthaeltX.stringIstKeineZahl(preisZweiStdString)
 				|| StringEnthaeltX.stringIstKeineZahl(preisVierStdString)
 				|| StringEnthaeltX.stringIstKeineZahl(preisEinenTagString)
@@ -736,8 +728,13 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 				|| StringEnthaeltX.stringIstKeineZahl(preisTagVierWochenString)
 				|| StringEnthaeltX.stringIstKeineZahl(preisVierWochenString)
 				|| StringEnthaeltX.stringIstKeineZahl(preisAchtWochenString)) {
-			JOptionPane.showMessageDialog(null, "Bitte nur Zahlen für die Preise verwenden!");
-		} else {
+			if (talking =="aendern") {
+				JOptionPane.showMessageDialog(null, "Bitte nur Zahlen für die Preise verwenden!");
+			}
+				
+		}
+
+		else {
 			double preisEineStd = DatentypUmwandlung.stringZuDouble(preisEineStdString);
 			double preisZweiStd = DatentypUmwandlung.stringZuDouble(preisZweiStdString);
 			double preisVierStd = DatentypUmwandlung.stringZuDouble(preisVierStdString);
@@ -766,7 +763,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 					preisNeunTage, preisZehnTage, preisElfTage, preisZwoelfVierzehnTage, preisFuenfzehnTage,
 					preisSechzehnTage, preisSiebzehnTage, preisAchtzehnEinundzwanzigTage, preisTagVierWochen,
 					presVierWochen, preisAchtWochen);
-
+			textFelderLeeren();
+			setPreisliste(null);
 			aktualisieren(model);
 			MainFrame.change(MainFrame.getPreislisteAnlegenGUI(), MainFrame.getPreislisteGUI());
 		}
