@@ -601,7 +601,12 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 				talking = "loeschen";
 
 				try {
-					PreislisteAendern();
+
+					if (JOptionPane.showConfirmDialog(null, "Wollen Sie die Preisliste wirklich löschen?", "Preisliste Löschen", 2)==0) {
+						PreislisteAendern();
+					}
+					
+					
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -763,9 +768,11 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 					preisNeunTage, preisZehnTage, preisElfTage, preisZwoelfVierzehnTage, preisFuenfzehnTage,
 					preisSechzehnTage, preisSiebzehnTage, preisAchtzehnEinundzwanzigTage, preisTagVierWochen,
 					presVierWochen, preisAchtWochen);
-			textFelderLeeren();
+			
+			
 			setPreisliste(null);
 			aktualisieren(model);
+			textFelderLeeren();
 			MainFrame.change(MainFrame.getPreislisteAnlegenGUI(), MainFrame.getPreislisteGUI());
 		}
 	}
