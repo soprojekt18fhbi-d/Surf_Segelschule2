@@ -538,9 +538,9 @@ public class KundeAendernGUI extends JPanel implements IObjektView {
 					int row = table.getSelectedRow();
 					if (selectedMode.equals("Kunde")) {
 
-						String segel = table.getModel().getValueAt(row, 5).toString();
-						String surf = table.getModel().getValueAt(row, 7).toString();
-						String motor = table.getModel().getValueAt(row, 6).toString();
+						segel = table.getModel().getValueAt(row, 5).toString();
+						surf = table.getModel().getValueAt(row, 7).toString();
+						motor = table.getModel().getValueAt(row, 6).toString();
 
 						System.out.println(segel + " " + surf + " " + motor);
 
@@ -549,38 +549,49 @@ public class KundeAendernGUI extends JPanel implements IObjektView {
 						txtEmail.setText(table.getModel().getValueAt(row, 3).toString());
 						txtNachname.setText(table.getModel().getValueAt(row, 2).toString());
 
-						if (segel.equals("J")) {
+						if (segel.equals("J"))
+						{
 							chckbxSegelschein.setSelected(true);
 							segel = "J";
-						} else if (segel.equals("N")) {
+						}
+						else if (segel.equals("N")) {
 							chckbxSegelschein.setSelected(false);
 							segel = "N";
 						}
-						if (motor.equals("J")) {
+						if (motor.equals("J"))
+						{
 							chckbxMotorbootschein.setSelected(true);
 							motor = "J";
-						} else if (motor.equals("N")) {
+						}
+						else if (motor.equals("N"))
+						{
 							chckbxMotorbootschein.setSelected(false);
 							motor = "N";
 						}
-						if (surf.equals("J")) {
+						if (surf.equals("J"))
+						{
 							chckbxSurfschein.setSelected(true);
 							surf = "J";
-						} else if (surf.equals("N")) {
+						}
+						else if (surf.equals("N"))
+						{
 							chckbxSurfschein.setSelected(false);
 							surf = "N";
 						}
-					} else if (selectedMode.equals("Adresse")) {
+					}
+					else if (selectedMode.equals("Adresse")) {
 						txtVorname.setText(table.getModel().getValueAt(row, 2).toString());
 						txtKnr.setText(table.getModel().getValueAt(row, 1).toString());
 						txtEmail.setText(table.getModel().getValueAt(row, 5).toString());
 						txtNachname.setText(table.getModel().getValueAt(row, 3).toString());
 						variableKnr.setText(table.getModel().getValueAt(row, 6).toString());
 
-						if (table.getModel().getValueAt(row, 4).toString().equals("Heimatadresse")) {
+						if (table.getModel().getValueAt(row, 4).toString().equals("Heimatadresse"))
+						{
 							adresseArtBox.setSelectedIndex(0);
 							heimat = "Heimatadresse";
-						} else {
+						}
+						else {
 							adresseArtBox.setSelectedIndex(1);
 							heimat = "Urlaubsadresse";
 						}
