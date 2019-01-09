@@ -19,9 +19,7 @@ public interface IStandortModel {
 	 * 
 	 */
 	public ArrayList<IStandortView> observers = new ArrayList<IStandortView>();
-	
-	
-	
+
 	/**
 	 * Anmelden einer View.
 	 * 
@@ -35,8 +33,7 @@ public interface IStandortModel {
 	 * 
 	 */
 	public void abmelden(IStandortView view);
-	
-	
+
 	/**
 	 * Durchgehen der Observer und Updateaufruf.
 	 * 
@@ -44,10 +41,6 @@ public interface IStandortModel {
 	 */
 	public void updateObserver();
 
-
-
-
 	public boolean pruefen();
-	
-	
+
 }

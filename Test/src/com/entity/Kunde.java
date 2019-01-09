@@ -1,8 +1,7 @@
 package com.entity;
 
-
 public class Kunde implements IKunde {
-	
+
 	private String name;
 	private String vorname;
 	private boolean surfschein;
@@ -11,8 +10,8 @@ public class Kunde implements IKunde {
 	private String email;
 	private int kundennummer;
 
-
-	public Kunde(String name, String vorname, String email, Boolean surfschein, Boolean segelschein, Boolean motorbootschein) {
+	public Kunde(String name, String vorname, String email, Boolean surfschein, Boolean segelschein,
+			Boolean motorbootschein) {
 
 		this.name = name;
 		this.vorname = vorname;
@@ -22,7 +21,10 @@ public class Kunde implements IKunde {
 		this.email = email;
 
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#getName()
 	 */
 	@Override
@@ -30,7 +32,9 @@ public class Kunde implements IKunde {
 		return name;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#setName(java.lang.String)
 	 */
 	@Override
@@ -38,7 +42,9 @@ public class Kunde implements IKunde {
 		this.name = name;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#getVorname()
 	 */
 	@Override
@@ -46,7 +52,9 @@ public class Kunde implements IKunde {
 		return vorname;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#setVorname(java.lang.String)
 	 */
 	@Override
@@ -54,50 +62,69 @@ public class Kunde implements IKunde {
 		this.vorname = vorname;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#getKundennummer()
 	 */
 	@Override
 	public int getKundennummer() {
 		return kundennummer;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#isSurfschein()
 	 */
 	@Override
 	public boolean isSurfschein() {
 		return surfschein;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#setSurfschein(boolean)
 	 */
 	@Override
 	public void setSurfschein(boolean surfschein) {
 		this.surfschein = surfschein;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#isSegelschein()
 	 */
 	@Override
 	public boolean isSegelschein() {
 		return segelschein;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#setSegelschein(boolean)
 	 */
 	@Override
 	public void setSegelschein(boolean segelschein) {
 		this.segelschein = segelschein;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#isMotorbootschein()
 	 */
 	@Override
 	public boolean isMotorbootschein() {
 		return motorbootschein;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#setMotorbootschein(boolean)
 	 */
 	@Override
@@ -105,58 +132,81 @@ public class Kunde implements IKunde {
 		this.motorbootschein = motorbootschein;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#drucken()
 	 */
 	@Override
-	public void drucken(){
-		System.out.println("\n" + this.kundennummer + ": " + this.name + ", " + this.vorname) ;
+	public void drucken() {
+		System.out.println("\n" + this.kundennummer + ": " + this.name + ", " + this.vorname);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#toString()
 	 */
 
 	@Override
-	public String toString(){
-		return this.kundennummer + ";" + this.name + ";" + this.vorname + ";" + this.segelschein + ";" + this.surfschein + ";" + this.motorbootschein + ";".toString(); 
+	public String toString() {
+		return this.kundennummer + ";" + this.name + ";" + this.vorname + ";" + this.segelschein + ";" + this.surfschein
+				+ ";" + this.motorbootschein + ";".toString();
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#getEmail()
 	 */
 	@Override
 	public String getEmail() {
 		return email;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#setEmail(java.lang.String)
 	 */
 	@Override
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#getSurfschein()
 	 */
 	@Override
 	public boolean getSurfschein() {
 		return surfschein;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#getSegelschein()
 	 */
 	@Override
 	public boolean getSegelschein() {
 		return segelschein;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#getMotorbootschein()
 	 */
 	@Override
 	public boolean getMotorbootschein() {
 		return motorbootschein;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IKunde#setKundennummer(int)
 	 */
 	@Override

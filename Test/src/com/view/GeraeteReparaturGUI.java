@@ -1,6 +1,6 @@
- /*
-  *  @author Michael Schmidt
-  */
+/*
+ *  @author Michael Schmidt
+ */
 
 package com.view;
 
@@ -28,14 +28,14 @@ import com.model.IAnlegenModel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
+public class GeraeteReparaturGUI extends JPanel implements IAnlegenView {
 	IAnlegenModel model;
 	GeraetAnlegenStrg controller;
 
 	private JLabel lblModellname;
 	private JLabel lblGeraeteID;
 	private JTextField txtKosten;
-	
+
 	private int modellID;
 	private int geraeteID;
 	private String status;
@@ -46,7 +46,7 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 	private String typ;
 	private int baujahr;
 	private double anschaffungspreis;
-	private double verkaufspreis;	
+	private double verkaufspreis;
 	private JTextField txtBeschreibung;
 
 	/**
@@ -54,21 +54,22 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 	 */
 	public GeraeteReparaturGUI(IAnlegenModel models, GeraetAnlegenStrg controllers) {
 		model = models;
-		controller = controllers;		
-		
-		setSize(980,580);
+		controller = controllers;
+
+		setSize(980, 580);
 		setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{1.0, 1.0, 0.1, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panel.columnWeights = new double[] { 1.0, 1.0, 0.1, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+				Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
-		
+
 		JLabel lblReparatur = new JLabel("Reparatur erfassen:");
 		lblReparatur.setForeground(Color.WHITE);
 		lblReparatur.setFont(new Font("Tahoma", Font.BOLD, 32));
@@ -79,7 +80,7 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 		gbc_lblReparatur.gridx = 2;
 		gbc_lblReparatur.gridy = 2;
 		panel.add(lblReparatur, gbc_lblReparatur);
-		
+
 		JLabel lblGeraet = new JLabel("Ger\u00E4teID:");
 		lblGeraet.setForeground(Color.WHITE);
 		lblGeraet.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -89,7 +90,7 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 		gbc_lblGeraet.gridx = 2;
 		gbc_lblGeraet.gridy = 5;
 		panel.add(lblGeraet, gbc_lblGeraet);
-		
+
 		lblModellname = new JLabel();
 		lblModellname.setForeground(Color.WHITE);
 		lblModellname.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -99,7 +100,7 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 		gbc_lblModellname.gridx = 3;
 		gbc_lblModellname.gridy = 4;
 		panel.add(lblModellname, gbc_lblModellname);
-		
+
 		JLabel lblModell = new JLabel("Modell:");
 		lblModell.setForeground(Color.WHITE);
 		lblModell.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -109,7 +110,7 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 		gbc_lblModell.gridx = 2;
 		gbc_lblModell.gridy = 4;
 		panel.add(lblModell, gbc_lblModell);
-		
+
 		lblGeraeteID = new JLabel();
 		lblGeraeteID.setForeground(Color.WHITE);
 		lblGeraeteID.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -119,7 +120,7 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 		gbc_lblGeraeteID.gridx = 3;
 		gbc_lblGeraeteID.gridy = 5;
 		panel.add(lblGeraeteID, gbc_lblGeraeteID);
-		
+
 		JLabel lblBeschreibung = new JLabel("Beschreibung:");
 		lblBeschreibung.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblBeschreibung.setForeground(Color.WHITE);
@@ -129,7 +130,7 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 		gbc_lblBeschreibung.gridx = 2;
 		gbc_lblBeschreibung.gridy = 7;
 		panel.add(lblBeschreibung, gbc_lblBeschreibung);
-		
+
 		txtBeschreibung = new JTextField();
 		txtBeschreibung.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_txtBeschreibung = new GridBagConstraints();
@@ -139,7 +140,7 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 		gbc_txtBeschreibung.gridy = 7;
 		panel.add(txtBeschreibung, gbc_txtBeschreibung);
 		txtBeschreibung.setColumns(10);
-		
+
 		JLabel lblKosten = new JLabel("Kosten:");
 		lblKosten.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblKosten.setForeground(Color.WHITE);
@@ -149,7 +150,7 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 		gbc_lblKosten.gridx = 2;
 		gbc_lblKosten.gridy = 8;
 		panel.add(lblKosten, gbc_lblKosten);
-		
+
 		txtKosten = new JTextField();
 		txtKosten.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_txtKosten = new GridBagConstraints();
@@ -159,7 +160,7 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 		gbc_txtKosten.gridy = 8;
 		panel.add(txtKosten, gbc_txtKosten);
 		txtKosten.setColumns(10);
-		
+
 		JLabel lblE = new JLabel("\u20AC");
 		lblE.setForeground(Color.WHITE);
 		lblE.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -168,53 +169,48 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 		gbc_lblE.gridx = 4;
 		gbc_lblE.gridy = 8;
 		panel.add(lblE, gbc_lblE);
-		
+
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.DARK_GRAY);
 		add(panel_2, BorderLayout.SOUTH);
-		
+
 		JButton btnBestaetigen = new JButton("best\u00E4tigen");
 		btnBestaetigen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnBestaetigen.setBackground(new Color(255, 140, 0));
-		
+
 		JButton btnAbbrechen = new JButton("abbrechen");
 		btnAbbrechen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnAbbrechen.setBackground(new Color(255, 140, 0));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
-		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addContainerGap(580, Short.MAX_VALUE)
-					.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnBestaetigen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
-		gl_panel_2.setVerticalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+		gl_panel_2
+				.setHorizontalGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panel_2.createSequentialGroup().addContainerGap(580, Short.MAX_VALUE)
+								.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnBestaetigen,
+										GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+								.addContainerGap()));
+		gl_panel_2.setVerticalGroup(gl_panel_2.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_2
+				.createSequentialGroup().addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnBestaetigen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-		);
+						.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))));
 		panel_2.setLayout(gl_panel_2);
-		
-		//Funktionen der Button
+
+		// Funktionen der Button
 		btnBestaetigen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {								
+			public void actionPerformed(ActionEvent arg0) {
 				try {
-					if(txtBeschreibung.getText().trim().isEmpty() || txtKosten.getText().trim().isEmpty()){
+					if (txtBeschreibung.getText().trim().isEmpty() || txtKosten.getText().trim().isEmpty()) {
 						JOptionPane.showMessageDialog(null, "Füllen Sie alle Felder aus!");
-					}
-					else{
+					} else {
 						statusAendern();
 						reparaturAnlegen();
-											
-						JOptionPane.showMessageDialog(null, "Der Status wurde geändert und die Reparatur wurde erfolgreich angelegt!");
+
+						JOptionPane.showMessageDialog(null,
+								"Der Status wurde geändert und die Reparatur wurde erfolgreich angelegt!");
 						MainFrame.change(MainFrame.getGeraeteReparaturGUI(), MainFrame.getSportgeraeteGUI());
 						MainFrame.getSportgeraeteGUI().anfrage();
-					}		
+					}
 					txtBeschreibung.setText("");
 					txtKosten.setText("");
 				} catch (NumberFormatException e) {
@@ -222,9 +218,8 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 				}
 			}
 
-			
-		}); 
-		
+		});
+
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getSportgeraeteGUI().anfrage();
@@ -234,48 +229,51 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView{
 			}
 		});
 
-		
 	}
+
 	private void statusAendern() {
-		talking = "status"; 		
+		talking = "status";
 		String geraet = String.valueOf(geraeteID);
-		controller.anfrageGeraethinzufuegen(talking, geraet, status, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
+		controller.anfrageGeraethinzufuegen(talking, geraet, status, makel, verkaufspreis, anschaffungspreis, farbe,
+				baujahr);
 	}
-	
+
 	private void reparaturAnlegen() {
 		talking = "reparatur";
 		String beschreibung = String.valueOf(txtBeschreibung.getText());
 		double kosten = Double.parseDouble(String.valueOf(txtKosten.getText()));
-		String geraet = String.valueOf(geraeteID);										
-		controller.anfrageGeraethinzufuegen(talking, typ, geraet, beschreibung, kosten, anschaffungspreis, farbe, modellID);
+		String geraet = String.valueOf(geraeteID);
+		controller.anfrageGeraethinzufuegen(talking, typ, geraet, beschreibung, kosten, anschaffungspreis, farbe,
+				modellID);
 	}
-	
-	public void setGeraeteID(int id){
+
+	public void setGeraeteID(int id) {
 		this.geraeteID = id;
 		lblGeraeteID.setText(String.valueOf(geraeteID));
 	}
-	
-	public void setModellID(int id){
+
+	public void setModellID(int id) {
 		this.modellID = id;
 	}
-	
-	public void setStatus(String status){
+
+	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
 		ArrayList<String> comboboxItems = model.getObertypen();
 		lblModellname.setText(comboboxItems.get(0));
 		comboboxItems.clear();
 	}
-	
+
 	public void anfrage() {
 		model.anmelden(this);
 		talking = "modellname";
-		controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, modellID);
+		controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe,
+				modellID);
 		aktualisieren(model);
-		model.abmelden(this);		
+		model.abmelden(this);
 	}
 
 }

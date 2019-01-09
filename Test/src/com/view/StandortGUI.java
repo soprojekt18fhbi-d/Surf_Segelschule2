@@ -35,7 +35,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import java.awt.CardLayout;
 
-public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
+public class StandortGUI extends JFrame implements IStandortView { // Ben Kröncke
 	private Icon logo;
 	private boolean correctData;
 	private JTextField txtUser;
@@ -58,9 +58,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 	private boolean success = false;
 
 	private MainFrame mainframe;
-	
-	
-	
+
 	public void setMainFrame(MainFrame mf) {
 		mainframe = mf;
 	}
@@ -70,33 +68,30 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 	 */
 	public StandortGUI(IStandortModel models, StandortStrg controllers) {
 		setResizable(false);
-		
+
 		model = models;
 		controller = controllers;
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		setBounds(350,200,450,450);
+
+		setBounds(350, 200, 450, 450);
 		setIconImage(new ImageIcon(getClass().getResource("surfen.png")).getImage());
-		
+
 		getContentPane().setLayout(new CardLayout(0, 0));
-		
+
 		anmeldenPanel = new JPanel();
 		anmeldenPanel.setForeground(Color.DARK_GRAY);
 		anmeldenPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		anmeldenPanel.setBackground(Color.DARK_GRAY);
 		getContentPane().add(anmeldenPanel, "name_302209460105541");
-		
-		
 
-		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.5, 0.0, 0.0, 0.4, 0.1, 0.1, 0.5, 0.25, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0 };
+		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gridBagLayout.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.5, 0.0, 0.0, 0.4, 0.1, 0.1, 0.5, 0.25, Double.MIN_VALUE };
 		anmeldenPanel.setLayout(gridBagLayout);
-		
+
 		JLabel lblWillkommenImSscenter = new JLabel("Willkommen im");
 		lblWillkommenImSscenter.setForeground(Color.WHITE);
 		lblWillkommenImSscenter.setFont(new Font("Tahoma", Font.BOLD, 25));
@@ -106,7 +101,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_lblWillkommenImSscenter.gridx = 0;
 		gbc_lblWillkommenImSscenter.gridy = 1;
 		anmeldenPanel.add(lblWillkommenImSscenter, gbc_lblWillkommenImSscenter);
-		
+
 		JLabel lblSurfUndSegelcenter = new JLabel("Surf- und Segelcenter");
 		lblSurfUndSegelcenter.setForeground(Color.WHITE);
 		lblSurfUndSegelcenter.setFont(new Font("Tahoma", Font.BOLD, 25));
@@ -116,7 +111,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_lblSurfUndSegelcenter.gridx = 0;
 		gbc_lblSurfUndSegelcenter.gridy = 2;
 		anmeldenPanel.add(lblSurfUndSegelcenter, gbc_lblSurfUndSegelcenter);
-		
+
 		JLabel lblUser = new JLabel("Standort:");
 		lblUser.setForeground(Color.WHITE);
 		lblUser.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -126,7 +121,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_lblUser.gridx = 1;
 		gbc_lblUser.gridy = 4;
 		anmeldenPanel.add(lblUser, gbc_lblUser);
-		
+
 		txtUser = new JTextField();
 		txtUser.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_txtUser = new GridBagConstraints();
@@ -137,7 +132,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_txtUser.gridy = 4;
 		anmeldenPanel.add(txtUser, gbc_txtUser);
 		txtUser.setColumns(10);
-		
+
 		JLabel lblPassword = new JLabel("Passwort:");
 		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -147,7 +142,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_lblPassword.gridx = 1;
 		gbc_lblPassword.gridy = 5;
 		anmeldenPanel.add(lblPassword, gbc_lblPassword);
-		
+
 		passwordField = new JPasswordField();
 		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
@@ -158,7 +153,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_passwordField.gridy = 5;
 		anmeldenPanel.add(passwordField, gbc_passwordField);
 		passwordField.setColumns(10);
-		
+
 		JButton regButtonChange = new JButton("Registrieren");
 		regButtonChange.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		regButtonChange.setBackground(new Color(255, 140, 0));
@@ -169,15 +164,15 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_regButtonChange.gridx = 2;
 		gbc_regButtonChange.gridy = 6;
 		anmeldenPanel.add(regButtonChange, gbc_regButtonChange);
-		
+
 		regButtonChange.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				changePanel2();
-				
+
 			}
 		});
-		
+
 		JButton okButton = new JButton("Best\u00E4tigen");
 		okButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		okButton.setBackground(new Color(255, 140, 0));
@@ -188,31 +183,29 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_okButton.gridx = 3;
 		gbc_okButton.gridy = 6;
 		anmeldenPanel.add(okButton, gbc_okButton);
-		
+
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
-					
+
 					talking = "login";
-					
+
 					String strPassword = new String(passwordField.getPassword());
-					
+
 					anmelden();
-					
-					controller.registriere(idFeld.getText(), txtUser.getText(), telFeld.getText(), talking, strPassword, plzFeld.getText(), strFeld.getText(), ortFeld.getText(), hnrFeld.getText());
-					
-					if(success == true)
-					{
-						
+
+					controller.registriere(idFeld.getText(), txtUser.getText(), telFeld.getText(), talking, strPassword,
+							plzFeld.getText(), strFeld.getText(), ortFeld.getText(), hnrFeld.getText());
+
+					if (success == true) {
+
 						mainframe.setVisible(true);
 						dispose();
-						
-						
-					}
-					else if(success == false)
+
+					} else if (success == false)
 						JOptionPane.showMessageDialog(null, "Falsches Passwort oder falscher User!");
-					
+
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -220,22 +213,21 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 					abmelden();
 					success = false;
 				}
-				
+
 			}
 		});
-		
 
-		
 		registrierenPanel = new JPanel();
 		registrierenPanel.setBackground(Color.DARK_GRAY);
 		getContentPane().add(registrierenPanel, "name_302221623575103");
 		GridBagLayout gbl_registrierenPanel = new GridBagLayout();
-		gbl_registrierenPanel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
-		gbl_registrierenPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_registrierenPanel.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_registrierenPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_registrierenPanel.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0 };
+		gbl_registrierenPanel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_registrierenPanel.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_registrierenPanel.rowWeights = new double[] { 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				0.0, 1.0, Double.MIN_VALUE };
 		registrierenPanel.setLayout(gbl_registrierenPanel);
-		
+
 		JLabel lblWillkommenIm = new JLabel("Willkommen im");
 		lblWillkommenIm.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWillkommenIm.setForeground(Color.WHITE);
@@ -246,7 +238,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_lblWillkommenIm.gridx = 0;
 		gbc_lblWillkommenIm.gridy = 1;
 		registrierenPanel.add(lblWillkommenIm, gbc_lblWillkommenIm);
-		
+
 		JLabel lblSurfUndSegelcenter_1 = new JLabel("Surf- und Segelcenter");
 		lblSurfUndSegelcenter_1.setForeground(Color.WHITE);
 		lblSurfUndSegelcenter_1.setFont(new Font("Tahoma", Font.BOLD, 25));
@@ -256,7 +248,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_lblSurfUndSegelcenter_1.gridx = 0;
 		gbc_lblSurfUndSegelcenter_1.gridy = 2;
 		registrierenPanel.add(lblSurfUndSegelcenter_1, gbc_lblSurfUndSegelcenter_1);
-		
+
 		JLabel lblStandortname = new JLabel("StandortID:");
 		lblStandortname.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblStandortname.setForeground(new Color(255, 255, 255));
@@ -267,7 +259,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_lblStandortname.gridx = 1;
 		gbc_lblStandortname.gridy = 4;
 		registrierenPanel.add(lblStandortname, gbc_lblStandortname);
-		
+
 		idFeld = new JTextField();
 		idFeld.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		idFeld.setColumns(10);
@@ -278,7 +270,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_idFeld.gridx = 2;
 		gbc_idFeld.gridy = 4;
 		registrierenPanel.add(idFeld, gbc_idFeld);
-		
+
 		JLabel label_5 = new JLabel("Standortname:");
 		label_5.setForeground(Color.WHITE);
 		label_5.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -289,7 +281,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_label_5.gridx = 1;
 		gbc_label_5.gridy = 5;
 		registrierenPanel.add(label_5, gbc_label_5);
-		
+
 		nameFeld = new JTextField();
 		nameFeld.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		nameFeld.setColumns(10);
@@ -300,7 +292,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_nameFeld.gridx = 2;
 		gbc_nameFeld.gridy = 5;
 		registrierenPanel.add(nameFeld, gbc_nameFeld);
-		
+
 		JLabel lblPasswort = new JLabel("Passwort:");
 		lblPasswort.setForeground(Color.WHITE);
 		lblPasswort.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -311,7 +303,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_lblPasswort.gridx = 1;
 		gbc_lblPasswort.gridy = 6;
 		registrierenPanel.add(lblPasswort, gbc_lblPasswort);
-		
+
 		pwFeld = new JPasswordField();
 		pwFeld.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		GridBagConstraints gbc_pwFeld = new GridBagConstraints();
@@ -321,7 +313,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_pwFeld.gridx = 2;
 		gbc_pwFeld.gridy = 6;
 		registrierenPanel.add(pwFeld, gbc_pwFeld);
-		
+
 		JLabel lblTelefonnummer = new JLabel("Tel. Nr.:");
 		lblTelefonnummer.setForeground(Color.WHITE);
 		lblTelefonnummer.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -332,7 +324,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_lblTelefonnummer.gridx = 1;
 		gbc_lblTelefonnummer.gridy = 7;
 		registrierenPanel.add(lblTelefonnummer, gbc_lblTelefonnummer);
-		
+
 		telFeld = new JTextField();
 		telFeld.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		telFeld.setColumns(10);
@@ -343,7 +335,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_telFeld.gridx = 2;
 		gbc_telFeld.gridy = 7;
 		registrierenPanel.add(telFeld, gbc_telFeld);
-		
+
 		JLabel lblPlz = new JLabel("PLZ:");
 		lblPlz.setForeground(Color.WHITE);
 		lblPlz.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -354,7 +346,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_lblPlz.gridx = 1;
 		gbc_lblPlz.gridy = 8;
 		registrierenPanel.add(lblPlz, gbc_lblPlz);
-		
+
 		plzFeld = new JTextField();
 		plzFeld.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		plzFeld.setColumns(10);
@@ -365,7 +357,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_plzFeld.gridx = 2;
 		gbc_plzFeld.gridy = 8;
 		registrierenPanel.add(plzFeld, gbc_plzFeld);
-		
+
 		JLabel lblStrae = new JLabel("Stra\u00DFe:");
 		lblStrae.setForeground(Color.WHITE);
 		lblStrae.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -376,7 +368,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_lblStrae.gridx = 1;
 		gbc_lblStrae.gridy = 10;
 		registrierenPanel.add(lblStrae, gbc_lblStrae);
-		
+
 		strFeld = new JTextField();
 		strFeld.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		strFeld.setColumns(10);
@@ -387,7 +379,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_strFeld.gridx = 2;
 		gbc_strFeld.gridy = 10;
 		registrierenPanel.add(strFeld, gbc_strFeld);
-		
+
 		JLabel lblOrt = new JLabel("Ort:");
 		lblOrt.setForeground(Color.WHITE);
 		lblOrt.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -398,7 +390,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_lblOrt.gridx = 1;
 		gbc_lblOrt.gridy = 9;
 		registrierenPanel.add(lblOrt, gbc_lblOrt);
-		
+
 		ortFeld = new JTextField();
 		ortFeld.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		ortFeld.setColumns(10);
@@ -409,7 +401,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_ortFeld.gridx = 2;
 		gbc_ortFeld.gridy = 9;
 		registrierenPanel.add(ortFeld, gbc_ortFeld);
-		
+
 		JLabel lblHausnummer = new JLabel("Hausnummer:");
 		lblHausnummer.setForeground(Color.WHITE);
 		lblHausnummer.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -420,7 +412,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_lblHausnummer.gridx = 1;
 		gbc_lblHausnummer.gridy = 11;
 		registrierenPanel.add(lblHausnummer, gbc_lblHausnummer);
-		
+
 		hnrFeld = new JTextField();
 		hnrFeld.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		hnrFeld.setColumns(10);
@@ -431,13 +423,13 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_hnrFeld.gridx = 2;
 		gbc_hnrFeld.gridy = 11;
 		registrierenPanel.add(hnrFeld, gbc_hnrFeld);
-		
+
 		JButton abbButton = new JButton("Abbrechen");
 		abbButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				changePanel();
-				
+
 			}
 		});
 		abbButton.setBackground(new Color(255, 140, 0));
@@ -448,31 +440,33 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		gbc_abbButton.gridx = 2;
 		gbc_abbButton.gridy = 12;
 		registrierenPanel.add(abbButton, gbc_abbButton);
-		
+
 		JButton regButton = new JButton("Registrieren");
 		regButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
-					
+
 					boolean umwandlung = true;
 					umwandlung = checkInteger(umwandlung);
-					
-					
-					if(idFeld.getText().equals("") || nameFeld.getText().equals("") || pwFeld.getPassword().equals("") || plzFeld.getText().equals("") || strFeld.getText().equals("") || ortFeld.getText().equals("") || hnrFeld.getText().equals("") || telFeld.getText().equals("") || umwandlung == false )
+
+					if (idFeld.getText().equals("") || nameFeld.getText().equals("") || pwFeld.getPassword().equals("")
+							|| plzFeld.getText().equals("") || strFeld.getText().equals("")
+							|| ortFeld.getText().equals("") || hnrFeld.getText().equals("")
+							|| telFeld.getText().equals("") || umwandlung == false)
 						JOptionPane.showMessageDialog(null, "Bitte die Felder überprüfen!");
-					else
-					{
+					else {
 						talking = "register";
-					
+
 						int abfrage = JOptionPane.showConfirmDialog(null, "Standort wirklich hinzufügen?");
-					
-						if(abfrage == 0)
-						{
+
+						if (abfrage == 0) {
 							String strPassword = new String(pwFeld.getPassword());
-					
+
 							anmelden();
-							controller.registriere(idFeld.getText(), nameFeld.getText(), telFeld.getText(), talking, strPassword , plzFeld.getText(), strFeld.getText(), ortFeld.getText(), hnrFeld.getText());
+							controller.registriere(idFeld.getText(), nameFeld.getText(), telFeld.getText(), talking,
+									strPassword, plzFeld.getText(), strFeld.getText(), ortFeld.getText(),
+									hnrFeld.getText());
 							abmelden();
 							changePanel();
 						}
@@ -481,7 +475,7 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-					
+
 			}
 
 			private boolean checkInteger(boolean umwandlung) {
@@ -493,10 +487,9 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 					JOptionPane.showMessageDialog(null, "Sie haben falsche Werte für StandortID oder PLZ eingegeben!");
 				}
 				return umwandlung;
-				
+
 			}
 
-			
 		});
 		regButton.setBackground(new Color(255, 140, 0));
 		regButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -508,36 +501,34 @@ public class StandortGUI extends JFrame implements IStandortView { //Ben Kröncke
 		registrierenPanel.add(regButton, gbc_regButton);
 	}
 
-
-
 	protected void anmelden() {
 
 		model.anmelden(this);
-		
-		
+
 	}
 
 	private void abmelden() {
-		
+
 		model.abmelden(this);
 	}
 
-
 	@Override
 	public void aktualisieren(IStandortModel model) {
-		
+
 		try {
 			success = model.pruefen();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
+
 	private void changePanel() {
 		anmeldenPanel.setVisible(true);
 		registrierenPanel.setVisible(false);
 	}
+
 	private void changePanel2() {
 		anmeldenPanel.setVisible(false);
 		registrierenPanel.setVisible(true);

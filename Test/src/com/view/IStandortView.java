@@ -4,7 +4,7 @@ import com.model.IObjektModel;
 import com.model.IStandortModel;
 
 public interface IStandortView {
-	
+
 	/**
 	 * Die aktualisieren Methode aktualisiert die View.
 	 * 

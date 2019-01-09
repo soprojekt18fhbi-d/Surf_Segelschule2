@@ -1,6 +1,6 @@
- /*
-  *  @author Michael Schmidt
-  */
+/*
+ *  @author Michael Schmidt
+ */
 
 package com.model;
 
@@ -11,12 +11,12 @@ import java.util.ArrayList;
 
 import com.view.IAnlegenView;
 
-public class TypAnlegenModel implements IAnlegenModel{
+public class TypAnlegenModel implements IAnlegenModel {
 	String talking;
 	String name;
 	String schein;
 	int id;
-	
+
 	@Override
 	public void anmelden(IAnlegenView view) {
 		try {
@@ -24,22 +24,24 @@ public class TypAnlegenModel implements IAnlegenModel{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
-	
+		}
+
 		try {
-			if(observers.contains(view));
-				observers.remove(view);
+			if (observers.contains(view))
+				;
+			observers.remove(view);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 	}
 
 	@Override
 	public void abmelden(IAnlegenView view) {
 		try {
-			if(observers.contains(view));
-				observers.remove(view);
+			if (observers.contains(view))
+				;
+			observers.remove(view);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,31 +51,32 @@ public class TypAnlegenModel implements IAnlegenModel{
 	@Override
 	public void updateObserver() {
 		try {
-			for (int i = 0; i < observers.size(); ++i) 
+			for (int i = 0; i < observers.size(); ++i)
 				observers.get(i).aktualisieren(this);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void typAnlegen(String[] typ) {
-        try {
+		try {
 			Connection conn = DBConnectorSingleton.getCon();
 			Statement statementTypAnlegenModel = conn.createStatement();
 			werteUebergeben(typ);
-			
-			String sqlupdate;			
+
+			String sqlupdate;
 			if (talking.equals("anlegen"))
-				sqlupdate = "INSERT INTO TYP VALUES (default,'" + name + "','"+ schein+ "')";
-			else 
-				sqlupdate = "UPDATE TYP SET NAME = '"+name+"', FUEHRERSCHEIN = '"+schein+"' WHERE ID = "+id+"";
-			
+				sqlupdate = "INSERT INTO TYP VALUES (default,'" + name + "','" + schein + "')";
+			else
+				sqlupdate = "UPDATE TYP SET NAME = '" + name + "', FUEHRERSCHEIN = '" + schein + "' WHERE ID = " + id
+						+ "";
+
 			statementTypAnlegenModel.executeUpdate(sqlupdate);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-        updateObserver();
+			updateObserver();
 		}
 	}
 

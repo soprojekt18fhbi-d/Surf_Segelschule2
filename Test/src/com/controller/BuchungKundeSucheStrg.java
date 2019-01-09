@@ -7,7 +7,7 @@ import com.view.BuchungKundeSucheGUI;
 import com.view.KundeAendernGUI;
 
 public class BuchungKundeSucheStrg implements IController {
-	
+
 	private BuchungKundeSucheModel model;
 	private BuchungKundeSucheGUI view;
 
@@ -18,20 +18,20 @@ public class BuchungKundeSucheStrg implements IController {
 
 	/**
 	 * Der Button wurde gedrückt und es sollen Kunden geholt werden.
-	 * @param string 
-	 * @param talking 
-	 * @param variableKnr 
-	 * @param selectedMode 
-	 * @param talking 
-	 * @param heimat 
-	 * @param motor 
-	 * @param segel 
-	 * @param surf 
+	 * 
+	 * @param string
+	 * @param talking
+	 * @param variableKnr
+	 * @param selectedMode
+	 * @param talking
+	 * @param heimat
+	 * @param motor
+	 * @param segel
+	 * @param surf
 	 * 
 	 */
 	public void fetchObjekte(String talking, String searchtxt) {
 
-		
 		try {
 			model.holeDaten(talking, searchtxt);
 		} catch (Exception e) {
@@ -48,17 +48,13 @@ public class BuchungKundeSucheStrg implements IController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
 	public void anfrage() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-
-
-
 
 }

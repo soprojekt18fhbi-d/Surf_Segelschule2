@@ -1,6 +1,5 @@
 package com.entity;
 
-
 /**
  * @author michi
  */
@@ -8,9 +7,8 @@ public class GeraeteTyp {
 	private int typID;
 	private String typName;
 	private String führerschein;
-	
-	
-	public GeraeteTyp(int id, String name, String führerschein){
+
+	public GeraeteTyp(int id, String name, String führerschein) {
 		this.typName = name;
 		this.typID = id;
 		this.führerschein = führerschein;
@@ -31,7 +29,6 @@ public class GeraeteTyp {
 	public void setName(String typName) {
 		this.typName = typName;
 	}
-	
 
 	public String getFührerschein() {
 		return führerschein;
@@ -40,5 +37,5 @@ public class GeraeteTyp {
 	public void setFührerschein(String führerschein) {
 		this.führerschein = führerschein;
 	}
-	
+
 }

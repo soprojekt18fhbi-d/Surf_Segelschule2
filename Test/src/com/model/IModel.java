@@ -10,16 +10,13 @@ import com.view.IView;
 
 public interface IModel {
 
-	
 	/**
 	 * ArrayList für Möglichkeit der Aufnahme mehrerer Observer(Views)
 	 * 
 	 * 
 	 */
 	public ArrayList<IView> observers = new ArrayList<IView>();
-	
-	
-	
+
 	/**
 	 * Anmelden einer View.
 	 * 
@@ -33,8 +30,7 @@ public interface IModel {
 	 * 
 	 */
 	public void abmelden(IView view);
-	
-	
+
 	/**
 	 * Durchgehen der Observer und Updateaufruf.
 	 * 
@@ -43,9 +39,5 @@ public interface IModel {
 	public void updateObserver();
 
 	DefaultListModel holeModel();
-	
 
-
-	
-	
 }

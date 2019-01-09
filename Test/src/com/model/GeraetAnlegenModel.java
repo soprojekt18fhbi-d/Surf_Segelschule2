@@ -1,6 +1,6 @@
- /*
-  *  @author Michael Schmidt
-  */
+/*
+ *  @author Michael Schmidt
+ */
 
 package com.model;
 
@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 import com.view.IAnlegenView;
 
-public class GeraetAnlegenModel implements IAnlegenModel{
-	
+public class GeraetAnlegenModel implements IAnlegenModel {
+
 	private ArrayList<IAnlegenView> observers = new ArrayList<IAnlegenView>();
 
 	private ArrayList<String> mengeAnModellen = new ArrayList<String>();
@@ -28,12 +28,12 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 	private double anschaffungspreis;
 	private String farbe;
 	private int baujahr;
-		
-	public void anfrage (String talking2, String[] geraet) {
+
+	public void anfrage(String talking2, String[] geraet) {
 		this.talking = talking2;
 		this.geraet = geraet;
-		
-        try {
+
+		try {
 			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here
 			viewTable(conn);
@@ -45,74 +45,76 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 
 	public void viewTable(Connection con) throws SQLException {
 
-	    Statement stmtGeraetAnlegenModel = con.createStatement();
-	    Statement stmtGeraetAnlegenModel2 = con.createStatement();
-	    Statement stmtGeraetAnlegenModel3 = con.createStatement();
-	    String query = null;
-	    String query2 = null;
-				    
-		if(talking.equals("first")){
+		Statement stmtGeraetAnlegenModel = con.createStatement();
+		Statement stmtGeraetAnlegenModel2 = con.createStatement();
+		Statement stmtGeraetAnlegenModel3 = con.createStatement();
+		String query = null;
+		String query2 = null;
+
+		if (talking.equals("first")) {
 			query = "Select * from TYP";
-	    	try {
-		    	System.out.println(query);
-		        ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);			        
-		        while (rs.next()){				        	
-		        	mengeAnTypen.add(rs.getString("NAME"));    	
-				}          
-	    	} catch (SQLException e ) {
-			   	e.printStackTrace();
+			try {
+				System.out.println(query);
+				ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);
+				while (rs.next()) {
+					mengeAnTypen.add(rs.getString("NAME"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-		    updateObserver();
+			updateObserver();
 		}
-		    
-		if(talking.equals("standortID")){
+
+		if (talking.equals("standortID")) {
 			query = "Select * from STANDORT";
 			try {
 				System.out.println(query);
-				ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);        
-				while (rs.next()){        	
-					mengeAnTypen.add(rs.getString("ID"));    	
-				}       
-			} catch (SQLException e ) {
-			   	e.printStackTrace();
-			}
-		    updateObserver();
-		}
-		    
-		if(talking.equals("modellname")){
-			int modellID = Integer.parseInt(geraet[6]);
-		    query = "Select * from MODELL WHERE ID = '"+modellID+"'";
-		    try {
-			   	System.out.println(query);
-			    ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);	        
-				while (rs.next()){    	
-					mengeAnTypen.add(rs.getString("NAME"));
-				}        
-			} catch (SQLException e ) {
+				ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);
+				while (rs.next()) {
+					mengeAnTypen.add(rs.getString("ID"));
+				}
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		    updateObserver();
+			updateObserver();
 		}
-		
-	    if(talking.equals("hinzufuegen")){
-	    	
-	    	try {		
-	    		werteUebergeben();
-				String status = "OK";
-								
-				query = "select * from TYP WHERE NAME = '" +typ+ "'";
+
+		if (talking.equals("modellname")) {
+			int modellID = Integer.parseInt(geraet[6]);
+			query = "Select * from MODELL WHERE ID = '" + modellID + "'";
+			try {
 				System.out.println(query);
-				query2 = "select * from MODELL WHERE NAME = '" +modell+ "'";
 				ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);
-		
-				while (rs.next()){	
-					int typID =  Integer.parseInt(rs.getString("ID"));
+				while (rs.next()) {
+					mengeAnTypen.add(rs.getString("NAME"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			updateObserver();
+		}
+
+		if (talking.equals("hinzufuegen")) {
+
+			try {
+				werteUebergeben();
+				String status = "OK";
+
+				query = "select * from TYP WHERE NAME = '" + typ + "'";
+				System.out.println(query);
+				query2 = "select * from MODELL WHERE NAME = '" + modell + "'";
+				ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);
+
+				while (rs.next()) {
+					int typID = Integer.parseInt(rs.getString("ID"));
 					ResultSet rs2 = stmtGeraetAnlegenModel2.executeQuery(query2);
-						
-					while(rs2.next()){
+
+					while (rs2.next()) {
 						int modellID = Integer.parseInt(rs2.getString("ID"));
-						
-						String sqlupdate = "INSERT INTO SPORTGERAET VALUES (default,'" + makel + "','" +verkaufspreis+ "','" +typID+"','" +modellID+ "','" +status+"','" +standortID+ "','" +farbe+"','" +baujahr+ "','" +anschaffungspreis+"')";
+
+						String sqlupdate = "INSERT INTO SPORTGERAET VALUES (default,'" + makel + "','" + verkaufspreis
+								+ "','" + typID + "','" + modellID + "','" + status + "','" + standortID + "','" + farbe
+								+ "','" + baujahr + "','" + anschaffungspreis + "')";
 						System.out.println(sqlupdate);
 						stmtGeraetAnlegenModel3.executeUpdate(sqlupdate);
 					}
@@ -120,79 +122,87 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			} finally {
-				if (stmtGeraetAnlegenModel2 != null) { stmtGeraetAnlegenModel2.close(); }
-				if (stmtGeraetAnlegenModel != null) { stmtGeraetAnlegenModel.close(); }
+				if (stmtGeraetAnlegenModel2 != null) {
+					stmtGeraetAnlegenModel2.close();
+				}
+				if (stmtGeraetAnlegenModel != null) {
+					stmtGeraetAnlegenModel.close();
+				}
 			}
-	    	updateObserver();
-		}	
-		
-		if(talking.equals("aendern")){
-			werteUebergeben();
-		    int modellID = Integer.parseInt(typ);
-	    	int standortID = Integer.parseInt(modell);
-	    		    	
-		    	
-		    try {
-			    String sqlupdate = "UPDATE SPORTGERAET SET MAKEL = '"+makel+"', FARBE = '"+farbe+"' , BAUJAHR = '"+baujahr+"', STANDORTID = '"+standortID+"', VERKAUFSPREIS = '"+verkaufspreis+"', ANSCHAFFUNGSPREIS = '"+anschaffungspreis+"'  WHERE ID = "+modellID+"";
-			    stmtGeraetAnlegenModel.executeUpdate(sqlupdate);	
-			} catch (SQLException e ) {
-			   	e.printStackTrace();
-			}
-		    updateObserver();
+			updateObserver();
 		}
-		    
-		if(talking.equals("status")){
-			int geraeteID = Integer.parseInt(geraet[0]);
-			String status = geraet[1];		    	
-		    	
+
+		if (talking.equals("aendern")) {
+			werteUebergeben();
+			int modellID = Integer.parseInt(typ);
+			int standortID = Integer.parseInt(modell);
+
 			try {
-				String sqlupdate = "UPDATE SPORTGERAET SET STATUS = '"+status+"'  WHERE ID = "+geraeteID+"";
-				stmtGeraetAnlegenModel.executeUpdate(sqlupdate);		             
-			} catch (SQLException e ) {
+				String sqlupdate = "UPDATE SPORTGERAET SET MAKEL = '" + makel + "', FARBE = '" + farbe
+						+ "' , BAUJAHR = '" + baujahr + "', STANDORTID = '" + standortID + "', VERKAUFSPREIS = '"
+						+ verkaufspreis + "', ANSCHAFFUNGSPREIS = '" + anschaffungspreis + "'  WHERE ID = " + modellID
+						+ "";
+				stmtGeraetAnlegenModel.executeUpdate(sqlupdate);
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		    updateObserver();
+			updateObserver();
 		}
-    
-	    if(talking.equals("reparatur")){
-	    	int geraeteID = Integer.parseInt(geraet[1]);
-		    String beschreibung = geraet[2];
-		    double kosten = Double.parseDouble(geraet[3]);   	
-		    	
-		    try {
-			    String sqlupdate = "INSERT INTO REPARATUR VALUES(default,'" + beschreibung + "','" +kosten+ "','" +geraeteID+ "')"; 
-			    stmtGeraetAnlegenModel.executeUpdate(sqlupdate);	
-		    } catch (SQLException e ) {
-			   	e.printStackTrace();
+
+		if (talking.equals("status")) {
+			int geraeteID = Integer.parseInt(geraet[0]);
+			String status = geraet[1];
+
+			try {
+				String sqlupdate = "UPDATE SPORTGERAET SET STATUS = '" + status + "'  WHERE ID = " + geraeteID + "";
+				stmtGeraetAnlegenModel.executeUpdate(sqlupdate);
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-		    updateObserver();
-	    }
-		
-	    if(talking.equals("second")){
-	   
-		    try {
-			    String typ = geraet[0];
-			   
-			    query = "Select * from TYP WHERE NAME = '" +typ+ "'";
-			    ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);
-				
-			    while (rs.next()){	
-				    int typID =  Integer.parseInt(rs.getString("ID"));
-					
-				    query2 = "select * from MODELL WHERE TYPID = '" +typID+ "'";
-				    ResultSet rs2 = stmtGeraetAnlegenModel2.executeQuery(query2);
-				    while (rs2.next()){     	
-					    mengeAnModellen.add(rs2.getString("NAME"));
-				    }      	
-			    }      
-		    } catch (SQLException e ) {
-			    e.printStackTrace();
-		    } finally {
-			    if (stmtGeraetAnlegenModel != null){ 
-				    stmtGeraetAnlegenModel.close(); }
-		   	    }
-		    updateObserver();
-	    }
+			updateObserver();
+		}
+
+		if (talking.equals("reparatur")) {
+			int geraeteID = Integer.parseInt(geraet[1]);
+			String beschreibung = geraet[2];
+			double kosten = Double.parseDouble(geraet[3]);
+
+			try {
+				String sqlupdate = "INSERT INTO REPARATUR VALUES(default,'" + beschreibung + "','" + kosten + "','"
+						+ geraeteID + "')";
+				stmtGeraetAnlegenModel.executeUpdate(sqlupdate);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			updateObserver();
+		}
+
+		if (talking.equals("second")) {
+
+			try {
+				String typ = geraet[0];
+
+				query = "Select * from TYP WHERE NAME = '" + typ + "'";
+				ResultSet rs = stmtGeraetAnlegenModel.executeQuery(query);
+
+				while (rs.next()) {
+					int typID = Integer.parseInt(rs.getString("ID"));
+
+					query2 = "select * from MODELL WHERE TYPID = '" + typID + "'";
+					ResultSet rs2 = stmtGeraetAnlegenModel2.executeQuery(query2);
+					while (rs2.next()) {
+						mengeAnModellen.add(rs2.getString("NAME"));
+					}
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (stmtGeraetAnlegenModel != null) {
+					stmtGeraetAnlegenModel.close();
+				}
+			}
+			updateObserver();
+		}
 	}
 
 	private void werteUebergeben() {
@@ -212,11 +222,12 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
-		
+		}
+
 		try {
-			if(observers.contains(view));
-				observers.remove(view);
+			if (observers.contains(view))
+				;
+			observers.remove(view);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -226,8 +237,9 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 	@Override
 	public void abmelden(IAnlegenView view) {
 		try {
-			if(observers.contains(view));
-				observers.remove(view);
+			if (observers.contains(view))
+				;
+			observers.remove(view);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -237,7 +249,7 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 	@Override
 	public void updateObserver() {
 		try {
-			for (int i = 0; i < observers.size(); ++i) 
+			for (int i = 0; i < observers.size(); ++i)
 				observers.get(i).aktualisieren(this);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -256,7 +268,7 @@ public class GeraetAnlegenModel implements IAnlegenModel{
 		else
 			return mengeAnModellen;
 	}
-	
+
 	public void setStandort(int id) {
 		standortID = id;
 	}

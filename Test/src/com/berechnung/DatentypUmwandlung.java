@@ -8,36 +8,35 @@ package com.berechnung;
 public class DatentypUmwandlung {
 
 	public static double stringZuDouble(String string) {
-		
-		//null kann nicht als Double Wert gespeichert werden -> Strings werden überprüft
-		Double zahl=0.0;
+
+		// null kann nicht als Double Wert gespeichert werden -> Strings werden
+		// überprüft
+		Double zahl = 0.0;
 		try {
-			if (string.isEmpty()==false){
+			if (string.isEmpty() == false) {
 				string.replace(',', '.');
 				System.out.println(string);
 				zahl = Double.valueOf(string);
 			}
-			
-		}
-		catch(NumberFormatException numFormExc){
-			
+
+		} catch (NumberFormatException numFormExc) {
+
 		}
 		return zahl;
 	}
-	
-	
+
 	public static String doubleZuString(double zahl) {
-		
-		//null kann nicht als Double Wert gespeichert werden -> Strings werden überprüft
-		
-		String string=null;
+
+		// null kann nicht als Double Wert gespeichert werden -> Strings werden
+		// überprüft
+
+		String string = null;
 		try {
-				string = "'"+String.valueOf(zahl)+"'";
-		}
-		catch(NumberFormatException numFormExc){
-			
+			string = "'" + String.valueOf(zahl) + "'";
+		} catch (NumberFormatException numFormExc) {
+
 		}
 		return string;
 	}
-	
+
 }

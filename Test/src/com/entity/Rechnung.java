@@ -3,7 +3,6 @@ package com.entity;
 //@author Darnel
 
 public class Rechnung {
-	
 
 	private int id;
 	private double summe;
@@ -12,14 +11,13 @@ public class Rechnung {
 	private IKunde kunde;
 	private Reparatur reparatur;
 	private Buchung buchung;
-	
-	
-	public Rechnung(int id, double summe, double mwSt, double summe_mit_mwst, IKunde kunde, Buchung buchung ) {
+
+	public Rechnung(int id, double summe, double mwSt, double summe_mit_mwst, IKunde kunde, Buchung buchung) {
 		super();
 		this.id = id;
-		this.summe=summe;
-		this.mwSt=mwSt;
-		this.summe_mit_mwst=summe_mit_mwst;
+		this.summe = summe;
+		this.mwSt = mwSt;
+		this.summe_mit_mwst = summe_mit_mwst;
 		this.kunde = kunde;
 	}
 
@@ -31,7 +29,6 @@ public class Rechnung {
 		this.id = id;
 	}
 
-	
 	public double getSumme_mit_mwst() {
 		return summe_mit_mwst;
 	}
@@ -71,7 +68,7 @@ public class Rechnung {
 	public double getBetrag() {
 		return summe_mit_mwst;
 	}
-	
+
 	public void setKunde(IKunde kunde) {
 		this.kunde = kunde;
 	}
@@ -83,8 +80,5 @@ public class Rechnung {
 	public void setReparatur(Reparatur reparatur) {
 		this.reparatur = reparatur;
 	}
-	
-	
-	
 
 }

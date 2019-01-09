@@ -24,18 +24,17 @@ import com.view.IView;
 
 import net.proteanit.sql.DbUtils;
 
-
-public class KundeSucheModel implements IObjektModel  {
+public class KundeSucheModel implements IObjektModel {
 
 	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
 
 	private ArrayList<IKunde> mengeAnKunden = new ArrayList<IKunde>();
 	private ArrayList<IAdresse> mengeAnAdressen = new ArrayList<IAdresse>();
-	
+
 	private TableModel result;
-	
+
 	private int kundeNr = 0;
-	
+
 	private int knrplzloc = 0;
 	private String nachnameortloc = "";
 	private String vornamestrasseloc = "";
@@ -54,16 +53,17 @@ public class KundeSucheModel implements IObjektModel  {
 	 * 
 	 * 
 	 */
-	
-	public void holeDaten(String knrplz, String nachnameort, String vornamestrasse, String emailhnr, String selectedMode, String variableKnr, String talking, String surf2, String segel2, String motor2, String heimat2) {
-		
+
+	public void holeDaten(String knrplz, String nachnameort, String vornamestrasse, String emailhnr,
+			String selectedMode, String variableKnr, String talking, String surf2, String segel2, String motor2,
+			String heimat2) {
+
 		boolean weiter = true;
 		try {
 			knrplzloc = Integer.parseInt(knrplz);
 		} catch (NumberFormatException e1) {
 			// TODO Auto-generated catch block
-			if(!talking.equals("boss"))
-			{
+			if (!talking.equals("boss")) {
 				JOptionPane.showMessageDialog(null, "Bitte Kundennummer oder PLZ überprüfen!");
 				weiter = false;
 			}
@@ -79,24 +79,23 @@ public class KundeSucheModel implements IObjektModel  {
 		this.surf = surf2;
 		this.motor = motor2;
 		this.heimat = heimat2;
-		
-		
-		if(weiter == true)
-		{
-			System.out.println("" + knrplz + nachnameort + vornamestrasse + emailhnr + selectedMode + variableKnr + motor2 + segel2 + surf2 + heimat2);
-	        try {
-	        	
+
+		if (weiter == true) {
+			System.out.println("" + knrplz + nachnameort + vornamestrasse + emailhnr + selectedMode + variableKnr
+					+ motor2 + segel2 + surf2 + heimat2);
+			try {
+
 				Connection conn = DBConnectorSingleton.getCon();
 				// add application code here
 				viewTable(conn);
-				
+
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	        updateObserver();
+			updateObserver();
 		}
-		
+
 	}
 
 	@Override
@@ -108,111 +107,95 @@ public class KundeSucheModel implements IObjektModel  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	public void viewTable(Connection con)
-		    throws SQLException {
 
-			
-		
-		    Statement stmtKundeSucheModel = con.createStatement();
-		    String query = null;
-		    
-		    if(mode == "Kunde")
-		    {
-		    	if (talking == "knrplz")
-			    	query = "SELECT * FROM KUNDE WHERE (ID = '" + knrplzloc + "');";
-		    	if(talking == "boss")
-		    		query = "SELECT * FROM KUNDE;";
-		    	if(talking == "nachnameort")
-		    		query = "SELECT * FROM KUNDE WHERE (NACHNAME = '" + nachnameortloc + "');";
-		    	if (talking == "vornamestrasse")
-		    		query = "SELECT * FROM KUNDE WHERE (VORNAME = '" + vornamestrasseloc + "');";
-		    	if (talking == "emailhnr")
-		    		query = "SELECT * FROM KUNDE WHERE (EMAIL = '" + emailhnrloc + "');";
-		    }
-		    
-		    
-		    
-		    if(mode == "Adresse")
-		    {
-		    	if (talking == "knrplz")
-			    	query = "SELECT * FROM ADRESSE WHERE (PLZ = '" + knrplzloc + "') AND ART NOT IN('Standortadresse');";
-		    	if(talking == "boss")
-		    		query = "SELECT * FROM ADRESSE WHERE ART NOT IN('Standortadresse');";
-		    	if(talking == "nachnameort")
-		    		query = "SELECT * FROM ADRESSE WHERE (ORT = '" + nachnameortloc + "');";
-		    	if (talking == "vornamestrasse")
-		    		query = "SELECT * FROM ADRESSE WHERE (STRASSE = '" + vornamestrasseloc + "');";
-		    	if (talking == "emailhnr")
-		    		query = "SELECT * FROM ADRESSE WHERE (HNR = '" + emailhnrloc + "');";
-		    	if (talking == "variableKnr")
-		    		query = "SELECT * FROM ADRESSE WHERE (KUNDEID = '" + variableKnr + "');";
-		    }
-		    
-		    if(talking.equals("deaktivierenkunde"))
-		    {
-		    	query = "Select * from Kunde;";
-		    	
-		    	
-		    	String sql = "UPDATE KUNDE SET BESTANDSKUNDE = 'N' WHERE ID = '" + knrplzloc + "';";
-		    	
-		    	int ergebnis = stmtKundeSucheModel.executeUpdate(sql);
-		    	
-		    }
-		    else if (talking.equals("deaktivierenadresse"))
-		    {
-		    	query = "Select * from Adresse WHERE ART NOT IN('Standortadresse');";
-		    	
-		    	String sql = "DELETE FROM ADRESSE WHERE KUNDEID = '" + variableKnr + "' AND PLZ ='" + this.knrplzloc + "' AND STRASSE = '" + this.vornamestrasseloc + "';";
-		    	
-		    	int ergebnis = stmtKundeSucheModel.executeUpdate(sql);
-		    	
-		    }
-		    else if(talking.equals("kundespeichern"))
-		    {
-		    	query = "Select * from Kunde;";
-		    	
+	public void viewTable(Connection con) throws SQLException {
 
-		    		
-		    	changeVorname(stmtKundeSucheModel);
+		Statement stmtKundeSucheModel = con.createStatement();
+		String query = null;
 
-			    changeNachname(stmtKundeSucheModel);
-			    	
-			   	changeEmail(stmtKundeSucheModel);
-			    	
-			   	changeSegel(stmtKundeSucheModel);
-			    	
-			   	changeMotor(stmtKundeSucheModel);
-			    	
-			    changeSurf(stmtKundeSucheModel);
-			    
-		    }
-		    else if(talking.equals("adressespeichern"))
-		    {
-		    	query = "Select * from Adresse WHERE ART NOT IN('Standortadresse');";
-		    	
-		    	String sql = "INSERT INTO ADRESSE VALUES(default, " + this.knrplzloc + ", '" + this.vornamestrasseloc + "', '" + this.nachnameortloc + "', '" + this.heimat + "', " + this.emailhnrloc + ", " + this.variableKnr + ");";
-		    	
-		    	int ergebnis = stmtKundeSucheModel.executeUpdate(sql);
-		    	
-		    }
-		    
-
-		    try {
-		    	System.out.println(query);
-		        stmtKundeSucheModel = con.createStatement();
-		        ResultSet rs = stmtKundeSucheModel.executeQuery(query);
-		        
-		        result = DbUtils.resultSetToTableModel(rs);
-		        
-		    } catch (SQLException e ) {
-		    	e.printStackTrace();
-		    }
-		    
-		    
+		if (mode == "Kunde") {
+			if (talking == "knrplz")
+				query = "SELECT * FROM KUNDE WHERE (ID = '" + knrplzloc + "');";
+			if (talking == "boss")
+				query = "SELECT * FROM KUNDE;";
+			if (talking == "nachnameort")
+				query = "SELECT * FROM KUNDE WHERE (NACHNAME = '" + nachnameortloc + "');";
+			if (talking == "vornamestrasse")
+				query = "SELECT * FROM KUNDE WHERE (VORNAME = '" + vornamestrasseloc + "');";
+			if (talking == "emailhnr")
+				query = "SELECT * FROM KUNDE WHERE (EMAIL = '" + emailhnrloc + "');";
 		}
+
+		if (mode == "Adresse") {
+			if (talking == "knrplz")
+				query = "SELECT * FROM ADRESSE WHERE (PLZ = '" + knrplzloc + "') AND ART NOT IN('Standortadresse');";
+			if (talking == "boss")
+				query = "SELECT * FROM ADRESSE WHERE ART NOT IN('Standortadresse');";
+			if (talking == "nachnameort")
+				query = "SELECT * FROM ADRESSE WHERE (ORT = '" + nachnameortloc + "');";
+			if (talking == "vornamestrasse")
+				query = "SELECT * FROM ADRESSE WHERE (STRASSE = '" + vornamestrasseloc + "');";
+			if (talking == "emailhnr")
+				query = "SELECT * FROM ADRESSE WHERE (HNR = '" + emailhnrloc + "');";
+			if (talking == "variableKnr")
+				query = "SELECT * FROM ADRESSE WHERE (KUNDEID = '" + variableKnr + "');";
+		}
+
+		if (talking.equals("deaktivierenkunde")) {
+			query = "Select * from Kunde;";
+
+			String sql = "UPDATE KUNDE SET BESTANDSKUNDE = 'N' WHERE ID = '" + knrplzloc + "';";
+
+			int ergebnis = stmtKundeSucheModel.executeUpdate(sql);
+
+		} else if (talking.equals("deaktivierenadresse")) {
+			query = "Select * from Adresse WHERE ART NOT IN('Standortadresse');";
+
+			String sql = "DELETE FROM ADRESSE WHERE KUNDEID = '" + variableKnr + "' AND PLZ ='" + this.knrplzloc
+					+ "' AND STRASSE = '" + this.vornamestrasseloc + "';";
+
+			int ergebnis = stmtKundeSucheModel.executeUpdate(sql);
+
+		} else if (talking.equals("kundespeichern")) {
+			query = "Select * from Kunde;";
+
+			changeVorname(stmtKundeSucheModel);
+
+			changeNachname(stmtKundeSucheModel);
+
+			changeEmail(stmtKundeSucheModel);
+
+			changeSegel(stmtKundeSucheModel);
+
+			changeMotor(stmtKundeSucheModel);
+
+			changeSurf(stmtKundeSucheModel);
+
+		} else if (talking.equals("adressespeichern")) {
+			query = "Select * from Adresse WHERE ART NOT IN('Standortadresse');";
+
+			String sql = "INSERT INTO ADRESSE VALUES(default, " + this.knrplzloc + ", '" + this.vornamestrasseloc
+					+ "', '" + this.nachnameortloc + "', '" + this.heimat + "', " + this.emailhnrloc + ", "
+					+ this.variableKnr + ");";
+
+			int ergebnis = stmtKundeSucheModel.executeUpdate(sql);
+
+		}
+
+		try {
+			System.out.println(query);
+			stmtKundeSucheModel = con.createStatement();
+			ResultSet rs = stmtKundeSucheModel.executeQuery(query);
+
+			result = DbUtils.resultSetToTableModel(rs);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	private void changeVorname(Statement stmt) throws SQLException {
 		String sql = "UPDATE KUNDE SET VORNAME = '" + this.vornamestrasseloc + "' WHERE ID = " + this.knrplzloc;
@@ -264,8 +247,9 @@ public class KundeSucheModel implements IObjektModel  {
 	public void abmelden(IObjektView view) {
 		// TODO Auto-generated method stub
 		try {
-			if(observers.contains(view));
-				observers.remove(view);
+			if (observers.contains(view))
+				;
+			observers.remove(view);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -276,7 +260,7 @@ public class KundeSucheModel implements IObjektModel  {
 	public void updateObserver() {
 		// TODO Auto-generated method stub
 		try {
-			for (int i = 0; i < observers.size(); ++i) 
+			for (int i = 0; i < observers.size(); ++i)
 				observers.get(i).aktualisieren(this);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -296,11 +280,4 @@ public class KundeSucheModel implements IObjektModel  {
 		return result;
 	}
 
-
-	
-
-
-	
-	
-	
 }

@@ -18,10 +18,10 @@ import com.view.IStandortView;
 
 import net.proteanit.sql.DbUtils;
 
-public class StandortModel implements IStandortModel { //Ben Kröncke
+public class StandortModel implements IStandortModel { // Ben Kröncke
 
 	private ArrayList<IStandortView> observers = new ArrayList<IStandortView>();
-	
+
 	private String talking;
 	private String standortID;
 	private String standortName;
@@ -33,10 +33,10 @@ public class StandortModel implements IStandortModel { //Ben Kröncke
 	private String hnr;
 	private int addressID;
 	private boolean success = false;
-	
-	
-	public void registriere(String standortID2, String standortName2, String telnr2, String talking2, String password2, String plz2, String strasse2, String ort2, String hnr2) {
-		
+
+	public void registriere(String standortID2, String standortName2, String telnr2, String talking2, String password2,
+			String plz2, String strasse2, String ort2, String hnr2) {
+
 		talking = talking2;
 		standortID = standortID2;
 		standortName = standortName2;
@@ -47,74 +47,57 @@ public class StandortModel implements IStandortModel { //Ben Kröncke
 		ort = ort2;
 		hnr = hnr2;
 
-        try {
+		try {
 			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here
 			vergleicheDaten(conn);
-			
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        updateObserver();
+		updateObserver();
 	}
-	
-	public void vergleicheDaten(Connection con)
-		    throws SQLException {
 
-		    Statement stmtStandortModel = con.createStatement();
-		    String update = null;
-		    String query = null;
+	public void vergleicheDaten(Connection con) throws SQLException {
 
-		    try {
-		    	if(talking.equals("register"))
-		    	{
-		    		registerStandort(stmtStandortModel);
-		    	}
-		    	else if(talking.equals("login"))
-		    	{
-		    		loginStandort(stmtStandortModel);
-		    	}
+		Statement stmtStandortModel = con.createStatement();
+		String update = null;
+		String query = null;
 
-		    
-		    
-		    
+		try {
+			if (talking.equals("register")) {
+				registerStandort(stmtStandortModel);
+			} else if (talking.equals("login")) {
+				loginStandort(stmtStandortModel);
+			}
 
-		        
-		        
-		        
-
-		    } catch (SQLException e ) {
-		    	e.printStackTrace();
-		    }
-
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+
+	}
 
 	private void loginStandort(Statement stmt) throws SQLException {
 		String query;
-		query = "SELECT ID,NAME,PASSWORD FROM STANDORT WHERE NAME = '" + standortName + "' AND PASSWORD = '" + password + "'";
-		
-  	
+		query = "SELECT ID,NAME,PASSWORD FROM STANDORT WHERE NAME = '" + standortName + "' AND PASSWORD = '" + password
+				+ "'";
+
 		String chckName = null;
 		String chckPW = null;
-		
+
 		ResultSet rs = stmt.executeQuery(query);
 		System.out.println(query);
-		while (rs.next())
-		{
+		while (rs.next()) {
 			chckName = rs.getString("NAME");
 			chckPW = rs.getString("PASSWORD");
 			standortID = rs.getString("ID");
 		}
-		
+
 		System.out.println(chckName);
 		System.out.println(chckPW);
-		
-		
-		
-		
-		if(standortName.equals(chckName) && password.equals(chckPW))
+
+		if (standortName.equals(chckName) && password.equals(chckPW))
 			success = true;
 		else
 			success = false;
@@ -124,26 +107,25 @@ public class StandortModel implements IStandortModel { //Ben Kröncke
 		String update;
 		String query;
 		boolean goon = true;
-		
+
 		goon = checkID(stmt, goon);
-		
-		
-		
-		if (goon == true)
-		{
-			update = "INSERT INTO ADRESSE VALUES (default, '" + plz + "', '" + strasse + "', '" + ort + "', 'Standortadresse', '" + hnr + "', null)";
+
+		if (goon == true) {
+			update = "INSERT INTO ADRESSE VALUES (default, '" + plz + "', '" + strasse + "', '" + ort
+					+ "', 'Standortadresse', '" + hnr + "', null)";
 			stmt.executeUpdate(update);
 			System.out.println(update);
-			query = "SELECT ID FROM ADRESSE WHERE PLZ = '" + plz + "' AND STRASSE = '" + strasse + "' AND hnr = '" + hnr + "' AND ORT = '" + ort + "'";
+			query = "SELECT ID FROM ADRESSE WHERE PLZ = '" + plz + "' AND STRASSE = '" + strasse + "' AND hnr = '" + hnr
+					+ "' AND ORT = '" + ort + "'";
 			System.out.println(query);
 			ResultSet rs = stmt.executeQuery(query);
-  	
+
 			while (rs.next())
 				addressID = rs.getInt("ID");
 			System.out.println(addressID);
-  	
-  	
-			update = "INSERT INTO STANDORT VALUES('" + standortID + "', '" + telnr + "', '" + addressID + "', '" + standortName + "', '" + password + "')";
+
+			update = "INSERT INTO STANDORT VALUES('" + standortID + "', '" + telnr + "', '" + addressID + "', '"
+					+ standortName + "', '" + password + "')";
 			stmt.executeUpdate(update);
 			System.out.println(update);
 		}
@@ -152,10 +134,10 @@ public class StandortModel implements IStandortModel { //Ben Kröncke
 	private boolean checkID(Statement stmt, boolean goon) throws SQLException {
 		try {
 			String query;
-			query = "SELECT ID FROM STANDORT WHERE ID = " + standortID +";";
+			query = "SELECT ID FROM STANDORT WHERE ID = " + standortID + ";";
 			System.out.println(query);
 			ResultSet rs = stmt.executeQuery(query);
-			
+
 			int newSID;
 			try {
 				rs.next();
@@ -172,14 +154,7 @@ public class StandortModel implements IStandortModel { //Ben Kröncke
 		}
 		return goon;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@Override
 	public void anmelden(IStandortView view) {
 		try {
@@ -187,15 +162,16 @@ public class StandortModel implements IStandortModel { //Ben Kröncke
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
-		
+		}
+
 	}
 
 	@Override
 	public void abmelden(IStandortView view) {
 		try {
-			if(observers.contains(view));
-				observers.remove(view);
+			if (observers.contains(view))
+				;
+			observers.remove(view);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -205,14 +181,14 @@ public class StandortModel implements IStandortModel { //Ben Kröncke
 	@Override
 	public void updateObserver() {
 		try {
-			for (int i = 0; i < observers.size(); ++i) 
+			for (int i = 0; i < observers.size(); ++i)
 				observers.get(i).aktualisieren(this);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public boolean pruefen() {
 		// TODO Auto-generated method stub
@@ -223,9 +199,4 @@ public class StandortModel implements IStandortModel { //Ben Kröncke
 		return Integer.parseInt(standortID);
 	}
 
-
-
-	
-	
-	
 }

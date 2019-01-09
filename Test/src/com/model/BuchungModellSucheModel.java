@@ -16,8 +16,8 @@ import com.view.IObjektView;
 
 import net.proteanit.sql.DbUtils;
 
-public class BuchungModellSucheModel implements IObjektModel{ //Ben Kröncke
-	
+public class BuchungModellSucheModel implements IObjektModel { // Ben Kröncke
+
 	private ArrayList<IObjektView> observers = new ArrayList<IObjektView>();
 	private ArrayList<GeraeteModell> mengeAnModellen = new ArrayList<GeraeteModell>();
 	private TableModel table;
@@ -39,8 +39,9 @@ public class BuchungModellSucheModel implements IObjektModel{ //Ben Kröncke
 	@Override
 	public void abmelden(IObjektView view) {
 		try {
-			if(observers.contains(view));
-				observers.remove(view);
+			if (observers.contains(view))
+				;
+			observers.remove(view);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,7 +51,7 @@ public class BuchungModellSucheModel implements IObjektModel{ //Ben Kröncke
 	@Override
 	public void updateObserver() {
 		try {
-			for (int i = 0; i < observers.size(); ++i) 
+			for (int i = 0; i < observers.size(); ++i)
 				observers.get(i).aktualisieren(this);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -58,50 +59,47 @@ public class BuchungModellSucheModel implements IObjektModel{ //Ben Kröncke
 		}
 	}
 
-
-	
 	public void holeModelle(String talking2, int typNr2, String search) {
 
 		talking = talking2;
 		typNr = typNr2;
 		this.search = search;
-		
-        try {
+
+		try {
 			Connection conn = DBConnectorSingleton.getCon();
 			// add application code here
 			viewTable(conn);
-			
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        updateObserver();
+		updateObserver();
 	}
-	
-	public void viewTable(Connection con)
-	    throws SQLException {
 
-	    Statement stmtBuchungModellSucheModel = null;
+	public void viewTable(Connection con) throws SQLException {
+
+		Statement stmtBuchungModellSucheModel = null;
 		String query = "select * from MODELL";
-		   
-	    if(talking.equals("master"))
-	    	query = "select * from MODELL where TYPID = '" + typNr + "'";
-	    if(talking.equals("gesamt"))
-	    	query = "select * from MODELL";
-		if(talking.equals("search"))
-		    query = "select * from Modell where TYPID = '" + typNr + "' AND NAME LIKE '" + search + "%'";
-		if(talking.equals("suchen"))
-			query = "select * from Modell WHERE ID LIKE '"+search+"%' OR NAME LIKE '"+search+"%' OR TYPID LIKE '"+search+"%' OR PREISLISTEID LIKE '"+search+"%'";
+
+		if (talking.equals("master"))
+			query = "select * from MODELL where TYPID = '" + typNr + "'";
+		if (talking.equals("gesamt"))
+			query = "select * from MODELL";
+		if (talking.equals("search"))
+			query = "select * from Modell where TYPID = '" + typNr + "' AND NAME LIKE '" + search + "%'";
+		if (talking.equals("suchen"))
+			query = "select * from Modell WHERE ID LIKE '" + search + "%' OR NAME LIKE '" + search
+					+ "%' OR TYPID LIKE '" + search + "%' OR PREISLISTEID LIKE '" + search + "%'";
 		try {
 			stmtBuchungModellSucheModel = con.createStatement();
 
 			System.out.println(query);
-				
+
 			ResultSet rs = stmtBuchungModellSucheModel.executeQuery(query);
 			table = DbUtils.resultSetToTableModel(rs);
 
-		} catch (SQLException e ) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
@@ -118,4 +116,3 @@ public class BuchungModellSucheModel implements IObjektModel{ //Ben Kröncke
 		return table;
 	}
 }
-

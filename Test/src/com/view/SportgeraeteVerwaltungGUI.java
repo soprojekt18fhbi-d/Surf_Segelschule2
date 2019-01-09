@@ -1,6 +1,6 @@
- /*
-  *  @author Michael Schmidt
-  */
+/*
+ *  @author Michael Schmidt
+ */
 
 package com.view;
 
@@ -39,7 +39,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
+public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView {
 	private BuchungGeraetSucheStrg controller;
 	private IObjektModel model;
 	private JTextField textSuchen;
@@ -50,61 +50,54 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 	private int modellNr;
 	private Icon lupe;
 
-
 	/**
 	 * Create the panel.
 	 */
 	public SportgeraeteVerwaltungGUI(IObjektModel models, BuchungGeraetSucheStrg controllers) {
 		model = models;
 		controller = controllers;
-		
-		
+
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.NORTH);
-		
+
 		JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnZurck.setBackground(new Color(255, 140, 0));
-		
+
 		textSuchen = new JTextField("Suchen...");
 		textSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textSuchen.setColumns(10);
-		
+
 		lupe = new ImageIcon(getClass().getResource("suchenLogo.png"));
 		JLabel label = new JLabel(lupe);
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-					.addComponent(label)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED, 100, Short.MAX_VALUE).addComponent(label)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)));
+		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label))
-					.addContainerGap(17, Short.MAX_VALUE))
-		);
+						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label))
+						.addContainerGap(17, Short.MAX_VALUE)));
 		panel.setLayout(gl_panel);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.DARK_GRAY);
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.columnWidths = new int[] { 0, 0, 0 };
+		gbl_panel_1.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panel_1.columnWeights = new double[] { 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_panel_1.rowWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
 		panel_1.setLayout(gbl_panel_1);
-		
+
 		JButton btnGeraetHinzu = new JButton("Ger\u00E4t hinzuf\u00FCgen");
 		btnGeraetHinzu.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnGeraetHinzu.setBackground(new Color(255, 140, 0));
@@ -115,7 +108,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 		gbc_btnGeraetHinzu.gridx = 0;
 		gbc_btnGeraetHinzu.gridy = 0;
 		panel_1.add(btnGeraetHinzu, gbc_btnGeraetHinzu);
-				
+
 		JButton btnGeraetAendern = new JButton("Ger\u00E4t \u00E4ndern");
 		btnGeraetAendern.setPreferredSize(new Dimension(300, 100));
 		btnGeraetAendern.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -126,7 +119,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 		gbc_btnGeraetAendern.gridx = 1;
 		gbc_btnGeraetAendern.gridy = 0;
 		panel_1.add(btnGeraetAendern, gbc_btnGeraetAendern);
-		
+
 		JButton btnGeraetDeaktivieren = new JButton("Aktivieren/Deaktivieren");
 		btnGeraetDeaktivieren.setPreferredSize(new Dimension(300, 100));
 		btnGeraetDeaktivieren.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -137,7 +130,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 		gbc_btnGeraetDeaktivieren.gridx = 2;
 		gbc_btnGeraetDeaktivieren.gridy = 0;
 		panel_1.add(btnGeraetDeaktivieren, gbc_btnGeraetDeaktivieren);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setPreferredSize(new Dimension(2, 375));
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -148,7 +141,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 1;
 		panel_1.add(scrollPane, gbc_scrollPane);
-		
+
 		DefaultTableModel tm = new DefaultTableModel();
 		table = new JTable(tm);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -160,11 +153,10 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 		tm.addColumn("Status");
 		tm.addColumn("Makel");
 		tm.addColumn("Farbe");
-		
-		
+
 		table.setPreferredScrollableViewportSize(new Dimension(450, 600));
 		scrollPane.setViewportView(table);
-		
+
 		JButton btnModelle = new JButton("Modelle");
 		btnModelle.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnModelle.setBackground(new Color(255, 140, 0));
@@ -177,18 +169,16 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 		gbc_btnModelle.gridx = 0;
 		gbc_btnModelle.gridy = 7;
 		panel_1.add(btnModelle, gbc_btnModelle);
-		
 
-		
-		//Funktionen der Button
+		// Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraeteVerwaltungGUI());
 				textSuchen.setText("Suchen...");
-				
+
 			}
 		});
-		
+
 		btnGeraetHinzu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraetAnlegenGUI());
@@ -196,14 +186,14 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 				textSuchen.setText("Suchen...");
 			}
 		});
-		
+
 		btnGeraetAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int zeile = table.getSelectedRow();
-				
+
 				if (zeile < 0)
 					JOptionPane.showMessageDialog(null, "Gerät auswählen!");
-				else{
+				else {
 					int modellID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 4)));
 					int geraeteID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 0)));
 					String farbe = String.valueOf(table.getValueAt(zeile, 7));
@@ -212,7 +202,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 					double verkaufspreis = Double.parseDouble(String.valueOf(table.getValueAt(zeile, 2)));
 					int baujahr = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 8)));
 					int standortID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 6)));
-										
+
 					MainFrame.getGeraetAendernGUI().setModellID(modellID);
 					MainFrame.getGeraetAendernGUI().setGeraeteID(geraeteID);
 					MainFrame.getGeraetAendernGUI().setFarbe(farbe);
@@ -227,14 +217,14 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 				}
 			}
 		});
-		
+
 		btnGeraetDeaktivieren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int zeile = table.getSelectedRow();
-				
+
 				if (zeile < 0)
 					JOptionPane.showMessageDialog(null, "Gerät auswählen!");
-				else{
+				else {
 					int modellID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 4)));
 					int geraeteID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 0)));
 					String status = String.valueOf(table.getValueAt(zeile, 5));
@@ -244,10 +234,10 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 					MainFrame.getGeraeteStatusGUI().anfrage();
 					MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraeteStatusGUI());
 					textSuchen.setText("Suchen...");
-				}	
+				}
 			}
 		});
-		
+
 		btnModelle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraeteModellVerwaltungGUI());
@@ -255,36 +245,35 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView{
 				textSuchen.setText("Suchen...");
 			}
 		});
-		
+
 		textSuchen.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {		
+			public void mouseClicked(MouseEvent e) {
 				textSuchen.setText("");
 			}
 		});
-		
-		textSuchen.addKeyListener(new KeyAdapter(){
+
+		textSuchen.addKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
 				talking = textSuchen.getText();
-				modellNr = 123456789; //damit methode "fetchGeräte" nicht geändert werden muss 
+				modellNr = 123456789; // damit methode "fetchGeräte" nicht geändert werden muss
 				anfrage();
 				talking = "gesamt";
 				modellNr = 0;
 			}
 		});
-		
+
 	}
+
 	public void aktualisieren(IObjektModel model) {
-		table.setModel(model.getTableModel());	
+		table.setModel(model.getTableModel());
 	}
-	
+
 	public void anfrage() {
 		model.anmelden(MainFrame.getBuchungGeraetSucheGUI());
 		controller.fetchGeraete(talking, modellNr, kNr, geraetNr, 0);
 		aktualisieren(model);
 		model.abmelden(MainFrame.getBuchungGeraetSucheGUI());
 	}
-	
 
 }
-

@@ -3,8 +3,8 @@ package com.entity;
 /**
  * @author michi
  */
-public class SportGeraet extends GeraeteModell{
-	
+public class SportGeraet extends GeraeteModell {
+
 	private int typID;
 	private String name;
 	private String führerschein;
@@ -15,13 +15,11 @@ public class SportGeraet extends GeraeteModell{
 	private int geraeteID;
 	private double verkaufspreis;
 	private double anschaffungspreis;
-	private int status; 
+	private int status;
 	private String makel;
-	
 
-	
-
-	public SportGeraet(int id, String name, String führerschein, String modellName, int modellID, int kostenID, int geraeteID, String farbe, double verkaufspreis, double anschaffungspreis, int status, String makel) {
+	public SportGeraet(int id, String name, String führerschein, String modellName, int modellID, int kostenID,
+			int geraeteID, String farbe, double verkaufspreis, double anschaffungspreis, int status, String makel) {
 		super(id, name, führerschein, modellName, modellID, kostenID);
 		this.name = name;
 		this.typID = id;
@@ -69,7 +67,6 @@ public class SportGeraet extends GeraeteModell{
 		this.status = status;
 	}
 
-
 	public String getModellName() {
 		return modellName;
 	}
@@ -77,7 +74,7 @@ public class SportGeraet extends GeraeteModell{
 	public void setModellName(String bezeichnung) {
 		this.modellName = bezeichnung;
 	}
-	
+
 	public int getTypID() {
 		return typID;
 	}
@@ -85,7 +82,7 @@ public class SportGeraet extends GeraeteModell{
 	public void setTypID(int id) {
 		this.typID = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -93,7 +90,7 @@ public class SportGeraet extends GeraeteModell{
 	public void setName(String bezeichnung) {
 		this.name = bezeichnung;
 	}
-	
+
 	public String getFührerschein() {
 		return führerschein;
 	}
@@ -109,12 +106,12 @@ public class SportGeraet extends GeraeteModell{
 	public void setKosten(int kostenID) {
 		this.kostenID = kostenID;
 	}
-	
+
 	public int getModellID() {
 		return modellID;
 	}
-	
-	public void setModellID(int modellID){
+
+	public void setModellID(int modellID) {
 		this.modellID = modellID;
 	}
 

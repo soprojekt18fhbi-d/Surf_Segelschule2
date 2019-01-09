@@ -1,7 +1,7 @@
- /*
-  *  @author Michael Schmidt
-  */
- 
+/*
+ *  @author Michael Schmidt
+ */
+
 package com.view;
 
 import javax.swing.JPanel;
@@ -34,7 +34,7 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
-public class GeraetAendernGUI extends JPanel implements IAnlegenView{
+public class GeraetAendernGUI extends JPanel implements IAnlegenView {
 	private JLabel lblGeraeteID;
 	private JLabel lblModellname;
 	private JTextField textAPreis;
@@ -43,7 +43,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 	private JTextField textBaujahr;
 	private JTextField textMakel;
 	private JComboBox comboBoxStandort;
-	
+
 	private int geraeteID;
 	private int modellID;
 	private String typ;
@@ -57,11 +57,10 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 	private int standortID;
 	private String standort;
 	private String talking = "first";
-	
+
 	IAnlegenModel model;
 	GeraetAnlegenStrg controller;
-	
-	
+
 	/**
 	 * 
 	 * Create the panel.
@@ -69,21 +68,21 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 	public GeraetAendernGUI(IAnlegenModel models, GeraetAnlegenStrg controllers) {
 		model = models;
 		controller = controllers;
-		
-		
-		setSize(900,550);
+
+		setSize(900, 550);
 		setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panel.columnWeights = new double[] { 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+				Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
-		
+
 		JLabel lblGeraetAendern = new JLabel("Ger\u00E4t \u00E4ndern:");
 		lblGeraetAendern.setForeground(Color.WHITE);
 		lblGeraetAendern.setFont(new Font("Tahoma", Font.BOLD, 32));
@@ -94,7 +93,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblGeraetAendern.gridx = 2;
 		gbc_lblGeraetAendern.gridy = 2;
 		panel.add(lblGeraetAendern, gbc_lblGeraetAendern);
-		
+
 		JLabel lblGeraet = new JLabel("Ger\u00E4teID:");
 		lblGeraet.setForeground(Color.WHITE);
 		lblGeraet.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -104,7 +103,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblGeraet.gridx = 2;
 		gbc_lblGeraet.gridy = 5;
 		panel.add(lblGeraet, gbc_lblGeraet);
-		
+
 		lblModellname = new JLabel();
 		lblModellname.setForeground(Color.WHITE);
 		lblModellname.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -114,7 +113,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblModellname.gridx = 3;
 		gbc_lblModellname.gridy = 4;
 		panel.add(lblModellname, gbc_lblModellname);
-		
+
 		JLabel lblModell = new JLabel("Modell:");
 		lblModell.setForeground(Color.WHITE);
 		lblModell.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -124,7 +123,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblModell.gridx = 2;
 		gbc_lblModell.gridy = 4;
 		panel.add(lblModell, gbc_lblModell);
-		
+
 		lblGeraeteID = new JLabel();
 		lblGeraeteID.setForeground(Color.WHITE);
 		lblGeraeteID.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -134,7 +133,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblGeraeteID.gridx = 3;
 		gbc_lblGeraeteID.gridy = 5;
 		panel.add(lblGeraeteID, gbc_lblGeraeteID);
-		
+
 		JLabel lblAnschaffungspreis = new JLabel("Anschaffungspreis:");
 		lblAnschaffungspreis.setForeground(Color.WHITE);
 		lblAnschaffungspreis.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -144,7 +143,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblAnschaffungspreis.gridx = 2;
 		gbc_lblAnschaffungspreis.gridy = 10;
 		panel.add(lblAnschaffungspreis, gbc_lblAnschaffungspreis);
-		
+
 		textAPreis = new JTextField();
 		textAPreis.setPreferredSize(new Dimension(6, 40));
 		textAPreis.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -155,7 +154,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_txtAPreis.gridy = 10;
 		panel.add(textAPreis, gbc_txtAPreis);
 		textAPreis.setColumns(10);
-		
+
 		JLabel label_1 = new JLabel("\u20AC");
 		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -165,7 +164,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_label_1.gridx = 4;
 		gbc_label_1.gridy = 10;
 		panel.add(label_1, gbc_label_1);
-		
+
 		JLabel lblVerkaufspreis = new JLabel("Verkaufspreis:");
 		lblVerkaufspreis.setForeground(Color.WHITE);
 		lblVerkaufspreis.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -175,7 +174,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblVerkaufspreis.gridx = 2;
 		gbc_lblVerkaufspreis.gridy = 11;
 		panel.add(lblVerkaufspreis, gbc_lblVerkaufspreis);
-		
+
 		textVPreis = new JTextField();
 		textVPreis.setPreferredSize(new Dimension(6, 40));
 		textVPreis.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -186,7 +185,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_textVPreis.gridy = 11;
 		panel.add(textVPreis, gbc_textVPreis);
 		textVPreis.setColumns(10);
-		
+
 		JLabel label = new JLabel("\u20AC");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -196,7 +195,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_label.gridx = 4;
 		gbc_label.gridy = 11;
 		panel.add(label, gbc_label);
-		
+
 		JLabel lblFarbe = new JLabel("Farbe:");
 		lblFarbe.setForeground(Color.WHITE);
 		lblFarbe.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -206,7 +205,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblFarbe.gridx = 2;
 		gbc_lblFarbe.gridy = 7;
 		panel.add(lblFarbe, gbc_lblFarbe);
-		
+
 		textFarbe = new JTextField();
 		textFarbe.setPreferredSize(new Dimension(6, 40));
 		textFarbe.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -217,7 +216,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_textFarbe.gridy = 7;
 		panel.add(textFarbe, gbc_textFarbe);
 		textFarbe.setColumns(10);
-		
+
 		JLabel lblBaujahr = new JLabel("Baujahr:");
 		lblBaujahr.setForeground(Color.WHITE);
 		lblBaujahr.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -227,7 +226,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblBaujahr.gridx = 2;
 		gbc_lblBaujahr.gridy = 8;
 		panel.add(lblBaujahr, gbc_lblBaujahr);
-		
+
 		textBaujahr = new JTextField();
 		textBaujahr.setPreferredSize(new Dimension(6, 40));
 		textBaujahr.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -238,7 +237,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_textBaujahr.gridy = 8;
 		panel.add(textBaujahr, gbc_textBaujahr);
 		textBaujahr.setColumns(10);
-		
+
 		JLabel lblMakel = new JLabel("Makel:");
 		lblMakel.setForeground(Color.WHITE);
 		lblMakel.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -248,7 +247,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblMakel.gridx = 2;
 		gbc_lblMakel.gridy = 9;
 		panel.add(lblMakel, gbc_lblMakel);
-		
+
 		textMakel = new JTextField();
 		textMakel.setPreferredSize(new Dimension(6, 40));
 		textMakel.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -259,7 +258,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_textMakel.gridy = 9;
 		panel.add(textMakel, gbc_textMakel);
 		textMakel.setColumns(10);
-		
+
 		JLabel lblStandortid = new JLabel("StandortID:");
 		lblStandortid.setForeground(Color.WHITE);
 		lblStandortid.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -269,7 +268,7 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblStandortid.gridx = 2;
 		gbc_lblStandortid.gridy = 12;
 		panel.add(lblStandortid, gbc_lblStandortid);
-		
+
 		comboBoxStandort = new JComboBox();
 		comboBoxStandort.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_comboBoxStandort = new GridBagConstraints();
@@ -278,70 +277,63 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		gbc_comboBoxStandort.gridx = 3;
 		gbc_comboBoxStandort.gridy = 12;
 		panel.add(comboBoxStandort, gbc_comboBoxStandort);
-		
+
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.DARK_GRAY);
 		add(panel_2, BorderLayout.SOUTH);
-		
+
 		JButton btnBestaetigen = new JButton("best\u00E4tigen");
 		btnBestaetigen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnBestaetigen.setBackground(new Color(255, 140, 0));
-		
+
 		JButton btnAbbrechen = new JButton("abbrechen");
 		btnAbbrechen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnAbbrechen.setBackground(new Color(255, 140, 0));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
-		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addContainerGap(580, Short.MAX_VALUE)
-					.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnBestaetigen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
-		gl_panel_2.setVerticalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+		gl_panel_2
+				.setHorizontalGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panel_2.createSequentialGroup().addContainerGap(580, Short.MAX_VALUE)
+								.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnBestaetigen,
+										GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+								.addContainerGap()));
+		gl_panel_2.setVerticalGroup(gl_panel_2.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_2
+				.createSequentialGroup().addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnBestaetigen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-		);
+						.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))));
 		panel_2.setLayout(gl_panel_2);
-		
-		
 
-		
-		//Funktionen der Button
+		// Funktionen der Button
 		btnBestaetigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				talking = "aendern";
-				
+
 				try {
-					if(textFarbe.getText().trim().isEmpty() || textBaujahr.getText().trim().isEmpty() || textAPreis.getText().trim().isEmpty() || textVPreis.getText().trim().isEmpty()){
+					if (textFarbe.getText().trim().isEmpty() || textBaujahr.getText().trim().isEmpty()
+							|| textAPreis.getText().trim().isEmpty() || textVPreis.getText().trim().isEmpty()) {
 						JOptionPane.showMessageDialog(null, "Füllen Sie alle Pflichtfelder aus!");
-					}
-					else{
+					} else {
 						geraetAendern();
-						
+
 						JOptionPane.showMessageDialog(null, "Das Gerät wurde erfolgreich geändert!");
 						MainFrame.change(MainFrame.getGeraetAendernGUI(), MainFrame.getSportgeraeteGUI());
 						MainFrame.getSportgeraeteGUI().anfrage();
-					}					
+					}
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Das Gerät konnte nicht geändert werden");
 				}
-			}		
-		}); 
-		
+			}
+		});
+
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getSportgeraeteGUI().anfrage();
-				MainFrame.change(MainFrame.getGeraetAendernGUI(), MainFrame.getSportgeraeteGUI());			}
+				MainFrame.change(MainFrame.getGeraetAendernGUI(), MainFrame.getSportgeraeteGUI());
+			}
 		});
 	}
-	
+
 	private void geraetAendern() {
 		farbe = textFarbe.getText();
 		baujahr = Integer.parseInt(textBaujahr.getText());
@@ -353,44 +345,45 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 		makel = textMakel.getText();
 		if (makel.equals(""))
 			makel = "Keine";
-		controller.anfrageGeraethinzufuegen(talking, geraet, standort, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
+		controller.anfrageGeraethinzufuegen(talking, geraet, standort, makel, verkaufspreis, anschaffungspreis, farbe,
+				baujahr);
 	}
-	
-	public void setGeraeteID(int id){
+
+	public void setGeraeteID(int id) {
 		this.geraeteID = id;
 		lblGeraeteID.setText(String.valueOf(geraeteID));
 	}
-	
-	public void setModellID(int id){
+
+	public void setModellID(int id) {
 		this.modellID = id;
 	}
-	
-	public void setFarbe(String farbe){
+
+	public void setFarbe(String farbe) {
 		this.farbe = farbe;
 		textFarbe.setText(farbe);
 	}
-	
-	public void setMakel(String makel){
+
+	public void setMakel(String makel) {
 		this.makel = makel;
 		textMakel.setText(makel);
 	}
-	
-	public void setBaujahr(int baujahr){
+
+	public void setBaujahr(int baujahr) {
 		this.baujahr = baujahr;
 		textBaujahr.setText(String.valueOf(baujahr));
 	}
-	
-	public void setAnschaffungspreis(double apreis){
+
+	public void setAnschaffungspreis(double apreis) {
 		this.anschaffungspreis = apreis;
 		textAPreis.setText(String.valueOf(anschaffungspreis));
 	}
-	
-	public void setVerkaufspreis(double vpreis){
+
+	public void setVerkaufspreis(double vpreis) {
 		this.verkaufspreis = vpreis;
 		textVPreis.setText(String.valueOf(verkaufspreis));
 	}
 
-	public void setStandort(int standortID){
+	public void setStandort(int standortID) {
 		this.standortID = standortID;
 		standort = String.valueOf(standortID);
 	}
@@ -398,27 +391,28 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView{
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
 		ArrayList<String> comboboxItems = model.getObertypen();
-		if (talking.equals("standortID")){
-			for(int i = 0; i < comboboxItems.size(); i++) {
+		if (talking.equals("standortID")) {
+			for (int i = 0; i < comboboxItems.size(); i++) {
 				comboBoxStandort.addItem(comboboxItems.get(i));
 			}
 			comboBoxStandort.setSelectedItem(standort);
-		}
-		else if (talking.equals("modellname")){
+		} else if (talking.equals("modellname")) {
 			lblModellname.setText(comboboxItems.get(0));
 		}
 		comboboxItems.clear();
 	}
-	
+
 	public void anfrage() {
 		comboBoxStandort.removeAllItems();
 		model.anmelden(this);
 		talking = "standortID";
-		controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, baujahr);
+		controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe,
+				baujahr);
 		aktualisieren(model);
 		talking = "modellname";
-		controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe, modellID);
+		controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe,
+				modellID);
 		aktualisieren(model);
-		model.abmelden(this);		
+		model.abmelden(this);
 	}
 }

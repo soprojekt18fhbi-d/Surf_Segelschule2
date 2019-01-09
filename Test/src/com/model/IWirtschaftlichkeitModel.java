@@ -8,44 +8,40 @@ import com.view.IWirtschaftlichkeitView;
 
 //Interface, dass den Beobachtern auch ermöglicht, auf die jeweiligen Wirtschaftlichkeitswerte aus dem Model zuzugreifen
 
+public interface IWirtschaftlichkeitModel { // Ben Kröncke
 
-public interface IWirtschaftlichkeitModel { //Ben Kröncke
-		
-		/**
-		 * ArrayList für Möglichkeit der Aufnahme mehrerer Observer(Views)
-		 * 
-		 * 
-		 */
-		public ArrayList<IWirtschaftlichkeitView> observers = new ArrayList<IWirtschaftlichkeitView>();
-		
-		
-		
-		/**
-		 * Anmelden einer View.
-		 * 
-		 *
-		 */
-		public void anmelden(IWirtschaftlichkeitView view);
+	/**
+	 * ArrayList für Möglichkeit der Aufnahme mehrerer Observer(Views)
+	 * 
+	 * 
+	 */
+	public ArrayList<IWirtschaftlichkeitView> observers = new ArrayList<IWirtschaftlichkeitView>();
 
-		/**
-		 * Abmelden einer View.
-		 * 
-		 * 
-		 */
-		public void abmelden(IWirtschaftlichkeitView view);
-		
-		
-		/**
-		 * Durchgehen der Observer und Updateaufruf.
-		 * 
-		 *
-		 */
-		public void updateObserver();
+	/**
+	 * Anmelden einer View.
+	 * 
+	 *
+	 */
+	public void anmelden(IWirtschaftlichkeitView view);
 
-		public double getIncome();
+	/**
+	 * Abmelden einer View.
+	 * 
+	 * 
+	 */
+	public void abmelden(IWirtschaftlichkeitView view);
 
-		public double getExpenses();
-		
-		public ArrayList<String> getStrings();
-		
+	/**
+	 * Durchgehen der Observer und Updateaufruf.
+	 * 
+	 *
+	 */
+	public void updateObserver();
+
+	public double getIncome();
+
+	public double getExpenses();
+
+	public ArrayList<String> getStrings();
+
 }

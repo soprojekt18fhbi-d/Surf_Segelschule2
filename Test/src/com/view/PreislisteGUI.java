@@ -36,7 +36,7 @@ import com.model.IAnlegenModel;
 import com.model.IModelSuche;
 import com.model.IObjektModel;
 import com.model.PreislisteSucheModel;
- 
+
 public class PreislisteGUI extends JPanel implements IObjektView {
 	private JTextField tfSuche;
 	private JTable table;
@@ -47,7 +47,6 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 
 	public PreislisteGUI(IObjektModel smodel, PreislisteSucheStrg scontroller) {
 
- 
 		this.oModel = smodel;
 		this.sController = scontroller;
 
@@ -193,13 +192,11 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 		table.setPreferredScrollableViewportSize(new Dimension(450, 600));
 		scrollPane.setViewportView(table);
 
-
 		GridBagConstraints gbc_btnAuswhlen = new GridBagConstraints();
 		gbc_btnAuswhlen.anchor = GridBagConstraints.EAST;
 		gbc_btnAuswhlen.fill = GridBagConstraints.VERTICAL;
 		gbc_btnAuswhlen.gridx = 1;
 		gbc_btnAuswhlen.gridy = 7;
-
 
 		// Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
@@ -233,10 +230,10 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 
 				int zeile = table.getSelectedRow();
 
-				if (zeile <0)
+				if (zeile < 0)
 					JOptionPane.showMessageDialog(null, "Bitte eine Preisliste auswählen.");
 				else {
-					
+
 					String[] preislistetabelle = tableRowToArray(table);
 					MainFrame.getPreislisteAendernGUI().textFelderInArray();
 					MainFrame.getPreislisteAendernGUI().setPreislisteTextfelder(preislistetabelle);
@@ -244,7 +241,6 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 					MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getPreislisteAendernGUI());
 					tableLeeren();
 				}
-				
 
 			}
 		});
@@ -270,15 +266,14 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 		int nCol = dtm.getColumnCount();
 		String[] tableData = new String[nCol];
 		for (int j = 0; j < nCol; j++)
-			tableData[j] =  String.valueOf(dtm.getValueAt(selectedRowIndex, j));
+			tableData[j] = String.valueOf(dtm.getValueAt(selectedRowIndex, j));
 		return tableData;
 	}
-	
+
 	private void tableLeeren() {
-		DefaultTableModel dm = (DefaultTableModel)table.getModel();
-		while(dm.getRowCount() > 0)
-		{
-		    dm.removeRow(0);
+		DefaultTableModel dm = (DefaultTableModel) table.getModel();
+		while (dm.getRowCount() > 0) {
+			dm.removeRow(0);
 		}
 	}
 

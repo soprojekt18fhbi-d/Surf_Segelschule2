@@ -1,6 +1,6 @@
- /*
-  *  @author Michael Schmidt
-  */
+/*
+ *  @author Michael Schmidt
+ */
 
 package com.view;
 
@@ -42,7 +42,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 
 public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
-	
+
 	private BuchungTypSucheStrg controller;
 	private IObjektModel model;
 	private int knr;
@@ -59,53 +59,48 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 	public GeraeteTypVerwaltungGUI(IObjektModel smodel, BuchungTypSucheStrg scontroller) {
 		model = smodel;
 		controller = scontroller;
-		
+
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.NORTH);
-		
+
 		JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnZurck.setBackground(new Color(255, 140, 0));
-		
+
 		textSuchen = new JTextField("Suchen...");
 		textSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textSuchen.setColumns(10);
-		
+
 		lupe = new ImageIcon(getClass().getResource("suchenLogo.png"));
 		JLabel label = new JLabel(lupe);
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-					.addComponent(label)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED, 100, Short.MAX_VALUE).addComponent(label)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)));
+		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label))
-					.addContainerGap(17, Short.MAX_VALUE))
-		);
+						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnZurck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textSuchen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label))
+						.addContainerGap(17, Short.MAX_VALUE)));
 		panel.setLayout(gl_panel);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.DARK_GRAY);
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{1.0, 1.0};
-		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.columnWidths = new int[] { 0, 0 };
+		gbl_panel_1.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panel_1.columnWeights = new double[] { 1.0, 1.0 };
+		gbl_panel_1.rowWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
 		panel_1.setLayout(gbl_panel_1);
-		
+
 		JButton btnTypHinzu = new JButton("Typ hinzuf\u00FCgen");
 		btnTypHinzu.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnTypHinzu.setBackground(new Color(255, 140, 0));
@@ -116,7 +111,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		gbc_btnTypHinzu.gridx = 0;
 		gbc_btnTypHinzu.gridy = 0;
 		panel_1.add(btnTypHinzu, gbc_btnTypHinzu);
-				
+
 		JButton btnTypAendern = new JButton("Typ \u00E4ndern");
 		btnTypAendern.setBackground(new Color(255, 140, 0));
 		btnTypAendern.setPreferredSize(new Dimension(300, 23));
@@ -127,7 +122,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		gbc_btnTypAendern.gridx = 1;
 		gbc_btnTypAendern.gridy = 0;
 		panel_1.add(btnTypAendern, gbc_btnTypAendern);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setForeground(Color.WHITE);
 		scrollPane.setBackground(Color.DARK_GRAY);
@@ -140,7 +135,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 1;
 		panel_1.add(scrollPane, gbc_scrollPane);
-		
+
 		DefaultTableModel tm = new DefaultTableModel();
 		table = new JTable(tm);
 		table.setGridColor(Color.DARK_GRAY);
@@ -149,12 +144,10 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		tm.addColumn("TypID");
 		tm.addColumn("Name");
 		tm.addColumn("Führerschein");
-		
-		
+
 		table.setPreferredScrollableViewportSize(new Dimension(450, 600));
 		scrollPane.setViewportView(table);
-		
-		
+
 		JButton btnModelle = new JButton("Modelle");
 		btnModelle.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnModelle.setBackground(new Color(255, 140, 0));
@@ -166,31 +159,30 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 		gbc_btnModelle.gridx = 1;
 		gbc_btnModelle.gridy = 7;
 		panel_1.add(btnModelle, gbc_btnModelle);
-				
-		
-		//Funktionen der Button
+
+		// Funktionen der Button
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteVerwaltungGUI());
 				textSuchen.setText("Suchen...");
-				
+
 			}
 		});
-		
+
 		btnTypHinzu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTypAnlegenGUI());
 				textSuchen.setText("Suchen...");
 			}
 		});
-		
+
 		btnTypAendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int zeile = table.getSelectedRow();
-				
+
 				if (zeile < 0)
 					JOptionPane.showMessageDialog(null, "Typen auswählen!");
-				else{
+				else {
 					String idS = String.valueOf(table.getValueAt(zeile, 0));
 					int id = Integer.parseInt(idS);
 					String name = String.valueOf(table.getValueAt(zeile, 1));
@@ -202,10 +194,10 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 					MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTypAendernGUI());
 					textSuchen.setText("Suchen...");
 					System.out.println(fuehrerschein);
-				}	
+				}
 			}
 		});
-		
+
 		btnModelle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getGeraeteModellVerwaltungGUI());
@@ -213,37 +205,37 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 				textSuchen.setText("Suchen...");
 			}
 		});
-		
+
 		textSuchen.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {		
+			public void mouseClicked(MouseEvent e) {
 				textSuchen.setText("");
 			}
 		});
-		
-		textSuchen.addKeyListener(new KeyAdapter(){
+
+		textSuchen.addKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
 				talking = "suchen";
 				anfrage();
 				talking = "gesamt";
 			}
 		});
-		
+
 	}
-	
+
 	public void aktualisieren(IObjektModel model) {
 		table.setModel(model.getTableModel());
-		
+
 	}
-	
+
 	public void anfrage() {
 		model.anmelden(MainFrame.getBuchungTypSucheGUI());
 		controller.fetchTypen(knr, talking, textSuchen.getText(), kunde);
 		aktualisieren(model);
 		model.abmelden(MainFrame.getBuchungTypSucheGUI());
 	}
-	
-	public void setTalking(String talking){
+
+	public void setTalking(String talking) {
 		this.talking = talking;
 	}
 

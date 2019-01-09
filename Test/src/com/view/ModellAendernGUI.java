@@ -1,6 +1,6 @@
- /*
-  *  @author Michael Schmidt
-  */
+/*
+ *  @author Michael Schmidt
+ */
 
 package com.view;
 
@@ -32,9 +32,9 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
-public class ModellAendernGUI extends JPanel implements IAnlegenView{
+public class ModellAendernGUI extends JPanel implements IAnlegenView {
 	private JTextField txtModell;
-	
+
 	IAnlegenModel model;
 	ModellAnlegenStrg controller;
 	private String talking = "second";
@@ -47,29 +47,29 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 	private int preisID;
 	private int modellID;
 	private JLabel lblModell;
-	
-	
+
 	/**
 	 * 
 	 * Create the panel.
 	 */
 	public ModellAendernGUI(IAnlegenModel models, ModellAnlegenStrg controllers) {
 		model = models;
-		controller = controllers;;
-		
-		setSize(900,550);
+		controller = controllers;
+		;
+
+		setSize(900, 550);
 		setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panel.columnWeights = new double[] { 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
-		
+
 		JLabel lblModellAendern = new JLabel("Modell \u00E4ndern:");
 		lblModellAendern.setForeground(Color.WHITE);
 		lblModellAendern.setFont(new Font("Tahoma", Font.BOLD, 32));
@@ -80,7 +80,7 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblModellAendern.gridx = 2;
 		gbc_lblModellAendern.gridy = 2;
 		panel.add(lblModellAendern, gbc_lblModellAendern);
-		
+
 		JLabel lblModell_1 = new JLabel("Modell:");
 		lblModell_1.setForeground(Color.WHITE);
 		lblModell_1.setFont(new Font("Tahoma", Font.PLAIN, 28));
@@ -90,7 +90,7 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblModell_1.gridx = 2;
 		gbc_lblModell_1.gridy = 4;
 		panel.add(lblModell_1, gbc_lblModell_1);
-		
+
 		lblModell = new JLabel("");
 		lblModell.setForeground(Color.WHITE);
 		lblModell.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -100,7 +100,7 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblModell.gridx = 3;
 		gbc_lblModell.gridy = 4;
 		panel.add(lblModell, gbc_lblModell);
-		
+
 		JLabel lblModellname = new JLabel("neuer Modellname:");
 		lblModellname.setForeground(Color.WHITE);
 		lblModellname.setFont(new Font("Tahoma", Font.PLAIN, 28));
@@ -110,7 +110,7 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblModellname.gridx = 2;
 		gbc_lblModellname.gridy = 6;
 		panel.add(lblModellname, gbc_lblModellname);
-		
+
 		txtModell = new JTextField();
 		txtModell.setPreferredSize(new Dimension(6, 40));
 		txtModell.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -121,7 +121,7 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 		gbc_txtModell.gridy = 6;
 		panel.add(txtModell, gbc_txtModell);
 		txtModell.setColumns(10);
-		
+
 		JLabel lblTyp = new JLabel("Typ:");
 		lblTyp.setForeground(Color.WHITE);
 		lblTyp.setFont(new Font("Tahoma", Font.PLAIN, 28));
@@ -131,17 +131,17 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblTyp.gridx = 2;
 		gbc_lblTyp.gridy = 7;
 		panel.add(lblTyp, gbc_lblTyp);
-		
+
 		comboBoxTyp = new JComboBox<String>();
 		comboBoxTyp.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		
+
 		GridBagConstraints gbc_comboBoxTyp = new GridBagConstraints();
 		gbc_comboBoxTyp.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBoxTyp.fill = GridBagConstraints.BOTH;
 		gbc_comboBoxTyp.gridx = 3;
 		gbc_comboBoxTyp.gridy = 7;
 		panel.add(comboBoxTyp, gbc_comboBoxTyp);
-		
+
 		JLabel lblPreiskateg = new JLabel("Preiskategorie:");
 		lblPreiskateg.setForeground(Color.WHITE);
 		lblPreiskateg.setFont(new Font("Tahoma", Font.PLAIN, 28));
@@ -151,54 +151,48 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 		gbc_lblPreiskateg.gridx = 2;
 		gbc_lblPreiskateg.gridy = 8;
 		panel.add(lblPreiskateg, gbc_lblPreiskateg);
-		
+
 		comboBoxPreis = new JComboBox();
 		comboBoxPreis.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				
+
 		GridBagConstraints gbc_comboBoxPreis = new GridBagConstraints();
 		gbc_comboBoxPreis.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBoxPreis.fill = GridBagConstraints.BOTH;
 		gbc_comboBoxPreis.gridx = 3;
 		gbc_comboBoxPreis.gridy = 8;
 		panel.add(comboBoxPreis, gbc_comboBoxPreis);
-		
+
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.DARK_GRAY);
 		add(panel_2, BorderLayout.SOUTH);
-		
+
 		JButton btnBestaetigen = new JButton("best\u00E4tigen");
 		btnBestaetigen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnBestaetigen.setBackground(new Color(255, 140, 0));
-		
+
 		JButton btnAbbrechen = new JButton("abbrechen");
 		btnAbbrechen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnAbbrechen.setBackground(new Color(255, 140, 0));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
-		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addContainerGap(573, Short.MAX_VALUE)
-					.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnBestaetigen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addGap(17))
-		);
-		gl_panel_2.setVerticalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(0, 0, Short.MAX_VALUE)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+		gl_panel_2.setHorizontalGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel_2.createSequentialGroup().addContainerGap(573, Short.MAX_VALUE)
+						.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(btnBestaetigen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+						.addGap(17)));
+		gl_panel_2.setVerticalGroup(gl_panel_2.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_2
+				.createSequentialGroup().addGap(0, 0, Short.MAX_VALUE)
+				.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnAbbrechen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnBestaetigen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
-		);
+				.addContainerGap()));
 		panel_2.setLayout(gl_panel_2);
-		
-		//Funktionen der Button
+
+		// Funktionen der Button
 		btnBestaetigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				talking = "aendern";
-				
+
 				try {
 					modellAendern();
 					JOptionPane.showMessageDialog(null, "Das Modell wurde erfolgreich geändert!");
@@ -207,64 +201,63 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 					txtModell.setText("");
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Das Modell konnte nicht geändert werden");
-				}				
+				}
 			}
-		}); 
-		
+		});
+
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getGeraeteModellVerwaltungGUI().anfrage();
-				MainFrame.change(MainFrame.getModellAendernGUI(), MainFrame.getGeraeteModellVerwaltungGUI());			}
+				MainFrame.change(MainFrame.getModellAendernGUI(), MainFrame.getGeraeteModellVerwaltungGUI());
+			}
 		});
 	}
-	
+
 	private void modellAendern() {
 		name = txtModell.getText();
 		if (name == "")
-			name = modellName;								
+			name = modellName;
 		typ = String.valueOf(comboBoxTyp.getSelectedItem());
 		String preisKateg = String.valueOf(comboBoxPreis.getSelectedItem());
 		preisID = Integer.parseInt(preisKateg);
-		controller.anfrageModellhinzufuegen(talking, name, typ, preisID, modellID);						
+		controller.anfrageModellhinzufuegen(talking, name, typ, preisID, modellID);
 		aktualisieren(model);
 	}
 
 	public void setModellID(int id) {
 		this.modellID = id;
 	}
-	
-	public void setText(String text){
+
+	public void setText(String text) {
 		this.modellName = text;
 		lblModell.setText(text);
 	}
-	
+
 	public void setPreisID(int id) {
 		this.preisID = id;
 	}
-	
+
 	public void setTypID(int id) {
 		this.typID = id;
 	}
-	
+
 	public void aktualisieren(IAnlegenModel model) {
 		ArrayList<String> comboboxItems = model.getObertypen();
-		if (talking.equals("first")){				
-			for(int i = 0; i < comboboxItems.size(); i++) {
+		if (talking.equals("first")) {
+			for (int i = 0; i < comboboxItems.size(); i++) {
 				comboBoxTyp.addItem(comboboxItems.get(i));
-			}	
-		comboBoxTyp.setSelectedIndex(typID-1);
-		}
-		else if (talking.equals("second")){
-			for(int i = 0; i < comboboxItems.size(); i++) {
+			}
+			comboBoxTyp.setSelectedIndex(typID - 1);
+		} else if (talking.equals("second")) {
+			for (int i = 0; i < comboboxItems.size(); i++) {
 				comboBoxPreis.addItem(comboboxItems.get(i));
 			}
-		comboBoxPreis.setSelectedIndex(preisID-1);
+			comboBoxPreis.setSelectedIndex(preisID - 1);
 		}
 		comboboxItems.clear();
-		
+
 	}
-	
-	
+
 	public void anfrage() {
 		comboBoxTyp.removeAllItems();
 		model.anmelden(this);
@@ -273,8 +266,7 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView{
 		talking = "second";
 		controller.anfrageModellhinzufuegen(talking, name, typ, preisID, modellID);
 		model.abmelden(this);
-		
-	}
-	
-}
 
+	}
+
+}

@@ -8,7 +8,6 @@ public class Adresse implements IAdresse {
 	private int plz;
 	private String hausnummer;
 	private String art;
-	
 
 	public Adresse(String strasse, String hausnummer, String ort, int plz, String art) {
 		this.strasse = strasse;
@@ -18,7 +17,9 @@ public class Adresse implements IAdresse {
 		this.art = art;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IAdresse#getStrasse()
 	 */
 	@Override
@@ -26,7 +27,9 @@ public class Adresse implements IAdresse {
 		return this.strasse;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IAdresse#setStrasse(java.lang.String)
 	 */
 	@Override
@@ -34,7 +37,9 @@ public class Adresse implements IAdresse {
 		this.strasse = strasse;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IAdresse#getOrt()
 	 */
 	@Override
@@ -42,7 +47,9 @@ public class Adresse implements IAdresse {
 		return this.ort;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IAdresse#setOrt(java.lang.String)
 	 */
 	@Override
@@ -50,7 +57,9 @@ public class Adresse implements IAdresse {
 		this.ort = ort;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IAdresse#getPlz()
 	 */
 	@Override
@@ -58,7 +67,9 @@ public class Adresse implements IAdresse {
 		return this.plz;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IAdresse#setPlz(int)
 	 */
 	@Override
@@ -66,7 +77,9 @@ public class Adresse implements IAdresse {
 		this.plz = plz;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IAdresse#getHausnummer()
 	 */
 	@Override
@@ -74,15 +87,19 @@ public class Adresse implements IAdresse {
 		return this.hausnummer;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IAdresse#setHausnummer(java.lang.String)
 	 */
 	@Override
 	public void setHausnummer(String hausnummer) {
 		this.hausnummer = hausnummer;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IAdresse#getArt()
 	 */
 	@Override
@@ -90,21 +107,23 @@ public class Adresse implements IAdresse {
 		return art;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IAdresse#setArt(java.lang.String)
 	 */
 	@Override
 	public void setArt(String art) {
 		this.art = art;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Domaenklassen.IAdresse#toString()
 	 */
-	public String toString(){
+	public String toString() {
 		return this.strasse + ";" + this.hausnummer + ";" + this.plz + ";" + this.ort;
 	}
-	
-	
 
 }

@@ -46,10 +46,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.SystemColor;
 
-public class KundeAendernGUI extends JPanel implements IObjektView{
+public class KundeAendernGUI extends JPanel implements IObjektView {
 	private IObjektModel model;
 	private KundeSucheStrg controller;
-	
+
 	private JTextField variableKnr;
 	private JTextField txtKnr;
 	private JTextField txtNachname;
@@ -70,50 +70,47 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 	public KundeAendernGUI(IObjektModel smodel, KundeSucheStrg scontroller) {
 		this.model = smodel;
 		this.controller = scontroller;
-		
-		setSize(980,580);
+
+		setSize(980, 580);
 		setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		add(panel, BorderLayout.NORTH);
-		
+
 		JButton btnZurueck = new JButton("Zur\u00FCck");
 		btnZurueck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnZurueck.setBackground(new Color(255, 140, 0));
-		
+
 		JButton btnHauptmen = new JButton("Hauptmen\u00FC");
 		btnHauptmen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnHauptmen.setBackground(new Color(255, 140, 0));
-		
+
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addComponent(btnZurueck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 828, Short.MAX_VALUE)
-					.addComponent(btnHauptmen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnZurueck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED, 828, Short.MAX_VALUE)
+						.addComponent(btnHauptmen, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)));
+		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnZurueck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHauptmen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
+						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnZurueck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnHauptmen, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		panel.setLayout(gl_panel);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.DARK_GRAY);
 		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.05, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panel_1.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panel_1.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+				Double.MIN_VALUE };
+		gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.05, 1.0, Double.MIN_VALUE };
 		panel_1.setLayout(gbl_panel_1);
-		
+
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
@@ -124,11 +121,11 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		gbc_comboBox_1.gridx = 0;
 		gbc_comboBox_1.gridy = 0;
 		panel_1.add(comboBox_1, gbc_comboBox_1);
-		
+
 		comboBox_1.addItem("Wähle");
 		comboBox_1.addItem("Kunde");
 		comboBox_1.addItem("Adresse");
-		
+
 		txtKnr = new JTextField();
 		GridBagConstraints gbc_txtKnr = new GridBagConstraints();
 		gbc_txtKnr.gridwidth = 5;
@@ -138,7 +135,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		gbc_txtKnr.gridy = 0;
 		panel_1.add(txtKnr, gbc_txtKnr);
 		txtKnr.setColumns(10);
-		
+
 		txtNachname = new JTextField();
 		GridBagConstraints gbc_txtNachname = new GridBagConstraints();
 		gbc_txtNachname.gridwidth = 5;
@@ -148,7 +145,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		gbc_txtNachname.gridy = 1;
 		panel_1.add(txtNachname, gbc_txtNachname);
 		txtNachname.setColumns(10);
-		
+
 		variableKnr = new JTextField();
 		variableKnr.setEditable(false);
 		GridBagConstraints gbc_variableKnr = new GridBagConstraints();
@@ -160,7 +157,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		gbc_variableKnr.gridy = 2;
 		panel_1.add(variableKnr, gbc_variableKnr);
 		variableKnr.setColumns(10);
-		
+
 		txtVorname = new JTextField();
 		GridBagConstraints gbc_txtVorname = new GridBagConstraints();
 		gbc_txtVorname.gridwidth = 5;
@@ -170,7 +167,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		gbc_txtVorname.gridy = 2;
 		panel_1.add(txtVorname, gbc_txtVorname);
 		txtVorname.setColumns(10);
-		
+
 		txtEmail = new JTextField();
 		GridBagConstraints gbc_txtEmail = new GridBagConstraints();
 		gbc_txtEmail.gridwidth = 5;
@@ -180,7 +177,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		gbc_txtEmail.gridy = 3;
 		panel_1.add(txtEmail, gbc_txtEmail);
 		txtEmail.setColumns(10);
-		
+
 		JCheckBox chckbxSurfschein = new JCheckBox("Surfschein");
 		chckbxSurfschein.setBackground(Color.DARK_GRAY);
 		chckbxSurfschein.setForeground(Color.WHITE);
@@ -191,7 +188,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		gbc_chckbxSurfschein.gridx = 0;
 		gbc_chckbxSurfschein.gridy = 4;
 		panel_1.add(chckbxSurfschein, gbc_chckbxSurfschein);
-		
+
 		JCheckBox chckbxMotorbootschein = new JCheckBox("Motorbootschein");
 		chckbxMotorbootschein.setForeground(Color.WHITE);
 		chckbxMotorbootschein.setBackground(Color.DARK_GRAY);
@@ -202,7 +199,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		gbc_chckbxMotorbootschein.gridx = 2;
 		gbc_chckbxMotorbootschein.gridy = 4;
 		panel_1.add(chckbxMotorbootschein, gbc_chckbxMotorbootschein);
-		
+
 		JCheckBox chckbxSegelschein = new JCheckBox("Segelschein");
 		chckbxSegelschein.setForeground(Color.WHITE);
 		chckbxSegelschein.setBackground(Color.DARK_GRAY);
@@ -213,7 +210,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		gbc_chckbxSegelschein.gridx = 4;
 		gbc_chckbxSegelschein.gridy = 4;
 		panel_1.add(chckbxSegelschein, gbc_chckbxSegelschein);
-		
+
 		JComboBox adresseArtBox = new JComboBox();
 		adresseArtBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		adresseArtBox.addItem("Heimatadresse");
@@ -225,7 +222,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		gbc_adresseArtBox.gridx = 6;
 		gbc_adresseArtBox.gridy = 4;
 		panel_1.add(adresseArtBox, gbc_adresseArtBox);
-		
+
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.DARK_GRAY);
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
@@ -235,14 +232,14 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		gbc_panel_3.gridx = 0;
 		gbc_panel_3.gridy = 6;
 		panel_1.add(panel_3, gbc_panel_3);
-		
+
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
-		gbl_panel_3.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_panel_3.rowHeights = new int[]{0, 0, 0};
-		gbl_panel_3.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_3.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_3.columnWidths = new int[] { 0, 0, 0, 0, 0 };
+		gbl_panel_3.rowHeights = new int[] { 0, 0, 0 };
+		gbl_panel_3.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_panel_3.rowWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
 		panel_3.setLayout(gbl_panel_3);
-		
+
 		JButton btnDeaktivieren = new JButton("Deaktivieren");
 		btnDeaktivieren.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnDeaktivieren.setBackground(new Color(255, 140, 0));
@@ -252,7 +249,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		gbc_btnDeaktivieren.gridx = 0;
 		gbc_btnDeaktivieren.gridy = 0;
 		panel_3.add(btnDeaktivieren, gbc_btnDeaktivieren);
-		
+
 		JButton btnSuchen = new JButton("Suchen");
 		btnSuchen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSuchen.setBackground(new Color(255, 140, 0));
@@ -262,7 +259,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		gbc_btnSuchen.gridx = 1;
 		gbc_btnSuchen.gridy = 0;
 		panel_3.add(btnSuchen, gbc_btnSuchen);
-		
+
 		JButton btnLeeren = new JButton("Leeren");
 		btnLeeren.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnLeeren.setBackground(new Color(255, 140, 0));
@@ -272,7 +269,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		gbc_btnLeeren.gridx = 2;
 		gbc_btnLeeren.gridy = 0;
 		panel_3.add(btnLeeren, gbc_btnLeeren);
-		
+
 		JButton btnSpeichern = new JButton("Speichern");
 		btnSpeichern.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSpeichern.setBackground(new Color(255, 140, 0));
@@ -282,7 +279,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		gbc_btnSpeichern.gridx = 3;
 		gbc_btnSpeichern.gridy = 0;
 		panel_3.add(btnSpeichern, gbc_btnSpeichern);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
@@ -291,11 +288,11 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 1;
 		panel_3.add(scrollPane, gbc_scrollPane);
-		
+
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		
-		//Funktionen der Button
+
+		// Funktionen der Button
 		btnZurueck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getKundeAendernGUI(), MainFrame.getKundenverwaltungGUI());
@@ -307,7 +304,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 				MainFrame.change(MainFrame.getKundeAendernGUI(), MainFrame.getHauptmenueGUI());
 			}
 		});
-		
+
 		btnLeeren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtKnr.setText("");
@@ -316,35 +313,31 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 				txtEmail.setText("");
 			}
 		});
-		
+
 		btnSuchen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(selectedMode == "waiting")
+					if (selectedMode == "waiting")
 						JOptionPane.showMessageDialog(null, "Bitte Suche spezifizieren!");
-					else if(selectedMode != "waiting")
-					{
+					else if (selectedMode != "waiting") {
 						talking = "boss";
 						anfrage();
 					}
-					
-					
+
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 
-			
 		});
-		
+
 		txtKnr.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				
+
 				try {
-					if(!selectedMode.equals("waiting"))
-					{
+					if (!selectedMode.equals("waiting")) {
 						talking = "knrplz";
 						anfrage();
 					}
@@ -354,23 +347,22 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 				}
 			}
 		});
-		
+
 		txtKnr.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {	
-				text = txtKnr.getText();				
+			public void mouseClicked(MouseEvent e) {
+				text = txtKnr.getText();
 				if (text.equals("Kundennummer...") || text.equals("PLZ..."))
 					txtKnr.setText("");
 			}
 		});
-		
+
 		txtNachname.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				
+
 				try {
-					if(!selectedMode.equals("waiting"))
-					{
+					if (!selectedMode.equals("waiting")) {
 						talking = "nachnameort";
 						anfrage();
 					}
@@ -378,25 +370,24 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			}	
+			}
 		});
-		
+
 		txtNachname.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {	
-				text = txtNachname.getText();				
+			public void mouseClicked(MouseEvent e) {
+				text = txtNachname.getText();
 				if (text.equals("Nachname...") || text.equals("Ort..."))
 					txtNachname.setText("");
 			}
 		});
-		
+
 		txtVorname.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				
+
 				try {
-					if(!selectedMode.equals("waiting"))
-					{
+					if (!selectedMode.equals("waiting")) {
 						talking = "vornamestrasse";
 						anfrage();
 					}
@@ -406,23 +397,22 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 				}
 			}
 		});
-		
+
 		txtVorname.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {	
-				text = txtVorname.getText();				
+			public void mouseClicked(MouseEvent e) {
+				text = txtVorname.getText();
 				if (text.equals("Vorname...") || text.equals("Strasse..."))
 					txtVorname.setText("");
 			}
 		});
-		
+
 		txtEmail.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				
+
 				try {
-					if(!selectedMode.equals("waiting"))
-					{
+					if (!selectedMode.equals("waiting")) {
 						talking = "emailhnr";
 						anfrage();
 					}
@@ -432,16 +422,16 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 				}
 			}
 		});
-		
+
 		txtEmail.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {	
-				text = txtEmail.getText();				
+			public void mouseClicked(MouseEvent e) {
+				text = txtEmail.getText();
 				if (text.equals("E-Mail...") || text.equals("Hausnummer..."))
 					txtEmail.setText("");
 			}
 		});
-		
+
 		adresseArtBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if (adresseArtBox.getSelectedItem().equals("Heimatadresse"))
@@ -450,185 +440,161 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 					heimat = "Urlaubsadresse";
 			}
 		});
-		
+
 		btnSpeichern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				boolean ok = true;
-					
-				try {
-					
 
-					if(selectedMode.equals("waiting") || txtKnr.getText().equals("") || (selectedMode.equals("Adresse") && variableKnr.getText().equals("")) || txtKnr.getText().equals("Kundennummer...") || txtKnr.getText().equals("PLZ..."))
-					{
+				boolean ok = true;
+
+				try {
+
+					if (selectedMode.equals("waiting") || txtKnr.getText().equals("")
+							|| (selectedMode.equals("Adresse") && variableKnr.getText().equals(""))
+							|| txtKnr.getText().equals("Kundennummer...") || txtKnr.getText().equals("PLZ...")) {
 						ok = false;
 						JOptionPane.showMessageDialog(null, "Bitte einen Kunden auswählen!");
 					}
-					
-					if(selectedMode.equals("Kunde") && ok == true)
-					{
+
+					if (selectedMode.equals("Kunde") && ok == true) {
 						talking = "kundespeichern";
 						anfrage();
-					}	
-					else if(selectedMode.equals("Adresse") && ok == true)
-					{
+					} else if (selectedMode.equals("Adresse") && ok == true) {
 						talking = "adressespeichern";
 						anfrage();
 					}
 
-					
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 			}
 		});
-		
+
 		chckbxSurfschein.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(chckbxSurfschein.isSelected())
-				{
+				if (chckbxSurfschein.isSelected()) {
 					surf = "J";
 				} else {
 					surf = "N";
 				}
 			}
 		});
-		
+
 		chckbxMotorbootschein.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					if(chckbxMotorbootschein.isSelected())
-					{
-						motor = "J";
-					} else {
-						motor = "N";
-					}
+				if (chckbxMotorbootschein.isSelected()) {
+					motor = "J";
+				} else {
+					motor = "N";
 				}
-				
-			});
-		
+			}
+
+		});
+
 		chckbxSegelschein.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(chckbxSegelschein.isSelected())
-				{
+				if (chckbxSegelschein.isSelected()) {
 					segel = "J";
 				} else {
 					segel = "N";
 				}
 			}
 		});
-		
+
 		btnDeaktivieren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				boolean ok = true;
 				try {
-					
-					if(selectedMode.equals("waiting") || txtKnr.getText().equals("") || (selectedMode.equals("Adresse") && variableKnr.getText().equals("")) || txtKnr.getText().equals("Kundennummer...") || txtKnr.getText().equals("PLZ..."))
-					{
+
+					if (selectedMode.equals("waiting") || txtKnr.getText().equals("")
+							|| (selectedMode.equals("Adresse") && variableKnr.getText().equals(""))
+							|| txtKnr.getText().equals("Kundennummer...") || txtKnr.getText().equals("PLZ...")) {
 						ok = false;
 						JOptionPane.showMessageDialog(null, "Bitte Kunde wählen!");
 					}
-						
-					if(selectedMode.equals("Kunde") && ok == true)
-					{
+
+					if (selectedMode.equals("Kunde") && ok == true) {
 						talking = "deaktivierenkunde";
 						anfrage();
-					}
-					else if(selectedMode.equals("Adresse") && ok == true)
-					{
+					} else if (selectedMode.equals("Adresse") && ok == true) {
 						talking = "deaktivierenadresse";
 						anfrage();
 					}
-					
-					
+
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		
+
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
 					talking = "table";
 					int row = table.getSelectedRow();
-					if(selectedMode.equals("Kunde"))
-					{
-						
+					if (selectedMode.equals("Kunde")) {
+
 						String segel = table.getModel().getValueAt(row, 5).toString();
 						String surf = table.getModel().getValueAt(row, 7).toString();
 						String motor = table.getModel().getValueAt(row, 6).toString();
-					
-							
+
 						System.out.println(segel + " " + surf + " " + motor);
-						
+
 						txtVorname.setText(table.getModel().getValueAt(row, 1).toString());
 						txtKnr.setText(table.getModel().getValueAt(row, 0).toString());
 						txtEmail.setText(table.getModel().getValueAt(row, 3).toString());
 						txtNachname.setText(table.getModel().getValueAt(row, 2).toString());
-						
-						if(segel.equals("J"))
-						{
+
+						if (segel.equals("J")) {
 							chckbxSegelschein.setSelected(true);
 							segel = "J";
-						}
-						else if(segel.equals("N"))
-						{
+						} else if (segel.equals("N")) {
 							chckbxSegelschein.setSelected(false);
 							segel = "N";
 						}
-						if(motor.equals("J"))
-						{
+						if (motor.equals("J")) {
 							chckbxMotorbootschein.setSelected(true);
 							motor = "J";
-						}
-						else if (motor.equals("N"))
-						{
+						} else if (motor.equals("N")) {
 							chckbxMotorbootschein.setSelected(false);
 							motor = "N";
 						}
-						if(surf.equals("J"))
-						{
+						if (surf.equals("J")) {
 							chckbxSurfschein.setSelected(true);
 							surf = "J";
-						}
-						else if (surf.equals("N"))
-						{
+						} else if (surf.equals("N")) {
 							chckbxSurfschein.setSelected(false);
 							surf = "N";
 						}
-					}
-					else if ( selectedMode.equals("Adresse"))
-					{
+					} else if (selectedMode.equals("Adresse")) {
 						txtVorname.setText(table.getModel().getValueAt(row, 2).toString());
 						txtKnr.setText(table.getModel().getValueAt(row, 1).toString());
 						txtEmail.setText(table.getModel().getValueAt(row, 5).toString());
 						txtNachname.setText(table.getModel().getValueAt(row, 3).toString());
 						variableKnr.setText(table.getModel().getValueAt(row, 6).toString());
-						
-						if(table.getModel().getValueAt(row, 4).toString().equals("Heimatadresse"))
-						{
+
+						if (table.getModel().getValueAt(row, 4).toString().equals("Heimatadresse")) {
 							adresseArtBox.setSelectedIndex(0);
 							heimat = "Heimatadresse";
-						}
-						else {
+						} else {
 							adresseArtBox.setSelectedIndex(1);
 							heimat = "Urlaubsadresse";
 						}
 					}
-				}catch(Exception e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
 		});
-		
+
 		comboBox_1.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				if(comboBox_1.getSelectedItem().equals("Kunde"));
+				if (comboBox_1.getSelectedItem().equals("Kunde"))
+					;
 				{
 					txtKnr.setText("Kundennummer...");
 					txtNachname.setText("Nachname...");
@@ -637,8 +603,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 					variableKnr.setText("");
 					selectedMode = "Kunde";
 				}
-				if (comboBox_1.getSelectedItem().equals("Adresse"))
-				{
+				if (comboBox_1.getSelectedItem().equals("Adresse")) {
 					txtKnr.setText("PLZ...");
 					txtNachname.setText("Ort...");
 					txtVorname.setText("Strasse...");
@@ -646,16 +611,16 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 					variableKnr.setText("Kundennummer...");
 					selectedMode = "Adresse";
 				}
-			System.out.println("Folgender Modus gewaehlt: " + selectedMode);
+				System.out.println("Folgender Modus gewaehlt: " + selectedMode);
 			}
 		});
-		
+
 		variableKnr.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				
+
 				try {
-					
+
 					talking = "variableKnr";
 					anfrage();
 				} catch (Exception e1) {
@@ -664,13 +629,14 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 				}
 			}
 		});
-		
-	
+
 	}
+
 	private void anfrage() {
-		
+
 		model.anmelden(MainFrame.getKundeAendernGUI());
-		controller.fetchObjekte(txtKnr.getText(), txtNachname.getText(), txtVorname.getText(), txtEmail.getText(), selectedMode, variableKnr.getText(), talking, surf, segel, motor, heimat );
+		controller.fetchObjekte(txtKnr.getText(), txtNachname.getText(), txtVorname.getText(), txtEmail.getText(),
+				selectedMode, variableKnr.getText(), talking, surf, segel, motor, heimat);
 		model.abmelden(MainFrame.getKundeAendernGUI());
 	}
 
@@ -678,7 +644,6 @@ public class KundeAendernGUI extends JPanel implements IObjektView{
 	public void aktualisieren(IObjektModel model) {
 		// TODO Auto-generated method stub
 		table.setModel(model.getTableModel());
-		
+
 	}
 }
-	

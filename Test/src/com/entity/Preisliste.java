@@ -1,11 +1,9 @@
 
-
 package com.entity;
 
-
 public class Preisliste {
-	
-	//@author Ben S
+
+	// @author Ben S
 
 	private int preislisteID;
 	private double eineStd;
@@ -30,14 +28,11 @@ public class Preisliste {
 	private double VierWochen;
 	private double achtWochen;
 
-	
-	
-	
-	public Preisliste(double eineStd, double zweiStd, double vierStd, double einenTag,
-			double zweiTage, double dreiTage, double vierTage, double fuenfTage, double sechsSiebenTage,
-			double achtTage, double neunTage, double zehnTage, double elfTage, double zwoelfVierzehnTage,
-			double fuenfzehnTage, double sechzehnTage, double siebzehnTage, double achtzehnEinundzwanzigTage,
-			double tagVierWochen, double vierWochen, double achtWochen) {
+	public Preisliste(double eineStd, double zweiStd, double vierStd, double einenTag, double zweiTage, double dreiTage,
+			double vierTage, double fuenfTage, double sechsSiebenTage, double achtTage, double neunTage,
+			double zehnTage, double elfTage, double zwoelfVierzehnTage, double fuenfzehnTage, double sechzehnTage,
+			double siebzehnTage, double achtzehnEinundzwanzigTage, double tagVierWochen, double vierWochen,
+			double achtWochen) {
 		super();
 		this.preislisteID = preislisteID;
 		this.eineStd = eineStd;
@@ -63,8 +58,6 @@ public class Preisliste {
 		this.achtWochen = achtWochen;
 	}
 
-	
-	
 	public int getPreislisteID() {
 		return preislisteID;
 	}
@@ -240,6 +233,5 @@ public class Preisliste {
 	public void setAchtWochen(double achtWochen) {
 		this.achtWochen = achtWochen;
 	}
-
 
 }

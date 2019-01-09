@@ -38,20 +38,19 @@ import com.model.WirtschaftlichkeitModel;
 public class Starter {
 
 	public static void main(String[] args) {
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					 
+
 					StandortModel standortModel = new StandortModel();
 					StandortStrg standortStrg = new StandortStrg(standortModel);
-					
+
 					StandortGUI frame = new StandortGUI(standortModel, standortStrg);
 					frame.setVisible(true);
 					frame.setTitle("Surf- und Segelcenter");
-					
-					
-					//Models erzeugen:
+
+					// Models erzeugen:
 					KundeSucheModel kundeSucheModel = new KundeSucheModel();
 					KundeAnlegenModel kundeAnlegenModel = new KundeAnlegenModel();
 					BuchungKundeSucheModel buchungKundeSucheModel = new BuchungKundeSucheModel();
@@ -65,9 +64,8 @@ public class Starter {
 					WirtschaftlichkeitModel wModel = new WirtschaftlichkeitModel();
 					PreislisteSucheModel preislisteSucheModel = new PreislisteSucheModel();
 					PreislisteAendernModel preislisteAendernModel = new PreislisteAendernModel();
-					
-					
-					//Controller erzeugen:
+
+					// Controller erzeugen:
 					KundeSucheStrg kundeSucheStrg = new KundeSucheStrg(kundeSucheModel);
 					KundeAnlegenStrg kundeAnlegenStrg = new KundeAnlegenStrg(kundeAnlegenModel);
 					BuchungKundeSucheStrg buchungKundeWaehlenStrg = new BuchungKundeSucheStrg(buchungKundeSucheModel);
@@ -75,71 +73,81 @@ public class Starter {
 					BuchungModellSucheStrg buchungModellSucheStrg = new BuchungModellSucheStrg(buchungModellSucheModel);
 					BuchungGeraetSucheStrg buchungGeraetSucheStrg = new BuchungGeraetSucheStrg(buchungGeraetSucheModel);
 					ModellAnlegenStrg modellAnlegenStrg = new ModellAnlegenStrg(modellHinzufuegenModel);
-					GeraetAnlegenStrg geraetAnlegenStrg = new GeraetAnlegenStrg(geraetAnlegenModel);	
-					BuchungBuchungAnzeigenStrg buchungBuchungAnzeigenStrg = new BuchungBuchungAnzeigenStrg(buchungAnzeigeModel);
+					GeraetAnlegenStrg geraetAnlegenStrg = new GeraetAnlegenStrg(geraetAnlegenModel);
+					BuchungBuchungAnzeigenStrg buchungBuchungAnzeigenStrg = new BuchungBuchungAnzeigenStrg(
+							buchungAnzeigeModel);
 					RechnungAnzeigeStrg rechnungAnzeigenStrg = new RechnungAnzeigeStrg(rechnungAnzeigeModel);
 					WirtschaftlichkeitStrg wStrg = new WirtschaftlichkeitStrg(wModel);
 					PreislisteSucheStrg preislisteSucheStrg = new PreislisteSucheStrg(preislisteSucheModel);
 					PreislisteAendernStrg preislisteAendernStrg = new PreislisteAendernStrg(preislisteAendernModel);
-					
-					
-					//Geräteverwaltung
+
+					// Geräteverwaltung
 					GeraeteVerwaltungGUI geraeteVerwaltungGUI = new GeraeteVerwaltungGUI();
-					GeraeteModellVerwaltungGUI geraeteModellVerwaltungGUI = new GeraeteModellVerwaltungGUI(buchungModellSucheModel, buchungModellSucheStrg);
-					GeraeteTypVerwaltungGUI geraeteTypVerwaltungGUI = new GeraeteTypVerwaltungGUI(buchungTypSucheModel, buchungTypSucheStrg);
+					GeraeteModellVerwaltungGUI geraeteModellVerwaltungGUI = new GeraeteModellVerwaltungGUI(
+							buchungModellSucheModel, buchungModellSucheStrg);
+					GeraeteTypVerwaltungGUI geraeteTypVerwaltungGUI = new GeraeteTypVerwaltungGUI(buchungTypSucheModel,
+							buchungTypSucheStrg);
 					GeraetAnlegenGUI geraetAnlegenGUI = new GeraetAnlegenGUI(geraetAnlegenModel, geraetAnlegenStrg);
 					GeraetAendernGUI geraetAendernGUI = new GeraetAendernGUI(geraetAnlegenModel, geraetAnlegenStrg);
 					GeraeteStatusGUI geraeteStatusGUI = new GeraeteStatusGUI(geraetAnlegenModel, geraetAnlegenStrg);
-					GeraeteReparaturGUI geraeteReparaturGUI = new GeraeteReparaturGUI(geraetAnlegenModel, geraetAnlegenStrg);
+					GeraeteReparaturGUI geraeteReparaturGUI = new GeraeteReparaturGUI(geraetAnlegenModel,
+							geraetAnlegenStrg);
 					ModellAendernGUI modellAnedernGUI = new ModellAendernGUI(modellHinzufuegenModel, modellAnlegenStrg);
 					ModellAnlegenGUI modellAnlegenGUI = new ModellAnlegenGUI(modellHinzufuegenModel, modellAnlegenStrg);
-					SportgeraeteVerwaltungGUI sportgeraeteGUI = new SportgeraeteVerwaltungGUI(buchungGeraetSucheModel, buchungGeraetSucheStrg);
+					SportgeraeteVerwaltungGUI sportgeraeteGUI = new SportgeraeteVerwaltungGUI(buchungGeraetSucheModel,
+							buchungGeraetSucheStrg);
 					TypAendernGUI typAendernGUI = new TypAendernGUI();
 					TypAnlegenGUI typAnlegenGUI = new TypAnlegenGUI();
-					
-						
-					
-					//BuchungsverwaltungGUI
+
+					// BuchungsverwaltungGUI
 					BuchungsverwaltungGUI buchungsverwaltungGUI = new BuchungsverwaltungGUI();
-					BuchungKundeSucheGUI buchungKundeSucheGUI = new BuchungKundeSucheGUI(buchungKundeSucheModel, buchungKundeWaehlenStrg);
-					BuchungTypSucheGUI buchungTypSucheGUI = new BuchungTypSucheGUI(buchungTypSucheModel, buchungTypSucheStrg);
-					BuchungModellSucheGUI buchungModellSucheGUI = new BuchungModellSucheGUI(buchungModellSucheModel, buchungModellSucheStrg);
-					BuchungGeraetSucheGUI buchungGeraetSucheGUI = new BuchungGeraetSucheGUI(buchungGeraetSucheModel, buchungGeraetSucheStrg);
-					AktiveBuchungenGUI aktiveBuchungenGUI = new AktiveBuchungenGUI(buchungAnzeigeModel, buchungBuchungAnzeigenStrg);
-					
-					
+					BuchungKundeSucheGUI buchungKundeSucheGUI = new BuchungKundeSucheGUI(buchungKundeSucheModel,
+							buchungKundeWaehlenStrg);
+					BuchungTypSucheGUI buchungTypSucheGUI = new BuchungTypSucheGUI(buchungTypSucheModel,
+							buchungTypSucheStrg);
+					BuchungModellSucheGUI buchungModellSucheGUI = new BuchungModellSucheGUI(buchungModellSucheModel,
+							buchungModellSucheStrg);
+					BuchungGeraetSucheGUI buchungGeraetSucheGUI = new BuchungGeraetSucheGUI(buchungGeraetSucheModel,
+							buchungGeraetSucheStrg);
+					AktiveBuchungenGUI aktiveBuchungenGUI = new AktiveBuchungenGUI(buchungAnzeigeModel,
+							buchungBuchungAnzeigenStrg);
+
 					// Kundenverwaltung
-					KundenverwaltungGUI kundenverwaltungGUI = new KundenverwaltungGUI(); 
+					KundenverwaltungGUI kundenverwaltungGUI = new KundenverwaltungGUI();
 					KundeAnlegenGUI kundeAnlegenGUI = new KundeAnlegenGUI(kundeAnlegenModel, kundeAnlegenStrg);
 					KundeAendernGUI kundeAendernGUI = new KundeAendernGUI(kundeSucheModel, kundeSucheStrg);
-					
-					
-					//Preislistenverwaltung
-					PreislisteGUI preislisteGUI = new PreislisteGUI(preislisteSucheModel, preislisteSucheStrg); 
+
+					// Preislistenverwaltung
+					PreislisteGUI preislisteGUI = new PreislisteGUI(preislisteSucheModel, preislisteSucheStrg);
 					PreislisteAnlegenGUI preislisteAnlegenGUI = new PreislisteAnlegenGUI();
-					PreislisteAendernGUI preislisteAendernGUI = new PreislisteAendernGUI(preislisteAendernModel, preislisteAendernStrg);
-					
+					PreislisteAendernGUI preislisteAendernGUI = new PreislisteAendernGUI(preislisteAendernModel,
+							preislisteAendernStrg);
+
 					// Rechnungsverwaltung
-					RechungsSucheGUI rechnungSucheGUI = new RechungsSucheGUI(rechnungAnzeigeModel, rechnungAnzeigenStrg); 
-					
+					RechungsSucheGUI rechnungSucheGUI = new RechungsSucheGUI(rechnungAnzeigeModel,
+							rechnungAnzeigenStrg);
+
 					// Wirtschaftlichkeitsrechnung
-					WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltungGUI = new WirtschaftlichkeitsverwaltungGUI(wModel, wStrg);
-					
-					//MainFrame erzeugen
-					MainFrame mainframe = new MainFrame(geraeteVerwaltungGUI, geraeteModellVerwaltungGUI, geraeteTypVerwaltungGUI, geraetAnlegenGUI, geraetAendernGUI, geraeteStatusGUI, geraeteReparaturGUI, modellAnedernGUI, modellAnlegenGUI, 
-							sportgeraeteGUI, typAendernGUI, typAnlegenGUI, buchungsverwaltungGUI, buchungKundeSucheGUI, buchungTypSucheGUI, buchungModellSucheGUI, buchungGeraetSucheGUI, aktiveBuchungenGUI, 
-							kundenverwaltungGUI, kundeAnlegenGUI, kundeAendernGUI, preislisteGUI, preislisteAnlegenGUI, preislisteAendernGUI, rechnungSucheGUI, wirtschaftlichkeitsverwaltungGUI);
-					
+					WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltungGUI = new WirtschaftlichkeitsverwaltungGUI(
+							wModel, wStrg);
+
+					// MainFrame erzeugen
+					MainFrame mainframe = new MainFrame(geraeteVerwaltungGUI, geraeteModellVerwaltungGUI,
+							geraeteTypVerwaltungGUI, geraetAnlegenGUI, geraetAendernGUI, geraeteStatusGUI,
+							geraeteReparaturGUI, modellAnedernGUI, modellAnlegenGUI, sportgeraeteGUI, typAendernGUI,
+							typAnlegenGUI, buchungsverwaltungGUI, buchungKundeSucheGUI, buchungTypSucheGUI,
+							buchungModellSucheGUI, buchungGeraetSucheGUI, aktiveBuchungenGUI, kundenverwaltungGUI,
+							kundeAnlegenGUI, kundeAendernGUI, preislisteGUI, preislisteAnlegenGUI, preislisteAendernGUI,
+							rechnungSucheGUI, wirtschaftlichkeitsverwaltungGUI);
+
 					frame.setMainFrame(mainframe);
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-		
 
 	}
-
 
 }

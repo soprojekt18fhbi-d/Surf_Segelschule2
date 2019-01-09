@@ -8,17 +8,13 @@ import com.view.IAnlegenView;
 
 public interface IAnlegenModel {
 
-	
 	/**
 	 * ArrayList für Möglichkeit der Aufnahme mehrerer Observer(Views)
 	 * 
 	 * 
 	 */
 	public ArrayList<IAnlegenView> observers = new ArrayList<IAnlegenView>();
-	
-	
-	
-	
+
 	/**
 	 * Anmelden einer View.
 	 * 
@@ -32,8 +28,7 @@ public interface IAnlegenModel {
 	 * 
 	 */
 	public void abmelden(IAnlegenView view);
-	
-	
+
 	/**
 	 * Durchgehen der Observer und Updateaufruf.
 	 * 
@@ -47,7 +42,4 @@ public interface IAnlegenModel {
 	 */
 	public ArrayList<String> getObertypen();
 
-
-
-	
 }

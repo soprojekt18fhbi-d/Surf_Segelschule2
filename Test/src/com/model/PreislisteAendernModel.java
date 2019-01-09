@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import com.berechnung.DatentypUmwandlung;
 import com.entity.Preisliste;
 import com.view.IAnlegenView;
@@ -114,6 +116,7 @@ public class PreislisteAendernModel implements IAnlegenModel {
 					int resultSet = stmtPreislisteAendernModel.executeUpdate(sqlupdate);		
 				}
 			 catch (SQLException e1) {
+				 
 				e1.printStackTrace();
 			} finally {
 				{ stmtPreislisteAendernModel.close(); }

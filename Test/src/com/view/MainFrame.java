@@ -54,17 +54,12 @@ import java.awt.Color;
 
 public class MainFrame extends JFrame {
 
-	
 	private static int standort;
-	
+
 	private JPanel contentPane;
 	private static Hauptmenue hauptmenueGUI = new Hauptmenue();
-	
-	 
-	
-	
-	
-	//Geräteverwaltung
+
+	// Geräteverwaltung
 	private static GeraeteVerwaltungGUI geraeteVerwaltungGUI;
 	private static GeraeteModellVerwaltungGUI geraeteModellVerwaltungGUI;
 	private static GeraeteTypVerwaltungGUI geraeteTypVerwaltungGUI;
@@ -77,46 +72,47 @@ public class MainFrame extends JFrame {
 	private static SportgeraeteVerwaltungGUI sportgeraeteGUI;
 	private static TypAendernGUI typAendernGUI;
 	private static TypAnlegenGUI typAnlegenGUI;
-		
-	
-	//BuchungsverwaltungGUI
+
+	// BuchungsverwaltungGUI
 	private static BuchungsverwaltungGUI buchungsverwaltungGUI;
 	private static BuchungKundeSucheGUI buchungKundeSucheGUI;
 	private static BuchungTypSucheGUI buchungTypSucheGUI;
 	private static BuchungModellSucheGUI buchungModellSucheGUI;
 	private static BuchungGeraetSucheGUI buchungGeraetSucheGUI;
 	private static AktiveBuchungenGUI aktiveBuchungenGUI;
-	
-	
+
 	// Kundenverwaltung
-	private static KundenverwaltungGUI kundenverwaltungGUI; 
+	private static KundenverwaltungGUI kundenverwaltungGUI;
 	private static KundeAnlegenGUI kundeAnlegenGUI;
 	private static KundeAendernGUI kundeAendernGUI;
-	
-	
-	//Preislistenverwaltung
-	private static PreislisteGUI preislisteGUI; 
+
+	// Preislistenverwaltung
+	private static PreislisteGUI preislisteGUI;
 	private static PreislisteAnlegenGUI preislisteAnlegenGUI;
 	private static PreislisteAendernGUI preislisteAendernGUI;
-	
+
 	// Rechnungsverwaltung
-	private static RechungsSucheGUI rechnungSucheGUI; 
-	
+	private static RechungsSucheGUI rechnungSucheGUI;
+
 	// Wirtschaftlichkeitsrechnung
 	private static WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltungGUI;
-
-
-
 
 	/**
 	 * Create the frame.
 	 */
-	public MainFrame(GeraeteVerwaltungGUI geraeteVerwaltungGUI, GeraeteModellVerwaltungGUI geraeteModellVerwaltungGUI, GeraeteTypVerwaltungGUI geraeteTypVerwaltungGUI, GeraetAnlegenGUI geraetAnlegenGUI, 
-			GeraetAendernGUI geraetAendernGUI, GeraeteStatusGUI geraeteStatusGUI, GeraeteReparaturGUI geraeteReparaturGUI, ModellAendernGUI modellAnedernGUI, ModellAnlegenGUI modellAnlegenGUI, SportgeraeteVerwaltungGUI sportgeraeteGUI, TypAendernGUI typAendernGUI, TypAnlegenGUI typAnlegenGUI, 
-			BuchungsverwaltungGUI buchungsverwaltungGUI, BuchungKundeSucheGUI buchungKundeSucheGUI, BuchungTypSucheGUI buchungTypSucheGUI, BuchungModellSucheGUI buchungModellSucheGUI, BuchungGeraetSucheGUI buchungGeraetSucheGUI, 
-			AktiveBuchungenGUI aktiveBuchungenGUI, KundenverwaltungGUI kundenverwaltungGUI, KundeAnlegenGUI kundeAnlegenGUI, KundeAendernGUI kundeAendernGUI, PreislisteGUI preislisteGUI, PreislisteAnlegenGUI preislisteAnlegenGUI, PreislisteAendernGUI preislisteAendernGUI,
+	public MainFrame(GeraeteVerwaltungGUI geraeteVerwaltungGUI, GeraeteModellVerwaltungGUI geraeteModellVerwaltungGUI,
+			GeraeteTypVerwaltungGUI geraeteTypVerwaltungGUI, GeraetAnlegenGUI geraetAnlegenGUI,
+			GeraetAendernGUI geraetAendernGUI, GeraeteStatusGUI geraeteStatusGUI,
+			GeraeteReparaturGUI geraeteReparaturGUI, ModellAendernGUI modellAnedernGUI,
+			ModellAnlegenGUI modellAnlegenGUI, SportgeraeteVerwaltungGUI sportgeraeteGUI, TypAendernGUI typAendernGUI,
+			TypAnlegenGUI typAnlegenGUI, BuchungsverwaltungGUI buchungsverwaltungGUI,
+			BuchungKundeSucheGUI buchungKundeSucheGUI, BuchungTypSucheGUI buchungTypSucheGUI,
+			BuchungModellSucheGUI buchungModellSucheGUI, BuchungGeraetSucheGUI buchungGeraetSucheGUI,
+			AktiveBuchungenGUI aktiveBuchungenGUI, KundenverwaltungGUI kundenverwaltungGUI,
+			KundeAnlegenGUI kundeAnlegenGUI, KundeAendernGUI kundeAendernGUI, PreislisteGUI preislisteGUI,
+			PreislisteAnlegenGUI preislisteAnlegenGUI, PreislisteAendernGUI preislisteAendernGUI,
 			RechungsSucheGUI rechnungSucheGUI, WirtschaftlichkeitsverwaltungGUI wirtschaftlichkeitsverwaltungGUI) {
-		
+
 		MainFrame.geraeteVerwaltungGUI = geraeteVerwaltungGUI;
 		MainFrame.geraeteModellVerwaltungGUI = geraeteModellVerwaltungGUI;
 		MainFrame.geraeteTypVerwaltungGUI = geraeteTypVerwaltungGUI;
@@ -143,9 +139,7 @@ public class MainFrame extends JFrame {
 		MainFrame.preislisteAendernGUI = preislisteAendernGUI;
 		MainFrame.rechnungSucheGUI = rechnungSucheGUI;
 		MainFrame.wirtschaftlichkeitsverwaltungGUI = wirtschaftlichkeitsverwaltungGUI;
-		
-		
-		
+
 		setBackground(Color.DARK_GRAY);
 		setTitle("Surf- & Segelcenter");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -156,10 +150,7 @@ public class MainFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
 		setIconImage(new ImageIcon(getClass().getResource("surfen.png")).getImage());
-		
-		
 
-		
 		contentPane.add(hauptmenueGUI);
 		contentPane.add(geraeteVerwaltungGUI);
 		contentPane.add(typAnlegenGUI);
@@ -179,116 +170,111 @@ public class MainFrame extends JFrame {
 		contentPane.add(buchungModellSucheGUI);
 		contentPane.add(buchungGeraetSucheGUI);
 		contentPane.add(aktiveBuchungenGUI);
-		contentPane.add(preislisteGUI);	
+		contentPane.add(preislisteGUI);
 		contentPane.add(preislisteAnlegenGUI);
 		contentPane.add(preislisteAendernGUI);
 		contentPane.add(kundenverwaltungGUI);
 		contentPane.add(kundeAnlegenGUI);
 		contentPane.add(kundeAendernGUI);
-		contentPane.add(rechnungSucheGUI);;
+		contentPane.add(rechnungSucheGUI);
+		;
 		contentPane.add(wirtschaftlichkeitsverwaltungGUI);
 
 		this.hauptmenueGUI.setVisible(true);
 
-		 
-
-	
-		
-		
-
 	}
-	
-	public static void change(JPanel a, JPanel b) { //Ben K.
-		
+
+	public static void change(JPanel a, JPanel b) { // Ben K.
+
 		a.setVisible(false);
 		b.setVisible(true);
-		
+
 	}
-	
-	public static JPanel getHauptmenueGUI(){
+
+	public static JPanel getHauptmenueGUI() {
 		return hauptmenueGUI;
 	}
-	
-	
-	public static JPanel getGeraeteVerwaltungGUI(){
+
+	public static JPanel getGeraeteVerwaltungGUI() {
 		return geraeteVerwaltungGUI;
 	}
-	
-	public static GeraeteTypVerwaltungGUI getGeraeteTypVerwaltung(){
+
+	public static GeraeteTypVerwaltungGUI getGeraeteTypVerwaltung() {
 		return geraeteTypVerwaltungGUI;
 	}
-	
-	public static GeraetAnlegenGUI getGeraetAnlegenGUI(){
+
+	public static GeraetAnlegenGUI getGeraetAnlegenGUI() {
 		return geraetAnlegenGUI;
 	}
-	
-	public static ModellAendernGUI getModellAendernGUI(){ 	
+
+	public static ModellAendernGUI getModellAendernGUI() {
 		return modellAnedernGUI;
 	}
-	
-	public static ModellAnlegenGUI getModellAnlegenGUI(){ 		
+
+	public static ModellAnlegenGUI getModellAnlegenGUI() {
 		return modellAnlegenGUI;
 	}
-	
-	public static SportgeraeteVerwaltungGUI getSportgeraeteGUI(){ 		
+
+	public static SportgeraeteVerwaltungGUI getSportgeraeteGUI() {
 		return sportgeraeteGUI;
 	}
-	
-	public static TypAendernGUI getTypAendernGUI(){	
+
+	public static TypAendernGUI getTypAendernGUI() {
 		return typAendernGUI;
 	}
-	
-	public static JPanel getTypAnlegenGUI(){		
+
+	public static JPanel getTypAnlegenGUI() {
 		return typAnlegenGUI;
 	}
-	
-	public static GeraeteModellVerwaltungGUI getGeraeteModellVerwaltungGUI(){ 		
+
+	public static GeraeteModellVerwaltungGUI getGeraeteModellVerwaltungGUI() {
 		return geraeteModellVerwaltungGUI;
 	}
-	
-	public static GeraetAendernGUI getGeraetAendernGUI(){ 		
+
+	public static GeraetAendernGUI getGeraetAendernGUI() {
 		return geraetAendernGUI;
 	}
-	
-	public static GeraeteStatusGUI getGeraeteStatusGUI(){ 		
+
+	public static GeraeteStatusGUI getGeraeteStatusGUI() {
 		return geraeteStatusGUI;
 	}
-	
-	public static GeraeteReparaturGUI getGeraeteReparaturGUI(){ 		
+
+	public static GeraeteReparaturGUI getGeraeteReparaturGUI() {
 		return geraeteReparaturGUI;
 	}
-	
-	public static JPanel getBuchungsverwaltungGUI(){ 		
+
+	public static JPanel getBuchungsverwaltungGUI() {
 		return buchungsverwaltungGUI;
 	}
-	
-	public static JPanel getBuchungKundeSucheGUI(){ 		
+
+	public static JPanel getBuchungKundeSucheGUI() {
 		return buchungKundeSucheGUI;
 	}
-		
-	public static BuchungTypSucheGUI getBuchungTypSucheGUI(){ 		
+
+	public static BuchungTypSucheGUI getBuchungTypSucheGUI() {
 		return buchungTypSucheGUI;
 	}
-	
-	public static BuchungModellSucheGUI getBuchungModellSucheGUI(){ 		
+
+	public static BuchungModellSucheGUI getBuchungModellSucheGUI() {
 		return buchungModellSucheGUI;
 	}
-	
-	public static BuchungGeraetSucheGUI getBuchungGeraetSucheGUI(){ 		
+
+	public static BuchungGeraetSucheGUI getBuchungGeraetSucheGUI() {
 		return buchungGeraetSucheGUI;
 	}
-	
-	public static AktiveBuchungenGUI getAktiveBuchungenGUI(){ 		
+
+	public static AktiveBuchungenGUI getAktiveBuchungenGUI() {
 		return aktiveBuchungenGUI;
 	}
-	
-	public static PreislisteGUI getPreislisteGUI(){ 		
+
+	public static PreislisteGUI getPreislisteGUI() {
 		return preislisteGUI;
 	}
-	public static PreislisteAnlegenGUI getPreislisteAnlegenGUI(){ 		
+
+	public static PreislisteAnlegenGUI getPreislisteAnlegenGUI() {
 		return preislisteAnlegenGUI;
 	}
-	
+
 	public static PreislisteAendernGUI getPreislisteAendernGUI() {
 		return preislisteAendernGUI;
 	}
@@ -296,19 +282,18 @@ public class MainFrame extends JFrame {
 	public static JPanel getKundenverwaltungGUI() {
 		return kundenverwaltungGUI;
 	}
-	
+
 	public static JPanel getKundeAnlegenGUI() {
 		return kundeAnlegenGUI;
 	}
-	
+
 	public static KundeAendernGUI getKundeAendernGUI() {
 		return kundeAendernGUI;
 	}
-	
+
 	public static RechungsSucheGUI getRechnungSucheGUI() {
 		return rechnungSucheGUI;
 	}
-	
 
 	public static WirtschaftlichkeitsverwaltungGUI getWirtschaftlichkeitsverwaltungGUI() {
 		return wirtschaftlichkeitsverwaltungGUI;
@@ -325,8 +310,4 @@ public class MainFrame extends JFrame {
 		return standort;
 	}
 
-
-	
-		
 }
-	

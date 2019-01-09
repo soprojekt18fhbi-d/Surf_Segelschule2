@@ -27,7 +27,7 @@ public class PreislisteSucheModel implements IObjektModel {
 	private String talking = "master";
 	private String suchTxt;
 
-	@Override 
+	@Override
 	public void anmelden(IObjektView view) {
 
 		try {
@@ -87,34 +87,30 @@ public class PreislisteSucheModel implements IObjektModel {
 		String query = "TestQuery";
 		System.out.println(query);
 
-//		if (talking.equals("master")) {
-			if (suchTxt.equals(""))
-				query = "SELECT * FROM PREISLISTE";
-			else  
-				query = "SELECT * FROM PREISLISTE WHERE ID LIKE '%" + suchTxt + "%'";
-//		}
+		// if (talking.equals("master")) {
+		if (suchTxt.equals(""))
+			query = "SELECT * FROM PREISLISTE";
+		else
+			query = "SELECT * FROM PREISLISTE WHERE ID LIKE '%" + suchTxt + "%'";
+		// }
 
 		try {
 			stmtPreislisteSucheModel = conn.createStatement();
-			
+
 			System.out.println(query);
-			
+
 			ResultSet rs = stmtPreislisteSucheModel.executeQuery(query);
 			tableModel = DbUtils.resultSetToTableModel(rs);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-
-
 
 	}
 
 	public ArrayList<Object> getObjekte() {
 
 		return mengeAnPreislisten;
-
 
 	}
 
