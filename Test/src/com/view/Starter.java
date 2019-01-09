@@ -48,7 +48,7 @@ public class Starter {
 
 					StandortGUI frame = new StandortGUI(standortModel, standortStrg);
 					frame.setVisible(true);
-					frame.setTitle("Surf- und Segelcenter");
+					frame.setTitle("Surf- & Segelcenter");
 
 					// Models erzeugen:
 					KundeSucheModel kundeSucheModel = new KundeSucheModel();
