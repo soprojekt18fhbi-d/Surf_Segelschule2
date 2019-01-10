@@ -28,6 +28,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -44,6 +46,7 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 	private IObjektModel model;
 	private BuchungKundeSucheStrg controller;
 	private String talking = "Nachname";
+	private TableModel standard = new DefaultTableModel();
 
 	/**
 	 * Create the panel.
@@ -265,6 +268,8 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 						MainFrame.getBuchungTypSucheGUI().setKunde((IKunde) model.getObjekte().get(0));
 
 						System.out.println(MainFrame.getBuchungTypSucheGUI().getKnr());
+						txtKnr.setText("");
+						table.setModel(standard);
 					}
 					txtSearchbar.setText("Suchen...");
 				} catch (Exception e1) {

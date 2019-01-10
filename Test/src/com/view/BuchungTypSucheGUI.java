@@ -22,6 +22,8 @@ import javax.swing.JScrollPane;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import com.controller.BuchungTypSucheStrg;
 import com.entity.IKunde;
@@ -48,6 +50,7 @@ public class BuchungTypSucheGUI extends JPanel implements IObjektView {
 	private String talking = "master";
 	private JTextField txtTypID;
 	private IKunde kunde;
+	private TableModel standard = new DefaultTableModel();
 
 	/**
 	 * Create the panel.
@@ -196,6 +199,8 @@ public class BuchungTypSucheGUI extends JPanel implements IObjektView {
 						MainFrame.getBuchungModellSucheGUI().setkNr(knr);
 						System.out.println(MainFrame.getBuchungModellSucheGUI().getTypNr());
 						MainFrame.change(MainFrame.getBuchungTypSucheGUI(), MainFrame.getBuchungModellSucheGUI());
+						txtTypID.setText("");
+						table.setModel(standard);
 					}
 
 				} catch (HeadlessException e1) {

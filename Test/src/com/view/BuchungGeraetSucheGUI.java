@@ -19,6 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import com.controller.BuchungGeraetSucheStrg;
 import com.controller.BuchungModellSucheStrg;
@@ -50,6 +52,7 @@ public class BuchungGeraetSucheGUI extends JPanel implements IObjektView {
 	private String talking = "master";
 	private int kNr;
 	private int geraetNr = 0;
+	private TableModel standard = new DefaultTableModel();
 
 	/**
 	 * Create the panel.
@@ -121,6 +124,7 @@ public class BuchungGeraetSucheGUI extends JPanel implements IObjektView {
 						anfrage();
 						JOptionPane.showMessageDialog(null, "Die Buchung wurde erfasst!");
 						geraetNr = 0;
+						table.setModel(standard);
 					} else if (result != 0)
 						JOptionPane.showMessageDialog(null, "Der Vorgang wurde abgebrochen!");
 

@@ -24,6 +24,8 @@ import javax.swing.JScrollPane;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import com.controller.BuchungModellSucheStrg;
@@ -51,6 +53,7 @@ public class BuchungModellSucheGUI extends JPanel implements IObjektView {
 	private JTextField txtModellnummer;
 	private String talking;
 	private String search = "";
+	private TableModel standard = new DefaultTableModel();
 
 	/**
 	 * Create the panel.
@@ -200,6 +203,9 @@ public class BuchungModellSucheGUI extends JPanel implements IObjektView {
 						MainFrame.change(MainFrame.getBuchungModellSucheGUI(), MainFrame.getBuchungGeraetSucheGUI());
 						System.out.println("Kunde: " + kunde.toString() + "Modellnummer: "
 								+ MainFrame.getBuchungGeraetSucheGUI().getModellNr() + "Kundennummer: " + kNr);
+						
+						txtModellnummer.setText("");
+						table.setModel(standard);
 					}
 				} catch (HeadlessException e1) {
 					// TODO Auto-generated catch block
