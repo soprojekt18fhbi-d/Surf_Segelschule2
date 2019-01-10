@@ -356,7 +356,7 @@ public class BuchungAnzeigeModel implements IObjektModel { // Ben Kröncke
 
 	public void searchVerleihe(Statement stmt) throws SQLException {
 		String query;
-		query = "SELECT ID,KUNDEID,SPORTGERAETID,AUSLEIHDATUM,RÜCKGABEDATUM FROM BUCHUNG WHERE ART = 'Verleih' AND AUSLEIHDATUM LIKE '%"
+		query = "SELECT ID,KUNDEID,SPORTGERAETID,AUSLEIHDATUM,RÜCKGABEDATUM FROM BUCHUNG WHERE ART = 'Verleih' AND RÜCKGABEDATUM IS NULL AND AUSLEIHDATUM LIKE '%"
 				+ search + "%'";
 		System.out.println(query);
 		ResultSet rs = stmt.executeQuery(query);
