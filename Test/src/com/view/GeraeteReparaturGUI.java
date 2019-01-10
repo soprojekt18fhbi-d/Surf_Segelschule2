@@ -222,8 +222,7 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView {
 
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.getSportgeraeteGUI().anfrage();
-				MainFrame.change(MainFrame.getGeraeteReparaturGUI(), MainFrame.getSportgeraeteGUI());
+				MainFrame.change(MainFrame.getGeraeteReparaturGUI(), MainFrame.getGeraeteStatusGUI());
 				txtBeschreibung.setText("");
 				txtKosten.setText("");
 			}
