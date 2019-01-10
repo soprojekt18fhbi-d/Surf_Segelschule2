@@ -49,6 +49,14 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView {
 	private int geraetNr;
 	private int modellNr;
 	private Icon lupe;
+	private int modellID;
+	private int geraeteID;
+	private String farbe;
+	private String makel;
+	private double anschaffungspreis;
+	private double verkaufspreis;
+	private int baujahr;
+	private int standortID;
 
 	/**
 	 * Create the panel.
@@ -194,27 +202,36 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView {
 				if (zeile < 0)
 					JOptionPane.showMessageDialog(null, "Gerät auswählen!");
 				else {
-					int modellID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 4)));
-					int geraeteID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 0)));
-					String farbe = String.valueOf(table.getValueAt(zeile, 7));
-					String makel = String.valueOf(table.getValueAt(zeile, 1));
-					double anschaffungspreis = Double.parseDouble(String.valueOf(table.getValueAt(zeile, 9)));
-					double verkaufspreis = Double.parseDouble(String.valueOf(table.getValueAt(zeile, 2)));
-					int baujahr = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 8)));
-					int standortID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 6)));
-
-					MainFrame.getGeraetAendernGUI().setModellID(modellID);
-					MainFrame.getGeraetAendernGUI().setGeraeteID(geraeteID);
-					MainFrame.getGeraetAendernGUI().setFarbe(farbe);
-					MainFrame.getGeraetAendernGUI().setMakel(makel);
-					MainFrame.getGeraetAendernGUI().setAnschaffungspreis(anschaffungspreis);
-					MainFrame.getGeraetAendernGUI().setVerkaufspreis(verkaufspreis);
-					MainFrame.getGeraetAendernGUI().setBaujahr(baujahr);
-					MainFrame.getGeraetAendernGUI().setStandort(standortID);
+					werteAuslesen(zeile);
+					werteUebergeben();
 					MainFrame.getGeraetAendernGUI().anfrage();
 					MainFrame.change(MainFrame.getSportgeraeteGUI(), MainFrame.getGeraetAendernGUI());
 					textSuchen.setText("Suchen...");
 				}
+			}
+
+			//Methode die Werte an die View GeraetAendernGUI übergibt
+			private void werteUebergeben() {
+				MainFrame.getGeraetAendernGUI().setModellID(modellID);
+				MainFrame.getGeraetAendernGUI().setGeraeteID(geraeteID);
+				MainFrame.getGeraetAendernGUI().setFarbe(farbe);
+				MainFrame.getGeraetAendernGUI().setMakel(makel);
+				MainFrame.getGeraetAendernGUI().setAnschaffungspreis(anschaffungspreis);
+				MainFrame.getGeraetAendernGUI().setVerkaufspreis(verkaufspreis);
+				MainFrame.getGeraetAendernGUI().setBaujahr(baujahr);
+				MainFrame.getGeraetAendernGUI().setStandort(standortID);
+			}
+			
+			//Methode, die Werte aus der Tabelle ausliest
+			private void werteAuslesen(int zeile) {
+				modellID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 4)));
+				geraeteID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 0)));
+				farbe = String.valueOf(table.getValueAt(zeile, 7));
+				makel = String.valueOf(table.getValueAt(zeile, 1));
+				anschaffungspreis = Double.parseDouble(String.valueOf(table.getValueAt(zeile, 9)));
+				verkaufspreis = Double.parseDouble(String.valueOf(table.getValueAt(zeile, 2)));
+				baujahr = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 8)));
+				standortID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 6)));
 			}
 		});
 

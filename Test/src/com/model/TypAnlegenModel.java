@@ -67,8 +67,10 @@ public class TypAnlegenModel implements IAnlegenModel {
 
 			String sqlupdate;
 			if (talking.equals("anlegen"))
+				//SQL-Befehl zum Anlegen eines Typens
 				sqlupdate = "INSERT INTO TYP VALUES (default,'" + name + "','" + schein + "')";
 			else
+				//SQL-Befehl zum Ändern eines Typens
 				sqlupdate = "UPDATE TYP SET NAME = '" + name + "', FUEHRERSCHEIN = '" + schein + "' WHERE ID = " + id
 						+ "";
 
@@ -80,6 +82,7 @@ public class TypAnlegenModel implements IAnlegenModel {
 		}
 	}
 
+	//Methode zur Übergabe von notwendigen Werten aus der View
 	private void werteUebergeben(String[] typ) {
 		talking = typ[0];
 		id = Integer.parseInt(typ[1]);

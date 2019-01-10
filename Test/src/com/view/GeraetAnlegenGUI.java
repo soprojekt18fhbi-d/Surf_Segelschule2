@@ -288,7 +288,9 @@ public class GeraetAnlegenGUI extends JPanel implements IAnlegenView {
 				talking = "hinzufuegen";
 
 				try {
-					if (textFarbe.getText().trim().isEmpty() || textBaujahr.getText().trim().isEmpty()
+					if (comboBoxModell.getSelectedItem() == null)
+						JOptionPane.showMessageDialog(null, "Von diesem Typen muss erst noch ein Modell angelegt werden.");
+					else if (textFarbe.getText().trim().isEmpty() || textBaujahr.getText().trim().isEmpty()
 							|| textAPreis.getText().trim().isEmpty() || textVPreis.getText().trim().isEmpty()) {
 						JOptionPane.showMessageDialog(null, "Füllen Sie alle Pflichtfelder aus!");
 					} else {
@@ -320,7 +322,6 @@ public class GeraetAnlegenGUI extends JPanel implements IAnlegenView {
 
 		comboBoxTyp.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				comboBoxModell.removeAllItems();
 				talking = "second";
 
 				try {
@@ -329,7 +330,6 @@ public class GeraetAnlegenGUI extends JPanel implements IAnlegenView {
 					controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis,
 							farbe, baujahr);
 					aktualisieren(model);
-
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -360,23 +360,22 @@ public class GeraetAnlegenGUI extends JPanel implements IAnlegenView {
 	public void aktualisieren(IAnlegenModel model) {
 		ArrayList<String> comboboxItems = model.getObertypen();
 		if (talking == "first") {
+			comboBoxTyp.removeAllItems();
 			for (int i = 0; i < comboboxItems.size(); i++) {
 				comboBoxTyp.addItem(comboboxItems.get(i));
 			}
-			comboboxItems.clear();
 		} else if (talking == "second") {
-			if (comboboxItems.size() == 0)
-				JOptionPane.showMessageDialog(null, "Von diesem Typen muss noch ein Modell angelegt werden.");
+			comboBoxModell.removeAllItems();			
 			for (int i = 0; i < comboboxItems.size(); i++) {
 				comboBoxModell.addItem(comboboxItems.get(i));
 			}
-			comboboxItems.clear();
 		}
+		comboboxItems.clear();
 	}
 
 	public void anfrage() {
-		comboBoxModell.removeAllItems();
 		model.anmelden(this);
+		talking = "first";		
 		controller.anfrageGeraethinzufuegen(talking, typ, modell, makel, verkaufspreis, anschaffungspreis, farbe,
 				baujahr);
 		aktualisieren(model);

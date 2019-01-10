@@ -22,6 +22,10 @@ public class ModellAnlegenModel implements IAnlegenModel {
 	private String typ;
 	private int preis;
 	private int id;
+	private Statement stmtModellHinzufuegenModel;
+	private Statement stmtModellHinzufuegenModel2;
+	private String query;
+	private ResultSet rs;
 
 	public void anfrage(String talking2, String[] modell) {
 
@@ -40,95 +44,92 @@ public class ModellAnlegenModel implements IAnlegenModel {
 
 	public void viewTable(Connection con) throws SQLException {
 
-		Statement stmtModellHinzufuegenModel = con.createStatement();
-		Statement stmtModellHinzufuegenModel2 = con.createStatement();
-		String query = null;
-
-		if (talking.equals("first")) {
-			query = "Select * from TYP";
-			try {
-				System.out.println(query);
-				ResultSet rs = stmtModellHinzufuegenModel.executeQuery(query);
-				while (rs.next()) {
-					mengeAnTypen.add(rs.getString("NAME"));
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				if (stmtModellHinzufuegenModel != null) {
-					stmtModellHinzufuegenModel.close();
-				}
+		stmtModellHinzufuegenModel = con.createStatement();
+		stmtModellHinzufuegenModel2 = con.createStatement();	
+		
+		try {
+			if (talking.equals("first"))
+				holeTypnamen();					
+			if (talking.equals("second"))
+				holePreisID();
+			if (talking.equals("hinzufuegen")) 
+				modellAnlegen();
+			if (talking.equals("aendern")) 
+				modellAendern();	
+			if (talking.equals("typname"))
+				holeTyp();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (stmtModellHinzufuegenModel != null) {
+				stmtModellHinzufuegenModel.close();
 			}
-			updateObserver();
-		}
-
-		if (talking.equals("second")) {
-			query = "Select * from PREISLISTE";
-			try {
-				System.out.println(query);
-				ResultSet rs = stmtModellHinzufuegenModel.executeQuery(query);
-				while (rs.next()) {
-					mengeAnTypen.add(rs.getString("ID"));
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				if (stmtModellHinzufuegenModel != null) {
-					stmtModellHinzufuegenModel.close();
-				}
-			}
-			updateObserver();
-		}
-
-		if (talking.equals("hinzufuegen")) {
-			try {
-				werteUebergeben();
-
-				query = "select * from TYP WHERE NAME = '" + typ + "'";
-				System.out.println(query);
-				ResultSet rs = stmtModellHinzufuegenModel.executeQuery(query);
-
-				while (rs.next()) {
-					int typID = Integer.parseInt(rs.getString("ID"));
-					String sqlupdate = "INSERT INTO MODELL VALUES (default,'" + name + "','" + typID + "','" + preis
-							+ "')";
-					System.out.println(sqlupdate);
-					stmtModellHinzufuegenModel2.executeUpdate(sqlupdate);
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			} finally {
-				if (stmtModellHinzufuegenModel2 != null) {
-					stmtModellHinzufuegenModel2.close();
-				}
-				if (stmtModellHinzufuegenModel != null) {
-					stmtModellHinzufuegenModel.close();
-				}
+			if (stmtModellHinzufuegenModel != null) {
+				stmtModellHinzufuegenModel.close();
 			}
 		}
+		updateObserver();
+	}
 
-		if (talking.equals("aendern")) {
-			try {
-				werteUebergeben();
+	//Metohode holt bestimmten Typnamen, abhägig von der TypID
+	private void holeTyp() throws SQLException {
+		werteUebergeben();
+		query = "Select * from TYP WHERE ID = '" + id + "'";
+		System.out.println(query);
+		rs = stmtModellHinzufuegenModel.executeQuery(query);
+		while (rs.next()) {
+			mengeAnTypen.add(rs.getString("NAME"));
+		}
+	}
+	
+	//Metohode zum Aendern eines Modells in der Datenbank
+	private void modellAendern() throws SQLException {
+		werteUebergeben();
 
-				query = "select * from TYP WHERE NAME = '" + typ + "'";
-				ResultSet rs = stmtModellHinzufuegenModel.executeQuery(query);
-				while (rs.next()) {
-					int typID = Integer.parseInt(rs.getString("ID"));
-					String sqlupdate = "UPDATE MODELL SET NAME = '" + name + "', TYPID = '" + typID
-							+ "' , PREISLISTEID = '" + preis + "' WHERE ID = " + id + "";
-					stmtModellHinzufuegenModel2.executeUpdate(sqlupdate);
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			} finally {
-				if (stmtModellHinzufuegenModel2 != null) {
-					stmtModellHinzufuegenModel2.close();
-				}
-				if (stmtModellHinzufuegenModel != null) {
-					stmtModellHinzufuegenModel.close();
-				}
-			}
+		query = "select * from TYP WHERE NAME = '" + typ + "'";
+		rs = stmtModellHinzufuegenModel.executeQuery(query);
+		while (rs.next()) {
+			int typID = Integer.parseInt(rs.getString("ID"));
+			String sqlupdate = "UPDATE MODELL SET NAME = '" + name + "', TYPID = '" + typID
+					+ "' , PREISLISTEID = '" + preis + "' WHERE ID = " + id + "";
+			stmtModellHinzufuegenModel2.executeUpdate(sqlupdate);
+		}
+	}
+
+	//Metohode zum Anlegen eines Modells in der Datenbank, Vergleich mit TypID
+	private void modellAnlegen() throws SQLException {
+		werteUebergeben();
+
+		query = "select * from TYP WHERE NAME = '" + typ + "'";
+		System.out.println(query);
+		rs = stmtModellHinzufuegenModel.executeQuery(query);
+
+		while (rs.next()) {
+			int typID = Integer.parseInt(rs.getString("ID"));
+			String sqlupdate = "INSERT INTO MODELL VALUES (default,'" + name + "','" + typID + "','" + preis
+					+ "')";
+			System.out.println(sqlupdate);
+			stmtModellHinzufuegenModel2.executeUpdate(sqlupdate);
+		}
+	}
+
+	//Methode holt PreisIDs zum Füllen der Comboboxen (bei ModellAnlegen, ModellAendern)
+	private void holePreisID() throws SQLException {
+		query = "Select * from PREISLISTE";
+		System.out.println(query);
+		rs = stmtModellHinzufuegenModel.executeQuery(query);
+		while (rs.next()) {
+			mengeAnTypen.add(rs.getString("ID"));
+		}
+	}
+	
+	//Methode holt alle Typnamen zum Füllen der Comboboxen (bei ModellAnlegen, ModellAendern)
+	private void holeTypnamen() throws SQLException {
+		query = "Select * from TYP";
+		System.out.println(query);
+		rs = stmtModellHinzufuegenModel.executeQuery(query);
+		while (rs.next()) {
+			mengeAnTypen.add(rs.getString("NAME"));
 		}
 	}
 

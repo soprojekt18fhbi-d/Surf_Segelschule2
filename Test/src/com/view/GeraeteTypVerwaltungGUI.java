@@ -52,6 +52,9 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 	private JTable table;
 	private Icon lupe;
 	private GeraeteTyp typ;
+	private int id;
+	private String name;
+	private String fuehrerschein;
 
 	/**
 	 * Create the panel.
@@ -183,18 +186,27 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 				if (zeile < 0)
 					JOptionPane.showMessageDialog(null, "Typen auswählen!");
 				else {
-					String idS = String.valueOf(table.getValueAt(zeile, 0));
-					int id = Integer.parseInt(idS);
-					String name = String.valueOf(table.getValueAt(zeile, 1));
-					String fuehrerschein = String.valueOf(table.getValueAt(zeile, 2));
-					typ = new GeraeteTyp(id, name, fuehrerschein);
-					MainFrame.getTypAendernGUI().setTyp(typ);
-					MainFrame.getTypAendernGUI().setText(name);
-					MainFrame.getTypAendernGUI().setFuehrerschein(fuehrerschein);
+					werteAuslesen(zeile);
+					werteUebergeben();
 					MainFrame.change(MainFrame.getGeraeteTypVerwaltung(), MainFrame.getTypAendernGUI());
 					textSuchen.setText("Suchen...");
 					System.out.println(fuehrerschein);
 				}
+			}
+			
+			//Methode die Werte an die View TypAendernGUI übergibt
+			private void werteUebergeben() {
+				MainFrame.getTypAendernGUI().setTyp(typ);
+				MainFrame.getTypAendernGUI().setText(name);
+				MainFrame.getTypAendernGUI().setFuehrerschein(fuehrerschein);
+			}
+
+			//Methode, die Werte aus der Tabelle ausliest
+			private void werteAuslesen(int zeile) {
+				id = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 0)));
+				name = String.valueOf(table.getValueAt(zeile, 1));
+				fuehrerschein = String.valueOf(table.getValueAt(zeile, 2));
+				typ = new GeraeteTyp(id, name, fuehrerschein);
 			}
 		});
 

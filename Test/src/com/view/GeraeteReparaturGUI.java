@@ -210,9 +210,9 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView {
 								"Der Status wurde geändert und die Reparatur wurde erfolgreich angelegt!");
 						MainFrame.change(MainFrame.getGeraeteReparaturGUI(), MainFrame.getSportgeraeteGUI());
 						MainFrame.getSportgeraeteGUI().anfrage();
+						txtBeschreibung.setText("");
+						txtKosten.setText("");
 					}
-					txtBeschreibung.setText("");
-					txtKosten.setText("");
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Geben Sie einen gültigen Wert für die Kosten ein!");
 				}

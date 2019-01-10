@@ -43,6 +43,11 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView {
 	private String talking = "gesamt";
 	private String search;
 	private Icon lupe;
+	int modellID;
+	String modellName;
+	int typID;
+	int preisID;
+
 
 	/**
 	 * Create the panel.
@@ -184,22 +189,29 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView {
 				if (zeile < 0)
 					JOptionPane.showMessageDialog(null, "Modell auswählen!");
 				else {
-					String modellID = String.valueOf(table.getValueAt(zeile, 0));
-					int mID = Integer.parseInt(modellID);
-					String modellName = String.valueOf(table.getValueAt(zeile, 1));
-					String typID = String.valueOf(table.getValueAt(zeile, 2));
-					int tID = Integer.parseInt(typID);
-					String preisID = String.valueOf(table.getValueAt(zeile, 3));
-					int pID = Integer.parseInt(preisID);
-
-					MainFrame.getModellAendernGUI().setModellID(mID);
-					MainFrame.getModellAendernGUI().setTypID(tID);
-					MainFrame.getModellAendernGUI().setPreisID(pID);
-					MainFrame.getModellAendernGUI().setText(modellName);
+					werteAuslesen(zeile);
+					werteUebergeben();
 					MainFrame.getModellAendernGUI().anfrage();
 					MainFrame.change(MainFrame.getGeraeteModellVerwaltungGUI(), MainFrame.getModellAendernGUI());
 					textSuchen.setText("Suchen...");
 				}
+			}
+
+			//Methode die Werte an die View ModellAendernGUI übergibt
+			private void werteUebergeben() {
+				MainFrame.getModellAendernGUI().setModellID(modellID);
+				MainFrame.getModellAendernGUI().setTypID(typID);
+				MainFrame.getModellAendernGUI().setTypname(typID);
+				MainFrame.getModellAendernGUI().setPreisID(preisID);
+				MainFrame.getModellAendernGUI().setText(modellName);
+			}
+
+			//Methode, die Werte aus der Tabelle ausliest
+			private void werteAuslesen(int zeile) {
+				modellID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 0)));
+				modellName = String.valueOf(table.getValueAt(zeile, 1));
+				typID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 2)));
+				preisID = Integer.parseInt(String.valueOf(table.getValueAt(zeile, 3)));
 			}
 		});
 

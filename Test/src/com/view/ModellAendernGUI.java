@@ -47,6 +47,7 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView {
 	private int preisID;
 	private int modellID;
 	private JLabel lblModell;
+	private String preis;
 
 	/**
 	 * 
@@ -235,8 +236,17 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView {
 
 	public void setPreisID(int id) {
 		this.preisID = id;
+		preis = String.valueOf(preisID);
 	}
 
+	public void setTypname(int id){
+		talking = "typname";
+		controller.anfrageModellhinzufuegen(talking, name, typ, preisID, typID);
+		ArrayList<String> comboboxItems = model.getObertypen();
+		typ = comboboxItems.get(0);
+		comboboxItems.clear();
+	}
+	
 	public void setTypID(int id) {
 		this.typID = id;
 	}
@@ -247,19 +257,19 @@ public class ModellAendernGUI extends JPanel implements IAnlegenView {
 			for (int i = 0; i < comboboxItems.size(); i++) {
 				comboBoxTyp.addItem(comboboxItems.get(i));
 			}
-			comboBoxTyp.setSelectedIndex(typID - 1);
+			comboBoxTyp.setSelectedItem(typ);
 		} else if (talking.equals("second")) {
 			for (int i = 0; i < comboboxItems.size(); i++) {
 				comboBoxPreis.addItem(comboboxItems.get(i));
 			}
-			comboBoxPreis.setSelectedIndex(preisID - 1);
+			comboBoxPreis.setSelectedItem(preis);
 		}
 		comboboxItems.clear();
-
 	}
 
 	public void anfrage() {
 		comboBoxTyp.removeAllItems();
+		comboBoxPreis.removeAllItems();
 		model.anmelden(this);
 		talking = "first";
 		controller.anfrageModellhinzufuegen(talking, name, typ, preisID, modellID);
