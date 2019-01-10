@@ -5,6 +5,8 @@
 package com.view;
 
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -18,19 +20,15 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.controller.TypAnlegenStrg;
 import com.entity.GeraeteTyp;
-import com.entity.IKunde;
 import com.model.IAnlegenModel;
 import com.model.TypAnlegenModel;
 
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
@@ -38,10 +36,11 @@ public class TypAendernGUI extends JPanel implements IAnlegenView {
 	private JTextField txtTyp;
 	private JLabel label;
 	private GeraeteTyp typ = null;
-	JCheckBox chckbxSegelschein;
-	JCheckBox chckbxSurfschein;
-	JCheckBox chckbxMotorbootschein;
+	private JRadioButton radioButtonSegelschein;
+	private JRadioButton radioButtonSurfschein;
+	private JRadioButton radioButtonMotorbootschein;
 	private String talking = "aendern";
+	private ButtonGroup radioButton = new ButtonGroup();
 
 	TypAnlegenModel model;
 	TypAnlegenStrg controller;
@@ -132,36 +131,40 @@ public class TypAendernGUI extends JPanel implements IAnlegenView {
 		gbc_lblErforderlicherFhrerschein.gridy = 7;
 		panel.add(lblErforderlicherFhrerschein, gbc_lblErforderlicherFhrerschein);
 
-		chckbxSegelschein = new JCheckBox("Segelschein");
-		chckbxSegelschein.setBackground(Color.DARK_GRAY);
-		chckbxSegelschein.setForeground(Color.WHITE);
-		chckbxSegelschein.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		radioButtonSegelschein = new JRadioButton("Segelschein");
+		radioButtonSegelschein.setBackground(Color.DARK_GRAY);
+		radioButtonSegelschein.setForeground(Color.WHITE);
+		radioButtonSegelschein.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_chckbxSegelschein = new GridBagConstraints();
 		gbc_chckbxSegelschein.insets = new Insets(0, 0, 5, 5);
 		gbc_chckbxSegelschein.gridx = 2;
 		gbc_chckbxSegelschein.gridy = 8;
-		panel.add(chckbxSegelschein, gbc_chckbxSegelschein);
+		panel.add(radioButtonSegelschein, gbc_chckbxSegelschein);
 
-		chckbxSurfschein = new JCheckBox("Surfschein       ");
-		chckbxSurfschein.setForeground(Color.WHITE);
-		chckbxSurfschein.setBackground(Color.DARK_GRAY);
-		chckbxSurfschein.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		radioButtonSurfschein = new JRadioButton("Surfschein       ");
+		radioButtonSurfschein.setForeground(Color.WHITE);
+		radioButtonSurfschein.setBackground(Color.DARK_GRAY);
+		radioButtonSurfschein.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_chckbxSurfschein = new GridBagConstraints();
 		gbc_chckbxSurfschein.insets = new Insets(0, 0, 5, 5);
 		gbc_chckbxSurfschein.gridx = 3;
 		gbc_chckbxSurfschein.gridy = 8;
-		panel.add(chckbxSurfschein, gbc_chckbxSurfschein);
+		panel.add(radioButtonSurfschein, gbc_chckbxSurfschein);
 
-		chckbxMotorbootschein = new JCheckBox("Motorbootschein");
-		chckbxMotorbootschein.setBackground(Color.DARK_GRAY);
-		chckbxMotorbootschein.setForeground(Color.WHITE);
-		chckbxMotorbootschein.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		radioButtonMotorbootschein = new JRadioButton("Motorbootschein");
+		radioButtonMotorbootschein.setBackground(Color.DARK_GRAY);
+		radioButtonMotorbootschein.setForeground(Color.WHITE);
+		radioButtonMotorbootschein.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_chckbxMotorbootschein = new GridBagConstraints();
 		gbc_chckbxMotorbootschein.insets = new Insets(0, 0, 5, 5);
 		gbc_chckbxMotorbootschein.gridx = 4;
 		gbc_chckbxMotorbootschein.gridy = 8;
-		panel.add(chckbxMotorbootschein, gbc_chckbxMotorbootschein);
+		panel.add(radioButtonMotorbootschein, gbc_chckbxMotorbootschein);
 
+		radioButton.add(radioButtonSegelschein);
+		radioButton.add(radioButtonSurfschein);
+		radioButton.add(radioButtonMotorbootschein);
+		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.DARK_GRAY);
 		add(panel_2, BorderLayout.SOUTH);
@@ -196,9 +199,9 @@ public class TypAendernGUI extends JPanel implements IAnlegenView {
 					JOptionPane.showMessageDialog(null, "Der Typ wurde erfolgreich geändert!");
 					MainFrame.change(MainFrame.getTypAendernGUI(), MainFrame.getGeraeteTypVerwaltung());
 					MainFrame.getGeraeteTypVerwaltung().anfrage();
-					chckbxSegelschein.setSelected(false);
-					chckbxMotorbootschein.setSelected(false);
-					chckbxSurfschein.setSelected(false);
+					radioButtonSegelschein.setSelected(false);
+					radioButtonMotorbootschein.setSelected(false);
+					radioButtonSurfschein.setSelected(false);
 					txtTyp.setText("");
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Der Typ konnte nicht geändert werden");
@@ -213,11 +216,11 @@ public class TypAendernGUI extends JPanel implements IAnlegenView {
 				if (name.equals(""))
 					name = label.getText();
 
-				if (chckbxSegelschein.isSelected() == true)
+				if (radioButtonSegelschein.isSelected() == true)
 					schein = "Segelschein";
-				else if (chckbxSurfschein.isSelected() == true)
+				else if (radioButtonSurfschein.isSelected() == true)
 					schein = "Surfschein";
-				else if (chckbxMotorbootschein.isSelected() == true)
+				else if (radioButtonMotorbootschein.isSelected() == true)
 					schein = "Motorbootschein";
 				else
 					schein = "Kein";
@@ -229,36 +232,12 @@ public class TypAendernGUI extends JPanel implements IAnlegenView {
 
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				chckbxSegelschein.setSelected(false);
-				chckbxMotorbootschein.setSelected(false);
-				chckbxSurfschein.setSelected(false);
+				radioButtonSegelschein.setSelected(false);
+				radioButtonMotorbootschein.setSelected(false);
+				radioButtonSurfschein.setSelected(false);
 				txtTyp.setText("");
 				MainFrame.getGeraeteTypVerwaltung().anfrage();
 				MainFrame.change(MainFrame.getTypAendernGUI(), MainFrame.getGeraeteTypVerwaltung());
-			}
-		});
-
-		chckbxSegelschein.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				chckbxSurfschein.setSelected(false);
-				chckbxMotorbootschein.setSelected(false);
-			}
-		});
-
-		chckbxSurfschein.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				chckbxSegelschein.setSelected(false);
-				chckbxMotorbootschein.setSelected(false);
-			}
-		});
-
-		chckbxMotorbootschein.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				chckbxSurfschein.setSelected(false);
-				chckbxSegelschein.setSelected(false);
 			}
 		});
 	}
@@ -277,10 +256,10 @@ public class TypAendernGUI extends JPanel implements IAnlegenView {
 
 	public void setFuehrerschein(String schein) {
 		if (schein.equals("Segelschein"))
-			chckbxSegelschein.setSelected(true);
+			radioButtonSegelschein.setSelected(true);
 		else if (schein.equals("Motorbootschein"))
-			chckbxMotorbootschein.setSelected(true);
+			radioButtonMotorbootschein.setSelected(true);
 		else if (schein.equals("Surfschein"))
-			chckbxSurfschein.setSelected(true);
+			radioButtonSurfschein.setSelected(true);
 	}
 }

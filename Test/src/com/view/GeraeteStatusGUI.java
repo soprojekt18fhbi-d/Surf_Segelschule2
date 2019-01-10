@@ -12,22 +12,21 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.controller.GeraetAnlegenStrg;
 import com.model.IAnlegenModel;
 
+import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 
 public class GeraeteStatusGUI extends JPanel implements IAnlegenView {
 	IAnlegenModel model;
@@ -48,11 +47,11 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView {
 	private int baujahr;
 	private double anschaffungspreis;
 	private double verkaufspreis;
-
-	private JCheckBox chckbxOK;
-	private JCheckBox chckbxVerliehen;
-	private JCheckBox chckbxReparatur;
-	private JCheckBox chckbxDeaktiviert;
+	private JRadioButton radioButtonOK;
+	private JRadioButton radioButtonVerliehen;
+	private JRadioButton radioButtonReparatur;
+	private JRadioButton radioButtonDeaktiviert;
+	private ButtonGroup radioButton = new ButtonGroup();
 
 	/**
 	 * Create the panel.
@@ -126,49 +125,54 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView {
 		gbc_lblGeraeteID.gridy = 5;
 		panel.add(lblGeraeteID, gbc_lblGeraeteID);
 
-		chckbxOK = new JCheckBox("OK");
-		chckbxOK.setForeground(Color.WHITE);
-		chckbxOK.setBackground(Color.DARK_GRAY);
-		chckbxOK.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		radioButtonOK = new JRadioButton("OK");
+		radioButtonOK.setForeground(Color.WHITE);
+		radioButtonOK.setBackground(Color.DARK_GRAY);
+		radioButtonOK.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_chckbxOK = new GridBagConstraints();
 		gbc_chckbxOK.anchor = GridBagConstraints.WEST;
 		gbc_chckbxOK.insets = new Insets(0, 0, 5, 5);
 		gbc_chckbxOK.gridx = 3;
 		gbc_chckbxOK.gridy = 7;
-		panel.add(chckbxOK, gbc_chckbxOK);
+		panel.add(radioButtonOK, gbc_chckbxOK);
 
-		chckbxVerliehen = new JCheckBox("Verliehen");
-		chckbxVerliehen.setForeground(Color.WHITE);
-		chckbxVerliehen.setBackground(Color.DARK_GRAY);
-		chckbxVerliehen.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		radioButtonVerliehen = new JRadioButton("Verliehen");
+		radioButtonVerliehen.setForeground(Color.WHITE);
+		radioButtonVerliehen.setBackground(Color.DARK_GRAY);
+		radioButtonVerliehen.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_chckbxVerliehen = new GridBagConstraints();
 		gbc_chckbxVerliehen.anchor = GridBagConstraints.WEST;
 		gbc_chckbxVerliehen.insets = new Insets(0, 0, 5, 5);
 		gbc_chckbxVerliehen.gridx = 3;
 		gbc_chckbxVerliehen.gridy = 8;
-		panel.add(chckbxVerliehen, gbc_chckbxVerliehen);
+		panel.add(radioButtonVerliehen, gbc_chckbxVerliehen);
 
-		chckbxReparatur = new JCheckBox("Reparatur");
-		chckbxReparatur.setBackground(Color.DARK_GRAY);
-		chckbxReparatur.setForeground(Color.WHITE);
-		chckbxReparatur.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		radioButtonReparatur = new JRadioButton("Reparatur");
+		radioButtonReparatur.setBackground(Color.DARK_GRAY);
+		radioButtonReparatur.setForeground(Color.WHITE);
+		radioButtonReparatur.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_chckbxReparatur = new GridBagConstraints();
 		gbc_chckbxReparatur.anchor = GridBagConstraints.WEST;
 		gbc_chckbxReparatur.insets = new Insets(0, 0, 5, 5);
 		gbc_chckbxReparatur.gridx = 3;
 		gbc_chckbxReparatur.gridy = 9;
-		panel.add(chckbxReparatur, gbc_chckbxReparatur);
+		panel.add(radioButtonReparatur, gbc_chckbxReparatur);
 
-		chckbxDeaktiviert = new JCheckBox("Deaktiviert");
-		chckbxDeaktiviert.setForeground(Color.WHITE);
-		chckbxDeaktiviert.setBackground(Color.DARK_GRAY);
-		chckbxDeaktiviert.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		radioButtonDeaktiviert = new JRadioButton("Deaktiviert");
+		radioButtonDeaktiviert.setForeground(Color.WHITE);
+		radioButtonDeaktiviert.setBackground(Color.DARK_GRAY);
+		radioButtonDeaktiviert.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_chckbxDeaktiviert = new GridBagConstraints();
 		gbc_chckbxDeaktiviert.anchor = GridBagConstraints.WEST;
 		gbc_chckbxDeaktiviert.insets = new Insets(0, 0, 5, 5);
 		gbc_chckbxDeaktiviert.gridx = 3;
 		gbc_chckbxDeaktiviert.gridy = 10;
-		panel.add(chckbxDeaktiviert, gbc_chckbxDeaktiviert);
+		panel.add(radioButtonDeaktiviert, gbc_chckbxDeaktiviert);
+		
+		radioButton.add(radioButtonOK);
+		radioButton.add(radioButtonVerliehen);
+		radioButton.add(radioButtonReparatur);
+		radioButton.add(radioButtonDeaktiviert);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.DARK_GRAY);
@@ -216,10 +220,10 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView {
 						MainFrame.change(MainFrame.getGeraeteStatusGUI(), MainFrame.getSportgeraeteGUI());
 						MainFrame.getSportgeraeteGUI().anfrage();
 					}
-					chckbxOK.setSelected(false);
-					chckbxVerliehen.setSelected(false);
-					chckbxReparatur.setSelected(false);
-					chckbxDeaktiviert.setSelected(false);
+					radioButtonOK.setSelected(false);
+					radioButtonVerliehen.setSelected(false);
+					radioButtonReparatur.setSelected(false);
+					radioButtonDeaktiviert.setSelected(false);
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Der Status konnte nicht geändert werden");
 				}
@@ -230,58 +234,22 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getSportgeraeteGUI().anfrage();
 				MainFrame.change(MainFrame.getGeraeteStatusGUI(), MainFrame.getSportgeraeteGUI());
-				chckbxOK.setSelected(false);
-				chckbxVerliehen.setSelected(false);
-				chckbxReparatur.setSelected(false);
-				chckbxDeaktiviert.setSelected(false);
-			}
-		});
-
-		chckbxOK.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				chckbxVerliehen.setSelected(false);
-				chckbxReparatur.setSelected(false);
-				chckbxDeaktiviert.setSelected(false);
-			}
-		});
-
-		chckbxVerliehen.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				chckbxOK.setSelected(false);
-				chckbxReparatur.setSelected(false);
-				chckbxDeaktiviert.setSelected(false);
-			}
-		});
-
-		chckbxReparatur.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				chckbxOK.setSelected(false);
-				chckbxVerliehen.setSelected(false);
-				chckbxDeaktiviert.setSelected(false);
-			}
-		});
-
-		chckbxDeaktiviert.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				chckbxOK.setSelected(false);
-				chckbxVerliehen.setSelected(false);
-				chckbxReparatur.setSelected(false);
+				radioButtonOK.setSelected(false);
+				radioButtonVerliehen.setSelected(false);
+				radioButtonReparatur.setSelected(false);
+				radioButtonDeaktiviert.setSelected(false);
 			}
 		});
 	}
 
 	private void holeStatus() {
-		if (chckbxOK.isSelected() == true)
+		if (radioButtonOK.isSelected() == true)
 			neuerStatus = "OK";
-		else if (chckbxVerliehen.isSelected() == true)
+		else if (radioButtonVerliehen.isSelected() == true)
 			neuerStatus = "Verliehen";
-		else if (chckbxReparatur.isSelected() == true)
+		else if (radioButtonReparatur.isSelected() == true)
 			neuerStatus = "Reparatur";
-		else if (chckbxDeaktiviert.isSelected() == true)
+		else if (radioButtonDeaktiviert.isSelected() == true)
 			neuerStatus = "Deaktiviert";
 	}
 
@@ -305,13 +273,13 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView {
 	public void setStatus(String status) {
 		this.status = status;
 		if (status.equals("OK"))
-			chckbxOK.setSelected(true);
+			radioButtonOK.setSelected(true);
 		if (status.equals("Verliehen"))
-			chckbxVerliehen.setSelected(true);
+			radioButtonVerliehen.setSelected(true);
 		if (status.equals("Reparatur"))
-			chckbxReparatur.setSelected(true);
+			radioButtonReparatur.setSelected(true);
 		if (status.equals("Deaktiviert"))
-			chckbxDeaktiviert.setSelected(true);
+			radioButtonDeaktiviert.setSelected(true);
 	}
 
 	@Override
