@@ -277,16 +277,25 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 		buttonCalc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
+				boolean number = false;
+				
 				try {
 					if (mode.equals("Unternehmen") == false && mode.equals("Sportgeraet") == false)
 						giveString = cboxSpec.getSelectedItem().toString();
 
 					if (mode.equals("Sportgeraet")) {
-						boolean number = false;
 						number = getSportID(cboxKateg, number);
 					}
+					else
+						number = true;
+					
 					talking = "calc";
-					anfrage();
+					if(number == true)
+						anfrage();
+					
+					if(Double.parseDouble(txtExpenses.getText()) <= 0)
+						JOptionPane.showMessageDialog(null, "Entschuldigung, dieses Gerät scheint nicht zu existieren!");
+					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -297,8 +306,18 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 				while (number == false) {
 					try {
 						if (cboxKateg.getSelectedItem().equals("Sportgeraet")) {
-							id = Integer.parseInt(JOptionPane.showInputDialog("Bitte Artikelnummer (ID) eingeben!"));
-							number = true;
+							
+							
+							String inputString = JOptionPane.showInputDialog("Bitte Artikelnummer (ID) eingeben!");
+							if(!(inputString == null))
+							{
+								id = Integer.parseInt(inputString);
+								number = true;
+							}
+							else
+							{
+								return number;
+							}
 						}
 					} catch (NumberFormatException e) {
 						// TODO Auto-generated catch block
