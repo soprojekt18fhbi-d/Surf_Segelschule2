@@ -177,16 +177,12 @@ public class TypAnlegenGUI extends JPanel implements IAnlegenView {
 						MainFrame.change(MainFrame.getTypAnlegenGUI(), MainFrame.getGeraeteTypVerwaltung());
 						MainFrame.getGeraeteTypVerwaltung().anfrage();
 
-						radioButtonSegelschein.setSelected(false);
-						radioButtonSurfschein.setSelected(false);
-						radioButtonMotorbootschein.setSelected(false);
+						radioButton.clearSelection();
 						txtTyp.setText("");
 					}
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Der Typ konnte nicht angelegt werden");
-					radioButtonSegelschein.setSelected(false);
-					radioButtonSurfschein.setSelected(false);
-					radioButtonMotorbootschein.setSelected(false);
+					radioButton.clearSelection();
 				}
 			}
 		});
@@ -195,6 +191,7 @@ public class TypAnlegenGUI extends JPanel implements IAnlegenView {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getGeraeteTypVerwaltung().anfrage();
 				MainFrame.change(MainFrame.getTypAnlegenGUI(), MainFrame.getGeraeteTypVerwaltung());
+				radioButton.clearSelection();
 			}
 		});
 	}

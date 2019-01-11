@@ -199,9 +199,7 @@ public class TypAendernGUI extends JPanel implements IAnlegenView {
 					JOptionPane.showMessageDialog(null, "Der Typ wurde erfolgreich geändert!");
 					MainFrame.change(MainFrame.getTypAendernGUI(), MainFrame.getGeraeteTypVerwaltung());
 					MainFrame.getGeraeteTypVerwaltung().anfrage();
-					radioButtonSegelschein.setSelected(false);
-					radioButtonMotorbootschein.setSelected(false);
-					radioButtonSurfschein.setSelected(false);
+					radioButton.clearSelection();
 					txtTyp.setText("");
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Der Typ konnte nicht geändert werden");
@@ -232,9 +230,7 @@ public class TypAendernGUI extends JPanel implements IAnlegenView {
 
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				radioButtonSegelschein.setSelected(false);
-				radioButtonMotorbootschein.setSelected(false);
-				radioButtonSurfschein.setSelected(false);
+				radioButton.clearSelection();
 				txtTyp.setText("");
 				MainFrame.getGeraeteTypVerwaltung().anfrage();
 				MainFrame.change(MainFrame.getTypAendernGUI(), MainFrame.getGeraeteTypVerwaltung());

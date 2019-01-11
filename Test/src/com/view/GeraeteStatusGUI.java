@@ -221,9 +221,7 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView {
 						MainFrame.getSportgeraeteGUI().anfrage();
 					}
 					radioButtonOK.setSelected(false);
-					radioButtonVerliehen.setSelected(false);
-					radioButtonReparatur.setSelected(false);
-					radioButtonDeaktiviert.setSelected(false);
+					radioButton.clearSelection();
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Der Status konnte nicht geändert werden");
 				}
@@ -235,9 +233,7 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView {
 				MainFrame.getSportgeraeteGUI().anfrage();
 				MainFrame.change(MainFrame.getGeraeteStatusGUI(), MainFrame.getSportgeraeteGUI());
 				radioButtonOK.setSelected(false);
-				radioButtonVerliehen.setSelected(false);
-				radioButtonReparatur.setSelected(false);
-				radioButtonDeaktiviert.setSelected(false);
+				radioButton.clearSelection();
 			}
 		});
 	}
