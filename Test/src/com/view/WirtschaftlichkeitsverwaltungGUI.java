@@ -14,7 +14,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import com.controller.IController;
 import com.controller.WirtschaftlichkeitStrg;
 import com.model.IObjektModel;
 import com.model.IWirtschaftlichkeitModel;
