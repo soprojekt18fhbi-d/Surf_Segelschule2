@@ -1,6 +1,6 @@
 // @author Darnel
 
-package com.entity;
+package com.entity; //Adresse ist für den Kunden
 
 public class Adresse implements IAdresse {
 	private String strasse;
