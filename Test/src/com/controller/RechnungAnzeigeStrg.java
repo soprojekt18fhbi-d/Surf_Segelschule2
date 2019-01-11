@@ -36,7 +36,7 @@ import com.view.RechungsSucheGUI;
  * @author Darnel
  *
  */
-public class RechnungAnzeigeStrg implements IController {
+public class RechnungAnzeigeStrg {
 
 	private RechnungAnzeigenModel model;
 	private RechungsSucheGUI view;
@@ -231,10 +231,6 @@ public class RechnungAnzeigeStrg implements IController {
 		document.close();
 	}
 
-	@Override
-	public void anfrage() {
-		// TODO Auto-generated method stub
 
-	}
 
 }

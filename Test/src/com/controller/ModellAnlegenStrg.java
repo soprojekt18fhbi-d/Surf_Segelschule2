@@ -10,7 +10,7 @@ import com.model.ModellAnlegenModel;
 import com.view.IAnlegenView;
 import com.view.ModellAnlegenGUI;
 
-public class ModellAnlegenStrg implements IController {
+public class ModellAnlegenStrg {
 
 	private GeraeteModell modell;
 	private ModellAnlegenModel model;
@@ -27,10 +27,5 @@ public class ModellAnlegenStrg implements IController {
 		model.anfrage(talking, values);
 	}
 
-	@Override
-	public void anfrage() {
-		// TODO Auto-generated method stub
-
-	}
 
 }

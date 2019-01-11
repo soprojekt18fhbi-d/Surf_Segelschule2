@@ -6,7 +6,7 @@ import com.model.KundeSucheModel;
 import com.view.BuchungKundeSucheGUI;
 import com.view.KundeAendernGUI;
 
-public class BuchungKundeSucheStrg implements IController {
+public class BuchungKundeSucheStrg {
 
 	private BuchungKundeSucheModel model;
 	private BuchungKundeSucheGUI view;
@@ -51,10 +51,6 @@ public class BuchungKundeSucheStrg implements IController {
 
 	}
 
-	@Override
-	public void anfrage() {
-		// TODO Auto-generated method stub
 
-	}
 
 }

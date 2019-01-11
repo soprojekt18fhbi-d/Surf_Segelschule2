@@ -7,7 +7,7 @@ package com.controller;
 import com.model.GeraetAnlegenModel;
 import com.view.MainFrame;
 
-public class GeraetAnlegenStrg implements IController {
+public class GeraetAnlegenStrg {
 
 	private GeraetAnlegenModel model;
 
@@ -23,11 +23,7 @@ public class GeraetAnlegenStrg implements IController {
 		model.anfrage(talking, values);
 	}
 
-	@Override
-	public void anfrage() {
-		// TODO Auto-generated method stub
 
-	}
 
 	public void setzeStandort() {
 		model.setStandort(MainFrame.getStandort());

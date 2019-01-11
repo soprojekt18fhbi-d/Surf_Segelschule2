@@ -12,7 +12,7 @@ import com.view.IObjektView;
  * @author michi
  *
  */
-public class BuchungModellSucheStrg implements IController {
+public class BuchungModellSucheStrg {
 
 	private BuchungModellSucheModel model;
 	private IObjektView view;
@@ -28,9 +28,5 @@ public class BuchungModellSucheStrg implements IController {
 
 	}
 
-	@Override
-	public void anfrage() {
-		// TODO Auto-generated method stub
 
-	}
 }

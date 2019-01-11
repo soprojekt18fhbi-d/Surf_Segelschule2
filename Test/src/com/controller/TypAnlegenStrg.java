@@ -8,7 +8,7 @@ import com.entity.GeraeteTyp;
 import com.model.TypAnlegenModel;
 import com.view.IAnlegenView;
 
-public class TypAnlegenStrg implements IController {
+public class TypAnlegenStrg {
 
 	private GeraeteTyp typ;
 	private TypAnlegenModel model;
@@ -25,10 +25,6 @@ public class TypAnlegenStrg implements IController {
 		model.typAnlegen(values);
 	}
 
-	@Override
-	public void anfrage() {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 }

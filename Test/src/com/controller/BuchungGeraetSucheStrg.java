@@ -4,7 +4,7 @@ import com.model.BuchungGeraetSucheModel;
 import com.model.BuchungModellSucheModel;
 import com.view.IObjektView;
 
-public class BuchungGeraetSucheStrg implements IController {
+public class BuchungGeraetSucheStrg{
 
 	private BuchungGeraetSucheModel model;
 	private IObjektView view;
@@ -20,10 +20,6 @@ public class BuchungGeraetSucheStrg implements IController {
 
 	}
 
-	@Override
-	public void anfrage() {
-		// TODO Auto-generated method stub
 
-	}
 
 }

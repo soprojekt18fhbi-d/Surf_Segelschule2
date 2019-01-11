@@ -7,7 +7,7 @@ package com.controller;
 import com.model.PreislisteSucheModel;
 import com.view.PreislisteGUI;
 
-public class PreislisteSucheStrg implements IController {
+public class PreislisteSucheStrg{
 
 	private PreislisteSucheModel model;
 	private PreislisteGUI view;
@@ -23,10 +23,6 @@ public class PreislisteSucheStrg implements IController {
 
 	}
 
-	@Override
-	public void anfrage() {
-		// TODO Auto-generated method stub
 
-	}
 
 }
