@@ -212,7 +212,6 @@ public class GeraeteStatusGUI extends JPanel implements IAnlegenView {
 						holeStatus();
 						MainFrame.getGeraeteReparaturGUI().setStatus(neuerStatus);
 						MainFrame.getGeraeteReparaturGUI().anfrage();
-						JOptionPane.showMessageDialog(null, "Die Reparatur wird erfasst");
 						MainFrame.change(MainFrame.getGeraeteStatusGUI(), MainFrame.getGeraeteReparaturGUI());
 					} else {
 						statusAendern();
