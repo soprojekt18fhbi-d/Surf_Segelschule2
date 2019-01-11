@@ -28,6 +28,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import com.controller.PreislisteAendernStrg;
@@ -149,6 +150,7 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 
 		DefaultTableModel tableModel = new DefaultTableModel();
 		table = new JTable(tableModel);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -158,6 +160,7 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 
 					int row = table.getSelectedRow();
 					tfSuchID.setText(table.getModel().getValueAt(row, 0).toString());
+					JOptionPane.showMessageDialog(null, "Preisliste mit ID: " + table.getModel().getValueAt(table.getSelectedRow(), 0) + " gewählt!");
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

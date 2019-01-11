@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListSelectionModel;
 
 import com.controller.BuchungKundeSucheStrg;
 import com.entity.IKunde;
@@ -212,6 +213,7 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 		panel_2.add(scrollPane, gbc_scrollPane);
 
 		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
 
 		// Funktionen der Button
@@ -286,6 +288,7 @@ public class BuchungKundeSucheGUI extends JPanel implements IObjektView {
 
 					int row = table.getSelectedRow();
 					txtKnr.setText(table.getModel().getValueAt(row, 0).toString());
+					JOptionPane.showMessageDialog(null, "Kunde mit ID: " + txtKnr.getText() + " gewählt!");
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

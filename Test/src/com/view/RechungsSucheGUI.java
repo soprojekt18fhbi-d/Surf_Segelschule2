@@ -31,6 +31,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import com.controller.RechnungAnzeigeStrg;
@@ -161,6 +162,7 @@ public class RechungsSucheGUI extends JPanel implements IObjektView {
 		panel_1.add(scrollPane, gbc_scrollPane);
 
 		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		table.setMinimumSize(new Dimension(0, 500));
 		table.setPreferredScrollableViewportSize(new Dimension(450, 600));
@@ -172,6 +174,7 @@ public class RechungsSucheGUI extends JPanel implements IObjektView {
 
 					int row = table.getSelectedRow();
 					txtRechnungGewaehlt.setText(table.getModel().getValueAt(row, 0).toString());
+					JOptionPane.showMessageDialog(null, "Rechnung mit ID: " + table.getModel().getValueAt(table.getSelectedRow(), 0) + " gewählt!");
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

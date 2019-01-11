@@ -38,6 +38,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 
 public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView {
 	private BuchungGeraetSucheStrg controller;
@@ -102,7 +103,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView {
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[] { 0, 0, 0 };
 		gbl_panel_1.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
-		gbl_panel_1.columnWeights = new double[] { 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_panel_1.columnWeights = new double[] { 1.0, 1.0, 1.0 };
 		gbl_panel_1.rowWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
 		panel_1.setLayout(gbl_panel_1);
 
@@ -152,6 +153,13 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView {
 
 		DefaultTableModel tm = new DefaultTableModel();
 		table = new JTable(tm);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "Gerät mit ID: " + table.getModel().getValueAt(table.getSelectedRow(), 0) + " gewählt!");
+			}
+		});
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		table.setMinimumSize(new Dimension(0, 500));
 		tm.addColumn("GeräteID");

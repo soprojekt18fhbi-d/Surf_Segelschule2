@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListSelectionModel;
 
 import com.controller.KundeSucheStrg;
 import com.model.IModel;
@@ -290,6 +291,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView {
 		panel_3.add(scrollPane, gbc_scrollPane);
 
 		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
 
 		// Funktionen der Button
@@ -596,6 +598,8 @@ public class KundeAendernGUI extends JPanel implements IObjektView {
 							heimat = "Urlaubsadresse";
 						}
 					}
+					JOptionPane.showMessageDialog(null, "Kunde/Adresse mit ID: " + table.getModel().getValueAt(table.getSelectedRow(), 0) + " gewählt!");
+					
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
