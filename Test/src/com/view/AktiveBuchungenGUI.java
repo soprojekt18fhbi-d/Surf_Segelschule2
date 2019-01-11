@@ -36,7 +36,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
 
-public class AktiveBuchungenGUI extends JPanel implements IObjektView { // Ben Kröncke
+public class AktiveBuchungenGUI extends JPanel implements IObjektView { // Ben Kröncke dsadsads
 	private JTextField searchField;
 	private JTable table;
 	private String talking;
