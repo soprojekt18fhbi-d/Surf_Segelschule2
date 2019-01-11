@@ -13,7 +13,7 @@ import com.model.IModelSuche;
 import com.model.KundeSucheModel;
 import com.view.KundeAendernGUI;
 
-public class KundeSucheStrg implements IController {
+public class KundeSucheStrg {
 
 	private KundeSucheModel model;
 	private KundeAendernGUI view;
@@ -37,10 +37,6 @@ public class KundeSucheStrg implements IController {
 
 	}
 
-	@Override
-	public void anfrage() {
-		// TODO Auto-generated method stub
 
-	}
 
 }

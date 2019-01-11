@@ -7,7 +7,7 @@ import com.entity.Kunde;
 import com.model.KundeAnlegenModel;
 import com.view.IView;
 
-public class KundeAnlegenStrg implements IController {
+public class KundeAnlegenStrg {
 
 	private IKunde kunde;
 	private IAdresse adresse;
@@ -30,10 +30,6 @@ public class KundeAnlegenStrg implements IController {
 		model.AdresseAnlegen(adresse);
 	}
 
-	@Override
-	public void anfrage() {
-		// TODO Auto-generated method stub
 
-	}
 
 }

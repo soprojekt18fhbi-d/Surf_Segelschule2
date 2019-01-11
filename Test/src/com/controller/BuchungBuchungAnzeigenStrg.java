@@ -4,7 +4,7 @@ import com.model.BuchungAnzeigeModel;
 import com.model.BuchungGeraetSucheModel;
 import com.view.IObjektView;
 
-public class BuchungBuchungAnzeigenStrg implements IController {
+public class BuchungBuchungAnzeigenStrg {
 
 	private BuchungAnzeigeModel model;
 	private IObjektView view;
@@ -21,10 +21,6 @@ public class BuchungBuchungAnzeigenStrg implements IController {
 
 	}
 
-	@Override
-	public void anfrage() {
-		// TODO Auto-generated method stub
 
-	}
 
 }

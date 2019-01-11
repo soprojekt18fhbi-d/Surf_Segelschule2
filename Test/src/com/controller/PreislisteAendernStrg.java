@@ -8,7 +8,7 @@ import com.entity.Preisliste;
 import com.model.PreislisteAendernModel;
 import com.view.PreislisteAendernGUI;
 
-public class PreislisteAendernStrg implements IController {
+public class PreislisteAendernStrg {
 
 	private Preisliste preisliste;
 	private PreislisteAendernModel model;
@@ -48,10 +48,6 @@ public class PreislisteAendernStrg implements IController {
 		return values;
 	}
 
-	@Override
-	public void anfrage() {
-		// TODO Auto-generated method stub
 
-	}
 
 }

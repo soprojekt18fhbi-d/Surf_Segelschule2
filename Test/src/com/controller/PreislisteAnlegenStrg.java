@@ -10,7 +10,7 @@ import com.entity.Preisliste;
 import com.model.PreislisteAnlegenModel;
 import com.view.IAnlegenView;
 
-public class PreislisteAnlegenStrg implements IController {
+public class PreislisteAnlegenStrg {
 
 	private Preisliste preisliste;
 	private PreislisteAnlegenModel model;
@@ -33,10 +33,6 @@ public class PreislisteAnlegenStrg implements IController {
 		model.PreislisteAnlegen(preisliste);
 	}
 
-	@Override
-	public void anfrage() {
-		// TODO Auto-generated method stub
 
-	}
 
 }

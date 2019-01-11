@@ -7,7 +7,7 @@ import com.view.IObjektView;
 import com.view.IStandortView;
 import com.view.MainFrame;
 
-public class StandortStrg implements IController {
+public class StandortStrg {
 
 	private StandortModel model;
 	private IStandortView view;
@@ -25,10 +25,6 @@ public class StandortStrg implements IController {
 			MainFrame.setStandort(model.getStandort());
 	}
 
-	@Override
-	public void anfrage() {
-		// TODO Auto-generated method stub
 
-	}
 
 }
