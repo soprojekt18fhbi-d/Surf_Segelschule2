@@ -32,6 +32,7 @@ import com.model.IModel;
 import com.model.IObjektModel;
 
 import javax.swing.JToggleButton;
+import javax.swing.ListSelectionModel;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
@@ -179,6 +180,7 @@ public class BuchungGeraetSucheGUI extends JPanel implements IObjektView {
 		panel.add(scrollPane, gbc_scrollPane);
 
 		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -188,7 +190,7 @@ public class BuchungGeraetSucheGUI extends JPanel implements IObjektView {
 
 					int row = table.getSelectedRow();
 					geraetNr = Integer.parseInt(table.getModel().getValueAt(row, 0).toString());
-					System.out.println(geraetNr);
+					JOptionPane.showMessageDialog(null, "Gerät mit ID: " + table.getModel().getValueAt(row, 0) + " gewählt!");
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

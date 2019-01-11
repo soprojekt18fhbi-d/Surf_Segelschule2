@@ -153,6 +153,12 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView {
 
 		DefaultTableModel tm = new DefaultTableModel();
 		table = new JTable(tm);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "Gerät mit ID: " + table.getModel().getValueAt(table.getSelectedRow(), 0) + " gewählt!");
+			}
+		});
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		table.setMinimumSize(new Dimension(0, 500));

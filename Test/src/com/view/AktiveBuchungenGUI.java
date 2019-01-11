@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListSelectionModel;
 
 import com.controller.BuchungBuchungAnzeigenStrg;
 import com.model.IObjektModel;
@@ -164,6 +165,7 @@ public class AktiveBuchungenGUI extends JPanel implements IObjektView { // Ben K
 		panel_1.add(scrollPane, gbc_scrollPane);
 
 		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -174,6 +176,7 @@ public class AktiveBuchungenGUI extends JPanel implements IObjektView { // Ben K
 					buchungID = Integer.parseInt(table.getModel().getValueAt(row, 0).toString());
 					kNr = Integer.parseInt(table.getModel().getValueAt(row, 1).toString());
 					geraetNr = Integer.parseInt(table.getModel().getValueAt(row, 2).toString());
+					JOptionPane.showMessageDialog(null, "Buchung mit ID: " + table.getModel().getValueAt(row, 0).toString() + " gewählt!");
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

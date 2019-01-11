@@ -22,6 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -145,6 +146,7 @@ public class BuchungTypSucheGUI extends JPanel implements IObjektView {
 		panel_1.add(scrollPane, gbc_scrollPane);
 
 		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setBackground(new Color(255, 255, 255));
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -155,6 +157,7 @@ public class BuchungTypSucheGUI extends JPanel implements IObjektView {
 
 					int row = table.getSelectedRow();
 					txtTypID.setText(table.getModel().getValueAt(row, 0).toString());
+					JOptionPane.showMessageDialog(null, "Typ mit ID: " + txtTypID.getText() + " gewählt!");
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

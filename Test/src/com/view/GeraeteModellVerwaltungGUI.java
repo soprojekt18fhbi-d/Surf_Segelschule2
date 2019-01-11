@@ -133,6 +133,12 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView {
 
 		DefaultTableModel tm = new DefaultTableModel();
 		table = new JTable(tm);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				JOptionPane.showMessageDialog(null, "Modell mit ID: " + table.getModel().getValueAt(table.getSelectedRow(), 0) + " gewählt!");
+			}
+		});
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		table.setMinimumSize(new Dimension(0, 500));
