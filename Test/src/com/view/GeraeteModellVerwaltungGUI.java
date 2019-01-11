@@ -32,6 +32,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 
 public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView {
 	private BuchungModellSucheStrg controller;
@@ -132,6 +133,7 @@ public class GeraeteModellVerwaltungGUI extends JPanel implements IObjektView {
 
 		DefaultTableModel tm = new DefaultTableModel();
 		table = new JTable(tm);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		table.setMinimumSize(new Dimension(0, 500));
 		tm.addColumn("ModellID");

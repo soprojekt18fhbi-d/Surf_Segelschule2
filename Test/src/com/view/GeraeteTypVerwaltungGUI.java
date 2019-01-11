@@ -40,6 +40,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 
@@ -141,6 +142,7 @@ public class GeraeteTypVerwaltungGUI extends JPanel implements IObjektView {
 
 		DefaultTableModel tm = new DefaultTableModel();
 		table = new JTable(tm);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setGridColor(Color.DARK_GRAY);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		table.setMinimumSize(new Dimension(0, 500));
