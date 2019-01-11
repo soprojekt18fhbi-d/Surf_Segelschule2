@@ -41,6 +41,9 @@ import java.beans.PropertyChangeEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -64,7 +67,8 @@ public class KundeAendernGUI extends JPanel implements IObjektView {
 	private String segel = "N";
 	private String heimat = "N";
 	private String text;
-
+	private TableModel leeresModel = new DefaultTableModel();
+	
 	/**
 	 * Create the panel.
 	 */
@@ -608,6 +612,7 @@ public class KundeAendernGUI extends JPanel implements IObjektView {
 
 		comboBox_1.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
+				table.setModel(leeresModel);
 				if (comboBox_1.getSelectedItem().equals("Kunde"))
 					;
 				{
