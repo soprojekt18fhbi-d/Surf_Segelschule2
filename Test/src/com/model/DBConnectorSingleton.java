@@ -11,7 +11,6 @@ public class DBConnectorSingleton { // Ben Kröncke
 	static {
 		try {
 
-			// Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/SurfSegelcenter", "sa", "sa");
 
 		} catch (/** ClassNotFoundException | **/
