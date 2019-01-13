@@ -5,7 +5,6 @@
 package com.view;
 
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import com.controller.GeraetAnlegenStrg;
 import com.model.IAnlegenModel;
@@ -25,12 +24,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
@@ -282,11 +278,11 @@ public class GeraetAendernGUI extends JPanel implements IAnlegenView {
 		panel_2.setBackground(Color.DARK_GRAY);
 		add(panel_2, BorderLayout.SOUTH);
 
-		JButton btnBestaetigen = new JButton("best\u00E4tigen");
+		JButton btnBestaetigen = new JButton("Best\u00E4tigen");
 		btnBestaetigen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnBestaetigen.setBackground(new Color(255, 140, 0));
 
-		JButton btnAbbrechen = new JButton("abbrechen");
+		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnAbbrechen.setBackground(new Color(255, 140, 0));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);

@@ -25,7 +25,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import com.controller.GeraetAnlegenStrg;
 import com.model.IAnlegenModel;
 
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class GeraeteReparaturGUI extends JPanel implements IAnlegenView {
@@ -174,11 +173,11 @@ public class GeraeteReparaturGUI extends JPanel implements IAnlegenView {
 		panel_2.setBackground(Color.DARK_GRAY);
 		add(panel_2, BorderLayout.SOUTH);
 
-		JButton btnBestaetigen = new JButton("best\u00E4tigen");
+		JButton btnBestaetigen = new JButton("Best\u00E4tigen");
 		btnBestaetigen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnBestaetigen.setBackground(new Color(255, 140, 0));
 
-		JButton btnAbbrechen = new JButton("abbrechen");
+		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnAbbrechen.setBackground(new Color(255, 140, 0));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);

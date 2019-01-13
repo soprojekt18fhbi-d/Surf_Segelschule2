@@ -5,8 +5,6 @@
 package com.view;
 
 import javax.swing.JPanel;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -20,21 +18,14 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.controller.ModellAnlegenStrg;
-import com.controller.TypAnlegenStrg;
 import com.model.IAnlegenModel;
-import com.model.ModellAnlegenModel;
-import com.model.TypAnlegenModel;
 
-import javafx.scene.control.ComboBox;
 
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -151,11 +142,11 @@ public class ModellAnlegenGUI extends JPanel implements IAnlegenView {
 		panel_2.setBackground(Color.DARK_GRAY);
 		add(panel_2, BorderLayout.SOUTH);
 
-		JButton btnBestaetigen = new JButton("best\u00E4tigen");
+		JButton btnBestaetigen = new JButton("Best\u00E4tigen");
 		btnBestaetigen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnBestaetigen.setBackground(new Color(255, 140, 0));
 
-		JButton btnAbbrechen = new JButton("abbrechen");
+		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnAbbrechen.setBackground(new Color(255, 140, 0));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
