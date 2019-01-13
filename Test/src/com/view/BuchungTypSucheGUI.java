@@ -186,6 +186,8 @@ public class BuchungTypSucheGUI extends JPanel implements IObjektView {
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getBuchungTypSucheGUI(), MainFrame.getBuchungKundeSucheGUI());
+				txtTypID.setText("");
+				table.setModel(standard);
 			}
 		});
 

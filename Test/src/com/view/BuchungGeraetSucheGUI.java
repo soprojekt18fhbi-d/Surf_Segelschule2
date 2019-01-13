@@ -71,6 +71,8 @@ public class BuchungGeraetSucheGUI extends JPanel implements IObjektView {
 		btnZurueck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getBuchungGeraetSucheGUI(), MainFrame.getBuchungModellSucheGUI());
+				geraetNr = 0;
+				table.setModel(standard);
 			}
 		});
 		btnZurueck.setFont(new Font("Tahoma", Font.PLAIN, 16));
