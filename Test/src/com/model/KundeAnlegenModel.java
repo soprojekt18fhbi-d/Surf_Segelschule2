@@ -1,5 +1,7 @@
 package com.model;
 
+// @author Darnel
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -122,7 +124,6 @@ public class KundeAnlegenModel implements IModel {
 		}
 	}
 
-	// DK
 	public void AdresseAnlegen(IAdresse adresse) {
 
 		try {
@@ -144,6 +145,8 @@ public class KundeAnlegenModel implements IModel {
 			while (rs.next()) {
 				kNr = rs.getInt("ID");
 			}
+			
+			// Kundennummer wird abgefragt, damit Verknüpfung zwischen kunde und Adresse hergestellt werden kann.
 
 			String sqlupdate = "INSERT INTO ADRESSE " + "VALUES (default, " + "'" + plz + "', '" + strasse + "', '"
 					+ ort + "', '" + art + "', '" + hausnummer + "', " + kNr + ")";

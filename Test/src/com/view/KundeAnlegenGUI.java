@@ -452,6 +452,7 @@ public class KundeAnlegenGUI extends JPanel implements IView {
 		btnHinzufgen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
+					// Kunde hat hat Heim- und Urlaubsadresse angegeben 
 					if (KundeGefuellt() == true && HeimadresseGefuellt() == true && UrlaubsadresseGefuellt() == true) {
 						KundeErstellen(chckbxSurfschein, chckbxSegelschein, chckbxMotorbootschein);
 						HeimadresseErstellen();
@@ -459,7 +460,8 @@ public class KundeAnlegenGUI extends JPanel implements IView {
 						JOptionPane.showMessageDialog(null, "Kunde wurde registriert", "Kunde registriert",
 								JOptionPane.PLAIN_MESSAGE);
 						MainFrame.change(MainFrame.getKundeAnlegenGUI(), MainFrame.getHauptmenueGUI());
-
+					
+						// Kunde hat Heimadresse angegeben
 					} else if (KundeGefuellt() == true && HeimadresseGefuellt() == true
 							&& UrlaubsadresseLeer() == true) {
 						KundeErstellen(chckbxSurfschein, chckbxSegelschein, chckbxMotorbootschein);
@@ -467,7 +469,7 @@ public class KundeAnlegenGUI extends JPanel implements IView {
 						JOptionPane.showMessageDialog(null, "Kunde wurde registriert", "Kunde registriert",
 								JOptionPane.PLAIN_MESSAGE);
 						MainFrame.change(MainFrame.getKundeAnlegenGUI(), MainFrame.getHauptmenueGUI());
-
+					// Kunde hat Urlaubsadresse angegeben
 					} else if (KundeGefuellt() == true && UrlaubsadresseGefuellt() == true
 							&& HeimadresseLeer() == true) {
 						KundeErstellen(chckbxSurfschein, chckbxSegelschein, chckbxMotorbootschein);
