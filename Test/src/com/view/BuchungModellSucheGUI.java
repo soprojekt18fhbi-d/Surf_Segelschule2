@@ -189,7 +189,8 @@ public class BuchungModellSucheGUI extends JPanel implements IObjektView {
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.change(MainFrame.getBuchungModellSucheGUI(), MainFrame.getBuchungTypSucheGUI());
-
+				txtModellnummer.setText("");
+				table.setModel(standard);
 			}
 		});
 
@@ -207,8 +208,7 @@ public class BuchungModellSucheGUI extends JPanel implements IObjektView {
 						System.out.println("Kunde: " + kunde.toString() + "Modellnummer: "
 								+ MainFrame.getBuchungGeraetSucheGUI().getModellNr() + "Kundennummer: " + kNr);
 						
-						txtModellnummer.setText("");
-						table.setModel(standard);
+						
 					}
 				} catch (HeadlessException e1) {
 					// TODO Auto-generated catch block
@@ -217,6 +217,8 @@ public class BuchungModellSucheGUI extends JPanel implements IObjektView {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				txtModellnummer.setText("");
+				table.setModel(standard);
 			}
 		});
 

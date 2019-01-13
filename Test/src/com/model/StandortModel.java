@@ -146,11 +146,11 @@ public class StandortModel implements IStandortModel { // Ben Kröncke
 				goon = false;
 				JOptionPane.showMessageDialog(null, "Fehler! Diese ID wurde bereits verwendet!");
 			} catch (Exception e) {
-				e.printStackTrace();
+				System.out.println("ID noch nicht vorhanden!");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("ID noch nicht vorhanden!");
 		}
 		return goon;
 	}
