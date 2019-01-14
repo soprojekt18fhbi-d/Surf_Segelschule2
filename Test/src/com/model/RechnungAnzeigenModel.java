@@ -325,6 +325,9 @@ public class RechnungAnzeigenModel implements IObjektModel {
 		String query = null;
 		System.out.println();
 
+		// Hat der Miarbeiter Urlaubsadresse gewählt, wird der if Block ausgeführt und die Daten aufsteigend ausgegeben.
+		// So wird erst die Heimadresse ausgelesen und falls eine Urlaubsadresse vorhanden ist überschreibt diese die Heimadresse. 
+		// Bei Heimadresse wird es anders herum sortiert. In der Rechnung steht so immer eine Adresse.
 		if (heim_Urlaub == 1) {
 			query = "SELECT * FROM ADRESSE WHERE KUNDEID = " + kundenID + "ORDER BY ART ASC";
 		} else {
