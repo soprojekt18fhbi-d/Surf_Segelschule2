@@ -15,6 +15,7 @@ import com.entity.Preisliste;
 import com.view.IAnlegenView;
 
 public class PreislisteAnlegenModel implements IAnlegenModel {
+	private ArrayList<IAnlegenView> observers = new ArrayList<IAnlegenView>();
 
 	String eineStd;
 	String zweiStd;
@@ -93,7 +94,7 @@ public class PreislisteAnlegenModel implements IAnlegenModel {
 
 			Statement statementPreislisteAnlegenModel = conn.createStatement();
 
-			// Strings für Abfrage initialisieren und aus den double Werten die 0.0'en
+			// Strings für Abfrage initialisieren und aus den double Werten des Preislisten-Objekts die 0.0'en
 			// filtern
 			eineStd = DatentypUmwandlung.doubleZuString(preisliste.getEineStd());
 			zweiStd = DatentypUmwandlung.doubleZuString(preisliste.getZweiStd());

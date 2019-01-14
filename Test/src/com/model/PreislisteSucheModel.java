@@ -66,8 +66,6 @@ public class PreislisteSucheModel implements IObjektModel {
 
 		this.talking = talking;
 		this.suchTxt = suchTxt;
-		System.out.println(suchTxt);
-		System.out.println(talking);
 
 		try {
 			Connection conn = DBConnectorSingleton.getCon();
@@ -87,12 +85,12 @@ public class PreislisteSucheModel implements IObjektModel {
 		String query = "TestQuery";
 		System.out.println(query);
 
-		// if (talking.equals("master")) {
-		if (suchTxt.equals(""))
-			query = "SELECT * FROM PREISLISTE";
-		else
-			query = "SELECT * FROM PREISLISTE WHERE ID LIKE '%" + suchTxt + "%'";
-		// }
+		if (talking.equals("master")) {
+			if (suchTxt.equals(""))
+				query = "SELECT * FROM PREISLISTE";
+			else
+				query = "SELECT * FROM PREISLISTE WHERE ID LIKE '%" + suchTxt + "%'";
+		}
 
 		try {
 			stmtPreislisteSucheModel = conn.createStatement();

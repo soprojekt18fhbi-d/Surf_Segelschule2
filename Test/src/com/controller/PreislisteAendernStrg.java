@@ -25,29 +25,14 @@ public class PreislisteAendernStrg {
 			double preisZehnTage, double preisElfTage, double preisZwoelfVierzehnTage, double preisFuenfzehnTage,
 			double preisSechzehnTage, double preisSiebzehnTage, double preisAchtzehnEinundzwanzigTage,
 			double preisTagVierWochen, double presVierWochen, double preisAchtWochen) {
-		double[] values = doublePreislisteInArray(preisEineStd, preisZweiStd, preisVierStd, preisEinenTag,
-				preisZweiTage, preisDreiTage, preisVierTage, preisFuenfTage, preisSechsSiebenTage, preisAchtTage,
-				preisNeunTage, preisZehnTage, preisElfTage, preisZwoelfVierzehnTage, preisFuenfzehnTage,
-				preisSechzehnTage, preisSiebzehnTage, preisAchtzehnEinundzwanzigTage, preisTagVierWochen,
-				presVierWochen, preisAchtWochen);
+//		Umwandlung in ein Preislisten-Objekt um nachfolgend übersichtlichere Parameter nutzen zu können
+		preisliste = new Preisliste(preisEineStd, preisZweiStd, preisVierStd, preisEinenTag, preisZweiTage, preisDreiTage, preisVierTage, preisFuenfTage,
+				preisSechsSiebenTage, preisAchtTage, preisNeunTage, preisZehnTage, preisElfTage, preisZwoelfVierzehnTage, preisFuenfzehnTage, preisSechzehnTage,
+				preisSiebzehnTage, preisAchtzehnEinundzwanzigTage, preisTagVierWochen, presVierWochen, preisAchtWochen);
 
-		model.anfrage(talking, id, values);
+		model.anfrage(talking, id, preisliste);
 
 	}
-
-	public double[] doublePreislisteInArray(double preisEineStd, double preisZweiStd, double preisVierStd,
-			double preisEinenTag, double preisZweiTage, double preisDreiTage, double preisVierTage,
-			double preisFuenfTage, double preisSechsSiebenTage, double preisAchtTage, double preisNeunTage,
-			double preisZehnTage, double preisElfTage, double preisZwoelfVierzehnTage, double preisFuenfzehnTage,
-			double preisSechzehnTage, double preisSiebzehnTage, double preisAchtzehnEinundzwanzigTage,
-			double preisTagVierWochen, double presVierWochen, double preisAchtWochen) {
-		double[] values = { preisEineStd, preisZweiStd, preisVierStd, preisEinenTag, preisZweiTage, preisDreiTage,
-				preisVierTage, preisFuenfTage, preisSechsSiebenTage, preisAchtTage, preisNeunTage, preisZehnTage,
-				preisElfTage, preisZwoelfVierzehnTage, preisFuenfzehnTage, preisSechzehnTage, preisSiebzehnTage,
-				preisAchtzehnEinundzwanzigTage, preisTagVierWochen, presVierWochen, preisAchtWochen };
-		return values;
-	}
-
 
 
 }

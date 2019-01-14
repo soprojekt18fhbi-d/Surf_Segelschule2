@@ -582,10 +582,13 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		panel_2.setLayout(gl_panel_2);
 
+		textFelderInArray();
+
 		btnSpeichern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				talking = "aendern";
-
+				// Action-Listener für den Button "Speichern": Exception, wenn fehlerhafte Werte
+				// eingetragen wurden
 				try {
 					PreislisteAendern();
 				} catch (NumberFormatException e) {
@@ -598,15 +601,17 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 
 		btnLoeschen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				talking = "loeschen";
+				// Action-Listener für den Button "Löschen": Sicherheitsabfrage & darauf
+				// folgende Datenbankanfrage mit Hilfsvariable talking
 
 				try {
 
-					if (JOptionPane.showConfirmDialog(null, "Wollen Sie die Preisliste wirklich löschen?", "Preisliste Löschen", 2)==0) {
+					if (JOptionPane.showConfirmDialog(null, "Wollen Sie die Preisliste wirklich löschen?",
+							"Preisliste Löschen", 2) == 0) {
+						talking = "loeschen";
 						PreislisteAendern();
 					}
-					
-					
+
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -626,12 +631,17 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 	}
 
 	void setPreislisteTextfelder(String[] preisliste) {
-
+		// Visualisierung der Preisliste in den Textfeldern und Speichern der
+		// Preislisten-ID um später Änderungen an Datenbank vorzunehmen.
 		setPreisliste(preisliste);
-
 		TextFelderFuellen();
-		id = Integer.parseInt(preisliste[0]);
+		setId( Integer.parseInt(preisliste[0]));
 
+	}
+
+	private void setId(int id) {
+		this.id = id;
+		
 	}
 
 	private void setPreisliste(String[] preisliste) {
@@ -640,6 +650,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 	}
 
 	private void TextFelderFuellen() {
+		// Die im Konstruktor erstellten und im Array gespeicherten Textfelder werden
+		// mit einem Array an Werten gefüllt
 		for (int i = 0; i < mengeAnTextFeldern.length; i++) {
 			mengeAnTextFeldern[i].setText(preisliste[i + 1]);
 		}
@@ -647,12 +659,13 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 
 	@Override
 	public void aktualisieren(IAnlegenModel model) {
+		// Erfolgsmeldung bei durchgeführter Änderung.
 		JOptionPane.showMessageDialog(null, "Die Preisliste wurde geändert!");
 
 	}
 
 	private void PreislisteAendern() {
-
+		// Speichern der Textfeldwerte als String, um mehrere Mathoden darauf anzuwenden
 		String preisEineStdString = tfEineStd.getText();
 		String preisZweiStdString = tfZweiStd.getText();
 		String preisVierStdString = tfVierStd.getText();
@@ -675,6 +688,8 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		String preisVierWochenString = tfVierWochen.getText();
 		String preisAchtWochenString = tfAchtWochen.getText();
 
+		// String Kommata durch Punkte ersetzen gegen Komplikationen in folgender
+		// Umwandlung zu Double
 		preisEineStdString = stringKommaPunktErsetzen(preisEineStdString);
 		preisZweiStdString = stringKommaPunktErsetzen(preisZweiStdString);
 		preisVierStdString = stringKommaPunktErsetzen(preisVierStdString);
@@ -697,7 +712,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 		preisVierWochenString = stringKommaPunktErsetzen(preisVierWochenString);
 		preisAchtWochenString = stringKommaPunktErsetzen(preisAchtWochenString);
 
-		// if (talking=="aendern") {
+//		Überprüfung ob alle Textfelder leer sind
 		if (preisEineStdString.isEmpty() && preisZweiStdString.isEmpty() && preisVierStdString.isEmpty()
 				&& preisEinenTagString.isEmpty() && preisZweiTageString.isEmpty() && preisDreiTageString.isEmpty()
 				&& preisVierTageString.isEmpty() && preisFuenfTageString.isEmpty()
@@ -707,11 +722,11 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 				&& preisSechzehnTageString.isEmpty() && preisSiebzehnTageString.isEmpty()
 				&& preisAchtzehnEinundzwanzigTageString.isEmpty() && preisTagVierWochenString.isEmpty()
 				&& preisVierWochenString.isEmpty() && preisAchtWochenString.isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Bitte alle Felder mit Preisen ausfüllen!");
-			
-				
-		}
 
+			JOptionPane.showMessageDialog(null, "Bitte alle Felder mit Preisen ausfüllen!");
+
+		}
+//		Überprüfung ob ein Textfeld Double unpassende Werte enthält
 		else if (StringEnthaeltX.stringIstKeineZahl(preisEineStdString)
 				|| StringEnthaeltX.stringIstKeineZahl(preisZweiStdString)
 				|| StringEnthaeltX.stringIstKeineZahl(preisVierStdString)
@@ -733,12 +748,12 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 				|| StringEnthaeltX.stringIstKeineZahl(preisTagVierWochenString)
 				|| StringEnthaeltX.stringIstKeineZahl(preisVierWochenString)
 				|| StringEnthaeltX.stringIstKeineZahl(preisAchtWochenString)) {
-			if (talking =="aendern") {
-				JOptionPane.showMessageDialog(null, "Bitte nur Zahlen für die Preise verwenden!");
-			}
-				
+			System.out.println("Keine Zahl");
+			JOptionPane.showMessageDialog(null, "Bitte nur Zahlen für die Preise verwenden!");
+
 		}
 
+		// Umwandlung von String zu Double
 		else {
 			double preisEineStd = DatentypUmwandlung.stringZuDouble(preisEineStdString);
 			double preisZweiStd = DatentypUmwandlung.stringZuDouble(preisZweiStdString);
@@ -763,21 +778,31 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 			double presVierWochen = DatentypUmwandlung.stringZuDouble(preisVierWochenString);
 			double preisAchtWochen = DatentypUmwandlung.stringZuDouble(preisAchtWochenString);
 
+//			Anfrage an cController wietergeben, um Datenbankänderung durchzuführen
 			controller.preislisteUebergeben(talking, id, preisEineStd, preisZweiStd, preisVierStd, preisEinenTag,
 					preisZweiTage, preisDreiTage, preisVierTage, preisFuenfTage, preisSechsSiebenTage, preisAchtTage,
 					preisNeunTage, preisZehnTage, preisElfTage, preisZwoelfVierzehnTage, preisFuenfzehnTage,
 					preisSechzehnTage, preisSiebzehnTage, preisAchtzehnEinundzwanzigTage, preisTagVierWochen,
 					presVierWochen, preisAchtWochen);
-			
-			
+
+//			Die bei Öffnen des Fensters hinterlegte Preisliste entfernen
 			setPreisliste(null);
-			aktualisieren(model);
+			
+//			Die bei Öffnen des Fensters hinterlegte ID unnutzbar machen
+			setId(-1);
+//			Die Textfelder leeren, damit bei Wiederkehren garantiert ist, dass die nun bearbeitete Liste nur wieder bearbeitet wird, wenn
 			textFelderLeeren();
+//			Eine Erfolgsmeldung ausgeben
+			aktualisieren(model);
+
+//			Auf die Preislistenverwaltung zurück wechseln
 			MainFrame.change(MainFrame.getPreislisteAnlegenGUI(), MainFrame.getPreislisteGUI());
 		}
 	}
 
 	public void textFelderInArray() {
+		// Alle Textfelder der Klasse werden dem Array für die Felder hinzugefügt,
+		// um das Füllen der Textfelder im nächsten Schritt zu automatisieren.
 		mengeAnTextFeldern[0] = tfEineStd;
 		mengeAnTextFeldern[1] = tfZweiStd;
 		mengeAnTextFeldern[2] = tfVierStd;
@@ -803,12 +828,17 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 	}
 
 	public String stringKommaPunktErsetzen(String string) {
+		// UmFehler bei der Umrechnung Strin zu Double zu verhindern, werden mögliche
+		// Kommata durch Punkte ersetzt
 		string = string.replace(",", ".");
 		return string;
 
 	}
 
 	private void textFelderLeeren() {
+		// Um keine fehlerhaften Einträge in einem Textfeld zu behalten, wenn der
+		// Prozess beendet wird,
+		// können alle Textfelder wieder geleert werden.
 		for (int i = 0; i < mengeAnTextFeldern.length; i++) {
 			mengeAnTextFeldern[i].setText("");
 		}

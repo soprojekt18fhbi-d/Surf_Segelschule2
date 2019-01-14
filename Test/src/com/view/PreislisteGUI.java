@@ -73,7 +73,7 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 			public void keyReleased(KeyEvent arg0) {
 
 				try {
-
+					talking = "master";
 					anfrage();
 
 				} catch (Exception e1) {
@@ -238,7 +238,6 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 				else {
 
 					String[] preislistetabelle = tableRowToArray(table);
-					MainFrame.getPreislisteAendernGUI().textFelderInArray();
 					MainFrame.getPreislisteAendernGUI().setPreislisteTextfelder(preislistetabelle);
 
 					MainFrame.change(MainFrame.getPreislisteGUI(), MainFrame.getPreislisteAendernGUI());
@@ -264,6 +263,8 @@ public class PreislisteGUI extends JPanel implements IObjektView {
 	}
 
 	public String[] tableRowToArray(JTable table) {
+		//Der Inhalt einer aus der Tabelle ausgewählten Zeile wird in ein Array übertragen,
+		//um dies unabhängig von Typ in der nächsten GUI weiter zu verwenden.
 		DefaultTableModel dtm = (DefaultTableModel) table.getModel();
 		int selectedRowIndex = table.getSelectedRow();
 		int nCol = dtm.getColumnCount();
