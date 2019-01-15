@@ -94,8 +94,6 @@ public class StandortModel implements IStandortModel { // Ben Kröncke
 			standortID = rs.getString("ID");
 		}
 
-		System.out.println(chckName);
-		System.out.println(chckPW);
 
 		if (standortName.equals(chckName) && password.equals(chckPW))
 			success = true;
@@ -142,7 +140,6 @@ public class StandortModel implements IStandortModel { // Ben Kröncke
 			try {
 				rs.next();
 				newSID = rs.getInt("ID");
-				System.out.println(newSID);
 				goon = false;
 				JOptionPane.showMessageDialog(null, "Fehler! Diese ID wurde bereits verwendet!");
 			} catch (Exception e) {

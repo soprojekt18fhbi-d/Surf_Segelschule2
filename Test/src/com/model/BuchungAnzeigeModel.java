@@ -133,8 +133,6 @@ public class BuchungAnzeigeModel implements IObjektModel { // Ben Kröncke
 			rueckdatum = rs.getString("RÜCKGABEDATUM");
 			verleihdatum = rs.getString("AUSLEIHDATUM");
 		}
-		System.out.println(rueckdatum);
-		System.out.println(verleihdatum);
 
 		tageStunden = holeTageStunden(rueckdatum, verleihdatum);
 
@@ -304,8 +302,7 @@ public class BuchungAnzeigeModel implements IObjektModel { // Ben Kröncke
 																									// eine alternative
 																									// Berechnung
 																									// verwendet
-		System.out.println(12 + " - " + Integer.parseInt(datumVerleih[1]) + " + " + Integer.parseInt(datumRueck[1])
-				+ " + " + 1 + " = " + monate);
+		
 		int tage = Integer.parseInt(datumRueck[2]) - Integer.parseInt(datumVerleih[2]);
 		if (tage < 0) {
 			monate--;
