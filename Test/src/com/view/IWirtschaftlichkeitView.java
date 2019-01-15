@@ -6,4 +6,4 @@ public interface IWirtschaftlichkeitView { //Ben Kröncke
 
 	void aktualisieren(IWirtschaftlichkeitModel model);
 
-}
+} 

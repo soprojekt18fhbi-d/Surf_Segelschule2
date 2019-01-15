@@ -2,7 +2,7 @@
  *  @author Michael Schmidt
  */
 
-package com.view;
+package com.view; 
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;

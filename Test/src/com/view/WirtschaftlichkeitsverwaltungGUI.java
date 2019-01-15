@@ -55,7 +55,7 @@ public class WirtschaftlichkeitsverwaltungGUI extends JPanel implements IWirtsch
 	private JComboBox<String> cboxSpec;
 	private IWirtschaftlichkeitModel model;
 	private WirtschaftlichkeitStrg controller;
-
+ 
 	public WirtschaftlichkeitsverwaltungGUI(IWirtschaftlichkeitModel models, WirtschaftlichkeitStrg controllers) {
 
 		model = models;

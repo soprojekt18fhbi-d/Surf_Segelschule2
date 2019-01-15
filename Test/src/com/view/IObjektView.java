@@ -1,7 +1,7 @@
 package com.view;
 
 import com.model.IObjektModel;
-
+ 
 public interface IObjektView { //Michael Schmidt
 
 	/**

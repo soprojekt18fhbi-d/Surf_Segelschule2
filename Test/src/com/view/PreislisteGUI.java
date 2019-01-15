@@ -1,5 +1,5 @@
 /**
- * @author Ben S
+ * @author Ben Schultz
  */
 
 package com.view;

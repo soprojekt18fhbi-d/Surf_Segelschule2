@@ -1,5 +1,5 @@
 /**
- * @author Ben S
+ * @author Ben Schultz
  */
 
 package com.view;
@@ -38,7 +38,7 @@ public class PreislisteAnlegenGUI extends JPanel implements IAnlegenView {
 	private JTextField tfEineStd;
 	private JTextField tfZweiStd;
 	private JTextField tfVierStd;
-	private JTextField tfEinTag;
+	private JTextField tfEinTag; 
 	private JTextField tfZweiTage;
 	private JTextField tfDreiTage;
 	private JTextField tfFuenfTage;

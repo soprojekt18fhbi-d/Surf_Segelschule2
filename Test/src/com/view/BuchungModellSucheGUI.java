@@ -1,4 +1,4 @@
-//@author Michi S. Ben Kröncke
+//@author Michi S. Ben Kröncke 
 package com.view;
 
 import java.awt.BorderLayout;

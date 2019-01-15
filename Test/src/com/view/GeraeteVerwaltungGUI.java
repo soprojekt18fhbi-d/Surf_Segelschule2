@@ -2,7 +2,7 @@
  *  @author Michael Schmidt
  */
 
-package com.view;
+package com.view; 
 
 import java.awt.BorderLayout;
 import java.awt.Font;

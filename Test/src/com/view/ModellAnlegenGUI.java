@@ -34,7 +34,7 @@ import java.awt.Color;
 public class ModellAnlegenGUI extends JPanel implements IAnlegenView {
 	private JTextField txtModell;
 
-	IAnlegenModel model;
+	IAnlegenModel model; 
 	ModellAnlegenStrg controller;
 	private String talking = "first";
 	private JComboBox<String> comboBoxTyp;

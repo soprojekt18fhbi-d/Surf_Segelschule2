@@ -36,7 +36,7 @@ public class TypAnlegenGUI extends JPanel implements IAnlegenView {
 	private JRadioButton radioButtonSegelschein;
 	private JRadioButton radioButtonSurfschein;
 	private JRadioButton radioButtonMotorbootschein;
-	private ButtonGroup radioButton = new ButtonGroup();
+	private ButtonGroup radioButton = new ButtonGroup(); 
 
 	TypAnlegenModel model;
 	TypAnlegenStrg controller;

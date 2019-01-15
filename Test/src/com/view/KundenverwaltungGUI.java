@@ -1,6 +1,6 @@
 // @author Darnel Krause
 
-package com.view;
+package com.view;  
 
 import javax.swing.JPanel;
 

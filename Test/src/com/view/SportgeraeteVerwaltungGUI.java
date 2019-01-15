@@ -52,7 +52,7 @@ public class SportgeraeteVerwaltungGUI extends JPanel implements IObjektView {
 	private Icon lupe;
 	private int modellID;
 	private int geraeteID;
-	private String farbe;
+	private String farbe; 
 	private String makel;
 	private double anschaffungspreis;
 	private double verkaufspreis;

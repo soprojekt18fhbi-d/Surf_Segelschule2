@@ -2,7 +2,7 @@
  * @author Methoden: BenKröncke, GUI: Michael Schmidt
  */
 
-package com.view;
+package com.view; 
 
 import java.awt.BorderLayout;
 import java.awt.Color;

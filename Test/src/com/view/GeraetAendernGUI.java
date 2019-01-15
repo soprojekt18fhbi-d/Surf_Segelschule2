@@ -3,7 +3,7 @@
  */
 
 package com.view;
-
+ 
 import javax.swing.JPanel;
 
 import com.controller.GeraetAnlegenStrg;

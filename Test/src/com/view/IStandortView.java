@@ -1,6 +1,6 @@
 package com.view;
 
-import com.model.IObjektModel;
+import com.model.IObjektModel; 
 import com.model.IStandortModel;
 
 public interface IStandortView { // Ben Kröncke

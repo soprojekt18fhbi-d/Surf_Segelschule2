@@ -46,7 +46,7 @@ public class StandortGUI extends JFrame implements IStandortView { // Ben Krönck
 	private JTextField telFeld;
 	private JTextField plzFeld;
 	private JTextField strFeld;
-	private JTextField ortFeld;
+	private JTextField ortFeld; 
 	private JTextField hnrFeld;
 
 	private JPanel anmeldenPanel;

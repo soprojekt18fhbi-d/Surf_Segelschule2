@@ -1,5 +1,9 @@
 package com.view;
 
+/**
+ * Michael Schmidt
+ */
+
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;

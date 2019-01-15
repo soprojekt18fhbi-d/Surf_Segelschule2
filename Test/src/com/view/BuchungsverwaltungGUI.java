@@ -1,4 +1,4 @@
-package com.view;
+package com.view; 
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.UIManager;
 
-public class BuchungsverwaltungGUI extends JPanel {
+public class BuchungsverwaltungGUI extends JPanel { //Darnel Krause
 
 	/**
 	 * Create the panel.

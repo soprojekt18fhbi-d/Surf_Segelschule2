@@ -44,7 +44,7 @@ import java.awt.FlowLayout;
 
 public class RechungsSucheGUI extends JPanel implements IObjektView {
 
-	private JTable table;
+	private JTable table; 
 	private RechnungAnzeigeStrg controller;
 	private IObjektModel model;
 	private String search;

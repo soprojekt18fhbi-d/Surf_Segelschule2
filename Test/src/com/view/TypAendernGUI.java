@@ -40,7 +40,7 @@ public class TypAendernGUI extends JPanel implements IAnlegenView {
 	private JRadioButton radioButtonSurfschein;
 	private JRadioButton radioButtonMotorbootschein;
 	private String talking = "aendern";
-	private ButtonGroup radioButton = new ButtonGroup();
+	private ButtonGroup radioButton = new ButtonGroup(); 
 
 	TypAnlegenModel model;
 	TypAnlegenStrg controller;

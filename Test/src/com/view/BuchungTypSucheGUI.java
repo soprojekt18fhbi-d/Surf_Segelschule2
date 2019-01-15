@@ -40,7 +40,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 import java.awt.Color;
-
+ 
 public class BuchungTypSucheGUI extends JPanel implements IObjektView { //Ben Kröncke
 	private JTextField tfSuche;
 

@@ -1,5 +1,5 @@
 /**
- * @author Ben S
+ * @author Ben Schultz
  */
 
 package com.view;
@@ -44,7 +44,7 @@ public class PreislisteAendernGUI extends JPanel implements IAnlegenView {
 
 	private String[] preisliste;
 
-	int id;
+	int id; 
 
 	private JTextField tfEineStd;
 	private JTextField tfZweiStd;

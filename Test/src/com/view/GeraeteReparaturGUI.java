@@ -1,5 +1,5 @@
 /*
- *  @author Michael Schmidt
+  *  @author Michael Schmidt
  */
 
 package com.view;

@@ -1,7 +1,7 @@
 /*
  *  @author Michael Schmidt
  */
-
+ 
 package com.view;
 
 import javax.swing.JPanel;

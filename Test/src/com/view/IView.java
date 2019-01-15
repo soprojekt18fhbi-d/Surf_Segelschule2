@@ -1,4 +1,4 @@
-package com.view;
+package com.view; 
 
 import com.model.IModel;
 import com.model.IModelSuche;
