@@ -6,7 +6,7 @@ import com.view.IAnlegenView;
 
 //Model Für Klassen, die hauptsächlich Entitäten in der Datenbank einpflegen wollen
 
-public interface IAnlegenModel {
+public interface IAnlegenModel {// Michael Schmidt
 
 	/**
 	 * ArrayList für Möglichkeit der Aufnahme mehrerer Observer(Views)

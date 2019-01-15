@@ -3,7 +3,7 @@ package com.entity;
 
 public class Preisliste {
 
-	// @author Ben S
+	// @author Ben Schultz
 
 	private int preislisteID;
 	private double eineStd;

@@ -1,3 +1,7 @@
+/**
+ * @author Ben S
+ */
+
 package com.berechnung;
 
 public class StringEnthaeltX {

@@ -1,6 +1,6 @@
 package com.model;
 
-// @author Darnel
+// @author Darnel Krause
 
 import java.sql.Connection;
 import java.sql.DriverManager;

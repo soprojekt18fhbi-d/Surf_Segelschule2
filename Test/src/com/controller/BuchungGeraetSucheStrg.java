@@ -1,3 +1,8 @@
+/**
+ * @author Ben Kröncke
+ *
+ */
+
 package com.controller;
 
 import com.model.BuchungGeraetSucheModel;

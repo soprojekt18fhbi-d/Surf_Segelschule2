@@ -1,6 +1,6 @@
 package com.entity;
 
-//@author Darnel
+//@author Darnel Krause
 
 public class Standort {
 

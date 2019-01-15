@@ -2,7 +2,7 @@ package com.view;
 
 import com.model.IObjektModel;
 
-public interface IObjektView {
+public interface IObjektView { //Michael Schmidt
 
 	/**
 	 * Die aktualisieren Methode aktualisiert die View.

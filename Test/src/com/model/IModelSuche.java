@@ -10,7 +10,7 @@ import com.view.IView;
 
 //Interface, dass für Klassen gedacht ist, die Daten auslesen und anzeigen wollen
 
-public interface IModelSuche extends IModel {
+public interface IModelSuche extends IModel {// Ben Kröncke
 
 	void holeDaten(String kdID, String nname, String vname, String plz, String ort, String strasse, String hausnr);
 

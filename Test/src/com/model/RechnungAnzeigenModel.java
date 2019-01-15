@@ -18,7 +18,7 @@ import com.view.IObjektView;
 import net.proteanit.sql.DbUtils;
 
 /**
- * @author Darnel
+ * @author Darnel Krause
  *
  */
 public class RechnungAnzeigenModel implements IObjektModel {

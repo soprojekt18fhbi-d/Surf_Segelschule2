@@ -1,7 +1,7 @@
 package com.entity;
 
 /**
- * @author michi
+ * @author Michael Schmidt
  */
 public class SportGeraet extends GeraeteModell {
 

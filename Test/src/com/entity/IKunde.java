@@ -1,5 +1,9 @@
 package com.entity;
 
+/**
+ * @author Ben Schultz
+ */
+
 public interface IKunde {
 
 	String getName();

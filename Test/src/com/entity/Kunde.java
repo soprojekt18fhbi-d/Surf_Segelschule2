@@ -1,5 +1,7 @@
 package com.entity;
 
+//@author Darnel Krause
+
 public class Kunde implements IKunde {
 
 	private String name;

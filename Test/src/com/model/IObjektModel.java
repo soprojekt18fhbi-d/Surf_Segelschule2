@@ -10,7 +10,7 @@ import com.view.IView;
 
 //Interface, dass für Klassen gedacht ist, die Daten auslesen und anzeigen wollen
 
-public interface IObjektModel {
+public interface IObjektModel {// Michael Schmidt
 
 	/**
 	 * ArrayList für Möglichkeit der Aufnahme mehrerer Observer(Views)

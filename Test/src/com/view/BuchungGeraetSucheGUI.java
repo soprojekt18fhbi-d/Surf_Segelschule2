@@ -42,7 +42,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
 
-public class BuchungGeraetSucheGUI extends JPanel implements IObjektView {
+public class BuchungGeraetSucheGUI extends JPanel implements IObjektView {// Ben Kröncke
 
 	private BuchungGeraetSucheStrg controller;
 	private IObjektModel model;

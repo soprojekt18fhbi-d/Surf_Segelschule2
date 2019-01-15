@@ -1,4 +1,4 @@
-// @author Darnel
+// @author Darnel Krause
 
 package com.entity; //Adresse ist für den Kunden
 

@@ -3,7 +3,7 @@ package com.view;
 import com.model.IObjektModel;
 import com.model.IStandortModel;
 
-public interface IStandortView {
+public interface IStandortView { // Ben Kröncke
 
 	/**
 	 * Die aktualisieren Methode aktualisiert die View.
