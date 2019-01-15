@@ -106,7 +106,6 @@ public class RechnungAnzeigenModel implements IObjektModel {
 	// Wird ausgeführt, wenn ein Kunde nach Rechnungen sucht.
 	public void holeDaten() {
 
-		System.out.println();
 		try {
 
 			Connection conn = DBConnectorSingleton.getCon();
@@ -173,7 +172,6 @@ public class RechnungAnzeigenModel implements IObjektModel {
 			query = "SELECT * FROM RECHNUNG WHERE KUNDEID LIKE '%" + search + "%' ORDER BY ID DESC";
 
 		System.out.println(query);
-		System.out.println(search);
 
 		try {
 			stmt = con.createStatement();
@@ -208,8 +206,7 @@ public class RechnungAnzeigenModel implements IObjektModel {
 				kundeID = rs.getInt(5);
 				reparaturID = rs.getInt(6);
 				buchungsID = rs.getInt(7);
-				System.out.println("Model:" + summe + " " + mwst + " " + summeMitMwst + " " + kundeID + " "
-						+ reparaturID + " " + buchungsID);
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -235,7 +232,6 @@ public class RechnungAnzeigenModel implements IObjektModel {
 				verkaufsdatum = rs.getString(5);
 				art = rs.getString(6);
 				sportgeraetID = rs.getInt(7);
-				System.out.println("Buchung:" + art + " " + sportgeraetID);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -259,7 +255,6 @@ public class RechnungAnzeigenModel implements IObjektModel {
 			while (rs.next()) {
 				modellID = rs.getInt(5);
 				farbe = rs.getString(8);
-				System.out.println("Sportgeraet:" + modellID + " " + farbe);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -282,7 +277,6 @@ public class RechnungAnzeigenModel implements IObjektModel {
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				modellname = rs.getString(2);
-				System.out.println("Modell:" + modellname);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -308,7 +302,6 @@ public class RechnungAnzeigenModel implements IObjektModel {
 				vorname = rs.getString(2);
 				nachname = rs.getString(3);
 				eMail = rs.getString(4);
-				System.out.println("Kunde:" + vorname + " " + nachname + " " + eMail);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -341,7 +334,6 @@ public class RechnungAnzeigenModel implements IObjektModel {
 		try {
 			stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-			System.out.println(rs);
 			if(rs.next())
 			{
 				while (rs.next()) {
@@ -350,7 +342,6 @@ public class RechnungAnzeigenModel implements IObjektModel {
 					ort = rs.getString(4);
 					hnr = rs.getString(6);
 					
-				System.out.println("Kunde:" + plz + " " + strasse + " " + ort + "" + hnr);
 				}
 			}
 			else
