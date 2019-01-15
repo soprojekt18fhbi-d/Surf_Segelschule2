@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
 import com.entity.GeraeteModell;
@@ -133,7 +134,7 @@ public class RechnungAnzeigenModel implements IObjektModel {
 			rechnungDruckenKunde(conn, kundeID);
 			rechnungDruckenAdresse(conn, kundeID, heim_Urlaub);
 
-			conn.close();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -341,12 +342,20 @@ public class RechnungAnzeigenModel implements IObjektModel {
 			stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			System.out.println(rs);
-			while (rs.next()) {
-				plz = rs.getInt(2);
-				strasse = rs.getString(3);
-				ort = rs.getString(4);
-				hnr = rs.getString(6);
+			if(rs.next())
+			{
+				while (rs.next()) {
+					plz = rs.getInt(2);
+					strasse = rs.getString(3);
+					ort = rs.getString(4);
+					hnr = rs.getString(6);
+					
 				System.out.println("Kunde:" + plz + " " + strasse + " " + ort + "" + hnr);
+				}
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "Keine Adresse vorhanden! Die Rechnung könnte fehlerhaft aussehen!");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
