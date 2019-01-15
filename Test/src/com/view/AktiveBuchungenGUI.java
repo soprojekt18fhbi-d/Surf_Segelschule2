@@ -220,8 +220,11 @@ public class AktiveBuchungenGUI extends JPanel implements IObjektView { // Ben K
 						if (mode.equals("Verleih")) {
 							makel = JOptionPane.showInputDialog("Gibt es Makel bei der Rückgabe? Bitte eintragen!");
 							if (makel == null)
+							{
 								JOptionPane.showMessageDialog(null, "Vorgang abgebrochen!");
-							else
+								return;
+							}
+							else if(!(makel == null))
 								anfrage();
 						}
 
@@ -296,6 +299,7 @@ public class AktiveBuchungenGUI extends JPanel implements IObjektView { // Ben K
 		buchungID = 0;
 		geraetNr = 0;
 		talking = "master";
+		makel = "";
 		anfrage();
 	}
 }

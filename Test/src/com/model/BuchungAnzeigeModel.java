@@ -176,7 +176,7 @@ public class BuchungAnzeigeModel implements IObjektModel { // Ben Kröncke
 			setzePreis(stmt, spalte);
 		}
 		if (tageStunden[0] <= 5 && tageStunden[0] > 4) {
-			String spalte = "FÜNFTAGE";
+			String spalte = "FUENFTAGE";
 			setzePreis(stmt, spalte);
 		}
 		if (tageStunden[0] <= 7 && tageStunden[0] > 5) {
